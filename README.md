@@ -1,58 +1,129 @@
-# create-svelte
+Stripe + Auth.js + SvelteKit
+----------------------------
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+The easiest way to create a SaaS site.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+This is a [Stripe](https://stripe.com) integration for [Auth.js](https://authjs.dev).
 
-## Creating a project
+It's a quick way to create SaaS apps without writing any payment code.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Starter-free: It's just a library.
+- Full membership solution
+- **Integrated checkout**: Stripe Checkout is built into the signup.
+- **Free plans**: Checkout is skipped for free plans or trials.
+- **Billing portal**: Changing plans or canceling account is built in.
+- **Webhook handling**: All Stripe webhooks are handled for you.
+- **Routing guards**: Routes can be restricted based on membership status.
+- **Component guards**: Conditionally display components based on membership status.
+- **Open source**: https://github.com/joshnuss/auth-stripe-sveltekit
+- **BSL Licence**: Free for first 100 customers. Then $150/year for unlimited users.
 
-# create a new project in my-app
-npm create svelte@latest my-app
+## Component guards
+
+Conditionally display components based on the user's subscription status.
+
+Two components are provided:
+
+- `<NonMember/>`: Display content when user doesn't have a subscription.
+- `<Member/>`: Display content when user has a subscription. Can also filter by plan or payment state.
+
+### Examples
+
+```html
+<script>
+  import { Member, NonMember } from 'auth-stripe-sveltekit'
+</script>
+
+<!-- show to all members -->
+<Member>
+  <p>Welcome back member!</p>
+</Member>
+
+<!-- show to unpaid members -->
+<Member unpaid>
+  <p>Whoops, we couldn't collect a payment.</p>
+  
+  <a href="/billing/account">
+    Upgrade billing info
+  </a> 
+</Member>
+
+<!-- show to members with canceled subscriptions -->
+<Member canceled>
+  <p>Your account has been canceled</p>
+
+  <a href="/billing/checkout">
+    Sign up
+  </a> 
+</Member>
+
+<!-- show to members on the "pro" plan -->
+<Member plan="pro">
+  You're on the Pro plan!!
+</Member>
+
+<!-- show to members on the "pro" or "enterprise" plan -->
+<Member plans={["pro", "enterprise"]}>
+  You're a real player!!
+</Member>
+
+<!-- show to non-members -->
+<NonMember>
+  <p>Please <a href="/billing/checkout">Signup</a>
+</NonMember>
 ```
 
-## Developing
+## Routing guards
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Guards are helper functions to restrict access to routes based on the state of the subscription:
 
-```bash
-npm run dev
+```javascript
+// in +page.server.js
+import { nonMember, member } from 'auth-stripe-sveltekit'
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+// route is for non-members
+export const load = nonMember(callback)
+
+// route is for members (even canceled, or late on payment)
+export const load = member(callback)
+
+// route is for unpaid members only
+export const load = member.unpaid(callback)
+
+// route is for members that have canceled their subscription
+export const load = member.canceled(callback)
+
+// route is for members on the "pro" plan
+export const load = member.plan('pro', callback)
+
+// route is for members on the "pro" or "enterprise" plans
+export const load = member.plans(['pro', 'enterprise'], callback)
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## Billing Routes
 
-## Building
+This package provides a `/billing` route, similar to how Auth.js provides a `/auth` route. 
 
-To build your library:
+The following routes are provided:
 
-```bash
-npm run package
+- `/billing/checkout?plan=<plan>`: Begins the checkout flow for a specific plan. If no `plan` is specified, the default plan is used.
+- `/billing/portal`: Opens the billing portal for the current signed-in user.
+- `/billing/cancel`: Cancels the current user's subscription.
+- `/billing/webhooks`: Handles all Stripe webhooks for you.
+- `/billing/plans`: List plans in json format.
+
+## Configuration
+
+Add environment variables to `.env`:
+
+```sh
+PUBLIC_STRIPE_KEY=pk_...
+PRIVATE_STRIPE_KEY=sk_...
+DOMAIN=http://localhost:5173
 ```
 
-To create a production version of your showcase app:
+## License
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+BSL
