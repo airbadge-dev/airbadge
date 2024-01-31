@@ -9,12 +9,10 @@ It's a quick way to create SaaS apps without writing any payment code.
 
 ## Features
 
-- Starter-free: It's just a library.
-- Full membership solution
-- **Integrated checkout**: Stripe Checkout is built into the signup.
-- **Free plans**: Checkout is skipped for free plans or trials.
-- **Billing portal**: Changing plans or canceling account is built in.
+- **Integrated checkout**: Stripe Checkout is built into the signup flow.
+- **Billing portal**: Changing plans or canceling plans is built in.
 - **Webhook handling**: All Stripe webhooks are handled for you.
+- **Free plans**: Checkout can be skipped for free plans or trials.
 - **Routing guards**: Routes can be restricted based on membership status.
 - **Component guards**: Conditionally display components based on membership status.
 - **Open source**: https://github.com/joshnuss/auth-stripe-sveltekit
@@ -24,7 +22,7 @@ It's a quick way to create SaaS apps without writing any payment code.
 
 Conditionally display components based on the user's subscription status.
 
-Two components are provided:
+Two component wrappers are provided:
 
 - `<NonMember/>`: Display content when user doesn't have a subscription.
 - `<Member/>`: Display content when user has a subscription. Can also filter by plan or payment state.
@@ -44,19 +42,15 @@ Two components are provided:
 <!-- show to unpaid members -->
 <Member unpaid>
   <p>Whoops, we couldn't collect a payment.</p>
-  
-  <a href="/billing/account">
-    Upgrade billing info
-  </a> 
+
+  <a href="/billing/portal">Upgrade</a>
 </Member>
 
 <!-- show to members with canceled subscriptions -->
 <Member canceled>
   <p>Your account has been canceled</p>
 
-  <a href="/billing/checkout">
-    Sign up
-  </a> 
+  <a href="/billing/checkout">Sign up</a>
 </Member>
 
 <!-- show to members on the "pro" plan -->
@@ -71,23 +65,26 @@ Two components are provided:
 
 <!-- show to non-members -->
 <NonMember>
-  <p>Please <a href="/billing/checkout">Signup</a>
+  <a href="/billing/checkout">Sign up</a>
 </NonMember>
 ```
 
 ## Routing guards
 
-Guards are helper functions to restrict access to routes based on the state of the subscription:
+Guards are helper functions that can restrict access to routes based on the state of the subscription:
 
 ```javascript
 // in +page.server.js
 import { nonMember, member } from 'auth-stripe-sveltekit'
 
-// route is for non-members
-export const load = nonMember(callback)
-
-// route is for members (even canceled, or late on payment)
+// route is for members only (including canceled, or late on payment)
 export const load = member(callback)
+
+// route is for fully paid members only
+export const load = member.active(callback)
+
+// route is for past due members only
+export const load = member.past_due(callback)
 
 // route is for unpaid members only
 export const load = member.unpaid(callback)
@@ -100,11 +97,14 @@ export const load = member.plan('pro', callback)
 
 // route is for members on the "pro" or "enterprise" plans
 export const load = member.plans(['pro', 'enterprise'], callback)
+
+// route is for non-members only
+export const load = nonMember(callback)
 ```
 
 ## Billing Routes
 
-This package provides a `/billing` route, similar to how Auth.js provides a `/auth` route. 
+This package provides a `/billing` route, similar to how Auth.js provides a `/auth` route.
 
 The following routes are provided:
 
