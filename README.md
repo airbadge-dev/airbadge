@@ -112,6 +112,7 @@ The following routes are provided:
 - `/billing/cancel`: Cancels the current user's subscription.
 - `/billing/webhooks`: Handles all Stripe webhooks for you.
 - `/billing/plans`: List plans in json format.
+- `/billing/checkout/complete`: Handles post-checkout housekeeping.
 
 ## Setup
 
