@@ -46,6 +46,9 @@ devDependencies:
   eslint-plugin-svelte:
     specifier: ^2.35.1
     version: 2.35.1(eslint@8.56.0)(svelte@4.2.7)
+  eslint-plugin-vitest-globals:
+    specifier: ^1.4.0
+    version: 1.4.0
   prettier:
     specifier: ^3.1.1
     version: 3.1.1
@@ -1094,6 +1097,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - ts-node
+    dev: true
+
+  /eslint-plugin-vitest-globals@1.4.0:
+    resolution: {integrity: sha512-WE+YlK9X9s4vf5EaYRU0Scw7WItDZStm+PapFSYlg2ABNtaQ4zIG7wEqpoUB3SlfM+SgkhgmzR0TeJOO5k3/Nw==}
     dev: true
 
   /eslint-scope@7.2.2:
