@@ -172,6 +172,12 @@ export const handle = StripeSvelteKitAuth({
 })
 ```
 
+Forward Stripe events to `localhost`:
+
+```sh
+stripe listen --forward-to localhost:5173/billing/webhooks
+```
+
 ## License
 
 BSL - Business Software License.
