@@ -37,6 +37,28 @@ export function createService(adapter, plans) {
         customer: user.customerId,
         return_url: absoluteURL('/dashboard')
       })
+    },
+
+    async syncSubscription(subscriptionId) {
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId)
+      const { userId } = subscription.metadata
+
+      if (!userId) throw new Error(`Missing user id metadata for subscription '${subscriptionId}'`)
+
+      const item = subscription.items.data[0]
+      const priceId = item.price.id
+      const plan = plans.getByPriceId(priceId)
+
+      if (!plan) throw new Error(`Missing plan for price '${priceId}'`)
+
+      await adapter.updateUser({
+        id: userId,
+        customerId: subscription.customer,
+        subscriptionId: subscription.id,
+        subscriptionStatus: subscription.status.toUpperCase(),
+        plan: plan.id,
+        priceId
+      })
     }
   }
 }

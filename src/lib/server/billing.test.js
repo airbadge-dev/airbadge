@@ -12,12 +12,23 @@ vi.mock('stripe', () => {
         sessions: {
           create: vi.fn()
         }
+      },
+      subscriptions: {
+        retrieve: vi.fn()
       }
     }
   })
 
   return { default: Stripe }
 })
+
+const adapter = {
+  updateUser: vi.fn()
+}
+
+const plans = {
+  getByPriceId: vi.fn()
+}
 
 const user = {
   id: 'user_1234',
@@ -28,7 +39,7 @@ const user = {
 let billing
 
 beforeEach(() => {
-  billing = createService()
+  billing = createService(adapter, plans)
 })
 
 afterEach(() => {
@@ -85,6 +96,88 @@ describe('createPortalSession', () => {
     expect(stripe.billingPortal.sessions.create).toHaveBeenCalledWith({
       customer: 'cus_1234',
       return_url: 'http://localhost:5173/dashboard'
+    })
+  })
+})
+
+describe('syncSubscription', () => {
+  test('when user metadata not found, raises', async () => {
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {},
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await expect(() => billing.syncSubscription('sub_1234'))
+      .rejects
+      .toThrowError("Missing user id metadata for subscription 'sub_1234'")
+  })
+
+  test('when plan not found, raises', async () => {
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {
+        userId: 'user_1234'
+      },
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await expect(() => billing.syncSubscription('sub_1234'))
+      .rejects
+      .toThrowError("Missing plan for price 'price_1234'")
+  })
+
+
+  test('when plan found, updates user', async () => {
+    plans.getByPriceId.mockReturnValue({ id: 'pro', priceId: 'plan_1234' })
+
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {
+        userId: 'user_1234'
+      },
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await billing.syncSubscription('sub_1234')
+
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      customerId: 'cus_1234',
+      subscriptionId: 'sub_1234',
+      subscriptionStatus: 'ACTIVE',
+      plan: 'pro',
+      priceId: 'price_1234'
     })
   })
 })
