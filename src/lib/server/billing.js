@@ -30,6 +30,14 @@ export async function createCheckout(user, plan) {
   })
 }
 
+export async function createPortalSession(user) {
+	return stripe.billingPortal.sessions.create({
+		customer: user.customerId,
+		return_url: absoluteURL('/dashboard')
+	})
+}
+
+
 function absoluteURL(path) {
   return new URL(path, env.DOMAIN).toString()
 }

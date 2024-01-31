@@ -1,9 +1,14 @@
-import { stripe, createCheckout } from './billing'
+import { stripe, createCheckout, createPortalSession } from './billing'
 
 vi.mock('stripe', () => {
   const Stripe = vi.fn(() => {
     return {
       checkout: {
+        sessions: {
+          create: vi.fn()
+        }
+      },
+      billingPortal: {
         sessions: {
           create: vi.fn()
         }
@@ -14,16 +19,17 @@ vi.mock('stripe', () => {
   return { default: Stripe }
 })
 
+const user = {
+  id: 'user_1234',
+  email: 'user@home.com',
+  customerId: 'cus_1234'
+}
+
 afterEach(() => {
   vi.restoreAllMocks()
 })
 
 describe('createCheckout', () => {
-  const user = {
-    id: 'user_1234',
-    email: 'user@home.com'
-  }
-
   const plan = {
     priceId: 'price_1234'
   }
@@ -57,6 +63,22 @@ describe('createCheckout', () => {
           quantity: 1
         }
       ]
+    })
+  })
+})
+
+describe('createPortalSession', () => {
+  test('creates portal session', async () => {
+    stripe.billingPortal.sessions.create.mockResolvedValue({
+      url: 'https://portal.stripe.com/1234'
+    })
+
+    const result = await createPortalSession(user)
+
+    expect(result).toEqual({ url: 'https://portal.stripe.com/1234' })
+    expect(stripe.billingPortal.sessions.create).toHaveBeenCalledWith({
+      customer: 'cus_1234',
+      return_url: 'http://localhost:5173/dashboard'
     })
   })
 })
