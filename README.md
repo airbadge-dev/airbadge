@@ -9,9 +9,9 @@ It's a quick way to create SaaS apps without writing any payment code.
 ## Features
 
 - **Integrated checkout**: Stripe Checkout is built into the signup flow.
-- **Billing portal**: Changing plans or canceling plans is built in.
+- **Billing portal**: Changing plans or canceling plans is accessible via `/billing/portal`.
 - **Webhook handling**: All Stripe webhooks are handled for you.
-- **Free plans**: Checkout can be skipped for free plans or trials.
+- **Trials & Free plans**: Checkout can be skipped for free plans or trials.
 - **Routing guards**: Routes can be restricted based on membership status.
 - **Component guards**: Conditionally display components based on membership status.
 - **Open source**: https://github.com/joshnuss/auth-stripe-sveltekit
@@ -101,9 +101,9 @@ export const load = member.plans(['pro', 'enterprise'], callback)
 export const load = nonMember(callback)
 ```
 
-## Billing Routes
+## Billing Endpoint
 
-This package provides a `/billing` route, similar to how Auth.js provides a `/auth` route.
+This package provides a `/billing` endpoint, similar to how Auth.js provides a `/auth` endpoint.
 
 The following routes are provided:
 
