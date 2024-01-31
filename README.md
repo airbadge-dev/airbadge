@@ -1,5 +1,4 @@
-Stripe + Auth.js + SvelteKit
-----------------------------
+## Stripe + Auth.js + SvelteKit
 
 The easiest way to create a SaaS site.
 

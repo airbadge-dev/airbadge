@@ -1,7 +1,12 @@
 /** @type { import("eslint").Linter.Config } */
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'plugin:svelte/recommended', 'prettier', "plugin:vitest-globals/recommended"],
+  extends: [
+    'eslint:recommended',
+    'plugin:svelte/recommended',
+    'prettier',
+    'plugin:vitest-globals/recommended'
+  ],
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020,
@@ -11,6 +16,6 @@ module.exports = {
     browser: true,
     es2017: true,
     node: true,
-    "vitest-globals/env": true
+    'vitest-globals/env': true
   }
 }
