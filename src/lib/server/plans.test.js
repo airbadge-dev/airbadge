@@ -1,8 +1,6 @@
 import { createPlans } from './plans'
 
-const plans = createPlans([
-  { priceId: 'price_1234', name: 'Pro' }
-])
+const plans = createPlans([{ priceId: 'price_1234', name: 'Pro' }])
 
 describe('getByPriceId', () => {
   test('when found, returns plan', () => {

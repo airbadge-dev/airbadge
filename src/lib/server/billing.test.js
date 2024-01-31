@@ -119,9 +119,9 @@ describe('syncSubscription', () => {
       status: 'active'
     })
 
-    await expect(() => billing.syncSubscription('sub_1234'))
-      .rejects
-      .toThrowError("Missing user id metadata for subscription 'sub_1234'")
+    await expect(() => billing.syncSubscription('sub_1234')).rejects.toThrowError(
+      "Missing user id metadata for subscription 'sub_1234'"
+    )
   })
 
   test('when plan not found, raises', async () => {
@@ -143,11 +143,10 @@ describe('syncSubscription', () => {
       status: 'active'
     })
 
-    await expect(() => billing.syncSubscription('sub_1234'))
-      .rejects
-      .toThrowError("Missing plan for price 'price_1234'")
+    await expect(() => billing.syncSubscription('sub_1234')).rejects.toThrowError(
+      "Missing plan for price 'price_1234'"
+    )
   })
-
 
   test('when plan found, updates user', async () => {
     plans.getByPriceId.mockReturnValue({ id: 'pro', priceId: 'plan_1234' })
@@ -207,9 +206,9 @@ describe('syncCheckout', () => {
       status: 'active'
     })
 
-    await expect(() => billing.syncCheckout('checkout_1234'))
-      .rejects
-      .toThrowError("Missing user id metadata for subscription 'sub_1234'")
+    await expect(() => billing.syncCheckout('checkout_1234')).rejects.toThrowError(
+      "Missing user id metadata for subscription 'sub_1234'"
+    )
 
     expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
   })
@@ -233,13 +232,12 @@ describe('syncCheckout', () => {
       status: 'active'
     })
 
-    await expect(() => billing.syncCheckout('checkout_1234'))
-      .rejects
-      .toThrowError("Missing plan for price 'price_1234'")
+    await expect(() => billing.syncCheckout('checkout_1234')).rejects.toThrowError(
+      "Missing plan for price 'price_1234'"
+    )
 
     expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
   })
-
 
   test('when plan found, updates user', async () => {
     plans.getByPriceId.mockReturnValue({ id: 'pro', priceId: 'plan_1234' })
