@@ -107,7 +107,7 @@ This package provides a `/billing` endpoint, similar to how Auth.js provides a `
 
 The following routes are provided:
 
-- `/billing/checkout?plan=<plan>`: Begin checkout flow for a specific plan. If no `plan` is specified, the default plan is used.
+- `/billing/checkout`: Redirect current user to a Stripe checkout session.
 - `/billing/portal`: Opens the billing portal for the current signed-in user.
 - `/billing/cancel`: Cancels the current user's subscription.
 - `/billing/webhooks`: Handles all Stripe webhooks for you.
