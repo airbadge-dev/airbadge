@@ -62,7 +62,8 @@ describe('createCheckout', () => {
 
     expect(result).toEqual({ url: 'https://checkout.stripe.com/1234' })
     expect(stripe.checkout.sessions.create).toHaveBeenCalledWith({
-      success_url: 'http://localhost:5173/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}',
+      success_url:
+        'http://localhost:5173/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'http://localhost:5173/pricing',
       currency: 'usd',
       mode: 'subscription',
@@ -291,6 +292,8 @@ describe('cancelSubscription', () => {
       subscription: 'sub_1234'
     })
 
-    expect(stripe.subscriptions.update).toHaveBeenCalledWith('sub_1234', { cancel_at_period_end: true })
+    expect(stripe.subscriptions.update).toHaveBeenCalledWith('sub_1234', {
+      cancel_at_period_end: true
+    })
   })
 })

@@ -13,7 +13,9 @@ export function createService(adapter, plans) {
       }
 
       return stripe.checkout.sessions.create({
-        success_url: absoluteURL('/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'),
+        success_url: absoluteURL(
+          '/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'
+        ),
         cancel_url: absoluteURL('/pricing'),
         currency: 'usd',
         mode: 'subscription',
@@ -68,8 +70,7 @@ export function createService(adapter, plans) {
     },
 
     async cancelSubscription(user) {
-      return stripe.subscriptions.update(user.subscriptionId,
-        { cancel_at_period_end: true })
+      return stripe.subscriptions.update(user.subscriptionId, { cancel_at_period_end: true })
     }
   }
 }
