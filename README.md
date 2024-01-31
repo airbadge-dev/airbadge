@@ -1,10 +1,10 @@
 ## Stripe + Auth.js + SvelteKit
 
-The easiest way to create a SaaS site.
+This project provides a easy way to create a SaaS site.
 
-This is a [Stripe](https://stripe.com) integration for [Auth.js](https://authjs.dev).
+This is a [Stripe](https://stripe.com) addon for [Auth.js](https://authjs.dev).
 
-It's a quick way to create SaaS apps without writing any payment code.
+Launch a SaaS app without writing any auth or payment code!
 
 ## Features
 
