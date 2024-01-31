@@ -5,6 +5,7 @@ vi.mock('stripe', () => {
     return {
       checkout: {
         sessions: {
+          retrieve: vi.fn(),
           create: vi.fn()
         }
       },
@@ -171,6 +172,99 @@ describe('syncSubscription', () => {
 
     await billing.syncSubscription('sub_1234')
 
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      customerId: 'cus_1234',
+      subscriptionId: 'sub_1234',
+      subscriptionStatus: 'ACTIVE',
+      plan: 'pro',
+      priceId: 'price_1234'
+    })
+  })
+})
+
+describe('syncCheckout', () => {
+  beforeEach(() => {
+    stripe.checkout.sessions.retrieve.mockResolvedValue({
+      subscription: 'sub_1234'
+    })
+  })
+
+  test('when user metadata not found, raises', async () => {
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {},
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await expect(() => billing.syncCheckout('checkout_1234'))
+      .rejects
+      .toThrowError("Missing user id metadata for subscription 'sub_1234'")
+
+    expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
+  })
+
+  test('when plan not found, raises', async () => {
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {
+        userId: 'user_1234'
+      },
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await expect(() => billing.syncCheckout('checkout_1234'))
+      .rejects
+      .toThrowError("Missing plan for price 'price_1234'")
+
+    expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
+  })
+
+
+  test('when plan found, updates user', async () => {
+    plans.getByPriceId.mockReturnValue({ id: 'pro', priceId: 'plan_1234' })
+
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {
+        userId: 'user_1234'
+      },
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await billing.syncCheckout('checkout_1234')
+
+    expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
     expect(adapter.updateUser).toHaveBeenCalledWith({
       id: 'user_1234',
       customerId: 'cus_1234',

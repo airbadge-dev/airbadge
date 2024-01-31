@@ -39,6 +39,12 @@ export function createService(adapter, plans) {
       })
     },
 
+    async syncCheckout(sessionId) {
+      const checkout = await stripe.checkout.sessions.retrieve(sessionId)
+
+      return this.syncSubscription(checkout.subscription)
+    },
+
     async syncSubscription(subscriptionId) {
       const subscription = await stripe.subscriptions.retrieve(subscriptionId)
       const { userId } = subscription.metadata
