@@ -1,5 +1,4 @@
 import { stripe, createCheckout } from './billing'
-import Stripe from 'stripe'
 
 vi.mock('stripe', () => {
   const Stripe = vi.fn(() => {
