@@ -108,13 +108,23 @@ This package provides a `/billing` route, similar to how Auth.js provides a `/au
 
 The following routes are provided:
 
-- `/billing/checkout?plan=<plan>`: Begins the checkout flow for a specific plan. If no `plan` is specified, the default plan is used.
+- `/billing/checkout?plan=<plan>`: Begin checkout flow for a specific plan. If no `plan` is specified, the default plan is used.
 - `/billing/portal`: Opens the billing portal for the current signed-in user.
 - `/billing/cancel`: Cancels the current user's subscription.
 - `/billing/webhooks`: Handles all Stripe webhooks for you.
 - `/billing/plans`: List plans in json format.
 
-## Configuration
+## Setup
+
+Install [auth-stripe-sveltekit](https://npmjs.com/package/auth-stripe-sveltekit):
+
+```sh
+pnpm i -D auth-stripe-sveltekit
+```
+
+Setup a database provider for Auth.js. For example, follow instructions for Prisma:
+
+https://authjs.dev/reference/adapter/prisma
 
 Add environment variables to `.env`:
 
@@ -122,8 +132,49 @@ Add environment variables to `.env`:
 PUBLIC_STRIPE_KEY=pk_...
 PRIVATE_STRIPE_KEY=sk_...
 DOMAIN=http://localhost:5173
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/auth_stripe_sveltekit_dev?schema=public"
+```
+
+Configure authentication and billing options in `src/hooks.server.js`:
+
+```javascript
+import { StripeSvelteKitAuth } from 'auth-stripe-sveltekit'
+
+// use any OAuth provider (or multiple)
+import GitHub from '@auth/core/providers/github'
+
+// import prisma client for Auth.js's database adapter
+import { PrismaClient } from '@prisma/client'
+
+// init database client
+const db = new PrismaClient()
+
+// add Auth.js + Stripe handler
+// API is similar to Auth.js
+export const handle = StripeSvelteKitAuth({
+  // configure database adapter
+  adapter: PrismaAdapter(db),
+
+  // configure OAuth providers
+	providers: [
+		GitHub({
+			clientId: env.GITHUB_ID,
+			clientSecret: env.GITHUB_SECRET
+		})
+	],
+
+  // configure list of plans.
+  // free and trial plans are supported
+  plans: [
+    { id: 'basic', name: 'Basic', free: true, default: true },
+    { id: 'pro', name: 'Pro', trial: true }
+    { id: 'enterprise', name: 'Enterprise', trial: true }
+  ]
+})
 ```
 
 ## License
 
-BSL
+BSL - Business Software License.
+
+Free to use for first 100 users, then $150 USD/year for unlimited usage.
