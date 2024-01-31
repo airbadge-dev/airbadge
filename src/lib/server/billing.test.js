@@ -1,4 +1,4 @@
-import { stripe, createCheckout, createPortalSession } from './billing'
+import { stripe, createService } from './billing'
 
 vi.mock('stripe', () => {
   const Stripe = vi.fn(() => {
@@ -25,6 +25,12 @@ const user = {
   customerId: 'cus_1234'
 }
 
+let billing
+
+beforeEach(() => {
+  billing = createService()
+})
+
 afterEach(() => {
   vi.restoreAllMocks()
 })
@@ -39,7 +45,7 @@ describe('createCheckout', () => {
       url: 'https://checkout.stripe.com/1234'
     })
 
-    const result = await createCheckout(user, plan)
+    const result = await billing.createCheckout(user, plan)
 
     expect(result).toEqual({ url: 'https://checkout.stripe.com/1234' })
     expect(stripe.checkout.sessions.create).toHaveBeenCalledWith({
@@ -73,7 +79,7 @@ describe('createPortalSession', () => {
       url: 'https://portal.stripe.com/1234'
     })
 
-    const result = await createPortalSession(user)
+    const result = await billing.createPortalSession(user)
 
     expect(result).toEqual({ url: 'https://portal.stripe.com/1234' })
     expect(stripe.billingPortal.sessions.create).toHaveBeenCalledWith({

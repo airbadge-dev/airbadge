@@ -5,36 +5,40 @@ export const stripe = Stripe(env.SECRET_STRIPE_KEY, {
   apiVersion: '2022-11-15'
 })
 
-export async function createCheckout(user, plan) {
-  const metadata = {
-    userId: user.id
-  }
-
-  return stripe.checkout.sessions.create({
-    success_url: absoluteURL('/welcome?checkout_session_id={CHECKOUT_SESSION_ID}'),
-    cancel_url: absoluteURL('/pricing'),
-    currency: 'usd',
-    mode: 'subscription',
-    customer_email: user.email,
-    client_reference_id: user.id,
-    metadata,
-    subscription_data: {
-      metadata
-    },
-    line_items: [
-      {
-        price: plan.priceId,
-        quantity: 1
+export function createService(adapter, plans) {
+  return {
+    async createCheckout(user, plan) {
+      const metadata = {
+        userId: user.id
       }
-    ]
-  })
-}
 
-export async function createPortalSession(user) {
-  return stripe.billingPortal.sessions.create({
-    customer: user.customerId,
-    return_url: absoluteURL('/dashboard')
-  })
+      return stripe.checkout.sessions.create({
+        success_url: absoluteURL('/welcome?checkout_session_id={CHECKOUT_SESSION_ID}'),
+        cancel_url: absoluteURL('/pricing'),
+        currency: 'usd',
+        mode: 'subscription',
+        customer_email: user.email,
+        client_reference_id: user.id,
+        metadata,
+        subscription_data: {
+          metadata
+        },
+        line_items: [
+          {
+            price: plan.priceId,
+            quantity: 1
+          }
+        ]
+      })
+    },
+
+    async createPortalSession(user) {
+      return stripe.billingPortal.sessions.create({
+        customer: user.customerId,
+        return_url: absoluteURL('/dashboard')
+      })
+    }
+  }
 }
 
 function absoluteURL(path) {
