@@ -1,4 +1,4 @@
-export function createPlans(plans) {
+export function createPlanList(plans) {
   return {
     getDefault() {
       return plans.find((plan) => plan.default)

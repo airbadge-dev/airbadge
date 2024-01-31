@@ -1,8 +1,11 @@
-import { stripe, createService } from './billing'
+import { stripe, createBillingService } from './billing'
 
 vi.mock('stripe', () => {
   const Stripe = vi.fn(() => {
     return {
+      customers: {
+        create: vi.fn()
+      },
       checkout: {
         sessions: {
           retrieve: vi.fn(),
@@ -15,6 +18,7 @@ vi.mock('stripe', () => {
         }
       },
       subscriptions: {
+        create: vi.fn(),
         retrieve: vi.fn(),
         update: vi.fn()
       }
@@ -34,6 +38,7 @@ const plans = {
 
 const user = {
   id: 'user_1234',
+  name: 'John Smith',
   email: 'user@home.com',
   customerId: 'cus_1234'
 }
@@ -41,11 +46,48 @@ const user = {
 let billing
 
 beforeEach(() => {
-  billing = createService(adapter, plans)
+  billing = createBillingService(adapter, plans)
 })
 
 afterEach(() => {
   vi.restoreAllMocks()
+})
+
+describe('createSubscription', () => {
+  const plan = {
+    priceId: 'price_1234'
+  }
+
+  test('creates subscription', async () => {
+    stripe.customers.create.mockResolvedValue({
+      id: 'cus_1234'
+    })
+    stripe.subscriptions.create.mockResolvedValue({
+      id: 'sub_1234'
+    })
+
+    await billing.createSubscription(user, plan)
+
+    expect(stripe.customers.create).toHaveBeenCalledWith({
+      name: 'John Smith',
+      email: 'user@home.com',
+      metadata: {
+        userId: 'user_1234'
+      },
+    })
+
+    expect(stripe.subscriptions.create).toHaveBeenCalledWith({
+      customer: 'cus_1234',
+      metadata: {
+        userId: 'user_1234'
+      },
+      items: [
+        {
+          price: 'price_1234',
+        }
+      ]
+    })
+  })
 })
 
 describe('createCheckout', () => {

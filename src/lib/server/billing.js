@@ -5,8 +5,28 @@ export const stripe = Stripe(env.SECRET_STRIPE_KEY, {
   apiVersion: '2022-11-15'
 })
 
-export function createService(adapter, plans) {
+export function createBillingService(adapter, plans) {
   return {
+    async createSubscription(user, plan) {
+      const metadata = {
+        userId: user.id
+      }
+
+      const customer = await stripe.customers.create({
+        name: user.name,
+        email: user.email,
+        metadata
+      })
+
+      await stripe.subscriptions.create({
+        customer: customer.id,
+        metadata,
+        items: [
+          { price: plan.priceId }
+        ]
+      })
+    },
+
     async createCheckout(user, plan) {
       const metadata = {
         userId: user.id
