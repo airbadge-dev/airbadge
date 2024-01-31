@@ -65,6 +65,11 @@ export function createService(adapter, plans) {
         plan: plan.id,
         priceId
       })
+    },
+
+    async cancelSubscription(user) {
+      return stripe.subscriptions.update(user.subscriptionId,
+        { cancel_at_period_end: true })
     }
   }
 }

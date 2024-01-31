@@ -15,7 +15,8 @@ vi.mock('stripe', () => {
         }
       },
       subscriptions: {
-        retrieve: vi.fn()
+        retrieve: vi.fn(),
+        update: vi.fn()
       }
     }
   })
@@ -271,5 +272,25 @@ describe('syncCheckout', () => {
       plan: 'pro',
       priceId: 'price_1234'
     })
+  })
+})
+
+describe('cancelSubscription', () => {
+  test('cancels subscription', async () => {
+    stripe.subscriptions.update.mockResolvedValue({
+      subscription: 'sub_1234'
+    })
+
+    const user = {
+      subscriptionId: 'sub_1234'
+    }
+
+    const result = await billing.cancelSubscription(user)
+
+    expect(result).toMatchObject({
+      subscription: 'sub_1234'
+    })
+
+    expect(stripe.subscriptions.update).toHaveBeenCalledWith('sub_1234', { cancel_at_period_end: true })
   })
 })
