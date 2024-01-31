@@ -13,7 +13,7 @@ export function createService(adapter, plans) {
       }
 
       return stripe.checkout.sessions.create({
-        success_url: absoluteURL('/welcome?checkout_session_id={CHECKOUT_SESSION_ID}'),
+        success_url: absoluteURL('/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'),
         cancel_url: absoluteURL('/pricing'),
         currency: 'usd',
         mode: 'subscription',
@@ -35,7 +35,7 @@ export function createService(adapter, plans) {
     async createPortalSession(user) {
       return stripe.billingPortal.sessions.create({
         customer: user.customerId,
-        return_url: absoluteURL('/dashboard')
+        return_url: absoluteURL('/')
       })
     },
 
