@@ -55,6 +55,7 @@ afterEach(() => {
 
 describe('createSubscription', () => {
   const plan = {
+    id: 'pro',
     priceId: 'price_1234'
   }
 
@@ -62,8 +63,11 @@ describe('createSubscription', () => {
     stripe.customers.create.mockResolvedValue({
       id: 'cus_1234'
     })
+
     stripe.subscriptions.create.mockResolvedValue({
-      id: 'sub_1234'
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      status: 'active',
     })
 
     await billing.createSubscription(user, plan)
@@ -86,6 +90,15 @@ describe('createSubscription', () => {
           price: 'price_1234',
         }
       ]
+    })
+
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      customerId: 'cus_1234',
+      subscriptionId: 'sub_1234',
+      subscriptionStatus: 'ACTIVE',
+      plan: 'pro',
+      priceId: 'price_1234'
     })
   })
 })

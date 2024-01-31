@@ -18,12 +18,21 @@ export function createBillingService(adapter, plans) {
         metadata
       })
 
-      await stripe.subscriptions.create({
+      const subscription = await stripe.subscriptions.create({
         customer: customer.id,
         metadata,
         items: [
           { price: plan.priceId }
         ]
+      })
+
+      await adapter.updateUser({
+        id: user.id,
+        customerId: subscription.customer,
+        subscriptionId: subscription.id,
+        subscriptionStatus: subscription.status.toUpperCase(),
+        plan: plan.id,
+        priceId: plan.priceId
       })
     },
 
