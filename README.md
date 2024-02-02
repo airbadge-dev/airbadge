@@ -158,8 +158,8 @@ export const handle = StripeSvelteKitAuth({
   // configure OAuth providers
   providers: [
     GitHub({
-    clientId: env.GITHUB_ID,
-    clientSecret: env.GITHUB_SECRET
+      clientId: env.GITHUB_ID,
+      clientSecret: env.GITHUB_SECRET
     })
   ],
 
