@@ -1,4 +1,4 @@
-## Stripe + Auth.js + SvelteKit
+# Stripe + Auth.js + SvelteKit
 
 This project provides a easy way to create a SaaS site.
 
@@ -49,7 +49,6 @@ Two component wrappers are provided:
 <!-- show to members with canceled subscriptions -->
 <Member canceled>
   <p>Your account has been canceled</p>
-
   <a href="/billing/checkout">Sign up</a>
 </Member>
 
@@ -157,12 +156,12 @@ export const handle = StripeSvelteKitAuth({
   adapter: PrismaAdapter(db),
 
   // configure OAuth providers
-	providers: [
-		GitHub({
-			clientId: env.GITHUB_ID,
-			clientSecret: env.GITHUB_SECRET
-		})
-	],
+  providers: [
+    GitHub({
+    clientId: env.GITHUB_ID,
+    clientSecret: env.GITHUB_SECRET
+    })
+  ],
 
   // configure list of plans.
   // free and trial plans are supported
