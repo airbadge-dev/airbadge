@@ -14,6 +14,7 @@ Launch a SaaS app without writing any auth or payment code!
 - **Trials & Free plans**: Checkout can be skipped for free plans or trials.
 - **Routing guards**: Routes can be restricted based on membership status.
 - **Component guards**: Conditionally display components based on membership status.
+- **Session data**: Subscription and plan info is included in the session.
 - **Open source**: https://github.com/joshnuss/auth-stripe-sveltekit
 - **BSL Licence**: Free for first 100 customers. Then $150/year for unlimited users.
 
