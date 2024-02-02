@@ -57,6 +57,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "dependencies": {
+    "@auth/core": "^0.25.0",
     "@auth/sveltekit": "^0.10.0",
     "stripe": "^14.14.0"
   }
