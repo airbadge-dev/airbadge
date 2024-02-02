@@ -74,7 +74,7 @@ describe('createSubscription', () => {
     stripe.subscriptions.create.mockResolvedValue({
       id: 'sub_1234',
       customer: 'cus_1234',
-      status: 'active',
+      status: 'active'
     })
 
     await billing.createSubscription(user, plan)
@@ -84,7 +84,7 @@ describe('createSubscription', () => {
       email: 'user@home.com',
       metadata: {
         userId: 'user_1234'
-      },
+      }
     })
 
     expect(stripe.subscriptions.create).toHaveBeenCalledWith({
@@ -94,7 +94,7 @@ describe('createSubscription', () => {
       },
       items: [
         {
-          price: 'price_1234',
+          price: 'price_1234'
         }
       ]
     })

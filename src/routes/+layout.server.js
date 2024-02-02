@@ -1,5 +1,5 @@
 export async function load({ locals }) {
-	return {
-		session: await locals.getSession()
-	}
+  return {
+    session: await locals.getSession()
+  }
 }

@@ -1,7 +1,7 @@
 import { createPlanList } from './plans'
 
 test('getAll() returns all plans', async () => {
-  const list = [1,2,3]
+  const list = [1, 2, 3]
   const plans = createPlanList(list)
 
   const result = plans.getAll()

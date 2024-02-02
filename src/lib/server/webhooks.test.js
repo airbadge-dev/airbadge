@@ -23,9 +23,7 @@ describe('handleWebhook', () => {
       throw new Error('invalid')
     })
 
-    await expect(() => handleWebhook(billing, 'fake-body', 'fake-sig'))
-      .rejects
-      .toThrowError()
+    await expect(() => handleWebhook(billing, 'fake-body', 'fake-sig')).rejects.toThrowError()
 
     expect(billing.syncSubscription).not.toHaveBeenCalled()
   })

@@ -21,9 +21,7 @@ export function createBillingService(adapter, plans, urls) {
       const subscription = await stripe.subscriptions.create({
         customer: customer.id,
         metadata,
-        items: [
-          { price: plan.priceId }
-        ]
+        items: [{ price: plan.priceId }]
       })
 
       await adapter.updateUser({
