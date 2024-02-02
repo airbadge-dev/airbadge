@@ -31,3 +31,19 @@ describe('getDefault', () => {
     expect(result).toBeUndefined()
   })
 })
+
+describe('getById', () => {
+  test('when found, returns plan', () => {
+    const plans = createPlanList([{ priceId: 'price_1234', id: 'pro', name: 'Pro', default: true }])
+    const result = plans.getById('pro')
+
+    expect(result).toMatchObject({ name: 'Pro' })
+  })
+
+  test('when not found, returns null', () => {
+    const plans = createPlanList([{ priceId: 'price_1234', id: 'enterprise' }])
+    const result = plans.getById('pro')
+
+    expect(result).toBeUndefined()
+  })
+})
