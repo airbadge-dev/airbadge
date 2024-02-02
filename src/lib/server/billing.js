@@ -5,7 +5,7 @@ export const stripe = Stripe(env.SECRET_STRIPE_KEY, {
   apiVersion: '2022-11-15'
 })
 
-export function createBillingService(adapter, plans) {
+export function createBillingService(adapter, plans, urls) {
   return {
     async createSubscription(user, plan) {
       const metadata = {
@@ -45,7 +45,7 @@ export function createBillingService(adapter, plans) {
         success_url: absoluteURL(
           '/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'
         ),
-        cancel_url: absoluteURL('/pricing'),
+        cancel_url: absoluteURL(urls.checkout.cancel),
         currency: 'usd',
         mode: 'subscription',
         customer_email: user.email,
@@ -66,7 +66,7 @@ export function createBillingService(adapter, plans) {
     async createPortalSession(user) {
       return stripe.billingPortal.sessions.create({
         customer: user.customerId,
-        return_url: absoluteURL('/')
+        return_url: absoluteURL(urls.portalReturn)
       })
     },
 

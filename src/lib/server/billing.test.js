@@ -43,10 +43,17 @@ const user = {
   customerId: 'cus_1234'
 }
 
+const urls = {
+  checkout: {
+    cancel: '/checkout-cancel'
+  },
+  portalReturn: '/portal-return'
+}
+
 let billing
 
 beforeEach(() => {
-  billing = createBillingService(adapter, plans)
+  billing = createBillingService(adapter, plans, urls)
 })
 
 afterEach(() => {
@@ -119,7 +126,7 @@ describe('createCheckout', () => {
     expect(stripe.checkout.sessions.create).toHaveBeenCalledWith({
       success_url:
         'http://localhost:5173/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:5173/pricing',
+      cancel_url: 'http://localhost:5173/checkout-cancel',
       currency: 'usd',
       mode: 'subscription',
       customer_email: 'user@home.com',
@@ -153,7 +160,7 @@ describe('createPortalSession', () => {
     expect(result).toEqual({ url: 'https://portal.stripe.com/1234' })
     expect(stripe.billingPortal.sessions.create).toHaveBeenCalledWith({
       customer: 'cus_1234',
-      return_url: 'http://localhost:5173/'
+      return_url: 'http://localhost:5173/portal-return'
     })
   })
 })
