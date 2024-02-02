@@ -42,6 +42,23 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  // customizations for Stripe
+  customerId String?
+  subscriptionId String?
+  subscriptionStatus SubscriptionStatus?
+  plan String?
+  priceId String?
+}
+
+enum SubscriptionStatus {
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
 }
 
 model VerificationToken {
