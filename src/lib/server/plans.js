@@ -1,5 +1,9 @@
 export function createPlanList(plans) {
   return {
+    getAll() {
+      return plans
+    },
+
     getDefault() {
       return plans.find((plan) => plan.default)
     },

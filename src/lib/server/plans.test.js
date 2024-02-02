@@ -1,5 +1,14 @@
 import { createPlanList } from './plans'
 
+test('getAll() returns all plans', async () => {
+  const list = [1,2,3]
+  const plans = createPlanList(list)
+
+  const result = plans.getAll()
+
+  expect(result).toEqual(list)
+})
+
 describe('getByPriceId', () => {
   const plans = createPlanList([{ priceId: 'price_1234', name: 'Pro' }])
 
