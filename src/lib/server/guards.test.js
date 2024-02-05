@@ -185,6 +185,84 @@ describe('subscriber.trialing()', () => {
   })
 })
 
+describe('subscriber.plan()', () => {
+  const plan = {
+    id: 'pro'
+  }
+
+  test('when subscription plan matches, calls callback', async () => {
+    const event = mockEvent({ status: 'ACTIVE', plan })
+    const handler = subscriber.plan('pro', callback)
+
+    await handler(event)
+
+    expect(callback).toHaveBeenCalledWith(event)
+  })
+
+  test('when subscription plan doesnt match, calls callback', async () => {
+    const event = mockEvent({ status: 'ACTIVE', plan })
+    const handler = subscriber.plan('basic', callback)
+
+    const response = handler(event)
+
+    await expect(response)
+      .toError(403, 'Forbidden')
+
+    expect(callback).not.toHaveBeenCalled()
+  })
+
+  test('when subscription is canceled, raises error', async () => {
+    const event = mockEvent({ status: 'CANCELED', plan })
+    const handler = subscriber.plan('pro', callback)
+
+    const response = handler(event)
+
+    await expect(response)
+      .toError(403, 'Forbidden')
+
+    expect(callback).not.toHaveBeenCalled()
+  })
+})
+
+describe('subscriber.plans()', () => {
+  const plan = {
+    id: 'pro'
+  }
+
+  test('when subscription plan matches, calls callback', async () => {
+    const event = mockEvent({ status: 'ACTIVE', plan })
+    const handler = subscriber.plans(['basic', 'pro'], callback)
+
+    await handler(event)
+
+    expect(callback).toHaveBeenCalledWith(event)
+  })
+
+  test('when subscription plan doesnt match, calls callback', async () => {
+    const event = mockEvent({ status: 'ACTIVE', plan })
+    const handler = subscriber.plans(['basic'], callback)
+
+    const response = handler(event)
+
+    await expect(response)
+      .toError(403, 'Forbidden')
+
+    expect(callback).not.toHaveBeenCalled()
+  })
+
+  test('when subscription is canceled, raises error', async () => {
+    const event = mockEvent({ status: 'CANCELED', plan })
+    const handler = subscriber.plan(['pro'], callback)
+
+    const response = handler(event)
+
+    await expect(response)
+      .toError(403, 'Forbidden')
+
+    expect(callback).not.toHaveBeenCalled()
+  })
+})
+
 function mockEvent(subscription = null) {
   const session = { subscription }
 

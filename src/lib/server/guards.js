@@ -1,24 +1,25 @@
 import { error } from '@sveltejs/kit'
 
-export const nonSubscriber = predicate((session) => !session)
-export const subscriber = predicate((session) => !!session?.subscription)
+export const nonSubscriber = (handler) => predicate(handler, (session) => !session)
+export const subscriber = (handler) => predicate(handler, (session) => !!session?.subscription)
 
-subscriber.active = predicate((session) => session?.subscription?.status == 'ACTIVE')
-subscriber.pastDue = predicate((session) => session?.subscription?.status == 'PAST_DUE')
-subscriber.unpaid = predicate((session) => session?.subscription?.status == 'UNPAID')
-subscriber.trialing = predicate((session) => session?.subscription?.status == 'TRIALING')
-subscriber.canceled = predicate((session) => session?.subscription?.status == 'CANCELED')
+subscriber.active = (handler) => predicate(handler, (session) => session?.subscription?.status == 'ACTIVE')
+subscriber.pastDue = (handler) => predicate(handler, (session) => session?.subscription?.status == 'PAST_DUE')
+subscriber.unpaid = (handler) => predicate(handler, (session) => session?.subscription?.status == 'UNPAID')
+subscriber.trialing = (handler) => predicate(handler, (session) => session?.subscription?.status == 'TRIALING')
+subscriber.canceled = (handler) => predicate(handler, (session) => session?.subscription?.status == 'CANCELED')
 
-function predicate(filter) {
-  return (handler) => {
-    return async (event) => {
-      const session = event.locals.getSession()
+subscriber.plan = (plan, handler) => predicate(handler, (session) => session?.subscription?.status != 'CANCELED' && session?.subscription?.plan?.id == plan)
+subscriber.plans = (plans, handler) => predicate(handler, (session) => session?.subscription?.status != 'CANCELED' && plans.includes(session?.subscription?.plan?.id))
 
-      if (filter(session)) {
-        return handler(event)
-      }
+function predicate(handler, filter) {
+  return async (event) => {
+    const session = event.locals.getSession()
 
-      error(403, 'Forbidden')
+    if (filter(session)) {
+      return handler(event)
     }
+
+    error(403, 'Forbidden')
   }
 }
