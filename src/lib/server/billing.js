@@ -1,7 +1,7 @@
 import Stripe from 'stripe'
-import { env } from '$env/dynamic/private'
+import { SECRET_STRIPE_KEY, DOMAIN } from '$env/static/private'
 
-export const stripe = Stripe(env.SECRET_STRIPE_KEY, {
+export const stripe = Stripe(SECRET_STRIPE_KEY, {
   apiVersion: '2022-11-15'
 })
 
@@ -103,5 +103,5 @@ export function createBillingService(adapter, plans, urls) {
 }
 
 function absoluteURL(path) {
-  return new URL(path, env.DOMAIN).toString()
+  return new URL(path, DOMAIN).toString()
 }
