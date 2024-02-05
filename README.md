@@ -83,7 +83,7 @@ export const load = member(callback)
 export const load = member.active(callback)
 
 // route is for past due members only
-export const load = member.past_due(callback)
+export const load = member.pastDue(callback)
 
 // route is for unpaid members only
 export const load = member.unpaid(callback)
