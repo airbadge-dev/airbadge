@@ -5,7 +5,7 @@ expect.extend({
     try {
       await promise
 
-      return { pass: false, message: () => 'Errors is supposed to be raised.'}
+      return { pass: false, message: () => 'Expected an error to be raised.'}
     } catch (actual) {
       if (actual?.constructor?.name !== 'HttpError') {
         return {
