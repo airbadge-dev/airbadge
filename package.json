@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@auth/prisma-adapter": "^1.1.0",
+    "@faker-js/faker": "^8.4.0",
     "@playwright/test": "^1.28.1",
     "@prisma/client": "^5.9.0",
     "@sveltejs/adapter-auto": "^3.0.0",
