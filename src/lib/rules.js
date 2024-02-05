@@ -1,4 +1,4 @@
-export function isMember(session, rules = {}) {
+export function isSubscriber(session, rules = {}) {
   const subscription = session?.subscription
 
   if (!subscription) return false
@@ -34,6 +34,6 @@ export function isMember(session, rules = {}) {
   return true
 }
 
-export function isNonMember(session) {
+export function isNonSubscriber(session) {
   return !session?.subscription
 }
