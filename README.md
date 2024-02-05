@@ -74,31 +74,34 @@ Guards are helper functions that can restrict access to routes based on the stat
 
 ```javascript
 // in +page.server.js
-import { nonMember, member } from 'auth-stripe-sveltekit'
+import { nonSubscriber, member } from 'auth-stripe-sveltekit'
 
-// route is for members only (including canceled, or late on payment)
-export const load = member(callback)
+// route is for subscribers only (including canceled, or late on payment)
+export const load = subscriber(callback)
 
-// route is for fully paid members only
-export const load = member.active(callback)
+// route is for fully paid subscribers only
+export const load = subscriber.active(callback)
 
-// route is for past due members only
-export const load = member.pastDue(callback)
+// route is for past due subscribers only
+export const load = subscriber.pastDue(callback)
 
-// route is for unpaid members only
-export const load = member.unpaid(callback)
+// route is for unpaid subscribers only
+export const load = subscriber.unpaid(callback)
 
-// route is for members that have canceled their subscription
-export const load = member.canceled(callback)
+// route is for trailing subscribers only
+export const load = subscriber.trialing(callback)
 
-// route is for members on the "pro" plan
-export const load = member.plan('pro', callback)
+// route is for subscribers that have canceled their subscription
+export const load = subscriber.canceled(callback)
 
-// route is for members on the "pro" or "enterprise" plans
-export const load = member.plans(['pro', 'enterprise'], callback)
+// route is for subscribers on the "pro" plan
+export const load = subscriber.plan('pro', callback)
 
-// route is for non-members only
-export const load = nonMember(callback)
+// route is for subscribers on the "pro" or "enterprise" plans
+export const load = subscriber.plans(['pro', 'enterprise'], callback)
+
+// route is for non-subscribers only
+export const load = nonSubscriber(callback)
 ```
 
 ## Billing Endpoint
