@@ -25,6 +25,7 @@ jobs:
           - 5432:5432
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/auth-stripe-sveltekit
+      DOMAIN: https://localhost
       STRIPE_MOCK_HOST: localhost
       STRIPE_MOCK_PORT: 12111
 
