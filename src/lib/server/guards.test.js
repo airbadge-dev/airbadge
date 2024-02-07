@@ -5,23 +5,7 @@ const callback = vi.fn()
 beforeEach(() => vi.restoreAllMocks())
 
 describe('nonSubscriber()', () => {
-  test('when subscription, returns error', async () => {
-    const handler = nonSubscriber(callback)
-    const event = {
-      locals: {
-        getSession() { return {} }
-      }
-    }
-
-    const response = handler(event)
-
-    await expect(response)
-      .toError(403, 'Forbidden')
-
-    expect(callback).not.toHaveBeenCalled()
-  })
-
-  test('when no subscription, calls callback', async () => {
+  test('when no session, calls callback', async () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
@@ -33,6 +17,36 @@ describe('nonSubscriber()', () => {
 
     expect(callback).toHaveBeenCalledWith(event)
   })
+
+  test('when no subscription, calls callback', async () => {
+    const handler = nonSubscriber(callback)
+    const event = {
+      locals: {
+        getSession() { return {} }
+      }
+    }
+
+    await handler(event)
+
+    expect(callback).toHaveBeenCalledWith(event)
+  })
+
+  test('when user has a subscription, returns error', async () => {
+    const handler = nonSubscriber(callback)
+    const event = {
+      locals: {
+        getSession() { return { subscription: {} } }
+      }
+    }
+
+    const response = handler(event)
+
+    await expect(response)
+      .toError(403, 'Forbidden')
+
+    expect(callback).not.toHaveBeenCalled()
+  })
+
 })
 
 describe('subscriber()', () => {

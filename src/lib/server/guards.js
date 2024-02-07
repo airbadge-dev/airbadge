@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 
 export const nonSubscriber = (handler) => predicate(handler,
-  (session) => !session)
+  (session) => !session?.subscription)
 
 export const subscriber = (handler) => predicate(handler,
   (session) => !!session?.subscription)
@@ -32,7 +32,7 @@ function predicate(handler, filter) {
     const session = event.locals.getSession()
 
     if (filter(session)) {
-      return handler(event)
+      return await handler(event)
     }
 
     error(403, 'Forbidden')
