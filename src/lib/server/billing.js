@@ -98,6 +98,26 @@ export function createBillingService(adapter, plans, urls) {
 
     async cancelSubscription(user) {
       return stripe.subscriptions.update(user.subscriptionId, { cancel_at_period_end: true })
+    },
+
+    async updateSubscription(user, planId) {
+      const plan = plans.getById(planId)
+
+      if (!plan) throw new Error(`Missing plan '${planId}'`)
+
+      const subscription = await stripe.subscriptions.retrieve(user.subscriptionId)
+
+      const subscriptionItem = await stripe.subscriptionItems.update(subscription.items.data[0].id, {
+        price: plan.priceId
+      })
+
+      await adapter.updateUser({
+        id: user.id,
+        plan: plan.id,
+        priceId: plan.priceId
+      })
+
+      return subscriptionItem
     }
   }
 }

@@ -21,6 +21,9 @@ vi.mock('stripe', () => {
         create: vi.fn(),
         retrieve: vi.fn(),
         update: vi.fn()
+      },
+      subscriptionItems: {
+        update: vi.fn()
       }
     }
   })
@@ -33,7 +36,8 @@ const adapter = {
 }
 
 const plans = {
-  getByPriceId: vi.fn()
+  getByPriceId: vi.fn(),
+  getById: vi.fn()
 }
 
 const user = {
@@ -356,6 +360,61 @@ describe('cancelSubscription', () => {
 
     expect(stripe.subscriptions.update).toHaveBeenCalledWith('sub_1234', {
       cancel_at_period_end: true
+    })
+  })
+})
+
+describe('updateSubscription', () => {
+  test('when plan not found, raises', async () => {
+    plans.getById.mockReturnValueOnce(null)
+
+    await expect(() => billing.updateSubscription('checkout_1234', 'unknown-plan'))
+      .rejects.toThrowError("Missing plan 'unknown-plan'")
+  })
+
+  test('when plan found, updates subscription item', async () => {
+    plans.getById.mockReturnValueOnce({
+      id: 'pro',
+      priceId: 'price_new'
+    })
+
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      items: {
+        data: [
+          {
+            id: "si_1234",
+            price: {
+              id: 'price_1234'
+            }
+          }
+        ]
+      },
+    })
+
+    stripe.subscriptionItems.update.mockResolvedValue({
+      id: 'si_1234'
+    })
+
+    const user = {
+      id: 'user_1234',
+      subscriptionId: 'sub_1234'
+    }
+
+    const result = await billing.updateSubscription(user, 'pro')
+
+    expect(result).toMatchObject({
+      id: 'si_1234'
+    })
+
+    expect(stripe.subscriptionItems.update).toHaveBeenCalledWith('si_1234', {
+      price: 'price_new'
+    })
+
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      plan: 'pro',
+      priceId: 'price_new'
     })
   })
 })
