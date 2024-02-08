@@ -1,5 +1,6 @@
 import plans from './plans'
 import portal from './portal'
+import modify from './modify'
 import cancel from './cancel'
 import checkout from './checkout'
 import checkoutComplete from './checkoutComplete'
@@ -19,6 +20,11 @@ export const routes = {
   '/billing/portal': {
     method: 'GET',
     handler: portal
+  },
+
+  '/billing/modify': {
+    method: 'POST',
+    handler: modify
   },
 
   '/billing/cancel': {
