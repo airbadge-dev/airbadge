@@ -17,7 +17,7 @@ export function StripeSvelteKitAuth(options = {}) {
     throw new Error('An adapter is reqiured')
 
   options.pages ||= {}
-  options.pages.newUser ||= '/?event=new-user'
+  options.pages.newUser ||= '/billing/checkout'
   options.pages.checkout ||= {}
   options.pages.checkout.success = '/?event=checkout-success'
   options.pages.checkout.cancel = '/?event=checkout-cancel'

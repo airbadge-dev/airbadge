@@ -12,7 +12,7 @@ export default async function handler({ url }, { user, plans, billing, options }
   if (plan.trial || plan.price == 0) {
     await billing.createSubscription(user, plan)
 
-    redirect(303, options.pages.newUser)
+    redirect(303, options.pages.checkout.success)
   } else {
     const checkout = await billing.createCheckout(user, plan)
 

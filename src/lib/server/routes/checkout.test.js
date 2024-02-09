@@ -53,7 +53,9 @@ describe('checkout', () => {
       billing,
       options: {
         pages: {
-          newUser: '/welcome'
+          checkout: {
+            success: '/welcome'
+          }
         }
       }
     }
