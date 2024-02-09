@@ -49,9 +49,11 @@ jobs:
         run: pnpm install
 
       - name: Setup database
+        working-directory: ./packages/authjs-sveltekit
         run: pnpm prisma db push
 
       - name: Install Playwright browsers
+        working-directory: ./packages/authjs-sveltekit
         run: pnpm exec playwright install chromium --with-deps
 
 #     - name: Start containers
