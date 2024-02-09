@@ -31,7 +31,7 @@ Two component wrappers are provided:
 
 ```html
 <script>
-  import { Member, NonMember } from '@sidecar/authjs-sveltekit'
+  import { Member, NonMember } from '@airbadge/authjs-sveltekit'
 </script>
 
 <!-- show to all members -->
@@ -74,7 +74,7 @@ Guards are helper functions that can restrict access to routes based on the stat
 
 ```javascript
 // in +page.server.js
-import { nonSubscriber, member } from '@sidecar/authjs-sveltekit'
+import { nonSubscriber, member } from '@airbadge/authjs-sveltekit'
 
 // route is for subscribers only (including canceled, or late on payment)
 export const load = subscriber(callback)
@@ -120,10 +120,10 @@ The following routes are provided:
 
 ## Setup
 
-Install [@sidecar/authjs-sveltekit](https://npmjs.com/package/@sidecar/authjs-sveltekit):
+Install [@airbadge/authjs-sveltekit](https://npmjs.com/package/@airbadge/authjs-sveltekit):
 
 ```sh
-pnpm i -D @sidecar/authjs-sveltekit
+pnpm i -D @airbadge/authjs-sveltekit
 ```
 
 Setup a database provider for Auth.js. For example, follow instructions for Prisma:
@@ -142,7 +142,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/auth_stripe_svelteki
 Configure authentication and billing options in `src/hooks.server.js`:
 
 ```javascript
-import { StripeSvelteKitAuth } from '@sidecar/authjs-sveltekit'
+import { StripeSvelteKitAuth } from '@airbadge/authjs-sveltekit'
 
 // use any OAuth provider (or multiple)
 import GitHub from '@auth/core/providers/github'

@@ -1,5 +1,5 @@
 {
-  "name": "@sidecar/authjs-sveltekit",
+  "name": "@airbadge/authjs-sveltekit",
   "version": "0.0.1",
   "keywords": ["svelte", "auth.js", "stripe", "saas"],
   "description": "A SaaS module for Auth.js. It adds Stripe Subscriptions and Checkout.",
