@@ -1,21 +1,5 @@
-/** @type { import("eslint").Linter.Config } */
 module.exports = {
   root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:svelte/recommended',
-    'prettier',
-    'plugin:vitest-globals/recommended'
-  ],
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2020,
-    extraFileExtensions: ['.svelte']
-  },
-  env: {
-    browser: true,
-    es2017: true,
-    node: true,
-    'vitest-globals/env': true
-  }
-}
+  // This tells ESLint to load the config from the package `eslint-config-custom`
+  extends: ['custom']
+};
