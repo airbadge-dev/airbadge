@@ -6,7 +6,9 @@ const state = {
   },
   options: {
     pages: {
-      newUser: '/welcome'
+      checkout: {
+        success: '/welcome'
+      }
     }
   }
 }
