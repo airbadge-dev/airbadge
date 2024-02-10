@@ -50,6 +50,9 @@ importers:
       mdsvex:
         specifier: ^0.11.0
         version: 0.11.0(svelte@4.2.8)
+      open-props:
+        specifier: ^1.6.18
+        version: 1.6.18
       prettier:
         specifier: ^3.1.1
         version: 3.1.1
@@ -2037,6 +2040,10 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       mimic-fn: 4.0.0
+    dev: true
+
+  /open-props@1.6.18:
+    resolution: {integrity: sha512-xhkbGo6vFdYHWR9mt81p4mlPoRLQHunA6XJAuQ2cUyvoOGKGxDj8dGgXDIbR1EMJVyHPxU1AbtfbloAIRLHWKw==}
     dev: true
 
   /optionator@0.9.3:
