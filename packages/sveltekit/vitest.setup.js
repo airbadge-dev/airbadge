@@ -1,11 +1,11 @@
 import { expect } from 'vitest'
 
 expect.extend({
-  async toError(promise, status, message=null) {
+  async toError(promise, status, message = null) {
     try {
       await promise
 
-      return { pass: false, message: () => 'Expected an error to be raised.'}
+      return { pass: false, message: () => 'Expected an error to be raised.' }
     } catch (actual) {
       if (actual?.constructor?.name !== 'HttpError') {
         return {
@@ -24,7 +24,8 @@ expect.extend({
       if (message && actual.body.message !== message) {
         return {
           pass: false,
-          message: () => `Expected an error with message "${message}", but got "${actual.body.message}"`
+          message: () =>
+            `Expected an error with message "${message}", but got "${actual.body.message}"`
         }
       }
 
@@ -36,7 +37,7 @@ expect.extend({
     try {
       await promise
 
-      return { pass: false, message: () => 'Redirect is supposed to raise an error.'}
+      return { pass: false, message: () => 'Redirect is supposed to raise an error.' }
     } catch (actual) {
       if (actual?.constructor?.name !== 'Redirect') {
         return {
@@ -55,7 +56,8 @@ expect.extend({
       if (location && actual.location !== location) {
         return {
           pass: false,
-          message: () => `Expected a redirect to location "${location}", but got "${actual.location}"`
+          message: () =>
+            `Expected a redirect to location "${location}", but got "${actual.location}"`
         }
       }
 

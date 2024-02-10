@@ -22,5 +22,5 @@
 </script>
 
 {#if isSubscriber($page.data.session, rules)}
-  <slot/>
+  <slot />
 {/if}

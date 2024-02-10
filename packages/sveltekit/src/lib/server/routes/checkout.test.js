@@ -4,8 +4,7 @@ describe('checkout', () => {
   test('without user, raises error', async () => {
     const response = handler({}, {})
 
-    await expect(response)
-      .toError(401, 'Authentication required')
+    await expect(response).toError(401, 'Authentication required')
   })
 
   test('when user already subscribed, raises error', async () => {
@@ -16,8 +15,7 @@ describe('checkout', () => {
     }
     const response = handler({}, state)
 
-    await expect(response)
-      .toError(403, 'User is already subscribed')
+    await expect(response).toError(403, 'User is already subscribed')
   })
 
   test('when plan not found, raises error', async () => {
@@ -33,13 +31,11 @@ describe('checkout', () => {
 
     const response = handler(event, state)
 
-    await expect(response)
-      .toError(403, 'No default plan, and plan was not specified in URL')
+    await expect(response).toError(403, 'No default plan, and plan was not specified in URL')
   })
 
   describe('with plan', () => {
-    const plan = {
-    }
+    const plan = {}
     const billing = {
       createSubscription: vi.fn(),
       createCheckout: vi.fn()
@@ -48,7 +44,9 @@ describe('checkout', () => {
     const state = {
       user,
       plans: {
-        getDefault() { return plan }
+        getDefault() {
+          return plan
+        }
       },
       billing,
       options: {
@@ -70,8 +68,7 @@ describe('checkout', () => {
 
       const response = handler(event, state)
 
-      await expect(response)
-        .toRedirect(303, '/welcome')
+      await expect(response).toRedirect(303, '/welcome')
 
       expect(billing.createSubscription).toHaveBeenCalledWith(user, plan)
     })
@@ -82,8 +79,7 @@ describe('checkout', () => {
 
       const response = handler(event, state)
 
-      await expect(response)
-        .toRedirect(303, '/welcome')
+      await expect(response).toRedirect(303, '/welcome')
 
       expect(billing.createSubscription).toHaveBeenCalledWith(user, plan)
     })
@@ -98,8 +94,7 @@ describe('checkout', () => {
 
       const response = handler(event, state)
 
-      await expect(response)
-        .toRedirect(303, 'https://checkout.stripe.com/checkout_1234')
+      await expect(response).toRedirect(303, 'https://checkout.stripe.com/checkout_1234')
 
       expect(billing.createCheckout).toHaveBeenCalledWith(user, plan)
     })

@@ -32,7 +32,7 @@ test('sign in with subscription', async ({ page }) => {
   expect(session).toMatchObject({
     user: {
       email: user.email,
-      name: user.name,
+      name: user.name
     },
     subscription: {
       id: 'sub_1234',

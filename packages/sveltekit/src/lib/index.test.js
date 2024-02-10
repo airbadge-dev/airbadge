@@ -6,39 +6,36 @@ const db = new PrismaClient()
 
 describe('StripeSvelteKitAuth', () => {
   test('when no plans, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({}))
-      .toThrowError('Must have at least one plan')
+    expect(() => StripeSvelteKitAuth({})).toThrowError('Must have at least one plan')
   })
 
   test('when plans empty, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [] }))
-      .toThrowError('Must have at least one plan')
+    expect(() => StripeSvelteKitAuth({ plans: [] })).toThrowError('Must have at least one plan')
   })
 
   test('when no providers, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [ {} ] }))
-      .toThrowError('Must have at least one provider')
+    expect(() => StripeSvelteKitAuth({ plans: [{}] })).toThrowError(
+      'Must have at least one provider'
+    )
   })
 
   test('when providers empty, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [ {} ], providers: [] }))
-      .toThrowError('Must have at least one provider')
+    expect(() => StripeSvelteKitAuth({ plans: [{}], providers: [] })).toThrowError(
+      'Must have at least one provider'
+    )
   })
 
   test('when no adapter, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [ {} ], providers: [ {} ] }))
-      .toThrowError('An adapter is reqiured')
+    expect(() => StripeSvelteKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
+      'An adapter is reqiured'
+    )
   })
 
   describe('when configured', () => {
     const config = {
       adapter: new PrismaAdapter(db),
-      providers: [
-        { id: 'google' }
-      ],
-      plans: [
-        { id: 'pro', name: 'Pro' }
-      ]
+      providers: [{ id: 'google' }],
+      plans: [{ id: 'pro', name: 'Pro' }]
     }
 
     test('handles /auth', async () => {

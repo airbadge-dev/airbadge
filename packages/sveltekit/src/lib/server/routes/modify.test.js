@@ -8,8 +8,7 @@ describe('update', () => {
   test('without user, raises error', async () => {
     const state = { user: null, billing }
 
-    await expect(handler({}, state))
-      .toError(401, 'Authentication required')
+    await expect(handler({}, state)).toError(401, 'Authentication required')
   })
 
   test('without plan, raises error', async () => {
@@ -17,8 +16,7 @@ describe('update', () => {
     const state = { user: 'fake-user', billing }
     const event = { url }
 
-    await expect(handler(event, state))
-      .toError(406, 'Plan is required')
+    await expect(handler(event, state)).toError(406, 'Plan is required')
   })
 
   test('with user and plan, updates and returns JSON', async () => {

@@ -10,23 +10,23 @@ export const handle = StripeSvelteKitAuth({
   trustHost: true,
   adapter: new PrismaAdapter(db),
   session: {
-    strategy: "jwt",
+    strategy: 'jwt'
   },
   providers: [
     Credentials({
-      name: "Password",
+      name: 'Password',
       credentials: {
-        username: { label: "Username" },
-        password: { label: "Password", type: "password" }
+        username: { label: 'Username' },
+        password: { label: 'Password', type: 'password' }
       },
 
       async authorize(credentials) {
-        const user = await db.user.findFirst({ where: { email: credentials.username }})
+        const user = await db.user.findFirst({ where: { email: credentials.username } })
         console.log('authorized', { user })
 
         return user
       }
-    }),
+    })
   ],
 
   pages: {

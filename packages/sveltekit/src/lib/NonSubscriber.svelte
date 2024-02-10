@@ -4,5 +4,5 @@
 </script>
 
 {#if isNonSubscriber($page.data.session)}
-  <slot/>
+  <slot />
 {/if}

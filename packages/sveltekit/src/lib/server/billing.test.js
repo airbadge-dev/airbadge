@@ -368,8 +368,9 @@ describe('updateSubscription', () => {
   test('when plan not found, raises', async () => {
     plans.getById.mockReturnValueOnce(null)
 
-    await expect(() => billing.updateSubscription('checkout_1234', 'unknown-plan'))
-      .rejects.toThrowError("Missing plan 'unknown-plan'")
+    await expect(() =>
+      billing.updateSubscription('checkout_1234', 'unknown-plan')
+    ).rejects.toThrowError("Missing plan 'unknown-plan'")
   })
 
   test('when plan found, updates subscription item', async () => {
@@ -383,13 +384,13 @@ describe('updateSubscription', () => {
       items: {
         data: [
           {
-            id: "si_1234",
+            id: 'si_1234',
             price: {
               id: 'price_1234'
             }
           }
         ]
-      },
+      }
     })
 
     stripe.subscriptionItems.update.mockResolvedValue({

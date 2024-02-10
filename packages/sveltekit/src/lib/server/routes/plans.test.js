@@ -2,7 +2,9 @@ import handler from './plans'
 
 const state = {
   plans: {
-    getAll() { return 'plans' }
+    getAll() {
+      return 'plans'
+    }
   }
 }
 

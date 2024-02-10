@@ -7,14 +7,12 @@ import { routes } from '$lib/server/routes'
 export { subscriber, nonSubscriber } from './server/guards'
 
 export function StripeSvelteKitAuth(options = {}) {
-  if (!options.plans || options.plans.length == 0)
-    throw new Error('Must have at least one plan')
+  if (!options.plans || options.plans.length == 0) throw new Error('Must have at least one plan')
 
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')
 
-  if (!options.adapter)
-    throw new Error('An adapter is reqiured')
+  if (!options.adapter) throw new Error('An adapter is reqiured')
 
   options.pages ||= {}
   options.pages.newUser ||= '/billing/checkout'

@@ -24,8 +24,7 @@ describe('webhooks', () => {
   test('when errors, raises', async () => {
     handleWebhook.mockRejectedValueOnce(Error('invalid sig'))
 
-    await expect(handler(event, state))
-      .toError(400, 'Invalid request')
+    await expect(handler(event, state)).toError(400, 'Invalid request')
 
     expect(handleWebhook).toHaveBeenCalledWith(state.billing, 'fake-body', 'fake-signature')
   })

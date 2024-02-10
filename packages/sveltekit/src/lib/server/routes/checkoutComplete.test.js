@@ -19,8 +19,7 @@ describe('checkoutComplete', () => {
       url: new URL('http://localhost/billing/checkout/complete')
     }
 
-    await expect(handler(event, state))
-      .toError(406, 'Expected checkout_session_id parameter')
+    await expect(handler(event, state)).toError(406, 'Expected checkout_session_id parameter')
   })
 
   test('with user, cancels and redirects', async () => {
@@ -28,8 +27,7 @@ describe('checkoutComplete', () => {
       url: new URL('http://localhost/billing/checkout/complete?checkout_session_id=fake-session-id')
     }
 
-    await expect(handler(event, state))
-      .toRedirect(303, '/welcome')
+    await expect(handler(event, state)).toRedirect(303, '/welcome')
 
     expect(state.billing.syncCheckout).toHaveBeenCalledWith('fake-session-id')
   })

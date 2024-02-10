@@ -121,7 +121,7 @@ describe('isSubscriber', () => {
     }
 
     test('when subscription plan matches, returns true', () => {
-      const result = isSubscriber(session, { plans: ['basic', 'pro']})
+      const result = isSubscriber(session, { plans: ['basic', 'pro'] })
 
       expect(result).toEqual(true)
     })

@@ -1,6 +1,6 @@
-import adapter from '@sveltejs/adapter-auto'
-import { mdsvex } from 'mdsvex'
-import { highlighter } from './src/lib/highlighter.js'
+import adapter from '@sveltejs/adapter-auto';
+import { mdsvex } from 'mdsvex';
+import { highlighter } from './src/lib/highlighter.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -20,4 +20,4 @@ const config = {
 	}
 };
 
-export default config
+export default config;

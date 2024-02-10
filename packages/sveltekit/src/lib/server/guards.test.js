@@ -9,7 +9,9 @@ describe('nonSubscriber()', () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
-        getSession() { return null }
+        getSession() {
+          return null
+        }
       }
     }
 
@@ -22,7 +24,9 @@ describe('nonSubscriber()', () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
-        getSession() { return {} }
+        getSession() {
+          return {}
+        }
       }
     }
 
@@ -35,18 +39,18 @@ describe('nonSubscriber()', () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
-        getSession() { return { subscription: {} } }
+        getSession() {
+          return { subscription: {} }
+        }
       }
     }
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
-
 })
 
 describe('subscriber()', () => {
@@ -57,28 +61,30 @@ describe('subscriber()', () => {
     }
     const event = {
       locals: {
-        getSession() { return session }
+        getSession() {
+          return session
+        }
       }
     }
 
     await handler(event)
 
     expect(callback).toHaveBeenCalledWith(event)
-
   })
 
   test('when no subscription, raises error', async () => {
     const handler = subscriber(callback)
     const event = {
       locals: {
-        getSession() { return {} }
+        getSession() {
+          return {}
+        }
       }
     }
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -86,7 +92,7 @@ describe('subscriber()', () => {
 
 describe('subscriber.active()', () => {
   test('when subscription is active, calls callback', async () => {
-    const event = mockEvent({ status: 'ACTIVE'})
+    const event = mockEvent({ status: 'ACTIVE' })
     const handler = subscriber.active(callback)
 
     await handler(event)
@@ -95,13 +101,12 @@ describe('subscriber.active()', () => {
   })
 
   test('when subscription is not active, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED'})
+    const event = mockEvent({ status: 'CANCELED' })
     const handler = subscriber.active(callback)
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -109,7 +114,7 @@ describe('subscriber.active()', () => {
 
 describe('subscriber.pastDue()', () => {
   test('when subscription is past_due, calls callback', async () => {
-    const event = mockEvent({ status: 'PAST_DUE'})
+    const event = mockEvent({ status: 'PAST_DUE' })
     const handler = subscriber.pastDue(callback)
 
     await handler(event)
@@ -118,13 +123,12 @@ describe('subscriber.pastDue()', () => {
   })
 
   test('when subscription is not past_due, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED'})
+    const event = mockEvent({ status: 'CANCELED' })
     const handler = subscriber.pastDue(callback)
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -132,7 +136,7 @@ describe('subscriber.pastDue()', () => {
 
 describe('subscriber.unpaid()', () => {
   test('when subscription is unpaid, calls callback', async () => {
-    const event = mockEvent({ status: 'UNPAID'})
+    const event = mockEvent({ status: 'UNPAID' })
     const handler = subscriber.unpaid(callback)
 
     await handler(event)
@@ -141,13 +145,12 @@ describe('subscriber.unpaid()', () => {
   })
 
   test('when subscription is not unpaid, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED'})
+    const event = mockEvent({ status: 'CANCELED' })
     const handler = subscriber.unpaid(callback)
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -155,7 +158,7 @@ describe('subscriber.unpaid()', () => {
 
 describe('subscriber.canceled()', () => {
   test('when subscription is canceled, calls callback', async () => {
-    const event = mockEvent({ status: 'CANCELED'})
+    const event = mockEvent({ status: 'CANCELED' })
     const handler = subscriber.canceled(callback)
 
     await handler(event)
@@ -164,13 +167,12 @@ describe('subscriber.canceled()', () => {
   })
 
   test('when subscription is not canceled, raises error', async () => {
-    const event = mockEvent({ status: 'ACTIVE'})
+    const event = mockEvent({ status: 'ACTIVE' })
     const handler = subscriber.canceled(callback)
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -178,7 +180,7 @@ describe('subscriber.canceled()', () => {
 
 describe('subscriber.trialing()', () => {
   test('when subscription is trialing, calls callback', async () => {
-    const event = mockEvent({ status: 'TRIALING'})
+    const event = mockEvent({ status: 'TRIALING' })
     const handler = subscriber.trialing(callback)
 
     await handler(event)
@@ -187,13 +189,12 @@ describe('subscriber.trialing()', () => {
   })
 
   test('when subscription is not trialing, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED'})
+    const event = mockEvent({ status: 'CANCELED' })
     const handler = subscriber.trialing(callback)
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -219,8 +220,7 @@ describe('subscriber.plan()', () => {
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -231,8 +231,7 @@ describe('subscriber.plan()', () => {
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -258,8 +257,7 @@ describe('subscriber.plans()', () => {
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -270,8 +268,7 @@ describe('subscriber.plans()', () => {
 
     const response = handler(event)
 
-    await expect(response)
-      .toError(403, 'Forbidden')
+    await expect(response).toError(403, 'Forbidden')
 
     expect(callback).not.toHaveBeenCalled()
   })
@@ -282,7 +279,9 @@ function mockEvent(subscription = null) {
 
   return {
     locals: {
-      getSession() { return session }
+      getSession() {
+        return session
+      }
     }
   }
 }
