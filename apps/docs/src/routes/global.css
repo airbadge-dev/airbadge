@@ -1,0 +1,57 @@
+@import "open-props/postcss/style";
+@import "open-props/normalize.light.min.css";
+
+body {
+  color: var(--gray-7);
+}
+
+a {
+  color: var(--indigo-8);
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--indigo-5);
+  text-underline-offset: 2px;
+}
+
+h1, h2, h3, h4 {
+  color: var(--violet-4);
+}
+
+h1 {
+  color: var(--violet-8);
+  font-size: var(--font-size-5);
+  margin-bottom: var(--size-4);
+  letter-spacing: var(--font-letterspacing-0);
+}
+
+h2 {
+  font-size: var(--font-size-4);
+  margin: var(--size-4) 0 var(--size-3) 0;
+}
+
+h3 {
+  font-size: var(--font-size-2);
+  margin: var(--size-2) 0;
+}
+
+p {
+  margin-bottom: var(--size-4);
+}
+
+ul {
+  padding-inline-start: var(--size-6);
+  list-style-type: square;
+
+  & li::marker {
+    color: var(--violet-8);
+  }
+}
+
+pre {
+  background-color: var(--gray-1) !important;
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-1);
+  margin-bottom: 2rem;
+  display: block;
+  width: 100%;
+}
