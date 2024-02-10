@@ -1,24 +1,28 @@
-# Stripe + Auth.js + SvelteKit
+# AirBadge
 
-This project provides a easy way to create a SaaS site.
+> Stripe + Auth.js + SvelteKit
 
-This is a [Stripe](https://stripe.com) addon for [Auth.js](https://authjs.dev).
+This project provides an easy way to create a SaaS site.
 
-Launch a SaaS app without writing any auth or payment code!
+It is a [Stripe](https://stripe.com) addon for [Auth.js](https://authjs.dev).
+
+Launch a SaaS app without writing any authentiction or payment code!
 
 ## Features
 
-- **Integrated checkout**: Stripe Checkout is built into the signup flow.
-- **Billing portal**: Changing plans or canceling plans is accessible via `/billing/portal`.
+- **Integrated Payment**: Stripe Checkout is built into the signup flow.
+- **Authentication**: Over 50 OAuth options (Google, Apple, GitHub...), provided by Auth.js.
+- **Authorization**: Routes and UI can be restricted based on subscription.
+- **Self-service account management**: Changing or canceling plans is accessible via `/billing/portal`.
 - **Webhook handling**: All Stripe webhooks are handled for you.
 - **Trials & Free plans**: Checkout can be skipped for free plans or trials.
-- **Routing guards**: Routes can be restricted based on membership status.
-- **Component guards**: Conditionally display components based on membership status.
-- **Session data**: Subscription and plan info is included in the session.
-- **Open source**: https://github.com/joshnuss/auth-stripe-sveltekit
+- **Session data**: Subscription and plan data is included in the session.
+- **Open source**: https://github.com/joshnuss/airbadge
 - **BSL Licence**: Free for first 100 customers. Then $150/year for unlimited users.
 
-## Component guards
+## Authorization
+
+### Conditional UI
 
 Conditionally display components based on the user's subscription status.
 
@@ -68,9 +72,9 @@ Two component wrappers are provided:
 </NonSubscriber>
 ```
 
-## Routing guards
+### Restricting Routes
 
-Guards are helper functions that can restrict access to routes based on the state of the subscription:
+Guards are helper functions that can restrict access to a route based on the subscription status or plan:
 
 ```javascript
 // in +page.server.js
