@@ -1,4 +1,4 @@
-import { StripeSvelteKitAuth } from '$lib'
+import { SvelteKitAuth } from '$lib'
 import { PrismaClient } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import Credentials from '@auth/core/providers/credentials'
@@ -6,7 +6,7 @@ import { BASIC_PRICE_ID, PRO_PRICE_ID } from '$env/static/private'
 
 const db = new PrismaClient()
 
-export const handle = StripeSvelteKitAuth({
+export const handle = SvelteKitAuth({
   trustHost: true,
   adapter: new PrismaAdapter(db),
   session: {

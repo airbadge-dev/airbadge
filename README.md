@@ -146,7 +146,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/auth_stripe_svelteki
 Configure authentication and billing options in `src/hooks.server.js`:
 
 ```javascript
-import { StripeSvelteKitAuth } from '@airbadge/sveltekit'
+import { SvelteKitAuth } from '@airbadge/sveltekit'
 
 // use any OAuth provider (or multiple)
 import GitHub from '@auth/core/providers/github'
@@ -159,7 +159,7 @@ const db = new PrismaClient()
 
 // add Auth.js + Stripe handler
 // API is similar to Auth.js
-export const handle = StripeSvelteKitAuth({
+export const handle = SvelteKitAuth({
   // configure database adapter
   adapter: PrismaAdapter(db),
 

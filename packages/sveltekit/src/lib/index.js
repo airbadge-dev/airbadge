@@ -6,7 +6,7 @@ import { routes } from '$lib/server/routes'
 
 export { subscriber, nonSubscriber } from './server/guards'
 
-export function StripeSvelteKitAuth(options = {}) {
+export function SvelteKitAuth(options = {}) {
   if (!options.plans || options.plans.length == 0) throw new Error('Must have at least one plan')
 
   if (!options.providers || options.providers.length == 0)
@@ -45,7 +45,7 @@ function authHandler(plans, options) {
             id: user.subscriptionId,
             customerId: user.customerId,
             plan: plans.getById(user.plan),
-            status: user.subscriptionStatus
+            status: user.subscriptionStatus.toLowerCase()
           }
         }
 

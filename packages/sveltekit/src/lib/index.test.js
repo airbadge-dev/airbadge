@@ -1,32 +1,32 @@
-import { StripeSvelteKitAuth } from './index'
+import { SveltKitAuth } from './index'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
 
 const db = new PrismaClient()
 
-describe('StripeSvelteKitAuth', () => {
+describe('SveltKitAuth', () => {
   test('when no plans, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({})).toThrowError('Must have at least one plan')
+    expect(() => SveltKitAuth({})).toThrowError('Must have at least one plan')
   })
 
   test('when plans empty, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [] })).toThrowError('Must have at least one plan')
+    expect(() => SveltKitAuth({ plans: [] })).toThrowError('Must have at least one plan')
   })
 
   test('when no providers, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [{}] })).toThrowError(
+    expect(() => SveltKitAuth({ plans: [{}] })).toThrowError(
       'Must have at least one provider'
     )
   })
 
   test('when providers empty, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [{}], providers: [] })).toThrowError(
+    expect(() => SveltKitAuth({ plans: [{}], providers: [] })).toThrowError(
       'Must have at least one provider'
     )
   })
 
   test('when no adapter, raises an error', () => {
-    expect(() => StripeSvelteKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
+    expect(() => SveltKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
       'An adapter is reqiured'
     )
   })
@@ -39,7 +39,7 @@ describe('StripeSvelteKitAuth', () => {
     }
 
     test('handles /auth', async () => {
-      const handler = StripeSvelteKitAuth(config)
+      const handler = SveltKitAuth(config)
 
       const url = new URL('http://localhost/auth/providers')
       //
@@ -59,7 +59,7 @@ describe('StripeSvelteKitAuth', () => {
     })
 
     test('handles /billing', async () => {
-      const handler = StripeSvelteKitAuth(config)
+      const handler = SveltKitAuth(config)
 
       const response = await handler({
         event: {
@@ -78,7 +78,7 @@ describe('StripeSvelteKitAuth', () => {
 
     test('ignores everything else', async () => {
       const resolve = vi.fn()
-      const handler = StripeSvelteKitAuth(config)
+      const handler = SveltKitAuth(config)
       const event = {
         url: new URL('http://localhost/unknown'),
         locals: {
