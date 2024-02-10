@@ -1,14 +1,13 @@
-import { codeToHtml } from 'shiki'
+import { codeToHtml } from 'shiki/bundle/full'
 
 export async function highlighter(code, lang) {
   const html = await codeToHtml(code, {
     lang,
-    theme: {
-      dark: 'github-nord'
+    themes: {
+      dark: 'github-dark',
+      light: 'github-light'
     }
   })
-
-  console.log(html)
 
   return escapeHtml(html)
 }
