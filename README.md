@@ -34,35 +34,35 @@ Two component wrappers are provided:
   import { Subscriber, NonSubscriber } from '@airbadge/sveltekit'
 </script>
 
-<!-- show to all members -->
+<!-- show to all subscribers -->
 <Subscriber>
-  <p>Welcome back member!</p>
+  <p>Welcome back subscriber!</p>
 </Subscriber>
 
-<!-- show to unpaid members -->
+<!-- show to unpaid subscribers -->
 <Subscriber unpaid>
   <p>Whoops, we couldn't collect a payment.</p>
 
   <a href="/billing/portal">Upgrade</a>
 </Subscriber>
 
-<!-- show to members with canceled subscriptions -->
+<!-- show to subscribers with canceled subscriptions -->
 <Subscriber canceled>
   <p>Your account has been canceled</p>
   <a href="/billing/checkout">Sign up</a>
 </Subscriber>
 
-<!-- show to members on the "pro" plan -->
+<!-- show to subscribers on the "pro" plan -->
 <Subscriber plan="pro">
   You're on the Pro plan!!
 </Subscriber>
 
-<!-- show to members on the "pro" or "enterprise" plan -->
+<!-- show to subscribers on the "pro" or "enterprise" plan -->
 <Subscriber plans={["pro", "enterprise"]}>
   You're a real player!!
 </Subscriber>
 
-<!-- show to non-members -->
+<!-- show to non-subscribers -->
 <NonSubscriber>
   <a href="/billing/checkout">Sign up</a>
 </NonSubscriber>
