@@ -24,48 +24,48 @@ Conditionally display components based on the user's subscription status.
 
 Two component wrappers are provided:
 
-- `<NonMember/>`: Display content when user doesn't have a subscription.
-- `<Member/>`: Display content when user has a subscription. Can also filter by plan or payment state.
+- `<NonSubscriber/>`: Display content when user doesn't have a subscription.
+- `<Subscriber/>`: Display content when user has a subscription. Can also filter by plan or payment state.
 
 ### Examples
 
 ```html
 <script>
-  import { Member, NonMember } from '@airbadge/sveltekit'
+  import { Subscriber, NonSubscriber } from '@airbadge/sveltekit'
 </script>
 
 <!-- show to all members -->
-<Member>
+<Subscriber>
   <p>Welcome back member!</p>
-</Member>
+</Subscriber>
 
 <!-- show to unpaid members -->
-<Member unpaid>
+<Subscriber unpaid>
   <p>Whoops, we couldn't collect a payment.</p>
 
   <a href="/billing/portal">Upgrade</a>
-</Member>
+</Subscriber>
 
 <!-- show to members with canceled subscriptions -->
-<Member canceled>
+<Subscriber canceled>
   <p>Your account has been canceled</p>
   <a href="/billing/checkout">Sign up</a>
-</Member>
+</Subscriber>
 
 <!-- show to members on the "pro" plan -->
-<Member plan="pro">
+<Subscriber plan="pro">
   You're on the Pro plan!!
-</Member>
+</Subscriber>
 
 <!-- show to members on the "pro" or "enterprise" plan -->
-<Member plans={["pro", "enterprise"]}>
+<Subscriber plans={["pro", "enterprise"]}>
   You're a real player!!
-</Member>
+</Subscriber>
 
 <!-- show to non-members -->
-<NonMember>
+<NonSubscriber>
   <a href="/billing/checkout">Sign up</a>
-</NonMember>
+</NonSubscriber>
 ```
 
 ## Routing guards
