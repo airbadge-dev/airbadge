@@ -4,13 +4,15 @@ AirBadge mounts a `/billing` endpoint on your site that provides some handy util
 
 The following routes are provided:
 
-- `/billing/checkout`: Redirects current signed-in user to a Stripe checkout session.
-- `/billing/portal`: Opens the billing portal for the current signed-in user.
-- `/billing/modify`: Modify the current user's billing plan.
-- `/billing/cancel`: Cancels the current user's subscription.
-- `/billing/checkout/complete`: Handles post-checkout housekeeping.
-- `/billing/plans`: Lists plans in JSON format.
-- `/billing/webhooks`: Handles all Stripe webhooks for you.
+| Endpoint                   | Description                                                    |
+|:---------------------------|:---------------------------------------------------------------|
+| /billing/checkout          | Redirects current signed-in user to a Stripe checkout session. |
+| /billing/portal            | Opens the billing portal for the current signed-in user.       |
+| /billing/modify            | Modify the current user's billing plan.                        |
+| /billing/cancel            | Cancels the current user's subscription.                       |
+| /billing/checkout/complete | Handles post-checkout housekeeping.                            |
+| /billing/plans             | Lists plans in JSON format.                                    |
+| /billing/webhooks          | Handles all Stripe webhooks for you.                           |
 
 ## Use cases
 
