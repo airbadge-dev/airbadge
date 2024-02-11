@@ -80,6 +80,5 @@
     grid-area: main;
     padding: var(--size-3);
     margin: var(--size-4) 0;
-    padding-left: var(--size-6);
   }
 </style>
