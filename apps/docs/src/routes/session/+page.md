@@ -29,7 +29,7 @@ On the client side, use the `data` prop:
 AirBadge adds more attributes to the session:
 
 | Attribute                   | Function                                                                                                               |
-|:----------------------------|:-----------------------------------------------------------------------------------------------------------------------|
+| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | `subscription.id`           | The user's subscription id.                                                                                            |
 | `subscription.status`       | The current [status of the subscription](https://stripe.com/docs/api/subscriptions/object#subscription_object-status). |
 | `subscription.customer`     | The user's Stripe customer id.                                                                                         |
@@ -40,7 +40,7 @@ AirBadge adds more attributes to the session:
 
 ## Example
 
-Here's an example of what session would look like:
+This is an example of what session data would look like:
 
 ```json
 {
