@@ -208,8 +208,8 @@ Webhook handling is built-in. Just forward webhooks via [Stripe's CLI](https://s
 stripe listen --forward-to localhost:5173/billing/webhooks
 ```
 
-## 7. Celebrate
+## 7. Celebrate! 🎉
 
 You now have a working SaaS app!
 
-Visit https://localhost:5173/auth/signin, to sign up and pay.
+Visit [http://localhost:5173/auth/signin](http://localhost:5173/auth/signin) to sign up and pay.
