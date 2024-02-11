@@ -1,18 +1,30 @@
+<script>
+  import { page } from '$app/stores'
+
+  const menus = [
+    { url: "/getting-started", name: "Getting Started" },
+    { url: "/configuration", name: "Configuration" },
+    { url: "/database", name: "Database" },
+    { url: "/session", name: "Session" },
+    { url: "/authorization", name: "Authorization" },
+    { url: "/endpoints", name: "Endpoints" },
+    { url: "https://demo.airbadge.dev", name: "Live Demo" },
+    { url: "https://github.com/joshnuss/airbadge-example", name: "Example Code" },
+    { url: "/license", name: "License" },
+  ]
+</script>
+
 <header>
   <a href="/">AirBadge</a>
 </header>
 
 <aside>
   <nav>
-    <a href="/getting-started">Getting Started</a>
-    <a href="/configuration">Configuration</a>
-    <a href="/database">Database</a>
-    <a href="/session">Session</a>
-    <a href="/authorization">Authorization</a>
-    <a href="/endpoints">Endpoints</a>
-    <a href="https://demo.airbadge.dev" rel="nofollow">Live Demo</a>
-    <a href="https://github.com/joshnuss/airbadge-example" rel="nofollow">Example Code</a>
-    <a href="/license">License</a>
+    {#each menus as menu}
+      <a href={menu.url} class:active={menu.url == $page.url.pathname}>
+        {menu.name}
+      </a>
+    {/each}
   </nav>
 </aside>
 
@@ -74,6 +86,23 @@
     flex-direction: column;
     gap: var(--size-2);
     font-size: var(--font-size-2);
+
+    & a {
+      color: var(--gray-6);
+      border-radius: var(--radius-2);
+      padding: var(--size-2) var(--size-4);
+      text-decoration: none;
+      transition: 0.3s all;
+
+      &:hover {
+        background: var(--gray-2);
+      }
+
+      &.active {
+        background: var(--gray-3);
+        color: var(--gray-9);
+      }
+    }
   }
 
   main {
