@@ -1,4 +1,6 @@
-<header>AirBadge</header>
+<header>
+  <a href="/">AirBadge</a>
+</header>
 
 <aside>
   <nav>
@@ -46,6 +48,12 @@
     padding: var(--size-3);
     display: flex;
     align-items: center;
+
+    & a {
+      color: var(--gray-1);
+      font-family: var(--font-heading);
+      font-weight: normal;
+    }
   }
 
   aside {
@@ -59,7 +67,6 @@
       display: block;
       grid-area: aside;
     }
-
   }
 
   aside nav {

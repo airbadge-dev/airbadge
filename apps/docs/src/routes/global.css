@@ -1,14 +1,20 @@
 @import 'open-props/postcss/style';
 @import 'open-props/normalize.light.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;900&family=Inter:wght@400;500;600;900&display=swap');
+
+:root {
+  --font-sans: Inter;
+  --font-heading: "Source Sans Pro";
+}
 
 body {
   color: var(--gray-7);
 }
 
 a {
-  color: var(--indigo-8);
+  color: var(--violet-8);
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--indigo-5);
+  text-decoration-color: var(--violet-5);
   text-underline-offset: 2px;
 }
 
@@ -17,6 +23,8 @@ h2,
 h3,
 h4 {
   color: var(--violet-4);
+  font-family: var(--font-heading);
+  font-weight: normal;
 }
 
 h1 {
