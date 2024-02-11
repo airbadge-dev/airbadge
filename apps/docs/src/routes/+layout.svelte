@@ -28,14 +28,13 @@
     grid-template-areas:
       "header"
       "main";
-    grid-template-rows: 1fr;
+    grid-template-rows: 50px 1fr;
     grid-template-columns: 1fr;
 
     @media (--md-n-above) {
       grid-template-areas:
         "header header"
         "aside main";
-      grid-template-rows: 50px 1fr;
       grid-template-columns: max(240px, 20vw) 1fr;
     }
   }
