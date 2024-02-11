@@ -172,11 +172,10 @@ export const handle = SvelteKitAuth({
   ],
 
   // configure list of plans.
-  // free and trial plans are supported
   plans: [
-    { id: 'basic', name: 'Basic', free: true, default: true },
-    { id: 'pro', name: 'Pro', trial: true }
-    { id: 'enterprise', name: 'Enterprise', trial: true }
+    { id: 'basic', name: 'Basic', price: 1000, default: true },
+    { id: 'pro', name: 'Pro', price: 2500 }
+    { id: 'enterprise', name: 'Enterprise', price: 10000 }
   ]
 })
 ```
