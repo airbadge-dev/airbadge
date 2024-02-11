@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "@iconify/svelte": "^3.1.6",
     "@shikijs/transformers": "^1.1.1",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
