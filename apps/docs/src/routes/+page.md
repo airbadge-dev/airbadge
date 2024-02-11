@@ -8,7 +8,7 @@ It integrates [Stripe Checkout](https://stripe.com/payments/checkout), [Customer
 
 - [Getting Started](/getting-started)
 - [Configuration](/configuration)
-- [Database adapters](/database-adapters)
+- [Database](/database)
 - [Session](/session)
 - [Authorization](/authorization)
 - [Endpoints](/endpoints)

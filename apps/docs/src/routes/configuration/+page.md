@@ -19,7 +19,7 @@ export const handle = SvelteKitAuth({
 })
 ```
 
-**Note**: This package requires some extra fields in the database. See [Database Adapters](/database-adapters) for more information on updating your schema.
+**Note**: This package requires some extra fields in the database. See [Database Guide](/database) for more information on updating your schema.
 
 ## Providers
 

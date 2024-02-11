@@ -5,7 +5,7 @@
   <nav>
     <a href="/getting-started">Getting Started</a>
     <a href="/configuration">Configuration</a>
-    <a href="/database-adapters">Database adapters</a>
+    <a href="/database">Database</a>
     <a href="/session">Session</a>
     <a href="/authorization">Authorization</a>
     <a href="/endpoints">Endpoints</a>
