@@ -8,4 +8,4 @@ Once you reach 50 paying customers, the license costs **$200 USD/year for unlimi
 
 4 years after each commit, the license switches to a MIT License.
 
-[Read full license](https://github.com/joshnuss/airbadge/LICENSE.md)
+[Read full license](https://github.com/joshnuss/airbadge/blob/main/LICENSE.md)
