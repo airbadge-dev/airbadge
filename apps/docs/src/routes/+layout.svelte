@@ -1,4 +1,3 @@
-<div class="container">
 <header>AirBadge</header>
 
 <aside>
@@ -19,19 +18,26 @@
   <slot />
 </main>
 
-</div>
-
 <style>
   @import './global.css';
+  @import 'open-props/media.min.css';
 
-  .container {
+  :global(body) {
     min-height: 100vh;
     display: grid;
     grid-template-areas:
-      "header header"
-      "aside main";
-    grid-template-rows: 50px 1fr;
-    grid-template-columns: max(240px, 20vw) 1fr;
+      "header"
+      "main";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+
+    @media (--md-n-above) {
+      grid-template-areas:
+        "header header"
+        "aside main";
+      grid-template-rows: 50px 1fr;
+      grid-template-columns: max(240px, 20vw) 1fr;
+    }
   }
 
   header {
@@ -44,18 +50,24 @@
   }
 
   aside {
-    grid-area: aside;
+    display: none;
     padding: var(--size-4);
     border-right: solid 2px var(--gray-2);
     overflow-y: auto;
     background: var(--gray-1);
 
-    & nav {
-      display: flex;
-      flex-direction: column;
-      gap: var(--size-2);
-      font-size: var(--font-size-2);
+    @media (--md-n-above) {
+      display: block;
+      grid-area: aside;
     }
+
+  }
+
+  aside nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2);
+    font-size: var(--font-size-2);
   }
 
   main {
