@@ -26,6 +26,9 @@ importers:
 
   apps/docs:
     devDependencies:
+      '@shikijs/transformers':
+        specifier: ^1.1.1
+        version: 1.1.1
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
         version: 3.1.0(@sveltejs/kit@2.0.6)
@@ -1106,6 +1109,12 @@ packages:
 
   /@shikijs/core@1.1.1:
     resolution: {integrity: sha512-WSHuW0i4W04+UZgim378oxHBAp4S5X3hVI2zXh+t5v2fx2u/7QXz9VNisoOD/CA4O9Lc6Zs97TrKiDbWyZua6Q==}
+    dev: true
+
+  /@shikijs/transformers@1.1.1:
+    resolution: {integrity: sha512-kOGqxMWtgPxivmDB6WH/lq3oUv0FrGPleovfBCqNVYsyGwRDa01OBOqQxO6oz8a7QbdEq0fbt7CaK1yjv4epXw==}
+    dependencies:
+      shiki: 1.1.1
     dev: true
 
   /@sinclair/typebox@0.27.8:
