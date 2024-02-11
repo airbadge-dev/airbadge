@@ -12,6 +12,7 @@ It integrates [Stripe Checkout](https://stripe.com/payments/checkout), [Customer
 - [Session](/session)
 - [Authorization](/authorization)
 - [Endpoints](/endpoints)
+- [Deployment](/deployment)
 - [Live Demo](https://demo.airbadge.dev)
 - [Example Code](https://github.com/joshnuss/airbadge-example)
 - [License](/license)
