@@ -19,7 +19,7 @@
   <a href="/">AirBadge</a>
 
   <nav>
-    <a href="https://discord.gg/qfeFdamj" target="_blank">
+    <a href="https://discord.gg/KjGNepeChg" target="_blank">
       <Icon icon="bi-discord"/>
     </a>
 
