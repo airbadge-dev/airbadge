@@ -2,23 +2,35 @@
 
 This guide uses [Prisma](https://prisma.io) as the database and [GitHub](https://github.com) as the authentication provider.
 
-## Install packages
+## 1. Install packages
 
 ```sh
 pnpm install -D @airbadge/sveltekit @auth/core prisma @prisma/client
 ```
 
-## Configure environment
+## 2. Configure environment
 
 Add environment variables to `.env.development`:
 
-- `DATABASE_URL`: The URL to your database.
-- `STRIPE_SECRET_KEY`: Your Stripe API key. Used for creating checkouts and verifying webhooks.
-- `GITHUB_ID`: The client id of your GitHub OAuth app.
-- `GITHUB_SECRET`: The client secret of your GitHub OAuth app.
-- `DOMAIN`: The domain of your site. `http://localhost:5173` for development.
+```sh
+# Stripe private key
+# Find it here: https://dashboard.stripe.com/test/apikeys
+SECRET_STRIPE_KEY=sk_...
 
-## Setup database
+# Domain to use for URLs:
+DOMAIN=http://localhost:5173
+
+# Database URL for the Auth.js database adapter
+# For examples, see: https://www.prisma.io/docs/orm/reference/connection-urls
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mydb?schema=public"
+
+# Client Id and Client Secret of GitHub OAuth app
+# In GitHub: Settings -> Developer Settings -> OAuth Apps
+GITHUB_ID=
+GITHUB_SECRET=
+```
+
+## 3. Setup database
 
 First, initialize Prisma:
 
@@ -108,11 +120,39 @@ Finally, push the schema:
 pnpm prisma db push
 ```
 
-## Create Stripe plans
+## 4. Create pricing
 
-## Configure hooks
+Create some plans and pricing. This can be done via the [Stripe Dashboard](https://dashboard.stripe.com) or via the [Stripe CLI](https://docs.stripe.com/cli).
 
-## Forward webhooks
+To create them via the CLI:
+
+```sh
+# login to Stripe
+stripe login
+
+# create products & pricing
+stripe prices create \
+  --product-data.name="Basic Plan" \
+  --currency=usd \
+  --unit-amount=1000 \
+  --recurring.interval=month
+
+stripe prices create \
+  --product-data.name="Pro Plan" \
+  --currency=usd \
+  --unit-amount=2500 \
+  --recurring.interval=month
+
+stripe prices create \
+  --product-data.name="Enterprise Plan" \
+  --currency=usd \
+  --unit-amount=10000 \
+  --recurring.interval=month
+```
+
+## 5. Configure SvelteKit
+
+## 6. Forward webhooks
 
 Webhook handling is built-in. Just forward webhooks via [Stripe's CLI](https://stripe.com/docs/cli).
 
