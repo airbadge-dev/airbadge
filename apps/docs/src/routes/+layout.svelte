@@ -132,5 +132,9 @@
     grid-area: main;
     padding: var(--size-3);
     margin: var(--size-4) 0;
+
+    @media (--md-n-above) {
+      padding: var(--size-3) var(--size-6);
+    }
   }
 </style>
