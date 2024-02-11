@@ -1,4 +1,5 @@
 <script>
+  import Icon from '@iconify/svelte'
   import { page } from '$app/stores'
 
   const menus = [
@@ -16,6 +17,16 @@
 
 <header>
   <a href="/">AirBadge</a>
+
+  <nav>
+    <a href="https://discord.gg/qfeFdamj" target="_blank">
+      <Icon icon="bi-discord"/>
+    </a>
+
+    <a href="https://github.com/joshnuss/airbadge">
+      <Icon icon="bi-github"/>
+    </a>
+  </nav>
 </header>
 
 <aside>
@@ -60,12 +71,24 @@
     padding: var(--size-3);
     display: flex;
     align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
 
     & a {
       color: var(--gray-1);
       font-family: var(--font-heading);
       font-weight: normal;
     }
+  }
+
+  header nav {
+    display: flex;
+    flex-direction: row;
+    gap: var(--size-2);
+  }
+
+  header nav :global(svg) {
+    width: 24px;
   }
 
   aside {
