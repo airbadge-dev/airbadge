@@ -4,16 +4,8 @@ This guide uses [Prisma](https://prisma.io) as the database and [GitHub](https:/
 
 ## 1. Install packages
 
-For Auth & Payment:
-
 ```sh
-pnpm install -D @auth/core @airbadge/sveltekit
-```
-
-For Prisma:
-
-```sh
-pnpm install -D prisma @prisma/client @auth/prisma-adapter
+pnpm install -D @airbadge/sveltekit @auth/core prisma @prisma/client
 ```
 
 ## 2. Configure environment
@@ -159,46 +151,6 @@ stripe prices create \
 ```
 
 ## 5. Configure SvelteKit
-
-Configure authentication and billing options in `src/hooks.server.js`:
-
-```javascript
-import { SvelteKitAuth } from '@airbadge/sveltekit'
-
-// use GitHub OAuth provider
-import GitHub from '@auth/core/providers/github'
-
-// use Prisma database adapter
-import { PrismaAdapter } from '@auth/prisma-adapter'
-
-// import Prisma client for database adapter
-import { PrismaClient } from '@prisma/client'
-
-// import env vars for OAuth client
-import { GITHUB_ID, GITHUB_SECRET } from '$env/dynamic/private'
-
-// init database client
-const db = new PrismaClient()
-
-// add Auth.js + Stripe handler
-// API is similar to Auth.js
-export const handle = SvelteKitAuth({
-  adapter: PrismaAdapter(db),
-  providers: [
-    GitHub({
-      clientId: GITHUB_ID,
-      clientSecret: GITHUB_SECRET
-    })
-  ],
-
-  // configure list of plans.
-  plans: [
-    { id: 'basic', name: 'Basic', default: true },
-    { id: 'pro', name: 'Pro' }
-    { id: 'enterprise', name: 'Enterprise' }
-  ]
-})
-```
 
 ## 6. Forward webhooks
 
