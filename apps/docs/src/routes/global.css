@@ -57,6 +57,11 @@ ul {
   }
 }
 
+:not(pre)>code {
+  padding: 1px 3px;
+  color: var(--gray-7);
+}
+
 pre {
   background-color: var(--gray-1) !important;
   padding: var(--size-3);
