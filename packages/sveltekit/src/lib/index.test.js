@@ -1,32 +1,32 @@
-import { SveltKitAuth } from './index'
+import { SvelteKitAuth } from './index'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
 
 const db = new PrismaClient()
 
-describe('SveltKitAuth', () => {
+describe('SvelteKitAuth', () => {
   test('when no plans, raises an error', () => {
-    expect(() => SveltKitAuth({})).toThrowError('Must have at least one plan')
+    expect(() => SvelteKitAuth({})).toThrowError('Must have at least one plan')
   })
 
   test('when plans empty, raises an error', () => {
-    expect(() => SveltKitAuth({ plans: [] })).toThrowError('Must have at least one plan')
+    expect(() => SvelteKitAuth({ plans: [] })).toThrowError('Must have at least one plan')
   })
 
   test('when no providers, raises an error', () => {
-    expect(() => SveltKitAuth({ plans: [{}] })).toThrowError(
+    expect(() => SvelteKitAuth({ plans: [{}] })).toThrowError(
       'Must have at least one provider'
     )
   })
 
   test('when providers empty, raises an error', () => {
-    expect(() => SveltKitAuth({ plans: [{}], providers: [] })).toThrowError(
+    expect(() => SvelteKitAuth({ plans: [{}], providers: [] })).toThrowError(
       'Must have at least one provider'
     )
   })
 
   test('when no adapter, raises an error', () => {
-    expect(() => SveltKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
+    expect(() => SvelteKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
       'An adapter is reqiured'
     )
   })
@@ -39,7 +39,7 @@ describe('SveltKitAuth', () => {
     }
 
     test('handles /auth', async () => {
-      const handler = SveltKitAuth(config)
+      const handler = SvelteKitAuth(config)
 
       const url = new URL('http://localhost/auth/providers')
       //
@@ -59,7 +59,7 @@ describe('SveltKitAuth', () => {
     })
 
     test('handles /billing', async () => {
-      const handler = SveltKitAuth(config)
+      const handler = SvelteKitAuth(config)
 
       const response = await handler({
         event: {
@@ -78,7 +78,7 @@ describe('SveltKitAuth', () => {
 
     test('ignores everything else', async () => {
       const resolve = vi.fn()
-      const handler = SveltKitAuth(config)
+      const handler = SvelteKitAuth(config)
       const event = {
         url: new URL('http://localhost/unknown'),
         locals: {
