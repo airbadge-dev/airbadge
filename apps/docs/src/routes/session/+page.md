@@ -7,6 +7,8 @@ To get session data on the server-side, use `locals.getSession()`:
 ```javascript
 // +page.server.js
 export async function load({ locals }) {
+   // [!code word:locals]
+   // [!code word:getSession]
   const session = await locals.getSession()
 }
 ```

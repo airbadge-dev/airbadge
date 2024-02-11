@@ -68,3 +68,10 @@ pre {
   max-width: calc(100vw - 2rem);
   overflow-x: auto;
 }
+
+pre .highlighted {
+}
+
+pre .highlighted-word {
+  font-weight: bold;
+}

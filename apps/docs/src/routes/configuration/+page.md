@@ -14,8 +14,8 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 
 const db = new PrismaClient()
 
-export const handle = SvelteKitAuth({
-  adapter: PrismaAdapter(db)
+export const handle = SvelteKitAuth({ // [!code word:adapter]
+  adapter: PrismaAdapter(db)// [!code highlight]
 })
 ```
 
@@ -33,7 +33,7 @@ import { SvelteKitAuth } from '@airbadge/sveltekit'
 import GitHub from '@auth/core/providers/github'
 import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private'
 
-export const handle = SvelteKitAuth({
+export const handle = SvelteKitAuth({ // [!code word:providers]
   providers: [
     GitHub({
       clientId: GITHUB_ID,
