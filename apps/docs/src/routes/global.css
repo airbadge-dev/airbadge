@@ -1,5 +1,5 @@
-@import "open-props/postcss/style";
-@import "open-props/normalize.light.min.css";
+@import 'open-props/postcss/style';
+@import 'open-props/normalize.light.min.css';
 
 body {
   color: var(--gray-7);
@@ -12,7 +12,10 @@ a {
   text-underline-offset: 2px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--violet-4);
 }
 
