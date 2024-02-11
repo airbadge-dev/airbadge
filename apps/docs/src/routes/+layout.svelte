@@ -9,7 +9,6 @@
     <a href="/session">Session</a>
     <a href="/authorization">Authorization</a>
     <a href="/endpoints">Endpoints</a>
-    <a href="/deployment">Deployment</a>
     <a href="https://demo.airbadge.dev" rel="nofollow">Live Demo</a>
     <a href="https://github.com/joshnuss/airbadge-example" rel="nofollow">Example Code</a>
     <a href="/license">License</a>
