@@ -48,4 +48,3 @@ export const handle = SvelteKitAuth({
 ## Pages
 
 ## Callbacks
-

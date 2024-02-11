@@ -5,7 +5,7 @@ AirBadge mounts a `/billing` endpoint on your site that provides some handy util
 The following routes are provided:
 
 | Endpoint                   | Description                                                    |
-|:---------------------------|:---------------------------------------------------------------|
+| :------------------------- | :------------------------------------------------------------- |
 | /billing/checkout          | Redirects current signed-in user to a Stripe checkout session. |
 | /billing/portal            | Opens the billing portal for the current signed-in user.       |
 | /billing/modify            | Modify the current user's billing plan.                        |
@@ -37,9 +37,7 @@ When user clicks the button, `POST` to `/billing/modify` and pass `plan=pro` as 
   }
 </script>
 
-<button on:click={upgrade}>
-  Upgrade
-</button>
+<button on:click={upgrade}>Upgrade</button>
 ```
 
 ### Create an cancel button
@@ -55,9 +53,7 @@ When user clicks the button, `POST` to `/billing/cancel`:
   }
 </script>
 
-<button on:click={cancel}>
-  Cancel
-</button>
+<button on:click={cancel}>Cancel</button>
 ```
 
 ### Create a pricing page

@@ -1,10 +1,12 @@
 # Server-side guards
 
-These are helper functions that restrict access to routes based on the subscription status or plan.
+Guards are helper functions that restrict access to routes based on the subscription status or plan.
 
 There are several options available:
 
 ## Require a subscriber
+
+Raises an error if user is not a subscriber:
 
 `subscriber(callback)`
 
@@ -20,13 +22,14 @@ export const load = subscriber(callback)
 
 ## Require a specific status
 
+Raises an error if the user's subscription is not in an expected [status](https://stripe.com/docs/api/subscriptions/object#subscription_object-status).
+
 - `subscriber.active(callback)`
 - `subscriber.pastDue(callback)`
 - `subscriber.unpaid(callback)`
 - `subscriber.trialing(callback)`
 - `subscriber.canceled(callback)`
 
-Raises an error if subscription is not in an expected [status](https://stripe.com/docs/api/subscriptions/object#subscription_object-status)
 ### Examples
 
 ```javascript
@@ -51,6 +54,8 @@ export const load = subscriber.canceled(callback)
 
 ## Require a specific plan
 
+Raises an error if user doesn't have a specific plan.
+
 `subscriber.plan(plan, callback)`
 
 ```javascript
@@ -63,6 +68,8 @@ export const load = subscriber.plan('pro', callback)
 
 ## Require a list of plans
 
+Raises an error if user doesn't have one of several plan.
+
 `subscriber.plans(plans, callback)`
 
 ```javascript
@@ -74,6 +81,8 @@ export const load = subscriber.plans(['pro', 'enterprise'], callback)
 ```
 
 ## Require a non-subscriber
+
+Raises an error if user is a subscriber.
 
 `nonSubscriber(callback)`
 

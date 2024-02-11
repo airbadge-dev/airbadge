@@ -1,11 +1,11 @@
 # Conditional UI
 
-Conditionally display components based on the user's subscription status.
+These components can conditionally display UI based on the user's subscription status or plan.
 
-Two component wrappers are provided:
+Two components are provided:
 
 - `<NonSubscriber/>`: Display content when user doesn't have a subscription.
-- `<Subscriber/>`: Display content when user has a subscription. Can also filter by plan or payment state.
+- `<Subscriber/>`: Display content when user has a subscription. Can also filter by plan or subscription state.
 
 ### Examples
 
@@ -33,14 +33,10 @@ Two component wrappers are provided:
 </Subscriber>
 
 <!-- show to subscribers on the "pro" plan -->
-<Subscriber plan="pro">
-  You're on the Pro plan!!
-</Subscriber>
+<Subscriber plan="pro">You're on the Pro plan!!</Subscriber>
 
 <!-- show to subscribers on the "pro" or "enterprise" plan -->
-<Subscriber plans={["pro", "enterprise"]}>
-  You're a real player!!
-</Subscriber>
+<Subscriber plans={['pro', 'enterprise']}>You're a real player!!</Subscriber>
 
 <!-- show to non-subscribers -->
 <NonSubscriber>
