@@ -108,9 +108,10 @@ pre button.copy {
   top: 16px;
   height: 28px;
   width: 28px;
-  padding: 0;
+  padding: 2px;
   display: flex;
-  background: transparent;
+  background: var(--gray-1);
+  border-radius: var(--radius-1);
 
   & span {
     width: 100%;
