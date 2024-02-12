@@ -112,6 +112,14 @@ pre button.copy {
   display: flex;
   background: var(--gray-1);
   border-radius: var(--radius-1);
+  border: solid 1px var(--gray-3);
+  padding: 4px;
+  transition: 0.2s var(--ease-1);
+
+  &:hover {
+    border-color: var(--gray-5);
+    box-shadow: var(--shadow-2);
+  }
 
   & span {
     width: 100%;
