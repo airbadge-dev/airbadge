@@ -2,7 +2,7 @@
 
 This guide uses [Prisma](https://prisma.io) as the database and [GitHub](https://github.com) as the authentication provider.
 
-## 1. Install packages
+## Install packages
 
 For Auth & Payment:
 
@@ -16,7 +16,7 @@ For Prisma:
 pnpm install -D prisma @prisma/client @auth/prisma-adapter
 ```
 
-## 2. Configure environment
+## Configure environment
 
 Add environment variables to `.env.development`:
 
@@ -38,7 +38,7 @@ GITHUB_ID=
 GITHUB_SECRET=
 ```
 
-## 3. Setup database
+## Setup database
 
 First, initialize Prisma:
 
@@ -128,7 +128,7 @@ Finally, push the schema:
 pnpm prisma db push
 ```
 
-## 4. Create pricing
+## Create pricing
 
 Create some plans and pricing. This can be done via the [Stripe Dashboard](https://dashboard.stripe.com) or via the [Stripe CLI](https://docs.stripe.com/cli).
 
@@ -158,7 +158,7 @@ stripe prices create \
   --recurring.interval=month
 ```
 
-## 5. Configure SvelteKit
+## Configure SvelteKit
 
 Configure authentication and billing options in `src/hooks.server.js`:
 
@@ -200,7 +200,7 @@ export const handle = SvelteKitAuth({
 })
 ```
 
-## 6. Forward webhooks
+## Forward webhooks
 
 Webhook handling is built-in. Just forward webhooks via [Stripe's CLI](https://stripe.com/docs/cli).
 
@@ -208,7 +208,7 @@ Webhook handling is built-in. Just forward webhooks via [Stripe's CLI](https://s
 stripe listen --forward-to localhost:5173/billing/webhooks
 ```
 
-## 7. Celebrate! 🎉
+## Celebrate! 🎉
 
 You now have a working SaaS app!
 
