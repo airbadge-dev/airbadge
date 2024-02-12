@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide uses [Prisma](https://prisma.io) as the database and [GitHub](https://github.com) as the authentication provider.
+This guide uses [Prisma](https://prisma.io) for database access and [GitHub](https://github.com) as the authentication provider.
 
 ## Install packages
 
@@ -102,6 +102,7 @@ model User {
   priceId            String?
 }
 
+// customization for AirBadge
 enum SubscriptionStatus {
   INCOMPLETE
   INCOMPLETE_EXPIRED
@@ -130,9 +131,9 @@ pnpm prisma db push
 
 ## Create pricing
 
-Create some plans and pricing. This can be done via the [Stripe Dashboard](https://dashboard.stripe.com) or via the [Stripe CLI](https://docs.stripe.com/cli).
+Create some plans and pricing. This can be done via the [Stripe Dashboard](https://dashboard.stripe.com) or from the [Stripe CLI](https://docs.stripe.com/cli).
 
-To create them via the CLI:
+To create them with the CLI:
 
 ```sh
 # login to Stripe
@@ -193,9 +194,9 @@ export const handle = SvelteKitAuth({
 
   // configure list of plans.
   plans: [
-    { id: 'basic', name: 'Basic', default: true },
-    { id: 'pro', name: 'Pro' }
-    { id: 'enterprise', name: 'Enterprise' }
+    { id: 'basic', name: 'Basic', priceId: '...', default: true },
+    { id: 'pro', name: 'Pro', priceId: '...' }
+    { id: 'enterprise', name: 'Enterprise', priceId: '...' }
   ]
 })
 ```
