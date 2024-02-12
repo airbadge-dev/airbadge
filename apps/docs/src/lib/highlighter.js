@@ -3,6 +3,7 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight
 } from '@shikijs/transformers'
+import { addCopyButton } from 'shiki-transformer-copy-button'
 
 export async function highlighter(code, lang) {
   const html = await codeToHtml(code, {
@@ -13,7 +14,8 @@ export async function highlighter(code, lang) {
     },
     transformers: [
       transformerNotationHighlight(),
-      transformerNotationWordHighlight()
+      transformerNotationWordHighlight(),
+      addCopyButton(code),
     ]
   })
 
