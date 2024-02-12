@@ -49,7 +49,7 @@ h3 {
   gap: 2px;
   align-items: center;
   cursor: pointer;
-  translate: -20px 10px;
+  translate: -22px 10px;
 
   & > a > .icon-link {
     display: flex;
