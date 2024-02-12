@@ -40,7 +40,7 @@ AirBadge adds more attributes to the session:
 | `subscription.plan.priceId` | The Stripe price id of the plan. Example: `price_1234`                                                                 |
 | `subscription.plan.price`   | The price of the plan in cents. Example: `1000`                                                                        |
 
-## Example
+### Example
 
 This is an example of what session data would look like:
 
