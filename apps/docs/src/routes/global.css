@@ -44,6 +44,30 @@ h3 {
   margin: var(--size-2) 0;
 }
 
+[id]:is(h2) {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  cursor: pointer;
+  translate: -20px 10px;
+
+  & > a > .icon-link {
+    display: flex;
+    transition: 0.2s all var(--ease-2);
+    background: var(--violet-3);
+    mask: url(/icons/link.svg) no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover > a > .icon-link {
+    opacity: 1;
+  }
+}
+
 p {
   margin-bottom: var(--size-4);
 }
