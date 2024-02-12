@@ -106,9 +106,11 @@ pre button.copy {
   position: absolute;
   right: 16px;
   top: 16px;
-  height: 38px;
-  width: 38px;
+  height: 28px;
+  width: 28px;
+  padding: 0;
   display: flex;
+  background: transparent;
 
   & span {
     width: 100%;
@@ -120,6 +122,12 @@ pre button.copy {
 
   & .ready {
     background-image: url(/icons/copy.svg);
+    opacity: 0.4;
+    transition: 0.2s var(--ease-1);
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   & .success {
