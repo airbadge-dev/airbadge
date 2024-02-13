@@ -60,7 +60,7 @@
       grid-template-areas:
         "header header"
         "aside main";
-      grid-template-columns: max(240px, 20vw) 1fr;
+      grid-template-columns: max(240px, 20vw) auto;
     }
   }
 
@@ -130,11 +130,62 @@
 
   main {
     grid-area: main;
-    padding: var(--size-3);
+    display: grid;
+    grid-template-areas: "docs";
     margin: var(--size-4) 0;
+  }
 
-    @media (--md-n-above) {
-      padding: var(--size-3) var(--size-6);
+  main :global(.docs) {
+    grid-area: docs;
+    padding: var(--size-3) var(--size-6);
+  }
+
+  main :global(.toc) {
+    display: none;
+    border-left: solid 2px var(--gray-2);
+    padding: var(--size-4);
+
+    & ol {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-2);
+    }
+  }
+
+  main :global(.toc li) {
+    padding: 0;
+  }
+
+  main :global(.toc .toc-link-h1) {
+    font-weight: bold;
+  }
+
+  main :global(.toc li ol) {
+    margin-top: var(--size-2);
+  }
+
+  main :global(.toc li a) {
+    color: var(--gray-7);
+    text-wrap: nowrap;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--violet-8);
+    }
+  }
+
+  @media (--md-n-above) {
+    main {
+      grid-template-areas: "docs toc";
+      grid-template-columns: 1fr minmax(240px, auto);
+      gap: var(--size-3);
+    }
+
+    main :global(.toc) {
+      display: flex;
+      grid-area: toc;
     }
   }
 </style>
