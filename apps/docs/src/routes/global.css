@@ -48,12 +48,13 @@ h1 {
 
 h2 {
   font-size: var(--font-size-4);
-  margin: var(--size-4) 0 var(--size-3) 0;
+  margin: var(--size-6) 0 var(--size-4) 0;
 }
 
 h3 {
   font-size: var(--font-size-2);
   margin: var(--size-2) 0;
+  color: var(--gray-8);
 }
 
 [id]:is(h2) {
@@ -179,6 +180,19 @@ pre .highlighted {
 
 pre .highlighted-word {
   font-weight: bold;
+}
+
+pre .line:has(.highlighted-word) {
+  background: var(--gray-2);
+}
+
+pre .line:has(.highlighted-word)::before {
+  width: 3px;
+  height: 18px;
+  background: var(--violet-1);
+  content: '';
+  display: inline-block;
+  margin-bottom: -4px;
 }
 
 table th {
