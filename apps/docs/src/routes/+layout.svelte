@@ -1,6 +1,7 @@
 <script>
   import Icon from '@iconify/svelte'
   import { page } from '$app/stores'
+  import { syncToc } from '$lib/toc'
 
   const menus = [
     { url: "/getting-started", name: "Getting Started" },
@@ -13,6 +14,8 @@
     { url: "https://github.com/joshnuss/airbadge-example", name: "Example Code" },
     { url: "/license", name: "License" },
   ]
+
+  syncToc('main .toc')
 </script>
 
 <header>
@@ -154,6 +157,10 @@
     }
   }
 
+  main :global(.toc > ol) {
+    position: fixed;
+  }
+
   main :global(.toc li) {
     padding: 0;
   }
@@ -174,6 +181,10 @@
     &:hover {
       color: var(--violet-8);
     }
+  }
+
+  main :global(.toc a.active) {
+    color: var(--violet-8);
   }
 
   @media (--md-n-above) {
