@@ -187,7 +187,7 @@
     color: var(--violet-8);
   }
 
-  @media (--md-n-above) {
+  @media (--lg-n-above) {
     main {
       grid-template-areas: "docs toc";
       grid-template-columns: 1fr minmax(240px, auto);

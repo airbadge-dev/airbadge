@@ -1,5 +1,6 @@
 @import 'open-props/postcss/style';
 @import 'open-props/normalize.light.min.css';
+@import 'open-props/media.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;900&family=Inter:wght@400;500;600;900&display=swap');
 
 :root {
@@ -94,8 +95,16 @@ pre {
   margin-bottom: 2rem;
   display: block;
   width: 100%;
-  max-width: calc(100vw - 2rem);
+  max-width: calc(100vw - 6rem);
   overflow-x: auto;
+
+  @media (--md-n-above) {
+    max-width: 65vw;
+  }
+
+  @media (--lg-n-above) {
+    max-width: 50vw;
+  }
 }
 
 pre:has(code) {
