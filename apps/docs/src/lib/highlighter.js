@@ -1,3 +1,4 @@
+import { createCssVariablesTheme } from 'shiki'
 import { codeToHtml } from 'shiki/bundle/full'
 import {
   transformerNotationHighlight,
@@ -5,13 +6,12 @@ import {
 } from '@shikijs/transformers'
 import { addCopyButton } from 'shiki-transformer-copy-button'
 
+const theme = createCssVariablesTheme()
+
 export async function highlighter(code, lang) {
   const html = await codeToHtml(code, {
     lang,
-    themes: {
-      dark: 'github-dark',
-      light: 'github-light'
-    },
+    theme,
     transformers: [
       transformerNotationHighlight(),
       transformerNotationWordHighlight(),

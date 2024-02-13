@@ -6,6 +6,17 @@
 :root {
   --font-sans: Inter;
   --font-heading: "Source Sans Pro";
+
+  --shiki-color-text: var(--gray-8);
+  --shiki-background: var(--gray-1);
+  --shiki-foreground: var(--gray-7);
+  --shiki-token-constant: var(--violet-5);
+  --shiki-token-string: var(--indigo-4);
+  --shiki-token-comment: var(--gray-6);
+  --shiki-token-keyword: var(--violet-4);
+  --shiki-token-parameter: var(--gray-4);
+  --shiki-token-function: var(--indigo-4);
+  --shiki-token-string-expression: var(--violet-5);
 }
 
 body {
@@ -88,7 +99,6 @@ ul {
 }
 
 pre {
-  background-color: var(--gray-1) !important;
   padding: var(--size-3);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-1);
