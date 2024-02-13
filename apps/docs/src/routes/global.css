@@ -161,3 +161,8 @@ pre .highlighted {
 pre .highlighted-word {
   font-weight: bold;
 }
+
+table th {
+  font-weight: normal;
+  color: var(--gray-10);
+}
