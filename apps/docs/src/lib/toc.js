@@ -9,7 +9,7 @@ export function syncToc(tocSelector) {
     if (observer) observer.disconnect()
 
     observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+      entries.reverse().forEach((entry) => {
         if (entry.intersectionRatio == 0) return
 
         toc.querySelectorAll('a').forEach((element) => {
