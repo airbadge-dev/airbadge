@@ -183,6 +183,10 @@
     }
   }
 
+  main :global(.toc:not(:has(.toc-link-h2))) {
+    display: none;
+  }
+
   main :global(.toc a.active) {
     color: var(--violet-8);
   }
