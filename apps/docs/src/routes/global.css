@@ -106,7 +106,7 @@ pre {
   margin-bottom: 2rem;
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: 100vw;
   overflow-x: auto;
 
   @media (--sm-n-above) {
