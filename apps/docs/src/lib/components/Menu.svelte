@@ -31,6 +31,8 @@
 </div>
 
 <style>
+  @import 'open-props/media.min.css';
+
   .menu[popover] {
     --margin: var(--size-6);
 
@@ -39,6 +41,10 @@
     width: calc(100vw - calc(var(--margin) * 2));
     border-radius: var(--radius-2);
     box-shadow: var(--shadow-2);
+
+    @media (--sm-n-above) {
+      --margin: var(--size-9);
+    }
 
     & nav {
       display: flex;
@@ -50,7 +56,12 @@
   }
 
   .menu:popover-open {
-    animation: var(--animation-slide-in-up) var(--ease-1) forwards;
+    animation: var(--animation-slide-in-down) forwards;
+    animation-timing-function: var(--ease-1);
+  }
+
+  nav a {
+    color: var(--gray-7);
   }
 
   button {
