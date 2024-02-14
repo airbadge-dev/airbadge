@@ -2,8 +2,9 @@
   import Icon from '@iconify/svelte'
   import { page } from '$app/stores'
   import { syncToc } from '$lib/toc'
+  import Menu from '$lib/components/Menu.svelte'
 
-  const menus = [
+  const menuItems = [
     { url: "/getting-started", name: "Getting Started" },
     { url: "/configuration", name: "Configuration" },
     { url: "/database", name: "Database" },
@@ -15,8 +16,12 @@
     { url: "/license", name: "License" },
   ]
 
+  let menu
+
   syncToc('main .toc')
 </script>
+
+<Menu {menuItems} bind:this={menu}/>
 
 <header>
   <a href="/">AirBadge</a>
@@ -29,12 +34,16 @@
     <a href="https://github.com/joshnuss/airbadge">
       <Icon icon="bi-github"/>
     </a>
+
+    <button on:click={() => menu.toggle()}>
+      <Icon icon="ic:outline-menu" size=30/>
+    </button>
   </nav>
 </header>
 
 <aside>
   <nav>
-    {#each menus as menu}
+    {#each menuItems as menu}
       <a href={menu.url} class:active={menu.url == $page.url.pathname}>
         {menu.name}
       </a>
@@ -87,11 +96,29 @@
   header nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: var(--size-2);
   }
 
   header nav :global(svg) {
     width: 24px;
+  }
+
+  header nav button {
+    background: transparent;
+    padding: 0;
+
+    @media (--md-n-above) {
+      display: none;
+    }
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  header nav button :global(svg) {
+    width: 30px;
   }
 
   aside {

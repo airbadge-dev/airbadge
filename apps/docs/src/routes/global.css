@@ -190,3 +190,10 @@ table th {
   font-weight: normal;
   color: var(--gray-10);
 }
+
+::backdrop {
+  background: #0004;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  animation: 0.3s fade-in forwards;
+}
