@@ -78,6 +78,7 @@
 
   header {
     grid-area: header;
+    position: fixed;
     background: var(--violet-4);
     color: var(--gray-2);
     padding: var(--size-3);
@@ -85,6 +86,8 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+    z-index: var(--layer-2);
 
     & a {
       color: var(--gray-1);
@@ -135,6 +138,7 @@
   }
 
   aside nav {
+    position: fixed;
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
