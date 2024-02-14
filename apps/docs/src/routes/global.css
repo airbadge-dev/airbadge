@@ -175,7 +175,8 @@ pre button.copy {
   }
 }
 
-pre .highlighted {
+pre .line.highlighted {
+  font-weight: bold;
 }
 
 pre .highlighted-word {
@@ -183,16 +184,6 @@ pre .highlighted-word {
 }
 
 pre .line:has(.highlighted-word) {
-  background: var(--gray-2);
-}
-
-pre .line:has(.highlighted-word)::before {
-  width: 3px;
-  height: 18px;
-  background: var(--violet-1);
-  content: '';
-  display: inline-block;
-  margin-bottom: -4px;
 }
 
 table th {
