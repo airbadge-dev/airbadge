@@ -167,7 +167,11 @@
 
   main :global(.docs) {
     grid-area: docs;
-    padding: var(--size-3) var(--size-6);
+    padding: var(--size-2) var(--size-3);
+
+    @media (--sm-n-above) {
+      padding: var(--size-3) var(--size-6);
+    }
   }
 
   main :global(.toc) {
