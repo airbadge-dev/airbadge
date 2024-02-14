@@ -1,6 +1,6 @@
 # Configuration
 
-## Adapter
+## Database Adapter
 
 Configure an [Auth.js database adapter](https://authjs.dev/reference/core/adapters).
 
@@ -21,19 +21,19 @@ export const handle = SvelteKitAuth({ // [!code word:adapter]
 
 **Note**: This package requires some extra fields in the database. See [Database Guide](/database) for more information on updating your schema.
 
-## Providers
+## Authentication Providers
 
 AirBadge supports all [Auth.js authentication providers](https://authjs.dev/reference/core/providers).
 
 ### Example
 
-```js
+```js {7-11}
 // in src/hooks.server.js
 import { SvelteKitAuth } from '@airbadge/sveltekit'
 import GitHub from '@auth/core/providers/github'
 import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private'
 
-export const handle = SvelteKitAuth({ // [!code word:providers]
+export const handle = SvelteKitAuth({
   providers: [
     GitHub({
       clientId: GITHUB_ID,
