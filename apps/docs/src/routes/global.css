@@ -191,7 +191,15 @@ table th {
   color: var(--gray-10);
 }
 
-::backdrop {
+::backdrop, body:has(.\:popover-open)::before {
+  z-index: 1;
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+
   background: #0004;
   backdrop-filter: blur(2px);
   opacity: 0;

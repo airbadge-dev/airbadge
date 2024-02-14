@@ -36,7 +36,7 @@
   .menu[popover] {
     --margin: var(--size-6);
 
-    position: relative;
+    position: fixed;
     margin: var(--size-10) var(--margin);
     width: calc(100vw - calc(var(--margin) * 2));
     border-radius: var(--radius-2);
@@ -55,7 +55,7 @@
     }
   }
 
-  .menu:popover-open {
+  .menu:popover-open, :global(.\:popover-open) {
     animation: var(--animation-slide-in-down) forwards;
     animation-timing-function: var(--ease-1);
   }
