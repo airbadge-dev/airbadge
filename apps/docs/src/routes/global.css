@@ -106,8 +106,12 @@ pre {
   margin-bottom: 2rem;
   display: block;
   width: 100%;
-  max-width: calc(100vw - 6rem);
+  max-width: 100%;
   overflow-x: auto;
+
+  @media (--sm-n-above) {
+    max-width: 85vw;
+  }
 
   @media (--md-n-above) {
     max-width: 65vw;
