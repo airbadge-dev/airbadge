@@ -17,12 +17,14 @@ const config = {
         rehypeSlug,
         rehypeAutolinkHeadings,
         [
-          rehypeWrap, {
-            wrapper: "div.docs"
+          rehypeWrap,
+          {
+            wrapper: 'div.docs'
           }
         ],
         [
-          rehypeToc, {
+          rehypeToc,
+          {
             headings: ['h1', 'h2']
           }
         ]

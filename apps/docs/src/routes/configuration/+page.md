@@ -14,8 +14,9 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 
 const db = new PrismaClient()
 
-export const handle = SvelteKitAuth({ // [!code word:adapter]
-  adapter: PrismaAdapter(db)// [!code highlight]
+export const handle = SvelteKitAuth({
+  // [!code word:adapter]
+  adapter: PrismaAdapter(db) // [!code highlight]
 })
 ```
 

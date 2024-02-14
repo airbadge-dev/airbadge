@@ -5,15 +5,15 @@
   import Menu from '$lib/components/Menu.svelte'
 
   const menuItems = [
-    { url: "/getting-started", name: "Getting Started" },
-    { url: "/configuration", name: "Configuration" },
-    { url: "/database", name: "Database" },
-    { url: "/session", name: "Session" },
-    { url: "/authorization", name: "Authorization" },
-    { url: "/endpoints", name: "Endpoints" },
-    { url: "https://demo.airbadge.dev", name: "Live Demo" },
-    { url: "https://github.com/joshnuss/airbadge-example", name: "Example Code" },
-    { url: "/license", name: "License" },
+    { url: '/getting-started', name: 'Getting Started' },
+    { url: '/configuration', name: 'Configuration' },
+    { url: '/database', name: 'Database' },
+    { url: '/session', name: 'Session' },
+    { url: '/authorization', name: 'Authorization' },
+    { url: '/endpoints', name: 'Endpoints' },
+    { url: 'https://demo.airbadge.dev', name: 'Live Demo' },
+    { url: 'https://github.com/joshnuss/airbadge-example', name: 'Example Code' },
+    { url: '/license', name: 'License' }
   ]
 
   let menu
@@ -21,22 +21,22 @@
   syncToc('main .toc')
 </script>
 
-<Menu {menuItems} bind:this={menu}/>
+<Menu {menuItems} bind:this={menu} />
 
 <header>
   <a href="/">AirBadge</a>
 
   <nav>
     <a href="https://discord.gg/KjGNepeChg" target="_blank">
-      <Icon icon="bi-discord"/>
+      <Icon icon="bi-discord" />
     </a>
 
     <a href="https://github.com/joshnuss/airbadge">
-      <Icon icon="bi-github"/>
+      <Icon icon="bi-github" />
     </a>
 
     <button on:click={() => menu.toggle()}>
-      <Icon icon="ic:outline-menu" size=30/>
+      <Icon icon="ic:outline-menu" size="30" />
     </button>
   </nav>
 </header>
@@ -63,15 +63,15 @@
     min-height: 100vh;
     display: grid;
     grid-template-areas:
-      "header"
-      "main";
+      'header'
+      'main';
     grid-template-rows: 50px 1fr;
     grid-template-columns: 1fr;
 
     @media (--md-n-above) {
       grid-template-areas:
-        "header header"
-        "aside main";
+        'header header'
+        'aside main';
       grid-template-columns: max(240px, 20vw) auto;
     }
   }
@@ -161,7 +161,7 @@
   main {
     grid-area: main;
     display: grid;
-    grid-template-areas: "docs";
+    grid-template-areas: 'docs';
     margin: var(--size-4) 0;
   }
 
@@ -220,7 +220,7 @@
 
   @media (--lg-n-above) {
     main {
-      grid-template-areas: "docs toc";
+      grid-template-areas: 'docs toc';
       grid-template-columns: 1fr minmax(240px, auto);
       gap: var(--size-3);
     }

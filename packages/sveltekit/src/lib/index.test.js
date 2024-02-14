@@ -14,9 +14,7 @@ describe('SvelteKitAuth', () => {
   })
 
   test('when no providers, raises an error', () => {
-    expect(() => SvelteKitAuth({ plans: [{}] })).toThrowError(
-      'Must have at least one provider'
-    )
+    expect(() => SvelteKitAuth({ plans: [{}] })).toThrowError('Must have at least one provider')
   })
 
   test('when providers empty, raises an error', () => {

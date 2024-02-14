@@ -16,14 +16,10 @@ export function syncToc(tocSelector) {
           element.classList.remove('active')
         })
 
-        toc.querySelector(`a[href='#${entry.target.id}']`)
-          .classList
-          .add('active')
+        toc.querySelector(`a[href='#${entry.target.id}']`).classList.add('active')
       })
     })
 
-    document
-      .querySelectorAll(':is(h1, h2)[id]')
-      .forEach((element) => observer.observe(element))
+    document.querySelectorAll(':is(h1, h2)[id]').forEach((element) => observer.observe(element))
   })
 }

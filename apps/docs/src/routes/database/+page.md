@@ -5,7 +5,7 @@ AirBadge uses Auth.js standard database adapters.
 It requires some extra fields to the `User` schema:
 
 | Name                 | Type   | Description                                                                  |
-|:---------------------|:-------|:-----------------------------------------------------------------------------|
+| :------------------- | :----- | :--------------------------------------------------------------------------- |
 | `subscriptionId`     | String | The id of the Stripe subscription.                                           |
 | `subscriptionStatus` | String | The status of the Stripe subscription.                                       |
 | `customerId`         | String | The customerId of the user in Stripe.                                        |

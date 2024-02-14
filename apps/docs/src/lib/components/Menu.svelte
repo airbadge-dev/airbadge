@@ -18,7 +18,7 @@
 
 <div class="menu" popover bind:this={popover}>
   <button on:click={() => popover.hidePopover()}>
-    <Icon icon="ic:round-close" width=32/>
+    <Icon icon="ic:round-close" width="32" />
   </button>
 
   <nav>
@@ -55,7 +55,8 @@
     }
   }
 
-  .menu:popover-open, :global(.\:popover-open) {
+  .menu:popover-open,
+  :global(.\:popover-open) {
     animation: var(--animation-slide-in-down) forwards;
     animation-timing-function: var(--ease-1);
   }
