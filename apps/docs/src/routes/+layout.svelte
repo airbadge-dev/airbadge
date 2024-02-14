@@ -36,7 +36,7 @@
     </a>
 
     <button on:click={() => menu.toggle()}>
-      <Icon icon="ic:outline-menu" size="30" />
+      <Icon icon="ri:menu-2-fill" size="30" />
     </button>
   </nav>
 </header>

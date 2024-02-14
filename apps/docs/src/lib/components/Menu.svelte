@@ -50,7 +50,7 @@
       display: flex;
       flex-direction: column;
       gap: var(--size-2);
-      font-size: var(--font-size-4);
+      font-size: var(--font-size-3);
       padding: var(--size-4);
     }
   }
