@@ -18,7 +18,7 @@ pnpm install -D prisma @prisma/client @auth/prisma-adapter
 
 ## Configure environment
 
-Add environment variables to `.env.development`:
+Add environment variables to `.env`:
 
 ```sh
 # Stripe private key
@@ -176,7 +176,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
 
 // import env vars for OAuth client
-import { GITHUB_ID, GITHUB_SECRET } from '$env/dynamic/private'
+import { env } from '$env/dynamic/private'
 
 // init database client
 const db = new PrismaClient()
@@ -187,8 +187,8 @@ export const handle = SvelteKitAuth({
   adapter: PrismaAdapter(db),
   providers: [
     GitHub({
-      clientId: GITHUB_ID,
-      clientSecret: GITHUB_SECRET
+      clientId: env.GITHUB_ID,
+      clientSecret: env.GITHUB_SECRET
     })
   ],
 
