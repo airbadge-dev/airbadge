@@ -46,14 +46,14 @@ enum SubscriptionStatus {
 
 Then, run `prisma db push` to sync the database.
 
-## Drizzle
-
-TBD
-
 ## Mongo
 
 The Mongo adapter works without any changes.
 See [Auth.js setup instructions](https://authjs.dev/reference/adapter/mongodb).
+
+## Drizzle
+
+Coming soon.
 
 ## Others
 
