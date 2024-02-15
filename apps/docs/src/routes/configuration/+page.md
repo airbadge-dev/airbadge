@@ -130,7 +130,6 @@ callbacks: {
   },
 
   async session({ session, user, token }) {
-    // note: session will contain extra `subscription` attr
     return session
   },
 
