@@ -46,6 +46,45 @@ export const handle = SvelteKitAuth({
 
 ## Plans
 
+Specify a list of plans. These map to Stripe Products and Pricing.
+
+### Attributes
+
+| Attribute  | Type    | Description                                                        |
+| :--        | :-      | :--                                                                |
+| `id`       | String  | A unique value for each plan.                                      |
+| `name`     | String  | The name of the plan.                                              |
+| `priceId`  | String  | The Stripe price ID.                                               |
+| `price`    | Integer | The price of plan in cents. When free, checkout is skipped         |
+| `default`  | Boolean | Optional. Whether to use this plan as the default during checkout. |
+| `metadata` | Object  | Optional. Attach extra data to the plan.                           |
+
+
+### Example
+
+```js {5-19}
+// in src/hooks.server.js
+import { SvelteKitAuth } from '@airbadge/sveltekit'
+
+export const handle = SvelteKitAuth({
+  plans: [
+    {
+      id: 'basic',
+      name: 'Basic',
+      priceId: 'price_1234',
+      price: 1000,
+      default: true
+    },
+    {
+      id: 'pro',
+      name: 'Pro',
+      priceId: 'price_5678',
+      price: 2500
+    }
+  ]
+})
+```
+
 ## Pages
 
 ## Callbacks
