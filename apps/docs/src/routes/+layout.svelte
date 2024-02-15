@@ -222,6 +222,10 @@
     display: none;
   }
 
+  main :global(.toc:not(:has(.toc-item-h2 ~ .toc-item-h2))) {
+    display: none;
+  }
+
   main :global(.toc a.active) {
     color: var(--violet-8);
   }
