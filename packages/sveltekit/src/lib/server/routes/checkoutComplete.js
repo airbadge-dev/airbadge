@@ -7,5 +7,5 @@ export default async function handler({ url }, { billing, options }) {
 
   await billing.syncCheckout(sessionId)
 
-  throw redirect(303, options.pages.checkout.success)
+  redirect(303, options.pages.checkout.success)
 }
