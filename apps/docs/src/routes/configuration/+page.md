@@ -86,7 +86,7 @@ export const handle = SvelteKitAuth({
 
 ## Pages
 
-All [page options from Auth.js](https://authjs.dev/guides/basics/pages). With some additional options:
+All [page options](https://authjs.dev/guides/basics/pages) from Auth.js are supported. With some additional options:
 
 ### Additional options
 
@@ -114,3 +114,28 @@ export const handle = SvelteKitAuth({
 ```
 
 ## Callbacks
+
+All [callback options](https://authjs.dev/guides/basics/callbacks) from Auth.js are supported.
+
+### Example
+
+```js
+callbacks: {
+  async signIn({ user, account, profile, email, credentials }) {
+    return true
+  },
+
+  async redirect({ url, baseUrl }) {
+    return baseUrl
+  },
+
+  async session({ session, user, token }) {
+    // note: session will contain extra `subscription` attr
+    return session
+  },
+
+  async jwt({ token, user, account, profile, isNewUser }) {
+    return token
+  }
+}
+```
