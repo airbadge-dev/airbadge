@@ -15,7 +15,7 @@
   --shiki-token-comment: var(--gray-6);
   --shiki-token-keyword: var(--violet-4);
   --shiki-token-parameter: var(--gray-4);
-  --shiki-token-function: var(--indigo-4);
+  --shiki-token-function: var(--violet-4);
   --shiki-token-string-expression: var(--violet-5);
 }
 
