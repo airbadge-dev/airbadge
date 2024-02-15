@@ -59,7 +59,6 @@ Specify a list of plans. These map to Stripe Products and Pricing.
 | `default`  | Boolean | Optional. Whether to use this plan as the default during checkout. |
 | `metadata` | Object  | Optional. Attach extra data to the plan.                           |
 
-
 ### Example
 
 ```js {5-19}
@@ -86,5 +85,32 @@ export const handle = SvelteKitAuth({
 ```
 
 ## Pages
+
+All [page options from Auth.js](https://authjs.dev/guides/basics/pages). With some additional options:
+
+### Additional options
+
+| Attribute          | Description                                                   |
+| :--                | :--                                                           |
+| `checkout.success` | Page user will be sent to after a checkout succeeds.          |
+| `checkout.cancel`  | Page user will be sent to after a checkout is canceled.       |
+| `portalReturn`     | Page user will be sent to when returning from billing portal. |
+
+### Example
+
+```js {5-11}
+// in src/hooks.server.js
+import { SvelteKitAuth } from '@airbadge/sveltekit'
+
+export const handle = SvelteKitAuth({
+  pages: {
+    checkout: {
+      success: '/dashboard',
+      cancel: '/pricing'
+    },
+    portalReturn: '/dashboard'
+  }
+})
+```
 
 ## Callbacks
