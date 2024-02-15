@@ -1,4 +1,4 @@
-import { SvelteKitAuth } from '@auth/sveltekit'
+import { SvelteKitAuth as BaseAuth } from '@auth/sveltekit'
 import { createPlanList } from '$lib/server/plans'
 import { createBillingService } from '$lib/server/billing'
 import { sequence } from '@sveltejs/kit/hooks'
@@ -33,7 +33,7 @@ export function SvelteKitAuth(options = {}) {
 }
 
 function authHandler(plans, options) {
-  return SvelteKitAuth({
+  return BaseAuth({
     ...options,
 
     callbacks: {
