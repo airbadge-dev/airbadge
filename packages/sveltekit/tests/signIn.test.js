@@ -1,8 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { db } from './db.js'
-import { reset, createUser } from './factories.js'
-
-await reset()
+import { createUser } from './factories.js'
 
 test('sign in without subscription', async ({ page }) => {
   const user = await createUser()

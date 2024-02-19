@@ -19,7 +19,7 @@
     "test": "npm run test:integration && npm run test:unit",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
-    "test:integration": "dotenv -e .env.test -- playwright test tests/*.test.js",
+    "test:integration": "dotenv -e .env.test -- playwright test",
     "test:unit": "dotenv -e .env.test -- vitest"
   },
   "exports": {
