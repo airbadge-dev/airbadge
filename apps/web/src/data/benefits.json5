@@ -1,0 +1,17 @@
+[
+  {
+    icon: 'mingcute:lightning-fill',
+    title: 'Quick setup',
+    description: 'Launch experiments faster.'
+  },
+  {
+    icon: 'tabler:free-rights',
+    title: 'Free',
+    description: 'Launch experiments faster.'
+  },
+  {
+    icon: 'raphael:no',
+    title: 'Less code',
+    description: 'No custom billing and auth code.'
+  }
+]
