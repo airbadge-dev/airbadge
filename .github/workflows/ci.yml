@@ -27,6 +27,7 @@ jobs:
       DOMAIN: http://localhost:5173
       STRIPE_MOCK_HOST: localhost
       STRIPE_MOCK_PORT: 12111
+      AUTH_SECRET: "tFCCrOEP7hPbDBRtkuTadnykvDluXg0zRO9nED6uEq0="
 
     steps:
       - name: Checkout
