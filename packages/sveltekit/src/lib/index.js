@@ -72,6 +72,6 @@ function paymentHandler(state) {
       return await route.handler(event, { ...state, session, user })
     }
 
-    return resolve(event)
+    return await resolve(event)
   }
 }
