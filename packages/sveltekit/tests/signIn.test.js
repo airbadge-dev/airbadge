@@ -37,7 +37,7 @@ test('sign in with subscription', async ({ page }) => {
     subscription: {
       id: 'sub_1234',
       customerId: 'cus_1234',
-      status: 'ACTIVE',
+      status: 'active',
       plan: {
         id: 'pro',
         name: 'Pro',
