@@ -35,7 +35,7 @@ subscriber.plans = (plans, handler) =>
 
 function predicate(handler, filter) {
   return async (event) => {
-    const session = event.locals.getSession()
+    const session = await event.locals.getSession()
 
     if (filter(session)) {
       return await handler(event)

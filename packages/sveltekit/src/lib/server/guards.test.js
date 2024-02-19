@@ -9,7 +9,7 @@ describe('nonSubscriber()', () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
-        getSession() {
+        async getSession() {
           return null
         }
       }
@@ -24,7 +24,7 @@ describe('nonSubscriber()', () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
-        getSession() {
+        async getSession() {
           return {}
         }
       }
@@ -39,7 +39,7 @@ describe('nonSubscriber()', () => {
     const handler = nonSubscriber(callback)
     const event = {
       locals: {
-        getSession() {
+        async getSession() {
           return { subscription: {} }
         }
       }
@@ -61,7 +61,7 @@ describe('subscriber()', () => {
     }
     const event = {
       locals: {
-        getSession() {
+        async getSession() {
           return session
         }
       }
@@ -76,7 +76,7 @@ describe('subscriber()', () => {
     const handler = subscriber(callback)
     const event = {
       locals: {
-        getSession() {
+        async getSession() {
           return {}
         }
       }
@@ -279,7 +279,7 @@ function mockEvent(subscription = null) {
 
   return {
     locals: {
-      getSession() {
+      async getSession() {
         return session
       }
     }
