@@ -92,7 +92,7 @@ describe('subscriber()', () => {
 
 describe('subscriber.active()', () => {
   test('when subscription is active, calls callback', async () => {
-    const event = mockEvent({ status: 'ACTIVE' })
+    const event = mockEvent({ status: 'active' })
     const handler = subscriber.active(callback)
 
     await handler(event)
@@ -101,7 +101,7 @@ describe('subscriber.active()', () => {
   })
 
   test('when subscription is not active, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED' })
+    const event = mockEvent({ status: 'canceled' })
     const handler = subscriber.active(callback)
 
     const response = handler(event)
@@ -114,7 +114,7 @@ describe('subscriber.active()', () => {
 
 describe('subscriber.pastDue()', () => {
   test('when subscription is past_due, calls callback', async () => {
-    const event = mockEvent({ status: 'PAST_DUE' })
+    const event = mockEvent({ status: 'past_due' })
     const handler = subscriber.pastDue(callback)
 
     await handler(event)
@@ -123,7 +123,7 @@ describe('subscriber.pastDue()', () => {
   })
 
   test('when subscription is not past_due, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED' })
+    const event = mockEvent({ status: 'canceled' })
     const handler = subscriber.pastDue(callback)
 
     const response = handler(event)
@@ -136,7 +136,7 @@ describe('subscriber.pastDue()', () => {
 
 describe('subscriber.unpaid()', () => {
   test('when subscription is unpaid, calls callback', async () => {
-    const event = mockEvent({ status: 'UNPAID' })
+    const event = mockEvent({ status: 'unpaid' })
     const handler = subscriber.unpaid(callback)
 
     await handler(event)
@@ -145,7 +145,7 @@ describe('subscriber.unpaid()', () => {
   })
 
   test('when subscription is not unpaid, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED' })
+    const event = mockEvent({ status: 'canceled' })
     const handler = subscriber.unpaid(callback)
 
     const response = handler(event)
@@ -158,7 +158,7 @@ describe('subscriber.unpaid()', () => {
 
 describe('subscriber.canceled()', () => {
   test('when subscription is canceled, calls callback', async () => {
-    const event = mockEvent({ status: 'CANCELED' })
+    const event = mockEvent({ status: 'canceled' })
     const handler = subscriber.canceled(callback)
 
     await handler(event)
@@ -167,7 +167,7 @@ describe('subscriber.canceled()', () => {
   })
 
   test('when subscription is not canceled, raises error', async () => {
-    const event = mockEvent({ status: 'ACTIVE' })
+    const event = mockEvent({ status: 'active' })
     const handler = subscriber.canceled(callback)
 
     const response = handler(event)
@@ -180,7 +180,7 @@ describe('subscriber.canceled()', () => {
 
 describe('subscriber.trialing()', () => {
   test('when subscription is trialing, calls callback', async () => {
-    const event = mockEvent({ status: 'TRIALING' })
+    const event = mockEvent({ status: 'trialing' })
     const handler = subscriber.trialing(callback)
 
     await handler(event)
@@ -189,7 +189,7 @@ describe('subscriber.trialing()', () => {
   })
 
   test('when subscription is not trialing, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED' })
+    const event = mockEvent({ status: 'canceled' })
     const handler = subscriber.trialing(callback)
 
     const response = handler(event)
@@ -206,7 +206,7 @@ describe('subscriber.plan()', () => {
   }
 
   test('when subscription plan matches, calls callback', async () => {
-    const event = mockEvent({ status: 'ACTIVE', plan })
+    const event = mockEvent({ status: 'active', plan })
     const handler = subscriber.plan('pro', callback)
 
     await handler(event)
@@ -215,7 +215,7 @@ describe('subscriber.plan()', () => {
   })
 
   test('when subscription plan doesnt match, calls callback', async () => {
-    const event = mockEvent({ status: 'ACTIVE', plan })
+    const event = mockEvent({ status: 'active', plan })
     const handler = subscriber.plan('basic', callback)
 
     const response = handler(event)
@@ -226,7 +226,7 @@ describe('subscriber.plan()', () => {
   })
 
   test('when subscription is canceled, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED', plan })
+    const event = mockEvent({ status: 'canceled', plan })
     const handler = subscriber.plan('pro', callback)
 
     const response = handler(event)
@@ -243,7 +243,7 @@ describe('subscriber.plans()', () => {
   }
 
   test('when subscription plan matches, calls callback', async () => {
-    const event = mockEvent({ status: 'ACTIVE', plan })
+    const event = mockEvent({ status: 'active', plan })
     const handler = subscriber.plans(['basic', 'pro'], callback)
 
     await handler(event)
@@ -252,7 +252,7 @@ describe('subscriber.plans()', () => {
   })
 
   test('when subscription plan doesnt match, calls callback', async () => {
-    const event = mockEvent({ status: 'ACTIVE', plan })
+    const event = mockEvent({ status: 'active', plan })
     const handler = subscriber.plans(['basic'], callback)
 
     const response = handler(event)
@@ -263,7 +263,7 @@ describe('subscriber.plans()', () => {
   })
 
   test('when subscription is canceled, raises error', async () => {
-    const event = mockEvent({ status: 'CANCELED', plan })
+    const event = mockEvent({ status: 'canceled', plan })
     const handler = subscriber.plan(['pro'], callback)
 
     const response = handler(event)

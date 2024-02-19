@@ -5,32 +5,32 @@ export const nonSubscriber = (handler) => predicate(handler, (session) => !sessi
 export const subscriber = (handler) => predicate(handler, (session) => !!session?.subscription)
 
 subscriber.active = (handler) =>
-  predicate(handler, (session) => session?.subscription?.status == 'ACTIVE')
+  predicate(handler, (session) => session?.subscription?.status == 'active')
 
 subscriber.pastDue = (handler) =>
-  predicate(handler, (session) => session?.subscription?.status == 'PAST_DUE')
+  predicate(handler, (session) => session?.subscription?.status == 'past_due')
 
 subscriber.unpaid = (handler) =>
-  predicate(handler, (session) => session?.subscription?.status == 'UNPAID')
+  predicate(handler, (session) => session?.subscription?.status == 'unpaid')
 
 subscriber.trialing = (handler) =>
-  predicate(handler, (session) => session?.subscription?.status == 'TRIALING')
+  predicate(handler, (session) => session?.subscription?.status == 'trialing')
 
 subscriber.canceled = (handler) =>
-  predicate(handler, (session) => session?.subscription?.status == 'CANCELED')
+  predicate(handler, (session) => session?.subscription?.status == 'canceled')
 
 subscriber.plan = (plan, handler) =>
   predicate(
     handler,
     (session) =>
-      session?.subscription?.status != 'CANCELED' && session?.subscription?.plan?.id == plan
+      session?.subscription?.status != 'canceled' && session?.subscription?.plan?.id == plan
   )
 
 subscriber.plans = (plans, handler) =>
   predicate(
     handler,
     (session) =>
-      session?.subscription?.status != 'CANCELED' && plans.includes(session?.subscription?.plan?.id)
+      session?.subscription?.status != 'canceled' && plans.includes(session?.subscription?.plan?.id)
   )
 
 function predicate(handler, filter) {
