@@ -2,7 +2,9 @@
 const config = {
   webServer: {
     command: 'npm run build && npm run preview',
-    port: 4173
+    port: 4173,
+    stdout: 'pipe',
+    stderr: 'pipe'
   },
   testDir: './tests',
   testMatch: "*.test.js",
@@ -13,7 +15,6 @@ const config = {
     },
     {
       name: 'chromium',
-      //use: { ...devices['Desktop Chrome'] },
       dependencies: ['setup'],
     },
   ]
