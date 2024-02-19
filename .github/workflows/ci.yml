@@ -55,9 +55,8 @@ jobs:
         working-directory: ./packages/sveltekit
         run: pnpm exec playwright install chromium --with-deps
 
-      #     - name: Start containers
-      #       run: docker compose up --detach
+      # - name: Start containers
+      #   run: docker compose up --detach
 
       - name: Test
-        #       run: pnpm test
-        run: pnpm test:unit
+        run: pnpm test
