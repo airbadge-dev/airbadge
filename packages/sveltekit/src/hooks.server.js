@@ -21,10 +21,7 @@ export const handle = SvelteKitAuth({
       },
 
       async authorize(credentials) {
-        const user = await db.user.findFirst({ where: { email: credentials.username } })
-        console.log('authorized', { user })
-
-        return user
+        return db.user.findFirst({ where: { email: credentials.username } })
       }
     })
   ],
