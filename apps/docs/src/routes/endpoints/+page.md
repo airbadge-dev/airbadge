@@ -61,11 +61,11 @@ When user clicks the button, `POST` to `/billing/cancel`:
 Pull JSON data from `/billing/plans` in `src/routes/pricing/+page.js`:
 
 ```javascript
-export async function load() {
+export async function load({ fetch }) {
   const response = await fetch('/billing/plans')
 
   return {
-    plans: response.json()
+    plans: await response.json()
   }
 }
 ```
