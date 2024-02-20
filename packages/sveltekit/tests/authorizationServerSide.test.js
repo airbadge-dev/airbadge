@@ -21,7 +21,7 @@ test.describe('non subscriber', () => {
 
     await signIn(page, nonSubscriber)
 
-    const response = await page.goto('/guards/non-subscriber')
+    const response = await page.goto('/authorization/server-side/non-subscriber')
 
     await expect(response.status()).toEqual(403)
     await expect(page.locator('body')).not.toContainText('secret')
@@ -30,14 +30,14 @@ test.describe('non subscriber', () => {
   test('when not subscribed, returns success', async ({ page }) => {
     await signIn(page, nonSubscriber)
 
-    const response = await page.goto('/guards/non-subscriber')
+    const response = await page.goto('/authorization/server-side/non-subscriber')
 
     await expect(response.status()).toEqual(200)
     await expect(page.locator('body')).toContainText('secret')
   })
 
   test('when not signed in, returns success', async ({ page }) => {
-    const response = await page.goto('/guards/non-subscriber')
+    const response = await page.goto('/authorization/server-side/non-subscriber')
 
     await expect(response.status()).toEqual(200)
     await expect(page.locator('body')).toContainText('secret')
@@ -57,7 +57,7 @@ test.describe('subscriber', () => {
   test('when subscribed, returns success', async ({ page }) => {
     await signIn(page, subscriber)
 
-    const response = await page.goto('/guards/subscriber')
+    const response = await page.goto('/authorization/server-side/subscriber')
 
     await expect(response.status()).toEqual(200)
     await expect(page.locator('body')).toContainText('secret')
@@ -74,14 +74,14 @@ test.describe('subscriber', () => {
 
     await signIn(page, nonSubscriber)
 
-    const response = await page.goto('/guards/subscriber')
+    const response = await page.goto('/authorization/server-side/subscriber')
 
     await expect(response.status()).toEqual(403)
     await expect(page.locator('body')).not.toContainText('secret')
   })
 
   test('when not signed in, returns error', async ({ page }) => {
-    const response = await page.goto('/guards/subscriber')
+    const response = await page.goto('/authorization/server-side/subscriber')
 
     await expect(response.status()).toEqual(403)
     await expect(page.locator('body')).not.toContainText('secret')
@@ -92,7 +92,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'ACTIVE')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/active')
+      const response = await page.goto('/authorization/server-side/active')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -102,7 +102,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'CANCELED')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/active')
+      const response = await page.goto('/authorization/server-side/active')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
@@ -114,7 +114,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'PAST_DUE')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/past-due')
+      const response = await page.goto('/authorization/server-side/past-due')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -124,7 +124,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'CANCELED')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/past-due')
+      const response = await page.goto('/authorization/server-side/past-due')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
@@ -136,7 +136,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'UNPAID')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/unpaid')
+      const response = await page.goto('/authorization/server-side/unpaid')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -146,7 +146,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'CANCELED')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/unpaid')
+      const response = await page.goto('/authorization/server-side/unpaid')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
@@ -158,7 +158,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'TRIALING')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/trialing')
+      const response = await page.goto('/authorization/server-side/trialing')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -168,7 +168,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'CANCELED')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/trialing')
+      const response = await page.goto('/authorization/server-side/trialing')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
@@ -180,7 +180,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'CANCELED')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/canceled')
+      const response = await page.goto('/authorization/server-side/canceled')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -190,7 +190,7 @@ test.describe('subscriber', () => {
       await updateStatus(subscriber, 'ACTIVE')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/canceled')
+      const response = await page.goto('/authorization/server-side/canceled')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
@@ -202,7 +202,7 @@ test.describe('subscriber', () => {
       await updatePlan(subscriber, 'pro')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/plan')
+      const response = await page.goto('/authorization/server-side/plan')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -212,19 +212,19 @@ test.describe('subscriber', () => {
       await updatePlan(subscriber, 'basic')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/plan')
+      const response = await page.goto('/authorization/server-side/plan')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
     })
   })
 
-  test.describe.only('plans guard', () => {
+  test.describe('plans guard', () => {
     test('when on matching plan, returns success', async ({ page }) => {
       await updatePlan(subscriber, 'pro')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/plans')
+      const response = await page.goto('/authorization/server-side/plans')
 
       await expect(response.status()).toEqual(200)
       await expect(page.locator('body')).toContainText('secret')
@@ -234,7 +234,7 @@ test.describe('subscriber', () => {
       await updatePlan(subscriber, 'basic')
       await signIn(page, subscriber)
 
-      const response = await page.goto('/guards/plans')
+      const response = await page.goto('/authorization/server-side/plans')
 
       await expect(response.status()).toEqual(403)
       await expect(page.locator('body')).not.toContainText('secret')
