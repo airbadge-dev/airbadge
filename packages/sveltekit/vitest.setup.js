@@ -34,34 +34,25 @@ expect.extend({
   },
 
   async toRedirect(promise, status, location) {
-    try {
-      await promise
+    const actual = await promise
 
-      return { pass: false, message: () => 'Redirect is supposed to raise an error.' }
-    } catch (actual) {
-      if (actual?.constructor?.name !== 'Redirect') {
-        return {
-          pass: false,
-          message: () => 'Object is not a redirect'
-        }
+    if (actual.status !== status) {
+      return {
+        pass: false,
+        message: () => `Expected a redirect with status ${status}, but got ${actual.status}`
       }
-
-      if (actual.status !== status) {
-        return {
-          pass: false,
-          message: () => `Expected a redirect with status ${status}, but got ${actual.status}`
-        }
-      }
-
-      if (location && actual.location !== location) {
-        return {
-          pass: false,
-          message: () =>
-            `Expected a redirect to location "${location}", but got "${actual.location}"`
-        }
-      }
-
-      return { pass: true }
     }
+
+    const actualLocation = actual.headers.get('location')
+
+    if (location && actualLocation !== location) {
+      return {
+        pass: false,
+        message: () =>
+          `Expected a redirect to location "${location}", but got "${actual.location}"`
+      }
+    }
+
+    return { pass: true }
   }
 })
