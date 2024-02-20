@@ -1,3 +1,5 @@
+import { db } from './db.js'
+
 export async function signIn(page, user) {
   await page.goto('/auth/signin')
   await page.getByLabel('Username').fill(user.email)
@@ -9,4 +11,11 @@ export async function signIn(page, user) {
   const { session } = JSON.parse(json)
 
   return session
+}
+
+export function updateUser(user, data = {}) {
+  return db.user.update({
+    where: { id: user.id },
+    data
+  })
 }

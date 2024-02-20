@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test'
-import { db } from './db.js'
 import { createUser } from './factories.js'
-import { signIn } from './utils'
+import { signIn, updateUser } from './utils'
 
 test.describe('non subscriber', () => {
   let nonSubscriber
@@ -11,12 +10,9 @@ test.describe('non subscriber', () => {
   })
 
   test('when subscribed, returns error', async ({ page }) => {
-    await db.user.update({
-      where: { id: nonSubscriber.id },
-      data: {
-        subscriptionId: 'sub_1234',
-        subscriptionStatus: 'ACTIVE'
-      }
+    await updateUser(nonSubscriber, {
+      subscriptionId: 'sub_1234',
+      subscriptionStatus: 'ACTIVE'
     })
 
     await signIn(page, nonSubscriber)
@@ -64,12 +60,9 @@ test.describe('subscriber', () => {
   })
 
   test('when not subscribed, returns error', async ({ page }) => {
-    const nonSubscriber = await db.user.update({
-      where: { id: subscriber.id },
-      data: {
-        subscriptionId: null,
-        subscriptionStatus: null
-      }
+    const nonSubscriber = await updateUser(subscriber, {
+      subscriptionId: null,
+      subscriptionStatus: null
     })
 
     await signIn(page, nonSubscriber)
@@ -89,7 +82,7 @@ test.describe('subscriber', () => {
 
   test.describe('active guard', () => {
     test('when active, returns success', async ({ page }) => {
-      await updateStatus(subscriber, 'ACTIVE')
+      await updateUser(subscriber, { subscriptionStatus: 'ACTIVE' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/active')
@@ -99,7 +92,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not active, returns error', async ({ page }) => {
-      await updateStatus(subscriber, 'CANCELED')
+      await updateUser(subscriber, { subscriptionStatus: 'CANCELED' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/active')
@@ -111,7 +104,7 @@ test.describe('subscriber', () => {
 
   test.describe('past due guard', () => {
     test('when past_due, returns success', async ({ page }) => {
-      await updateStatus(subscriber, 'PAST_DUE')
+      await updateUser(subscriber, { subscriptionStatus: 'PAST_DUE' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/past-due')
@@ -121,7 +114,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not past_due, returns error', async ({ page }) => {
-      await updateStatus(subscriber, 'CANCELED')
+      await updateUser(subscriber, { subscriptionStatus: 'CANCELED' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/past-due')
@@ -133,7 +126,7 @@ test.describe('subscriber', () => {
 
   test.describe('unpaid guard', () => {
     test('when unpaid, returns success', async ({ page }) => {
-      await updateStatus(subscriber, 'UNPAID')
+      await updateUser(subscriber, { subscriptionStatus: 'UNPAID' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/unpaid')
@@ -143,7 +136,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not unpaid, returns error', async ({ page }) => {
-      await updateStatus(subscriber, 'CANCELED')
+      await updateUser(subscriber, { subscriptionStatus: 'CANCELED' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/unpaid')
@@ -155,7 +148,7 @@ test.describe('subscriber', () => {
 
   test.describe('trialing guard', () => {
     test('when trialing, returns success', async ({ page }) => {
-      await updateStatus(subscriber, 'TRIALING')
+      await updateUser(subscriber, { subscriptionStatus: 'TRIALING' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/trialing')
@@ -165,7 +158,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not trialing, returns error', async ({ page }) => {
-      await updateStatus(subscriber, 'CANCELED')
+      await updateUser(subscriber, { subscriptionStatus: 'CANCELED' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/trialing')
@@ -177,7 +170,7 @@ test.describe('subscriber', () => {
 
   test.describe('canceled guard', () => {
     test('when canceled, returns success', async ({ page }) => {
-      await updateStatus(subscriber, 'CANCELED')
+      await updateUser(subscriber, { subscriptionStatus: 'CANCELED' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/canceled')
@@ -187,7 +180,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not canceled, returns error', async ({ page }) => {
-      await updateStatus(subscriber, 'ACTIVE')
+      await updateUser(subscriber, { subscriptionStatus: 'ACTIVE' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/canceled')
@@ -199,7 +192,7 @@ test.describe('subscriber', () => {
 
   test.describe('plan guard', () => {
     test('when on matching plan, returns success', async ({ page }) => {
-      await updatePlan(subscriber, 'pro')
+      await updateUser(subscriber, { plan: 'pro' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/plan')
@@ -209,7 +202,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not on matching plan, returns error', async ({ page }) => {
-      await updatePlan(subscriber, 'basic')
+      await updateUser(subscriber, { plan: 'basic' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/plan')
@@ -221,7 +214,7 @@ test.describe('subscriber', () => {
 
   test.describe('plans guard', () => {
     test('when on matching plan, returns success', async ({ page }) => {
-      await updatePlan(subscriber, 'pro')
+      await updateUser(subscriber, { plan: 'pro' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/plans')
@@ -231,7 +224,7 @@ test.describe('subscriber', () => {
     })
 
     test('when not on matching plan, returns error', async ({ page }) => {
-      await updatePlan(subscriber, 'basic')
+      await updateUser(subscriber, { plan: 'basic' })
       await signIn(page, subscriber)
 
       const response = await page.goto('/authorization/server-side/plans')
@@ -241,21 +234,3 @@ test.describe('subscriber', () => {
     })
   })
 })
-
-async function updateStatus(user, subscriptionStatus) {
-  return db.user.update({
-    where: { id: user.id },
-    data: {
-      subscriptionStatus
-    }
-  })
-}
-
-async function updatePlan(user, plan) {
-  return db.user.update({
-    where: { id: user.id },
-    data: {
-      plan
-    }
-  })
-}
