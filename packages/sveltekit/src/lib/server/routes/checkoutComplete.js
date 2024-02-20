@@ -1,4 +1,5 @@
-import { redirect, error } from '@sveltejs/kit'
+import { error } from '@sveltejs/kit'
+import { redirect } from './utils'
 
 export default async function handler({ url }, { billing, options }) {
   const sessionId = url.searchParams.get('checkout_session_id')
@@ -7,5 +8,5 @@ export default async function handler({ url }, { billing, options }) {
 
   await billing.syncCheckout(sessionId)
 
-  redirect(303, options.pages.checkout.success)
+  return redirect(303, options.pages.checkout.success)
 }

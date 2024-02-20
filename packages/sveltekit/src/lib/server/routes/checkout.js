@@ -1,4 +1,5 @@
-import { error, redirect } from '@sveltejs/kit'
+import { error } from '@sveltejs/kit'
+import { redirect } from './utils'
 
 export default async function handler({ url }, { user, plans, billing, options }) {
   if (!user) error(401, 'Authentication required')
@@ -12,10 +13,10 @@ export default async function handler({ url }, { user, plans, billing, options }
   if (plan.trial || plan.price == 0) {
     await billing.createSubscription(user, plan)
 
-    redirect(303, options.pages.checkout.success)
+    return redirect(303, options.pages.checkout.success)
   } else {
     const checkout = await billing.createCheckout(user, plan)
 
-    redirect(303, checkout.url)
+    return redirect(303, checkout.url)
   }
 }
