@@ -21,13 +21,13 @@ describe('isSubscriber', () => {
 
   describe('active filter', () => {
     test('when subscription is active, returns true', () => {
-      const result = isSubscriber({ subscription: { status: 'ACTIVE' } }, { active: true })
+      const result = isSubscriber({ subscription: { status: 'active' } }, { active: true })
 
       expect(result).toEqual(true)
     })
 
     test('when subscription is not active, returns false', () => {
-      const result = isSubscriber({ subscription: { status: 'CANCELED' } }, { active: true })
+      const result = isSubscriber({ subscription: { status: 'canceled' } }, { active: true })
 
       expect(result).toEqual(false)
     })
@@ -35,13 +35,13 @@ describe('isSubscriber', () => {
 
   describe('pastDue filter', () => {
     test('when subscription is past due, returns true', () => {
-      const result = isSubscriber({ subscription: { status: 'PAST_DUE' } }, { pastDue: true })
+      const result = isSubscriber({ subscription: { status: 'past_due' } }, { pastDue: true })
 
       expect(result).toEqual(true)
     })
 
     test('when subscription is not past due, returns false', () => {
-      const result = isSubscriber({ subscription: { status: 'CANCELED' } }, { pastDue: true })
+      const result = isSubscriber({ subscription: { status: 'canceled' } }, { pastDue: true })
 
       expect(result).toEqual(false)
     })
@@ -49,13 +49,13 @@ describe('isSubscriber', () => {
 
   describe('unpaid filter', () => {
     test('when subscription is unpaid, returns true', () => {
-      const result = isSubscriber({ subscription: { status: 'UNPAID' } }, { unpaid: true })
+      const result = isSubscriber({ subscription: { status: 'unpaid' } }, { unpaid: true })
 
       expect(result).toEqual(true)
     })
 
     test('when subscription is not unpaid, returns false', () => {
-      const result = isSubscriber({ subscription: { status: 'CANCELED' } }, { unpaid: true })
+      const result = isSubscriber({ subscription: { status: 'canceled' } }, { unpaid: true })
 
       expect(result).toEqual(false)
     })
@@ -63,13 +63,13 @@ describe('isSubscriber', () => {
 
   describe('trialing filter', () => {
     test('when subscription is trialing, returns true', () => {
-      const result = isSubscriber({ subscription: { status: 'TRIALING' } }, { trialing: true })
+      const result = isSubscriber({ subscription: { status: 'trialing' } }, { trialing: true })
 
       expect(result).toEqual(true)
     })
 
     test('when subscription is not trialing, returns false', () => {
-      const result = isSubscriber({ subscription: { status: 'CANCELED' } }, { trialing: true })
+      const result = isSubscriber({ subscription: { status: 'canceled' } }, { trialing: true })
 
       expect(result).toEqual(false)
     })
@@ -77,13 +77,13 @@ describe('isSubscriber', () => {
 
   describe('canceled filter', () => {
     test('when subscription is canceled, returns true', () => {
-      const result = isSubscriber({ subscription: { status: 'CANCELED' } }, { canceled: true })
+      const result = isSubscriber({ subscription: { status: 'canceled' } }, { canceled: true })
 
       expect(result).toEqual(true)
     })
 
     test('when subscription is not canceled, returns false', () => {
-      const result = isSubscriber({ subscription: { status: 'ACTIVE' } }, { canceled: true })
+      const result = isSubscriber({ subscription: { status: 'active' } }, { canceled: true })
 
       expect(result).toEqual(false)
     })

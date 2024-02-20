@@ -3,23 +3,23 @@ export function isSubscriber(session, rules = {}) {
 
   if (!subscription) return false
 
-  if (rules.active && subscription.status !== 'ACTIVE') {
+  if (rules.active && subscription.status !== 'active') {
     return false
   }
 
-  if (rules.pastDue && subscription.status !== 'PAST_DUE') {
+  if (rules.pastDue && subscription.status !== 'past_due') {
     return false
   }
 
-  if (rules.unpaid && subscription.status !== 'UNPAID') {
+  if (rules.unpaid && subscription.status !== 'unpaid') {
     return false
   }
 
-  if (rules.trialing && subscription.status !== 'TRIALING') {
+  if (rules.trialing && subscription.status !== 'trialing') {
     return false
   }
 
-  if (rules.canceled && subscription.status !== 'CANCELED') {
+  if (rules.canceled && subscription.status !== 'canceled') {
     return false
   }
 
