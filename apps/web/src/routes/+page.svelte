@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     gap: var(--size-5);
-    margin: var(--size-5);
+    padding: var(--size-5);
   }
 
   img {
