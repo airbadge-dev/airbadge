@@ -4,7 +4,6 @@
 
 <section class="window">
 	{#key selected}
-	
 		<div class="container">
 			<div class="title">
 				<h2>Webhooks</h2>
@@ -18,14 +17,13 @@
 				</defs>
 				<image class="stripe" href="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"/>
 				<image class="svelte" href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg"/>
-			
+
 				{#each { length: 20 } as _, n }
 					<use class="chevron" href="#chevron" style:--index={n}/>
 				{/each}
 			</svg>
-			
-			<p>AirBadge handles all Stripe webhooks <b>for you</b>.</p>
 
+			<p>AirBadge handles all Stripe webhooks <b>for you</b>.</p>
 		</div>
 	{/key}
 </section>
@@ -77,6 +75,8 @@
 		gap: var(--size-3);
 
 		& h2 {
+			font-size: var(--font-size-3);
+			font-weight: 500;
 			opacity: 0;
 			animation:
 				var(--animation-fade-in) 0s forwards,
@@ -105,7 +105,5 @@
 				var(--animation-fade-in) 0.1s forwards,
 				var(--animation-slide-in-up) 0.1s forwards;
 			animation-timing-function: linear,  var(--easing-4);
-
 		}
-	
 </style>
