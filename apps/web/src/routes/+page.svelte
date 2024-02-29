@@ -74,7 +74,7 @@
 	main {
 		display: flex;
 		flex-direction: column;
-		gap: var(--size-5);
+		gap: var(--size-6);
 		align-items: center;
 		justify-content: center;
 	}
@@ -84,7 +84,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin: var(--size-4);
+		margin: var(--size-10);
 		gap: var(--size-6);
 
 		& img {

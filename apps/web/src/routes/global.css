@@ -12,4 +12,5 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: var(--size-6);
 }
