@@ -79,7 +79,7 @@
   header {
     grid-area: header;
     position: fixed;
-    background: var(--violet-4);
+    background: var(--violet-6);
     color: var(--gray-2);
     padding: var(--size-3);
     display: flex;
