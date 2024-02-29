@@ -24,6 +24,10 @@
 	$: selectedIndex = steps.findIndex(c => c == selected)
 </script>
 
+<svelte:head>
+  <title>AirBadge</title>
+</svelte:head>
+
 <main>
 	<section class="hero">
 		<img src="/images/logo-violet.svg" alt="AirBadge logo"/>
