@@ -32,7 +32,7 @@
 	<section class="hero">
 		<img src="/images/logo-violet.svg" alt="AirBadge logo"/>
 		<h1>Auth & Payment <em>ready in minutes</em>.</h1>
-		<p>Test your SaaS ideas faster.<br/><b>AirBadge</b> is free and open source.</p>
+		<p><b>AirBadge</b> connects <b>Auth.js</b> with <b>Stripe</b>. Test your next SaaS idea quickly. It's free and open source.</p>
 
 		<div class="buttons">
 			<a class="docs" href="https://docs.airbadge.dev">
