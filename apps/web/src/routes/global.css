@@ -13,4 +13,5 @@ body {
   align-items: center;
   justify-content: center;
   margin: var(--size-6);
+  padding-bottom: 10rem;
 }
