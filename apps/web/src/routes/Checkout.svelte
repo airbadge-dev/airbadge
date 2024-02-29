@@ -76,6 +76,10 @@
 
 		animation: 0.3s blink 1s;
 		animation-timing-function: var(--ease-4);
+
+		& b {
+			font-weight: 500;
+		}
 	}
 
 	h2 {
