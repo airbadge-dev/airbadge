@@ -31,14 +31,14 @@
 		<p><b>AirBadge</b> is open source and free</p>
 
 		<div class="buttons">
-			<a class="start" href="https://docs.airbadge.dev/getting-started">
-				<span>Get started</span>
-				<Icon icon="ic:round-chevron-right"/>
-			</a>
-
 			<a class="docs" href="https://docs.airbadge.dev">
 				<Icon icon="tabler:book"/>
 				<span>Docs</span>
+			</a>
+
+			<a class="start" href="https://docs.airbadge.dev/getting-started">
+				<span>Get started</span>
+				<Icon icon="ic:round-chevron-right"/>
 			</a>
 		</div>
 	</section>
@@ -89,11 +89,18 @@
 
 		& img {
 			height: 28px;
+			animation:
+				var(--animation-slide-in-down) forwards,
+				var(--animation-scale-up) forwards;
 		}
 
 		& p {
 			font-size: var(--font-size-3);
 			color: var(--gray-7);
+			opacity: 0;
+			animation:
+				var(--animation-fade-in) 0.3s forwards,
+				var(--animation-slide-in-up) 0.3s forwards;
 
 			& b {
 				font-weight: 500;
@@ -114,11 +121,17 @@
 			padding: var(--size-2) var(--size-4);
 			border-radius: var(--radius-5);
 			text-decoration: none;
+			opacity: 0;
 		}
 
 		& .start {
 			background: var(--violet-6);
 			color: var(--gray-1);
+			scale: 0.8;
+			animation:
+				var(--animation-fade-in) 0.5s forwards,
+				var(--animation-slide-in-up) 0.5s forwards,
+				var(--animation-scale-up) 0.5s forwards;
 
 			&:hover {
 				background: var(--violet-5);
@@ -128,6 +141,9 @@
 		& .docs {
 			background: var(--gray-7);
 			color: var(--gray-1);
+			animation:
+				var(--animation-fade-in) 0.4s forwards,
+				var(--animation-slide-in-up) 0.4s forwards;
 
 			&:hover {
 				background: var(--gray-6);
@@ -143,6 +159,10 @@
 		line-height: var(--font-lineheight-0);
 		text-align: center;
 		max-width: 40ch;
+		opacity: 0;
+		animation:
+			var(--animation-fade-in) 0.2s forwards,
+			var(--animation-slide-in-up) 0.2s forwards;
 
 		& em {
 			color: var(--violet-8);
