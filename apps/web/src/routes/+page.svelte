@@ -28,7 +28,7 @@
 	<section class="hero">
 		<img src="/images/logo-violet.svg" alt="AirBadge logo"/>
 		<h1>Auth & Payment <em>ready in minutes</em>.</h1>
-		<p><b>AirBadge</b> is open source and free</p>
+		<p>Test your SaaS ideas faster.<br/><b>AirBadge</b> is free and open source.</p>
 
 		<div class="buttons">
 			<a class="docs" href="https://docs.airbadge.dev">
@@ -97,6 +97,8 @@
 		& p {
 			font-size: var(--font-size-3);
 			color: var(--gray-7);
+			max-width: 40ch;
+			text-align: center;
 			opacity: 0;
 			animation:
 				var(--animation-fade-in) 0.3s forwards,
