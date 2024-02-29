@@ -1,11 +1,11 @@
 @import 'open-props/postcss/style';
 @import 'open-props/normalize.light.min.css';
 @import 'open-props/media.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;900&family=Inter:wght@400;500;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap');
 
 :root {
   --font-sans: Inter;
-  --font-heading: 'Source Sans Pro';
+  --font-heading: Inter;
 
   --shiki-color-text: var(--gray-8);
   --shiki-background: var(--gray-1);
