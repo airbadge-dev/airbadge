@@ -19,7 +19,7 @@
 		{ title: 'Session data', view: 'editor', description: 'Use session data customize your app', source: '+page.server.js' },
 	]
 	
-	let selected = steps[5]
+	let selected = steps[0]
 
 	$: selectedIndex = steps.findIndex(c => c == selected)
 </script>
