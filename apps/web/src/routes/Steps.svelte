@@ -49,9 +49,12 @@
     gap: var(--size-2);
 
     & li {
+      --radius: var(--radius-2);
       display: flex;
       padding: var(--size-2);
-      border-radius: var(--radius-2);
+      border-radius: var(--radius) 0 0 var(--radius);
+      border: solid 1px transparent;
+      border-right: none;
     }
 
     & button {
@@ -73,7 +76,7 @@
       }
 
       & .title {
-        font-weight: 500;
+        font-weight: 400;
       }
 
       & .description {
@@ -130,10 +133,14 @@
   }
 
   .active {
-    background: var(--gray-1);
+    background: var(--violet-1);
+    border-color: var(--violet-2);
 
     & button {
-      color: var(--gray-8);
+
+      & .title {
+        color: var(--gray-7);
+      }
     }
 
     & circle.outline {
