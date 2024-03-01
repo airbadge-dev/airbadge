@@ -48,8 +48,7 @@ expect.extend({
     if (location && actualLocation !== location) {
       return {
         pass: false,
-        message: () =>
-          `Expected a redirect to location "${location}", but got "${actual.location}"`
+        message: () => `Expected a redirect to location "${location}", but got "${actual.location}"`
       }
     }
 

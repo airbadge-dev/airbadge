@@ -7,11 +7,11 @@
   {
     icon: 'fluent-mdl2:team-favorite',
     name: 'Teams support',
-    available: false,
+    available: false
   },
   {
     icon: 'mdi:seat-outline',
     name: 'Per-seat billing',
     available: false
-  },
+  }
 ]

@@ -7,16 +7,16 @@ const config = {
     stderr: 'pipe'
   },
   testDir: './tests',
-  testMatch: "*.test.js",
+  testMatch: '*.test.js',
   projects: [
     {
       name: 'setup',
-      testMatch: /global\.setup\.js/,
+      testMatch: /global\.setup\.js/
     },
     {
       name: 'chromium',
-      dependencies: ['setup'],
-    },
+      dependencies: ['setup']
+    }
   ]
 }
 

@@ -51,7 +51,7 @@ Specify a list of plans. These map to Stripe Products and Pricing.
 ### Attributes
 
 | Attribute  | Type    | Description                                                        |
-| :--        | :-      | :--                                                                |
+| :--------- | :------ | :----------------------------------------------------------------- |
 | `id`       | String  | A unique value for each plan.                                      |
 | `name`     | String  | The name of the plan.                                              |
 | `priceId`  | String  | The Stripe price ID.                                               |
@@ -91,7 +91,7 @@ All [page options](https://authjs.dev/guides/basics/pages) from Auth.js are supp
 ### Additional options
 
 | Attribute          | Description                                                   |
-| :--                | :--                                                           |
+| :----------------- | :------------------------------------------------------------ |
 | `checkout.success` | Page user will be sent to after a checkout succeeds.          |
 | `checkout.cancel`  | Page user will be sent to after a checkout is canceled.       |
 | `portalReturn`     | Page user will be sent to when returning from billing portal. |

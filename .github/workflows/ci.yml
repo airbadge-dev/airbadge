@@ -28,7 +28,7 @@ jobs:
       SECRET_STRIPE_KEY: sk_fake
       STRIPE_MOCK_HOST: localhost
       STRIPE_MOCK_PORT: 12111
-      AUTH_SECRET: "tFCCrOEP7hPbDBRtkuTadnykvDluXg0zRO9nED6uEq0="
+      AUTH_SECRET: 'tFCCrOEP7hPbDBRtkuTadnykvDluXg0zRO9nED6uEq0='
 
     steps:
       - name: Checkout

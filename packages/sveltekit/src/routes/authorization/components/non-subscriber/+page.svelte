@@ -2,6 +2,4 @@
   import { NonSubscriber } from '$lib/components'
 </script>
 
-<NonSubscriber>
-  secret
-</NonSubscriber>
+<NonSubscriber>secret</NonSubscriber>
