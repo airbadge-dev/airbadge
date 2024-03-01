@@ -4,6 +4,7 @@
 	import Editor from './Editor.svelte'
 	import Browser from './Browser.svelte'
 	import Webhooks from './Webhooks.svelte'
+	import Steps from './Steps.svelte'
 	import Icon from '@iconify/svelte'
 
 	import { fly } from 'svelte/transition'
@@ -18,7 +19,7 @@
 		{ title: 'Webhooks', view: 'webhooks', description: 'All Stripe webhooks are handled for you.' },
 		{ title: 'Session data', view: 'editor', description: 'Use session data customize your app', source: '+page.server.js' },
 	]
-	
+
 	let selected = steps[0]
 
 	$: selectedIndex = steps.findIndex(c => c == selected)
@@ -48,17 +49,7 @@
 	</section>
 
 	<div class="demo-container view-{selected.view}">
-		<section class="explanation">
-			<ul>
-				{#each steps as step}
-					<li class:active={selected == step}>
-						<button on:mouseover={() => selected = step} on:focus={() => selected = step}>
-							{step.title}
-						</button>
-					</li>
-				{/each}
-			</ul>
-		</section>
+		<Steps bind:selected {steps}/>
 
 		<section class="demo">
 			<Editor {selected}/>
@@ -89,7 +80,7 @@
 		align-items: center;
 		justify-content: center;
 		margin: var(--size-10);
-		gap: var(--size-6);
+		gap: var(--size-8);
 
 		& img {
 			height: 28px;
@@ -100,8 +91,9 @@
 
 		& p {
 			font-size: var(--font-size-3);
+			letter-spacing: -0.02em;
 			color: var(--gray-7);
-			max-width: 40ch;
+			max-width: 45ch;
 			text-align: center;
 			opacity: 0;
 			animation:
@@ -110,7 +102,7 @@
 
 			& b {
 				font-weight: 500;
-				color: var(--gray-9);
+				color: var(--gray-7);
 			}
 		}
 
@@ -181,52 +173,24 @@
 	}
 
 	.demo-container {
-		--screen-width: 400px;
+		--screen-width: 480px;
 
 		display: grid;
-		grid-template-columns: 200px 1fr;
+		grid-template-columns: auto 1fr;
+
+		opacity: 0;
+		scale: 0.8;
+		animation:
+			var(--animation-fade-in) 0.7s forwards,
+			var(--animation-slide-in-up) 0.7s forwards,
+			var(--animation-scale-up) 0.7s forwards;
+			animation-timing-function: var(--ease-5);
 	}
 
-	.explanation {
-		grid-column: 1;
-	}
-
-	.explanation ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: var(--size-2);
-
-		& li {
-			font-size: 0.9rem;
-
-			& button {
-				background: none;
-				border: none;
-				padding: var(--size-2) var(--size-4);
-			  border-radius: var(--radius-2);
-				width: 100%;
-				display: flex;
-				text-wrap: nowrap;
-			}
-		}
-
-		& li:hover button {
-			color: var(--gray-9);
-			background: var(--gray-1);			
-		}
-
-		& .active button {
-			background: var(--gray-2);			
-		}
-	}
-	
 	:global(.window) {
 		background: var(--gray-1);
 		border: solid 1px var(--gray-2);
-		aspect-ratio: 1 / 1;
+		aspect-ratio: 2 / 1;
 		width: var(--screen-width);
 		min-width: calc(var(--screen-width) - 10px);
 		border-radius: 10px;
