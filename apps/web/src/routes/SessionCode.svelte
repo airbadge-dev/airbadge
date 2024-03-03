@@ -12,8 +12,7 @@
     <br />
 
     <div class="line">
-      &nbsp;&nbsp;if (
-      <span class="keyword">session.subscription?.status</span>
+      &nbsp;&nbsp;if (<span class="keyword">session.subscription?.status</span>
       == 'active') {'{'}
     </div>
 
