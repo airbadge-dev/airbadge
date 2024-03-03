@@ -2,7 +2,7 @@
   export let step
 </script>
 
-<div class="container">
+<div class="container code">
   <div class="line">
     import {'{'} SvelteKitAuth } from '@airbadge/sveltekit'
   </div>

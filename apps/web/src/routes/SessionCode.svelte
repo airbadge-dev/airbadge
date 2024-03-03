@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container code">
   <div class="line">
     export async function load({'{'} locals }) {'{'}
   </div>
