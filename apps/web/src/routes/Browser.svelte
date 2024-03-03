@@ -108,8 +108,9 @@
 
     & .icons {
       display: flex;
-      gap: 0px;
+      gap: 8px;
       color: var(--gray-4);
+      align-items: center;
 
       & svg {
         transform-origin: center;
