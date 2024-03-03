@@ -103,7 +103,7 @@
     background: white;
     display: flex;
     padding: 5px;
-    gap: 5px;
+    gap: 10px;
     border-bottom: solid 1px var(--gray-1);
 
     & .icons {
