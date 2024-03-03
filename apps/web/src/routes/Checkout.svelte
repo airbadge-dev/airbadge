@@ -1,5 +1,14 @@
 <script>
+  import { onMount, createEventDispatcher } from 'svelte'
   import Mouse from './Mouse.svelte'
+
+  const dispatch = createEventDispatcher()
+
+  onMount(() => {
+    let timer = setTimeout(() => dispatch('advance'), 1500)
+
+    return () => clearTimeout(timer)
+  })
 </script>
 
 <div class="container">
