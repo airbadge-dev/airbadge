@@ -96,7 +96,10 @@
 
   .container {
     background: white;
-    height: 100%;
+    height: 425px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .address-bar {
