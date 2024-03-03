@@ -13,13 +13,9 @@
       <li class:active={step == selected}>
         <button on:mouseover={() => select(step)} on:focus={() => select(step)}>
           <svg class="icon" viewBox="0 0 10 10" width="20">
-            <line x1="5" y1="0" x2="5" y2="38" />
-            <circle class="outline" cx="5" cy="5" r="5" />
-            <circle class="core" cx="5" cy="5" r="2" />
-
-            <svg class="check-mark" viewBox="0 0 24 24" width="6" x="2" y="0">
-              <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" />
-            </svg>
+            <line x1="5" y1="2" x2="5" y2="36" />
+            <circle class="outline" cx="5" cy="5" r="3" />
+            <circle class="core" cx="5" cy="5" r="1.5" />
           </svg>
 
           <div class="content">
@@ -100,17 +96,11 @@
     & line {
       stroke: var(--violet-2);
     }
-
-    & .check-mark {
-      width: 10px;
-      color: white;
-      animation: var(--animation-fade-in) forwards;
-    }
   }
 
   .active ~ li {
     & button {
-      color: var(--gray-4);
+      color: var(--gray-5);
     }
 
     & circle.outline {
@@ -125,10 +115,6 @@
 
     & line {
       stroke: var(--gray-2);
-    }
-
-    & .check-mark {
-      color: transparent;
     }
   }
 
@@ -155,10 +141,6 @@
 
     & line {
       stroke: var(--gray-2);
-    }
-
-    & .check-mark {
-      color: transparent;
     }
   }
 
