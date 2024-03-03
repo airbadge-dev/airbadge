@@ -34,6 +34,11 @@
         {#each { length: 20 } as _, n}
           <use class="chevron" href="#chevron" style:--index={n} />
         {/each}
+
+        <g class="check-mark">
+          <circle fill="white" cx=12 cy=12 r=11/>
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2M9.29 16.29L5.7 12.7a.996.996 0 1 1 1.41-1.41L10 14.17l6.88-6.88a.996.996 0 1 1 1.41 1.41l-7.59 7.59a.996.996 0 0 1-1.41 0" />
+        </g>
       </svg>
 
       <p>
@@ -74,6 +79,19 @@
     opacity: 0;
     animation: 0.5s blink var(--offset) infinite;
     animation-delay: var(--offset);
+  }
+
+  .check-mark {
+    scale: 0.3;
+    translate: 15px -2px;
+    transform-origin: center;
+    color: var(--green-7);
+    opacity: 0;
+    animation:
+      0.3s fade-in 0.8s forwards,
+      0.3s scale-up 0.8s forwards,
+      0.3s slide-in-up 0.8s forwards;
+    animation-timing-function: var(--easing-4);
   }
 
   .container {
