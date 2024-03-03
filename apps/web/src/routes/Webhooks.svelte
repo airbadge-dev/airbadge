@@ -46,8 +46,10 @@
 
 <style>
   .window {
-    background: none;
+    background: white;
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   svg {
