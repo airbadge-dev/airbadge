@@ -70,7 +70,7 @@
       margin-top: 3px;
       margin-left: 50px;
       padding: 2px;
-      height: 17px;
+      height: 22px;
       font-size: 0.6rem;
       border-radius: 7px 7px 0 0;
       border-bottom: none;
