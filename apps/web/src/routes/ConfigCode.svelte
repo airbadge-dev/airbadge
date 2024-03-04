@@ -4,7 +4,8 @@
 
 <div class="container code">
   <div class="line">
-    <span class="keyword">import</span> {'{'} SvelteKitAuth } <span class="keyword">from</span> '@airbadge/sveltekit'
+    <span class="keyword">import</span>
+    {'{'} SvelteKitAuth } <span class="keyword">from</span> '@airbadge/sveltekit'
   </div>
 
   <br />
