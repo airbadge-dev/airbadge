@@ -1,11 +1,37 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
+  import { circInOut as easing } from 'svelte/easing'
+  import { typewriter } from '$lib/typewriter'
   import Mouse from './Mouse.svelte'
+
+  const card = typewriter('4242 4242 4242 4242', {
+    duration: 1000,
+    delay: 0,
+    easing
+  })
+
+  const today = new Date()
+  const expiration = typewriter(
+    `${today.getMonth().toString().padStart(2, '0')}/${(today.getFullYear() + 2)
+      .toString()
+      .substr(2, 2)}`,
+    {
+      duration: 500,
+      delay: 1000,
+      easing
+    }
+  )
+
+  const cvv = typewriter('123', {
+    duration: 300,
+    delay: 1500,
+    easing
+  })
 
   const dispatch = createEventDispatcher()
 
   onMount(() => {
-    let timer = setTimeout(() => dispatch('advance'), 1500)
+    let timer = setTimeout(() => dispatch('advance'), 2800)
 
     return () => clearTimeout(timer)
   })
@@ -21,9 +47,9 @@
   <label for="card"><span>Card</span></label>
 
   <div class="card-group">
-    <input class="card" readonly disabled name="card" value="4242 4242 4242 4242" />
-    <input class="expiration" readonly disabled placeholder="MM/YY" />
-    <input class="expiration" readonly disabled placeholder="CVV" />
+    <input class="card" readonly disabled name="card" value={$card} />
+    <input class="expiration" readonly disabled placeholder="MM/YY" value={$expiration} />
+    <input class="expiration" readonly disabled placeholder="CVV" value={$cvv} />
   </div>
 
   <button>
@@ -31,7 +57,12 @@
     $10/mo
   </button>
 
-  <Mouse --translate-from="75% 300%" --translate-to="50% 500%" />
+  <Mouse
+    --mouse-delay="1s"
+    --click-delay="2.1s"
+    --translate-from="75% 300%"
+    --translate-to="50% 500%"
+  />
 </div>
 
 <style>
