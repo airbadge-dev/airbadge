@@ -14,14 +14,14 @@
   </div>
 
   {#if step != 'init'}
-    <div class="highlight">
+    <div class="emphasis">
       &nbsp;&nbsp;<span class="keyword">adapter</span>: PrismaAdapter(...){#if step == 'provider' || step == 'pricing'},{/if}
       <br />
     </div>
   {/if}
 
   {#if step == 'provider' || step == 'pricing'}
-    <div class="highlight">
+    <div class="emphasis">
       <br />
       &nbsp;&nbsp;<span class="keyword">providers</span>: [
       <br />
@@ -33,7 +33,7 @@
   {/if}
 
   {#if step == 'pricing'}
-    <div class="highlight">
+    <div class="emphasis">
       <br />
 
       &nbsp;&nbsp;<span class="keyword">plans</span>: [
