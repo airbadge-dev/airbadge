@@ -42,7 +42,7 @@
       color: var(--gray-6);
     }
 
-    & .emphasis {
+    & .highlight {
       animation: 0.3s entrance forwards;
       animation-timing-function: var(--ease-2);
     }

@@ -3,7 +3,7 @@
     export async function load({'{'} locals }) {'{'}
   </div>
 
-  <div class="emphasis">
+  <div class="highlight">
     <div class="line">
       &nbsp;&nbsp;const <span class="keyword">session</span>
       = await locals.getSession()
