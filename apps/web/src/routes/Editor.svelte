@@ -38,6 +38,13 @@
       color: var(--purple-2);
     }
 
+    & .highlight-inline {
+      color: var(--violet-3);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: var(--violet-6);
+    }
+
     & .comment {
       color: var(--gray-6);
     }

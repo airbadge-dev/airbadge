@@ -1,18 +1,18 @@
 <div class="container code">
   <div class="line">
-    export async function load({'{'} locals }) {'{'}
+    <span class="keyword">export async function</span> load({'{'} locals }) {'{'}
   </div>
 
   <div class="highlight">
     <div class="line">
-      &nbsp;&nbsp;const <span class="keyword">session</span>
-      = await locals.getSession()
+      &nbsp;&nbsp;<span class="keyword">const</span> <span>session</span>
+      = <span class="keyword">await</span> locals.getSession()
     </div>
 
     <br />
 
     <div class="line">
-      &nbsp;&nbsp;if (<span class="keyword">session.subscription?.status</span>
+      &nbsp;&nbsp;if (<span class="highlight-inline">session.subscription?.status</span>
       == 'active') {'{'}
     </div>
 
