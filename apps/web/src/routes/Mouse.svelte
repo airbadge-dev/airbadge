@@ -84,13 +84,17 @@
 </svg>
 
 <style>
+  :root {
+    --mouse-delay: 0s;
+    --click-delay: 1.1s;
+  }
   svg.pointer {
     height: 50px;
     width: 50px;
     position: absolute;
     z-index: var(--layer-4);
     translate: var(--translate-from);
-    animation: 1s mouse-move forwards;
+    animation: 1s mouse-move var(--mouse-delay) forwards;
     animation-timing-function: var(--ease-2);
   }
 
@@ -107,7 +111,7 @@
     position: absolute;
     translate: var(--translate-to);
     opacity: 0;
-    animation: 0.3s pulse 1.1s forwards;
+    animation: 0.3s pulse var(--click-delay) forwards;
     animation-timeing-function: var(--ease-4);
     transform-origin: 20px 10px;
   }
