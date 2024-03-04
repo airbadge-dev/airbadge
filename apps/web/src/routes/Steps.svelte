@@ -123,7 +123,6 @@
     border-color: var(--violet-2);
 
     & button {
-
       & .title {
         color: var(--gray-7);
       }

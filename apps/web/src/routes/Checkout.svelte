@@ -28,7 +28,7 @@
 
   <button>
     <b>Subscribe</b>
-     $10/mo
+    $10/mo
   </button>
 
   <Mouse --translate-from="75% 300%" --translate-to="50% 500%" />
