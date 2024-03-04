@@ -316,7 +316,7 @@
 
     & pre,
     & .container {
-      padding: 0 var(--size-2);
+      padding: var(--size-1) var(--size-3);
     }
   }
 
