@@ -118,7 +118,7 @@
     border-radius: var(--radius-2);
     font-size: 1.1rem;
 
-    animation: 0.3s blink 1s;
+    animation: 0.3s blink 2s;
     animation-timing-function: var(--ease-4);
 
     & b {
