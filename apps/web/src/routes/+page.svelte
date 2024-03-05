@@ -122,7 +122,9 @@
   </div>
 </main>
 
-<style>
+<style lang="postcss">
+  @import 'open-props/media.min.css';
+
   main {
     display: flex;
     flex-direction: column;
@@ -138,71 +140,71 @@
     justify-content: center;
     margin: var(--size-10);
     gap: var(--size-8);
+  }
 
-    & img {
-      height: 28px;
-      animation:
-        var(--animation-slide-in-down) forwards,
-        var(--animation-scale-up) forwards;
-    }
+  .hero img {
+    height: 28px;
+    animation:
+      var(--animation-slide-in-down) forwards,
+      var(--animation-scale-up) forwards;
+  }
 
-    & p {
-      font-size: var(--font-size-3);
-      letter-spacing: -0.02em;
+  .hero p {
+    font-size: var(--font-size-3);
+    letter-spacing: -0.02em;
+    color: var(--gray-7);
+    max-width: 45ch;
+    text-align: center;
+    opacity: 0;
+    animation:
+      var(--animation-fade-in) 0.3s forwards,
+      var(--animation-slide-in-up) 0.3s forwards;
+
+    & b {
+      font-weight: 500;
       color: var(--gray-7);
-      max-width: 45ch;
-      text-align: center;
-      opacity: 0;
-      animation:
-        var(--animation-fade-in) 0.3s forwards,
-        var(--animation-slide-in-up) 0.3s forwards;
-
-      & b {
-        font-weight: 500;
-        color: var(--gray-7);
-      }
     }
+  }
 
-    & .buttons {
-      display: flex;
-      gap: var(--size-4);
+  .hero .buttons {
+    display: flex;
+    gap: var(--size-4);
+  }
+
+  .hero a {
+    display: flex;
+    flex-direction: row;
+    gap: var(--size-1);
+    font-size: var(--font-size-2);
+    padding: var(--size-2) var(--size-4);
+    border-radius: var(--radius-5);
+    text-decoration: none;
+    opacity: 0;
+  }
+
+  .hero .start {
+    background: var(--violet-6);
+    color: var(--gray-1);
+    scale: 0.8;
+    animation:
+      var(--animation-fade-in) 0.5s forwards,
+      var(--animation-slide-in-up) 0.5s forwards,
+      var(--animation-scale-up) 0.5s forwards;
+
+    &:hover {
+      background: var(--violet-5);
     }
+  }
 
-    & a {
-      display: flex;
-      flex-direction: row;
-      gap: var(--size-1);
-      font-size: var(--font-size-2);
-      padding: var(--size-2) var(--size-4);
-      border-radius: var(--radius-5);
-      text-decoration: none;
-      opacity: 0;
-    }
+  .hero .docs {
+    background: var(--gray-7);
+    color: var(--gray-1);
+    animation:
+      var(--animation-fade-in) 0.4s forwards,
+      var(--animation-slide-in-up) 0.4s forwards;
 
-    & .start {
-      background: var(--violet-6);
-      color: var(--gray-1);
-      scale: 0.8;
-      animation:
-        var(--animation-fade-in) 0.5s forwards,
-        var(--animation-slide-in-up) 0.5s forwards,
-        var(--animation-scale-up) 0.5s forwards;
-
-      &:hover {
-        background: var(--violet-5);
-      }
-    }
-
-    & .docs {
-      background: var(--gray-7);
-      color: var(--gray-1);
-      animation:
-        var(--animation-fade-in) 0.4s forwards,
-        var(--animation-slide-in-up) 0.4s forwards;
-
-      &:hover {
-        background: var(--gray-6);
-      }
+    &:hover {
+      background: var(--gray-6);
     }
   }
 
@@ -299,45 +301,43 @@
     width: var(--screen-width);
     overflow: hidden;
     position: relative;
+  }
 
-    & section {
-      overflow: hidden;
-      transition: translate 0.4s var(--ease-1);
-    }
+  .demo section {
+    overflow: hidden;
+    transition: translate 0.4s var(--ease-1);
+  }
 
-    & .code {
-      background: var(--gray-8);
-      font-size: 16px;
+  .demo :global(.code) {
+    background: var(--gray-8);
+    font-size: 16px;
 
       & pre {
         color: var(--gray-3);
       }
-    }
+  }
 
-    & pre,
-    & .container {
-      padding: var(--size-1) var(--size-3);
-    }
+  .demo :global(pre),
+  .demo :global(.container) {
+    padding: var(--size-1) var(--size-3);
   }
 
   .caption {
-    position: absolute;
-    z-index: var(--layer-2);
+    position: fixed;
+    z-index: var(--layer-4);
     bottom: 50px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    display: none;
 
     & .text {
-      font-size: 0.8rem;
+      font-size: var(--font-size-2);
       color: var(--gray-3);
-      border: solid 1px var(--gray-5);
+      border: solid 1px var(--gray-7);
       background: var(--gray-7);
       border-radius: var(--radius-2);
       padding: var(--size-1) var(--size-2);
-      border: solid 1px var(--gray-5);
       box-shadow: var(--shadow-1);
     }
   }

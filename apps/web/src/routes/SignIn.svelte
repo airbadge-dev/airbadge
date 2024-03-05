@@ -55,14 +55,15 @@
       text-wrap: nowrap;
     }
 
-    &.google {
-      background: var(--blue-7);
-    }
+  }
 
-    &.apple {
-      background: var(--gray-8);
-      animation: 0.3s blink 1s;
-      animation-timing-function: var(--ease-4);
-    }
+  button.google {
+    background: var(--blue-7);
+  }
+
+  button.apple {
+    background: var(--gray-8);
+    animation: 0.3s blink 1s;
+    animation-timing-function: var(--ease-4);
   }
 </style>

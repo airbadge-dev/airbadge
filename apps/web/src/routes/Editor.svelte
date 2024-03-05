@@ -29,27 +29,27 @@
     font-size: 0.8rem;
     margin: var(--size-3) 0;
     color: var(--gray-3);
+  }
 
-    & .line {
-      text-wrap: nowrap;
-    }
+  .window :global(.line) {
+    text-wrap: nowrap;
+  }
 
-    & .keyword {
-      color: var(--purple-2);
-    }
+  .window :global(.keyword) {
+    color: var(--purple-2);
+  }
 
-    & .highlight-inline {
-      color: var(--violet-3);
-    }
+  .window :global(.highlight-inline) {
+    color: var(--violet-3);
+  }
 
-    & .comment {
-      color: var(--gray-6);
-    }
+  .window :global(.comment) {
+    color: var(--gray-6);
+  }
 
-    & .highlight {
-      animation: 0.3s entrance forwards;
-      animation-timing-function: var(--ease-2);
-    }
+  .window :global(.highlight) {
+    animation: 0.3s entrance forwards;
+    animation-timing-function: var(--ease-2);
   }
 
   @keyframes -global-entrance {

@@ -44,104 +44,103 @@
     flex-direction: column;
     gap: var(--size-2);
     padding: 0;
-
-    & li {
-      --radius: var(--radius-2);
-      display: flex;
-      padding: var(--size-2);
-      border-radius: var(--radius) 0 0 var(--radius);
-      border: solid 1px transparent;
-      border-right: none;
-    }
-
-    & button {
-      color: var(--gray-6);
-      font-size: var(--font-size-2);
-      flex-grow: 1;
-      display: flex;
-      gap: var(--size-3);
-      align-items: center;
-      background: none;
-      border: none;
-      text-align: left;
-      transition: all 0.1s var(--ease-2);
-
-      & .content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-2);
-      }
-
-      & .title {
-        font-weight: 400;
-      }
-
-      & .description {
-        display: none;
-      }
-    }
-
-    & circle.outline {
-      fill: var(--violet-2);
-      stroke: var(--violet-2);
-      stroke-width: 0.5px;
-      transition: all 0.1s var(--ease-2);
-    }
-
-    & circle.core {
-      fill: var(--violet-2);
-      stroke: var(--violet-2);
-      transition: all 0.1s var(--ease-2);
-    }
-
-    & line {
-      stroke: var(--violet-2);
-    }
   }
 
-  .active ~ li {
-    & button {
-      color: var(--gray-5);
-    }
+  li {
+    --radius: var(--radius-2);
+    display: flex;
+    padding: var(--size-2);
+    border-radius: var(--radius) 0 0 var(--radius);
+    border: solid 1px transparent;
+    border-right: none;
+  }
 
-    & circle.outline {
-      stroke: var(--gray-2);
-      fill: white;
-    }
+  button {
+    color: var(--gray-6);
+    font-size: var(--font-size-2);
+    flex-grow: 1;
+    display: flex;
+    gap: var(--size-3);
+    align-items: center;
+    background: none;
+    border: none;
+    text-align: left;
+    transition: all 0.1s var(--ease-2);
 
-    & circle.core {
-      fill: white;
-      stroke: white;
-    }
+  }
 
-    & line {
-      stroke: var(--gray-2);
-    }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2);
+  }
+
+  .title {
+    font-weight: 400;
+  }
+
+  .description {
+    display: none;
+  }
+
+  circle.outline {
+    fill: var(--violet-2);
+    stroke: var(--violet-2);
+    stroke-width: 0.5px;
+    transition: all 0.1s var(--ease-2);
+  }
+
+  circle.core {
+    fill: var(--violet-2);
+    stroke: var(--violet-2);
+    transition: all 0.1s var(--ease-2);
+  }
+
+  line {
+    stroke: var(--violet-2);
+  }
+
+  .active ~ li button {
+    color: var(--gray-5);
+  }
+
+  .active ~ li circle.outline {
+    stroke: var(--gray-2);
+    fill: white;
+  }
+
+  .active ~ li circle.core {
+    fill: white;
+    stroke: white;
+  }
+
+  .active ~ li line {
+    stroke: var(--gray-2);
   }
 
   .active {
     background: var(--violet-1);
     border-color: var(--violet-2);
+  }
 
-    & button {
-      & .title {
-        color: var(--gray-7);
-      }
+  .active button {
+    & .title {
+      color: var(--gray-7);
     }
+  }
 
-    & circle.outline {
-      stroke: var(--violet-4);
-      fill: white;
-    }
+  .active circle.outline {
+    stroke: var(--violet-4);
+    fill: white;
+  }
 
-    & circle.core {
-      stroke: white;
-      fill: var(--violet-4);
-    }
+  .active circle.core {
+    stroke: white;
+    fill: var(--violet-4);
+  }
 
-    & line {
-      stroke: var(--gray-2);
-    }
+  .active line {
+    stroke: var(--gray-2);
   }
 
   ul li:last-child svg line {
