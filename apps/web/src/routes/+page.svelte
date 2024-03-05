@@ -5,6 +5,7 @@
   import Browser from './Browser.svelte'
   import Webhooks from './Webhooks.svelte'
   import Steps from './Steps.svelte'
+  import Dots from './Dots.svelte'
   import Icon from '@iconify/svelte'
 
   import { fly } from 'svelte/transition'
@@ -106,6 +107,8 @@
       <Webhooks {selected} />
     </section>
 
+    <Dots bind:selected {steps}/>
+
     <div class="caption">
       {#key selected}
         <div in:fly={{ y: '100%', delay: 200 }} class="text">{selected.title}</div>
@@ -121,20 +124,25 @@
     --logo-height: 22px;
     --heading-size: 2rem;
     --subhead-size: var(--font-size-1);
-    --hero-gap: var(--size-4);
+    --hero-margin: var(--size-8);
+    --hero-gap: var(--size-5);
+    --screen-width: 98vw;
 
     @media (--sm-n-above) {
       --logo-height: 24px;
       --heading-size: 2.4rem;
       --subhead-size: var(--font-size-2);
-      --hero-gap: var(--size-5);
+      --hero-margin: var(--size-8);
+      --hero-gap: var(--size-6);
+      --screen-width: 90vw;
     }
 
     @media (--md-n-above) {
       --logo-height: 26px;
       --heading-size: 2.8rem;
       --subhead-size: var(--font-size-3);
-      --hero-gap: var(--size-5);
+      --hero-margin: var(--size-10);
+      --screen-width: 480px;
     }
 
     @media (--lg-n-above) {
@@ -142,6 +150,8 @@
       --heading-size: 3.2rem;
       --subhead-size: var(--font-size-3);
       --hero-gap: var(--size-7);
+      --hero-margin: var(--size-11);
+      --screen-width: 580px;
     }
   }
 
@@ -158,7 +168,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: var(--size-10);
+    margin: var(--hero-margin);
     gap: var(--hero-gap);
   }
 
@@ -252,10 +262,9 @@
   }
 
   .demo-container {
-    --screen-width: 480px;
-
     display: grid;
     grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
 
     opacity: 0;
     scale: 0.8;
@@ -345,7 +354,7 @@
   .caption {
     position: fixed;
     z-index: var(--layer-4);
-    bottom: 50px;
+    bottom: 100px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
