@@ -69,6 +69,13 @@
   <title>AirBadge</title>
 </svelte:head>
 
+<header>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+    <path fill="currentColor" d="M12 8H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h1v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h3l5 4V4zm9.5 4c0 1.71-.96 3.26-2.5 4V8c1.53.75 2.5 2.3 2.5 4" />
+  </svg>
+  <span>AirBadge is <a href="https://www.producthunt.com/posts/airbadge">Live on ProductHunt</a>.</span>
+</header>
+
 <main>
   <section class="hero">
     <img src="/images/logo-violet.svg" alt="AirBadge logo" />
@@ -381,5 +388,31 @@
 
   .view-webhooks :global(.window) {
     translate: calc(-200% - 10px);
+  }
+
+  header {
+    display: flex;
+    gap: var(--size-2);
+    padding: var(--size-1);
+    background: var(--violet-7);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    animation:
+      0.1s fade-in 2s forwards,
+      0.3s slide-in-down 2s forwards;
+
+    & a {
+      color: white;
+      text-decoration: underline;
+      text-decoration-color: var(--gray-4);
+    }
+  }
+
+  header svg {
+    width: 20px;
+    aspect-ratio: 1 / 1;
   }
 </style>
