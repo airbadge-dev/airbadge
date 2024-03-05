@@ -12,7 +12,8 @@
     <button
       class:active={step == selected}
       on:mouseover={() => select(step)}
-      on:focus={() => select(step)}/>
+      on:focus={() => select(step)}
+    />
   {/each}
 </nav>
 
@@ -45,5 +46,4 @@
   .active ~ button {
     background: var(--gray-4);
   }
-
 </style>

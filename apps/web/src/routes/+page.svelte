@@ -51,7 +51,7 @@
     },
     {
       title: 'Webhooks handled',
-      view: 'webhooks',
+      view: 'webhooks'
     },
     {
       title: 'Session data',
@@ -107,7 +107,7 @@
       <Webhooks {selected} />
     </section>
 
-    <Dots bind:selected {steps}/>
+    <Dots bind:selected {steps} />
 
     <div class="caption">
       {#key selected}
