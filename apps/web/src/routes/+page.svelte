@@ -11,58 +11,50 @@
 
   const steps = [
     {
-      title: 'Configure hooks',
+      title: 'Add global handler',
       view: 'editor',
-      description: 'Add a handle function',
       step: 'init',
       source: 'hooks.server.js'
     },
     {
-      title: 'Add database adapter',
+      title: 'Configure database',
       view: 'editor',
-      description: 'Setup a database adapter',
       step: 'database',
       source: 'hooks.server.js'
     },
     {
-      title: 'Add auth providers',
+      title: 'Configure auth',
       view: 'editor',
-      description: 'Configure OAuth providers',
       step: 'provider',
       source: 'hooks.server.js'
     },
     {
-      title: 'Add pricing',
+      title: 'Configure pricing',
       view: 'editor',
-      description: 'Add pricing plans',
       step: 'pricing',
       source: 'hooks.server.js'
     },
     {
-      title: 'Sign up',
+      title: 'User signs up',
       view: 'browser',
-      description: 'User can sign in with OAuth',
       url: 'https://example.com/auth/signin',
       windowTitle: 'Sign in',
       component: SignIn
     },
     {
-      title: 'Checkout',
+      title: 'Redirected to pay',
       view: 'browser',
-      description: 'User is redirected to pay with Stripe Checkout',
       url: 'https://checkout.stripe.com/cs_12345',
       windowTitle: 'Stripe',
       component: Checkout
     },
     {
-      title: 'Webhooks',
+      title: 'Webhooks handled',
       view: 'webhooks',
-      description: 'All Stripe webhooks are handled for you.'
     },
     {
       title: 'Session data',
       view: 'editor',
-      description: 'Use session data customize your app',
       source: '+page.server.js'
     }
   ]
@@ -116,7 +108,7 @@
 
     <div class="caption">
       {#key selected}
-        <div in:fly={{ y: '100%', delay: 200 }} class="text">{selected.description}</div>
+        <div in:fly={{ y: '100%', delay: 200 }} class="text">{selected.title}</div>
       {/key}
     </div>
   </div>
