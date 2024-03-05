@@ -189,5 +189,3 @@ stripe listen --forward-to localhost:5173/billing/webhooks
 ## License
 
 BSL - Business Software License.
-
-Free to use for first 100 users, then $150 USD/year for unlimited usage.
