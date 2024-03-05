@@ -43,6 +43,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
+    padding: 0;
 
     & li {
       --radius: var(--radius-2);
