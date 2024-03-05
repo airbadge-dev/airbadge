@@ -52,7 +52,7 @@
   {/key}
 </section>
 
-<style>
+<style lang="postcss">
   .window {
     background: white;
     display: flex;

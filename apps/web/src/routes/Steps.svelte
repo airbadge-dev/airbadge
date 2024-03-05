@@ -28,7 +28,7 @@
   </ul>
 </section>
 
-<style>
+<style lang="postcss">
   section {
     padding: 2rem 0;
   }
