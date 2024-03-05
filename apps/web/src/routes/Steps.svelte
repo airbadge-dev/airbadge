@@ -66,7 +66,6 @@
     border: none;
     text-align: left;
     transition: all 0.1s var(--ease-2);
-
   }
 
   .content {

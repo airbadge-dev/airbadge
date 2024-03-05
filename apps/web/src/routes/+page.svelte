@@ -312,9 +312,9 @@
     background: var(--gray-8);
     font-size: 16px;
 
-      & pre {
-        color: var(--gray-3);
-      }
+    & pre {
+      color: var(--gray-3);
+    }
   }
 
   .demo :global(pre),

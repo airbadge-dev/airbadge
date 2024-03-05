@@ -54,7 +54,6 @@
       font-size: 1rem;
       text-wrap: nowrap;
     }
-
   }
 
   button.google {
