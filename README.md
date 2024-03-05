@@ -1,3 +1,5 @@
+<img src="logo.svg" alt="logo" width="800"/>
+
 # AirBadge
 
 > Stripe + Auth.js + SvelteKit
