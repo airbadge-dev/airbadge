@@ -11,6 +11,7 @@
 
     <br />
 
+    <div class="line comment">&nbsp;&nbsp;// session contains subscription data</div>
     <div class="line">
       &nbsp;&nbsp;if (<span class="highlight-inline">session.subscription?.status</span>
       == 'active') {'{'}
