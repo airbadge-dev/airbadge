@@ -1,6 +1,4 @@
-<div style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
-  <img src="logo.svg" alt="logo" width="400"/>
-</div>
+<img src="logo.svg" alt="logo" width="800"/>
 
 > Stripe + Auth.js + SvelteKit
 
