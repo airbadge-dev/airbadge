@@ -12,6 +12,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: var(--size-6);
+  margin: 0;
   padding-bottom: 10rem;
+  background: var(--gray-1);
 }
