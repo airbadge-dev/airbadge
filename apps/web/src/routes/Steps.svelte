@@ -29,8 +29,15 @@
 </section>
 
 <style lang="postcss">
+  @import 'open-props/media.min.css';
+
   section {
+    display: none;
     padding: 2rem 0;
+
+    @media (--md-n-above) {
+      display: block;
+    }
   }
 
   svg.icon {

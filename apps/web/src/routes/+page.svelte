@@ -117,6 +117,34 @@
 <style lang="postcss">
   @import 'open-props/media.min.css';
 
+  :root {
+    --logo-height: 22px;
+    --heading-size: 2rem;
+    --subhead-size: var(--font-size-1);
+    --hero-gap: var(--size-4);
+
+    @media (--sm-n-above) {
+      --logo-height: 24px;
+      --heading-size: 2.4rem;
+      --subhead-size: var(--font-size-2);
+      --hero-gap: var(--size-5);
+    }
+
+    @media (--md-n-above) {
+      --logo-height: 26px;
+      --heading-size: 2.8rem;
+      --subhead-size: var(--font-size-3);
+      --hero-gap: var(--size-5);
+    }
+
+    @media (--lg-n-above) {
+      --logo-height: 28px;
+      --heading-size: 3.2rem;
+      --subhead-size: var(--font-size-3);
+      --hero-gap: var(--size-7);
+    }
+  }
+
   main {
     display: flex;
     flex-direction: column;
@@ -131,18 +159,18 @@
     align-items: center;
     justify-content: center;
     margin: var(--size-10);
-    gap: var(--size-8);
+    gap: var(--hero-gap);
   }
 
   .hero img {
-    height: 28px;
+    height: var(--logo-height);
     animation:
       var(--animation-slide-in-down) forwards,
       var(--animation-scale-up) forwards;
   }
 
   .hero p {
-    font-size: var(--font-size-3);
+    font-size: var(--subhead-size);
     letter-spacing: -0.02em;
     color: var(--gray-7);
     max-width: 45ch;
@@ -202,7 +230,7 @@
 
   h1 {
     color: var(--gray-8);
-    font-size: 3rem;
+    font-size: var(--heading-size);
     font-weight: 500;
     letter-spacing: -0.07em;
     line-height: var(--font-lineheight-0);
@@ -322,6 +350,10 @@
     align-items: flex-start;
     justify-content: center;
     width: 100%;
+
+    @media (--md-n-above) {
+      display: none;
+    }
 
     & .text {
       font-size: var(--font-size-2);
