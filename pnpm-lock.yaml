@@ -36,6 +36,9 @@ importers:
       '@jsdevtools/rehype-toc':
         specifier: ^3.0.2
         version: 3.0.2
+      '@oddbird/popover-polyfill':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@shikijs/transformers':
         specifier: ^1.1.1
         version: 1.1.1
@@ -1362,6 +1365,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.0
+
+  /@oddbird/popover-polyfill@0.4.0:
+    resolution: {integrity: sha512-jrqoTI8lk5UziDsDPJ2Y+nmXYCcRhmr6uMARr3v/W6AMxRgsnRLWJyWKYr6FjaGMgbyxXG+OkCUPQY4Xl3toGg==}
+    dev: true
 
   /@panva/hkdf@1.1.1:
     resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}

@@ -1,5 +1,6 @@
 import { handleErrorWithSentry, replayIntegration } from '@sentry/sveltekit'
 import * as Sentry from '@sentry/sveltekit'
+import "@oddbird/popover-polyfill"
 
 Sentry.init({
   dsn: 'https://43223178b75500932cfb422debe9a969@o4506863366832128.ingest.us.sentry.io/4506863374041088',
