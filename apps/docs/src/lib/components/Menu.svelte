@@ -12,7 +12,7 @@
   }
 
   afterNavigate(() => {
-    popover.hidePopover()
+    popover?.hidePopover()
   })
 </script>
 
