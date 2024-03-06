@@ -33,5 +33,8 @@
     "svelte": "^4.2.7",
     "vite": "^5.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@sentry/sveltekit": "^7.105.0"
+  }
 }

@@ -27,5 +27,8 @@
     "vite": "^5.0.3",
     "vite-plugin-json5": "^1.1.2"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@sentry/sveltekit": "^7.105.0"
+  }
 }
