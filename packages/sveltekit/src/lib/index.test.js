@@ -25,7 +25,7 @@ describe('SvelteKitAuth', () => {
 
   test('when no adapter, raises an error', () => {
     expect(() => SvelteKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
-      'An adapter is reqiured'
+      'An adapter is required'
     )
   })
 

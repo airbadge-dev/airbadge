@@ -12,7 +12,7 @@ export function SvelteKitAuth(options = {}) {
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')
 
-  if (!options.adapter) throw new Error('An adapter is reqiured')
+  if (!options.adapter) throw new Error('An adapter is required')
 
   options.pages ||= {}
   options.pages.newUser ||= '/billing/checkout'
