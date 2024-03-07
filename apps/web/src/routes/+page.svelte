@@ -283,6 +283,7 @@
     min-width: calc(var(--screen-width) - 10px);
     border-radius: 10px;
     padding: 0;
+    transition: 0.4s all var(--ease-4);
 
     & .header {
       position: relative;
