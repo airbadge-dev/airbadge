@@ -57,6 +57,10 @@ h3 {
   color: var(--gray-8);
 }
 
+strong, b {
+  font-weight: 600;
+}
+
 [id]:is(h2) {
   display: flex;
   gap: 2px;
