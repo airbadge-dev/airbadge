@@ -39,6 +39,9 @@ importers:
       '@oddbird/popover-polyfill':
         specifier: ^0.4.0
         version: 0.4.0
+      '@sentry/utils':
+        specifier: ^7.105.0
+        version: 7.105.0
       '@shikijs/transformers':
         specifier: ^1.1.1
         version: 1.1.1
