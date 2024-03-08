@@ -104,7 +104,6 @@
       font-family: var(--font-heading);
       font-weight: normal;
     }
-
   }
 
   .logo img {
@@ -115,7 +114,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--size-2);
+    gap: var(--size-3);
   }
 
   header nav :global(svg) {
