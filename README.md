@@ -18,7 +18,7 @@ Launch a SaaS app without writing any authentiction or payment code!
 - **Trials & Free plans**: Checkout can be skipped for free plans or trials.
 - **Session data**: Subscription and plan data is included in the session.
 - **Open source**: https://github.com/joshnuss/airbadge
-- **BSL Licence**: Free for first 100 customers. Then $150/year for unlimited users.
+- **BSL Licence**: Free to use. With optional [paid features](https://docs.airbadge.dev/license#paid-features).
 
 ## Authorization
 
