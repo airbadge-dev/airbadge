@@ -1,4 +1,6 @@
-# AirBadge Docs
+<img class="logo" src="/images/logo-violet.svg" alt="logo"/>
+
+# Documentation
 
 AirBadge is a SaaS module for [Auth.js](https://authjs.dev). It's an easy way to integrate [Stripe Subscriptions](https://stripe.com/docs/subscriptions) with [SvelteKit](https://kit.svelte.dev).
 

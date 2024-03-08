@@ -210,3 +210,8 @@ body:has(.\:popover-open)::before {
   opacity: 0;
   animation: 0.3s fade-in forwards;
 }
+
+main img.logo {
+  margin: 1rem 0;
+  height: 40px;
+}
