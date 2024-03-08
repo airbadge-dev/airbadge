@@ -1,22 +1,19 @@
 # License
 
-AirBadge using a **BSL License** (Business Source License). It is similar to licenses used by Sentry, HashiCorp, Directus, and MariaDB.
+AirBadge uses a **BSL License** (Business Source License). It is similar to licenses used by Sentry, HashiCorp, Directus, and MariaDB.
 
-The source code is FREE to use and host on your own servers.
+The source code is **FREE** to use and host on your own servers.
 Re-packaging requires permission.
-
-4 years after each commit, the license switches to an MIT License.
 
 ## Paid features
 
-There are optional paid features that cost **$200 USD/year for unlimited usage**.
+There will be (optional) paid features that will cost **$200 USD/year for unlimited usage**. They are not yet available.
 
-The paid features are:
+The paid features will be:
 
-- **Annual pricing**: Offer different pricing for year and month.
-- **Teams**: One subscription can have multiple users.
-- **Seats**: Charge a fee based on number of seats.
-- **Per-user pricing**: Create custom plans. Suitable for Enterprise pricing.
-- **Dashboard**: Built-in dashboard to manage customers and subscriptions.
+- **Annual pricing**: Offer different pricing for yearly and monthly subscriptions.
+- **Teams**: Allows multiple users to share one subscription.
+- **Per-seats pricing**: Ability to charge a fee based on number of seats.
+- **Enterprise pricing**: Capability to create custom plans.
 
 [Read full license](https://github.com/joshnuss/airbadge/blob/main/LICENSE.md)
