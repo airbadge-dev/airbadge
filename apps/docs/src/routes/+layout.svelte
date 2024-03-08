@@ -216,7 +216,7 @@
   }
 
   main :global(.toc .toc-link-h1) {
-    font-weight: bold;
+    font-weight: 600;
   }
 
   main :global(.toc li ol) {
