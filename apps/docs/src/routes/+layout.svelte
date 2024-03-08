@@ -61,6 +61,14 @@
   @import './global.css';
   @import 'open-props/media.min.css';
 
+  :root {
+    --header-padding: var(--size-3) var(--size-4);
+
+    @media (--md-n-above) {
+      --header-padding: var(--size-3) var(--size-7);
+    }
+  }
+
   :global(body) {
     min-height: 100vh;
     display: grid;
@@ -83,7 +91,7 @@
     position: fixed;
     background: var(--violet-6);
     color: var(--gray-2);
-    padding: var(--size-3);
+    padding: var(--header-padding);
     display: flex;
     align-items: center;
     flex-direction: row;
