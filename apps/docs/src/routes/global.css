@@ -61,6 +61,10 @@ strong, b {
   font-weight: 600;
 }
 
+.docs li {
+  margin-bottom: 12px;
+}
+
 [id]:is(h2) {
   display: flex;
   gap: 2px;
