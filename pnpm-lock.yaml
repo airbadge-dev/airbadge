@@ -29,6 +29,9 @@ importers:
       '@sentry/sveltekit':
         specifier: ^7.105.0
         version: 7.105.0(@sveltejs/kit@2.0.6)(svelte@4.2.8)
+      '@sentry/utils':
+        specifier: ^7.105.0
+        version: 7.105.0
     devDependencies:
       '@iconify/svelte':
         specifier: ^3.1.6
@@ -39,9 +42,6 @@ importers:
       '@oddbird/popover-polyfill':
         specifier: ^0.4.0
         version: 0.4.0
-      '@sentry/utils':
-        specifier: ^7.105.0
-        version: 7.105.0
       '@shikijs/transformers':
         specifier: ^1.1.1
         version: 1.1.1
@@ -108,13 +108,13 @@ importers:
       '@sentry/sveltekit':
         specifier: ^7.105.0
         version: 7.105.0(@sveltejs/kit@2.0.6)(svelte@4.2.8)
+      '@sentry/utils':
+        specifier: ^7.105.0
+        version: 7.105.0
     devDependencies:
       '@iconify/svelte':
         specifier: ^3.1.6
         version: 3.1.6(svelte@4.2.8)
-      '@sentry/utils':
-        specifier: ^7.105.0
-        version: 7.105.0
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
         version: 3.1.0(@sveltejs/kit@2.0.6)
@@ -1769,12 +1769,14 @@ packages:
   /@sentry/types@7.105.0:
     resolution: {integrity: sha512-80o0KMVM+X2Ym9hoQxvJetkJJwkpCg7o6tHHFXI+Rp7fawc2iCMTa0IRQMUiSkFvntQLYIdDoNNuKdzz2PbQGA==}
     engines: {node: '>=8'}
+    dev: false
 
   /@sentry/utils@7.105.0:
     resolution: {integrity: sha512-YVAV0c2KLM8+VZCicQ/E/P2+J9Vs0hGhrXwV7w6ZEAtvxrg4oF270toL1WRhvcaf8JO4J1v4V+LuU6Txs4uEeQ==}
     engines: {node: '>=8'}
     dependencies:
       '@sentry/types': 7.105.0
+    dev: false
 
   /@sentry/vite-plugin@0.6.1:
     resolution: {integrity: sha512-qkvKaSOcNhNWcdxRXLSs+8cF3ey0XIRmEzTl8U7sTTcZwuOMHsJB+HsYij6aTGaqsKfP8w1ozVt9szBAiL4//w==}

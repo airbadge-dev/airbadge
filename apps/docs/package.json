@@ -13,7 +13,6 @@
     "@iconify/svelte": "^3.1.6",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@oddbird/popover-polyfill": "^0.4.0",
-    "@sentry/utils": "^7.105.0",
     "@shikijs/transformers": "^1.1.1",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
@@ -37,6 +36,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@sentry/sveltekit": "^7.105.0"
+    "@sentry/sveltekit": "^7.105.0",
+    "@sentry/utils": "^7.105.0"
   }
 }
