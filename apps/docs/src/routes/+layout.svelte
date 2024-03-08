@@ -24,7 +24,9 @@
 <Menu {menuItems} bind:this={menu} />
 
 <header>
-  <a href="/">AirBadge</a>
+  <a class="logo" href="/">
+    <img src="/images/logo.svg" alt="Logo"/>
+  </a>
 
   <nav>
     <a href="https://discord.gg/KjGNepeChg" target="_blank">
@@ -94,6 +96,11 @@
       font-family: var(--font-heading);
       font-weight: normal;
     }
+
+  }
+
+  .logo img {
+    height: 18px;
   }
 
   header nav {
