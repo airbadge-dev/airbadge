@@ -140,7 +140,7 @@
 
   aside {
     display: none;
-    padding: var(--size-4);
+    padding: var(--size-6) var(--size-4);
     border-right: solid 2px var(--gray-2);
     overflow-y: auto;
     background: var(--gray-1);
@@ -157,6 +157,7 @@
     flex-direction: column;
     gap: var(--size-2);
     font-size: var(--font-size-2);
+    width: 210px;
 
     & a {
       color: var(--gray-6);
