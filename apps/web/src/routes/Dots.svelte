@@ -1,18 +1,19 @@
 <script>
   export let steps
   export let selected
+  export let selectedIndex
 
-  function select(step) {
-    selected = step
+  function select(index) {
+    selectedIndex = index
   }
 </script>
 
 <nav>
-  {#each steps as step}
+  {#each steps as step, index}
     <button
       class:active={step == selected}
-      on:mouseover={() => select(step)}
-      on:focus={() => select(step)}
+      on:mouseover={() => select(index)}
+      on:focus={() => select(index)}
     />
   {/each}
 </nav>

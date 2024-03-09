@@ -1,17 +1,18 @@
 <script>
   export let steps
   export let selected
+  export let selectedIndex
 
-  function select(step) {
-    selected = step
+  function select(index) {
+    selectedIndex = index
   }
 </script>
 
 <section>
   <ul>
-    {#each steps as step}
+    {#each steps as step, index}
       <li class:active={step == selected}>
-        <button on:mouseover={() => select(step)} on:focus={() => select(step)}>
+        <button on:mouseover={() => select(index)} on:focus={() => select(index)}>
           <svg class="icon" viewBox="0 0 10 10" width="20">
             <line x1="5" y1="2" x2="5" y2="36" />
             <circle class="outline" cx="5" cy="5" r="3" />

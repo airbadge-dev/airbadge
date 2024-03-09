@@ -60,9 +60,23 @@
     }
   ]
 
-  let selected = steps[0]
+  let selectedIndex = 0
 
-  $: selectedIndex = steps.findIndex((c) => c == selected)
+  $: selected = steps[selectedIndex]
+
+  function advance() {
+    if (selectedIndex < steps.length - 1) {
+      selectedIndex = selectedIndex + 1
+    } else {
+      selectedIndex = 0
+    }
+  }
+
+  function keydown(e) {
+    if (e.code == 'Enter') {
+      advance()
+    }
+  }
 </script>
 
 <svelte:head>
@@ -99,15 +113,15 @@
   </section>
 
   <div class="demo-container view-{selected.view}">
-    <Steps bind:selected {steps} />
+    <Steps bind:selectedIndex {selected} {steps} />
 
-    <section class="demo">
+    <section class="demo" on:click={advance} on:keydown={keydown}>
       <Editor {selected} />
-      <Browser {selected} on:advance={() => (selected = steps[selectedIndex + 1])} />
+      <Browser {selected} on:advance={advance} />
       <Webhooks {selected} />
     </section>
 
-    <Dots bind:selected {steps} />
+    <Dots bind:selectedIndex {selected} {steps} />
 
     <div class="caption">
       {#key selected}
