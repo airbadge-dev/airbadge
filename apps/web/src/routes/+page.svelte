@@ -5,10 +5,8 @@
   import Browser from './Browser.svelte'
   import Webhooks from './Webhooks.svelte'
   import Steps from './Steps.svelte'
-  import Dots from './Dots.svelte'
+  import Carousel from './Carousel.svelte'
   import Icon from '@iconify/svelte'
-
-  import { fly } from 'svelte/transition'
 
   const steps = [
     {
@@ -115,19 +113,13 @@
   <div class="demo-container view-{selected.view}">
     <Steps bind:selectedIndex {selected} {steps} />
 
+    <Carousel bind:selectedIndex {selected} {steps} />
+
     <section class="demo" on:click={advance} on:keydown={keydown}>
       <Editor {selected} />
       <Browser {selected} on:advance={advance} />
       <Webhooks {selected} />
     </section>
-
-    <Dots bind:selectedIndex {selected} {steps} />
-
-    <div class="caption">
-      {#key selected}
-        <div in:fly={{ y: '100%', delay: 200 }} class="text">{selected.title}</div>
-      {/key}
-    </div>
   </div>
 </main>
 
@@ -278,7 +270,7 @@
   .demo-container {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr;
 
     opacity: 0;
     scale: 0.8;
@@ -340,11 +332,16 @@
 
   .demo {
     grid-column: 2;
+    grid-row: 2;
     display: flex;
     gap: var(--size-2);
     width: var(--screen-width);
     overflow: hidden;
     position: relative;
+
+    @media (--md-n-above) {
+      grid-row: 1;
+    }
   }
 
   .demo section {
@@ -364,30 +361,6 @@
   .demo :global(pre),
   .demo :global(.container) {
     padding: var(--size-1) var(--size-3);
-  }
-
-  .caption {
-    position: fixed;
-    z-index: var(--layer-4);
-    bottom: 100px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-
-    @media (--md-n-above) {
-      display: none;
-    }
-
-    & .text {
-      font-size: var(--font-size-2);
-      color: var(--gray-3);
-      border: solid 1px var(--gray-7);
-      background: var(--gray-7);
-      border-radius: var(--radius-2);
-      padding: var(--size-1) var(--size-2);
-      box-shadow: var(--shadow-1);
-    }
   }
 
   .view-browser :global(.window) {
