@@ -69,12 +69,6 @@
       selectedIndex = 0
     }
   }
-
-  function keydown(e) {
-    if (e.code == 'Enter') {
-      advance()
-    }
-  }
 </script>
 
 <svelte:head>
@@ -115,7 +109,7 @@
 
     <Carousel bind:selectedIndex {selected} {steps} />
 
-    <section class="demo" on:click={advance} on:keydown={keydown}>
+    <section class="demo" on:touchstart={advance}>
       <Editor {selected} />
       <Browser {selected} on:advance={advance} />
       <Webhooks {selected} />
