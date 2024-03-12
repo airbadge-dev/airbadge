@@ -34,21 +34,21 @@
       source: 'hooks.server.js'
     },
     {
-      title: 'User signs up',
+      title: 'User can sign up',
       view: 'browser',
       url: 'https://example.com/auth/signin',
       windowTitle: 'Sign in',
       component: SignIn
     },
     {
-      title: 'Redirected to pay',
+      title: 'Payment is integrated',
       view: 'browser',
       url: 'https://checkout.stripe.com/cs_12345',
       windowTitle: 'Stripe',
       component: Checkout
     },
     {
-      title: 'Webhooks handled',
+      title: 'Syncs all webhooks',
       view: 'webhooks'
     },
     {
