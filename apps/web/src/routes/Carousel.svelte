@@ -39,8 +39,15 @@
     if (!carousel) return
 
     observer.disconnect()
-    steps[index].node.scrollIntoView({ behavior: 'smooth' })
-    carousel.addEventListener('scrollend', () => observe(), { once: true })
+
+    steps[index].node.scrollIntoView({
+      inline: 'start',
+      behavior: 'smooth'
+    })
+
+    carousel.addEventListener('scrollend', observe, {
+      once: true
+    })
   }
 
   function select(index) {
@@ -77,7 +84,7 @@
     overflow: scroll;
     scroll-snap-type: x mandatory;
     width: 100vw;
-    max-width: 100vw;
+    max-width: 100%;
     padding: var(--size-2);
 
     @media (--md-n-above) {
