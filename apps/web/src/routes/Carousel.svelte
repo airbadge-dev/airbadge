@@ -56,7 +56,6 @@
     } else {
       selectedIndex = index
     }
-    scrollToIndex(index)
   }
 </script>
 
