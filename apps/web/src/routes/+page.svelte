@@ -78,17 +78,16 @@
 <main>
   <section class="hero">
     <img src="/images/logo-violet.svg" alt="AirBadge logo" />
-    <h1>
-      Auth & Payment <em>ready in minutes</em>.
-    </h1>
-    <p>
-      <b>AirBadge</b>
-      connects
-      <b>Auth.js</b>
-      with
-      <b>Stripe</b>
-      . Test your next SaaS idea quickly. It's free and open source.
-    </p>
+
+    <div class="text">
+      <h1>
+        Auth & Payment <em>ready in minutes</em>.
+      </h1>
+      <p>
+        <b>AirBadge</b> connects <b>Auth.js</b> with <b>Stripe</b>.
+        Test your next SaaS idea quickly. It's free and open source.
+      </p>
+    </div>
 
     <div class="buttons">
       <a class="docs" href="https://docs.airbadge.dev">
@@ -123,16 +122,16 @@
     --logo-height: 22px;
     --heading-size: 2rem;
     --subhead-size: var(--font-size-1);
-    --hero-margin: var(--size-8);
-    --hero-gap: var(--size-5);
+    --hero-margin: var(--size-9) var(--size-7) var(--size-7);
+    --hero-gap: var(--size-7);
+    --text-gap: var(--size-5);
     --screen-width: 98vw;
 
     @media (--sm-n-above) {
       --logo-height: 24px;
       --heading-size: 2.4rem;
       --subhead-size: var(--font-size-2);
-      --hero-margin: var(--size-8);
-      --hero-gap: var(--size-6);
+      --hero-gap: var(--size-7);
       --screen-width: 90vw;
     }
 
@@ -141,6 +140,7 @@
       --heading-size: 2.8rem;
       --subhead-size: var(--font-size-3);
       --hero-margin: var(--size-10);
+      --hero-gap: var(--size-8);
       --screen-width: 480px;
     }
 
@@ -148,8 +148,8 @@
       --logo-height: 28px;
       --heading-size: 3.2rem;
       --subhead-size: var(--font-size-3);
-      --hero-gap: var(--size-7);
       --hero-margin: var(--size-11);
+      --hero-gap: var(--size-9);
       --screen-width: 580px;
     }
   }
@@ -177,6 +177,15 @@
       var(--animation-slide-in-down) forwards,
       var(--animation-scale-up) forwards;
   }
+
+  .hero .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--text-gap);
+  }
+
 
   .hero p {
     font-size: var(--subhead-size);
@@ -209,6 +218,7 @@
     border-radius: var(--radius-5);
     text-decoration: none;
     opacity: 0;
+    text-wrap: nowrap;
   }
 
   .hero .start {
@@ -244,6 +254,7 @@
     letter-spacing: -0.07em;
     line-height: var(--font-lineheight-0);
     text-align: center;
+    text-wrap: pretty;
     max-width: 40ch;
     opacity: 0;
     animation:
