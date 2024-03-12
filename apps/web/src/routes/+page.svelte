@@ -79,8 +79,7 @@
   <section class="hero">
     <img src="/images/logo-violet.svg" alt="AirBadge logo" />
     <h1>
-      Auth & Payment <em>ready in minutes</em>
-      .
+      Auth & Payment <em>ready in minutes</em>.
     </h1>
     <p>
       <b>AirBadge</b>
