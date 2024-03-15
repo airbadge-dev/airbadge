@@ -12,7 +12,7 @@ describe('portal session', () => {
   test('without user, raise error', async () => {
     const state = { user: null, billing }
 
-    await expect(handler(null, state)).toError(401, 'Authentication required')
+    await expect(handler(null, state)).toRedirect(303, '/auth/signin?callbackUrl=/billing/portal')
   })
 
   test('with user, redirects to portal session', async () => {

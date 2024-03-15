@@ -2,8 +2,8 @@ import { error } from '@sveltejs/kit'
 import { redirect } from './utils'
 
 export default async function handler({ url }, { user, plans, billing, options }) {
-  if (!user) error(401, 'Authentication required')
-  if (user.subscriptionId) error(403, 'User is already subscribed')
+  if (!user) return redirect(303, `/auth/signin?callbackUrl=${url.pathname}${url.search}`)
+  if (user.subscriptionId) return redirect(303, '/?event=already-subscribed')
 
   const planId = url.searchParams.get('plan')
   const plan = planId ? plans.getById(planId) : plans.getDefault()

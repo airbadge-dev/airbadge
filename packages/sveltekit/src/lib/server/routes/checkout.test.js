@@ -1,10 +1,24 @@
 import handler from './checkout'
 
 describe('checkout', () => {
-  test('without user, raises error', async () => {
-    const response = handler({}, {})
+  describe('without user, redirects to sign in', () => {
+    test('without plan', async () => {
+      const event = {
+        url: new URL('http://localhost/billing/checkout')
+      }
+      const response = handler(event, {})
 
-    await expect(response).toError(401, 'Authentication required')
+      await expect(response).toRedirect(303, '/auth/signin?callbackUrl=/billing/checkout')
+    })
+
+    test('with plan', async () => {
+      const event = {
+        url: new URL('http://localhost/billing/checkout?plan=basic')
+      }
+      const response = handler(event, {})
+
+      await expect(response).toRedirect(303, '/auth/signin?callbackUrl=/billing/checkout?plan=basic')
+    })
   })
 
   test('when user already subscribed, raises error', async () => {
@@ -15,7 +29,7 @@ describe('checkout', () => {
     }
     const response = handler({}, state)
 
-    await expect(response).toError(403, 'User is already subscribed')
+    await expect(response).toRedirect(303, '/?event=already-subscribed')
   })
 
   test('when plan not found, raises error', async () => {
