@@ -16,6 +16,7 @@ import { env } from '$env/dynamic/private'
 
 Sentry.init({
   dsn: 'https://f0853627ab1eb2822f1a2aa3b572cdd7@o4506863366832128.ingest.us.sentry.io/4506953208954880',
+  enableTracing: false,
   tracesSampleRate: 1
 })
 
