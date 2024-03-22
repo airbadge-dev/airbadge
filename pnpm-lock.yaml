@@ -26,6 +26,9 @@ importers:
 
   apps/app:
     dependencies:
+      '@sentry/sveltekit':
+        specifier: ^7.105.0
+        version: 7.105.0(@sveltejs/kit@2.0.6)(svelte@4.2.8)
       '@sentry/utils':
         specifier: ^7.105.0
         version: 7.105.0

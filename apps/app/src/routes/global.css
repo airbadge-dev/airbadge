@@ -5,7 +5,7 @@
 :root {
   --font-sans: Inter;
   --font-heading: Inter;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 body {

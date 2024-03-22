@@ -2,4 +2,4 @@
   import './global.css'
 </script>
 
-<slot/>
+<slot />
