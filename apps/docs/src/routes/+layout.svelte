@@ -29,7 +29,7 @@
   </a>
 
   <nav>
-    <a href="https://discord.gg/KjGNepeChg" target="_blank">
+    <a href="https://airbadge.dev/discord" target="_blank">
       <Icon icon="bi-discord" />
     </a>
 
