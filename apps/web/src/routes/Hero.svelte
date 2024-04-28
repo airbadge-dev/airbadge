@@ -230,6 +230,12 @@
     & img {
       height: 50px;
       filter: grayscale(1) brightness(0.75) invert(1);
+      transition: 0.2s all var(--ease-in-out-2);
+
+      &:hover {
+        filter: grayscale(0);
+        scale: 1.05;
+      }
     }
   }
 </style>
