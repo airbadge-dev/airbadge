@@ -1,5 +1,23 @@
 <script>
   import Icon from '@iconify/svelte'
+
+  const logos = [
+    {
+      name: 'Svelte',
+      url: 'https://kit.svelte.dev',
+      image: '/logos/svelte.svg'
+    },
+    {
+      name: 'Auth.js',
+      url: 'https://authjs.dev',
+      image: '/logos/authjs.png'
+    },
+    {
+      name: 'Stripe',
+      url: 'https://stripe.com',
+      image: '/logos/stripe.svg'
+    }
+  ]
 </script>
 
 <section class="hero">
@@ -10,8 +28,7 @@
       Auth & Payment<br/>ready in <em>minutes</em>.
     </h1>
     <p>
-      <b>AirBadge</b> connects <b>Auth.js</b> with <b>Stripe</b>.
-      Test your next SaaS idea quickly. It's free and open source.
+      Test your next SaaS idea quickly. <b>AirBadge</b> connects <b>Auth.js</b> with <b>Stripe</b>. It's free and open source.
     </p>
   </div>
 
@@ -25,7 +42,18 @@
       <Icon icon="tabler:book" />
       <span>Documentation</span>
     </a>
+  </div>
 
+  <div class="logos">
+    <h2>Built with</h2>
+
+    <nav>
+      {#each logos as logo}
+        <a href={logo.url} title={logo.name}>
+          <img src={logo.image} alt={logo.name}/>
+        </a>
+      {/each}
+    </nav>
   </div>
 </section>
 
@@ -37,6 +65,7 @@
     --subhead-size: var(--font-size-1);
     --hero-margin: var(--size-9) var(--size-7) var(--size-7);
     --hero-gap: var(--size-7);
+    --hero-height: auto;
     --text-gap: var(--size-5);
 
     @media (--sm-n-above) {
@@ -50,6 +79,10 @@
       --subhead-size: var(--font-size-3);
       --hero-margin: var(--size-11);
       --hero-gap: var(--size-9);
+      --hero-height: 90vh;
+    }
+
+    @media (--md-n-above) {
     }
   }
 
@@ -60,6 +93,7 @@
     justify-content: center;
     margin: var(--hero-margin);
     gap: var(--hero-gap);
+    min-height: var(--hero-height);
   }
 
   .hero .shadow {
@@ -95,7 +129,7 @@
 
     & b {
       font-weight: 500;
-      color: var(--gray-5);
+      color: var(--gray-4);
     }
   }
 
@@ -104,7 +138,7 @@
     gap: var(--size-4);
   }
 
-  .hero a {
+  .hero .buttons a {
     display: flex;
     flex-direction: row;
     gap: var(--size-1);
@@ -147,6 +181,9 @@
 
   h1 {
     color: var(--gray-4);
+    background: linear-gradient(var(--gray-2), var(--gray-7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: var(--heading-size);
     font-weight: 700;
     letter-spacing: -0.05em;
@@ -160,10 +197,39 @@
       var(--animation-slide-in-up) 0.2s forwards;
 
     & em {
+      -webkit-text-fill-color: var(--violet-4);
       color: var(--violet-4);
       font-style: normal;
       text-decoration-thickness: 5px;
       text-underline-offset: 5px;
+    }
+  }
+
+  .logos {
+    margin-top: 6rem;
+    padding: var(--size-6);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--size-5);
+    opacity: 0;
+    animation: 0.8s fade-in 1.1s forwards var(--ease-in-out-4);
+
+    & h2 {
+      font-size: var(--font-size-1);
+      font-weight: normal;
+      color: var(--gray-3);
+    }
+  }
+
+  .logos nav {
+    display: flex;
+    flex-direction: row;
+    gap: var(--size-6);
+
+    & img {
+      height: 50px;
+      filter: grayscale(1) brightness(0.75) invert(1);
     }
   }
 </style>
