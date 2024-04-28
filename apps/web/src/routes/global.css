@@ -79,5 +79,6 @@ h3 {
     padding: var(--size-1) var(--size-2);
     background: var(--violet-8);
     border-radius: var(--radius);
+    text-wrap: nowrap;
   }
 }
