@@ -38,3 +38,46 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.text-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+p {
+  max-width: 60ch;
+  color: var(--gray-5);
+}
+
+h2 {
+  letter-spacing: -0.05em;
+  line-height: 2.8rem;
+  font-weight: 600;
+  max-width: 20ch;
+}
+
+h3 {
+  letter-spacing: -0.05em;
+  line-height: 1rem;
+  font-weight: 500;
+  font-size: var(--font-size-2);
+  max-width: 20ch;
+}
+
+.pill {
+  --radius: 7px;
+
+  font-weight: 500;
+  background: var(--violet-12);
+  width: min-content;
+  border-radius: var(--radius);
+
+  & span {
+    margin-top: 5px;
+    display: inline-block;
+    padding: var(--size-1) var(--size-2);
+    background: var(--violet-8);
+    border-radius: var(--radius);
+  }
+}

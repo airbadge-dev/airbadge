@@ -7,6 +7,7 @@
   import Steps from './Steps.svelte'
   import Carousel from './Carousel.svelte'
   import Hero from './Hero.svelte'
+  import Benefits from './Benefits.svelte'
 
   const steps = [
     {
@@ -77,6 +78,7 @@
 
 <main>
   <Hero/>
+  <Benefits/>
 
   <!--
   <div class="demo-container view-{selected.view}">
