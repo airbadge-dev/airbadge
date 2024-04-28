@@ -24,7 +24,7 @@
   <img class="shadow" src="/images/hero-shadow.svg" alt="shadow" aria-hidden/>
 
   <div class="text">
-    <h1>
+    <h1 class="text-gradient">
       Auth & Payment<br/>ready in <em>minutes</em>.
     </h1>
     <p>
@@ -181,9 +181,6 @@
 
   h1 {
     color: var(--gray-4);
-    background: linear-gradient(var(--gray-2), var(--gray-7));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     font-size: var(--heading-size);
     font-weight: 700;
     letter-spacing: -0.05em;

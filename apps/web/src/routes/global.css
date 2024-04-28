@@ -32,3 +32,9 @@ body {
   background-repeat: no-repeat;
   background-position: top center;
 }
+
+.text-gradient {
+  background: linear-gradient(var(--gray-2), var(--gray-7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
