@@ -16,5 +16,8 @@ body {
   justify-content: center;
   margin: 0;
   padding-bottom: 10rem;
-  background: var(--background-color);
+  background-color: var(--background-color);
+  background-image: url(/images/background.svg);
+  background-repeat: no-repeat;
+  background-position: top center;
 }
