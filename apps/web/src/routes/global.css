@@ -1,11 +1,12 @@
 @import 'open-props/postcss/style';
-@import 'open-props/normalize.min.css';
+@import 'open-props/normalize.dark.min.css';
 @import 'open-props/media.min.css';
 
 :root {
   --font-sans: Inter;
   --font-heading: Inter;
   --font-mono: "JetBrains Mono", monospace;
+  --background-color: #0A0A0E;
 }
 
 body {
@@ -15,5 +16,5 @@ body {
   justify-content: center;
   margin: 0;
   padding-bottom: 10rem;
-  background: var(--gray-1);
+  background: var(--background-color);
 }
