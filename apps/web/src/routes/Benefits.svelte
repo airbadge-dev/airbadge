@@ -3,11 +3,11 @@
 </script>
 
 <section id="#benefits">
-  <div class="text-block">
+  <hgroup class="text-block">
     <span class="pill"><span>Benefits</span></span>
     <h2 class="text-gradient">What if starting was easier?</h2>
     <p>With a few lines of code you can have Auth0 integrated in any app written in any language, and any framework. We provide 30+ SDKs & Quickstarts to help you succeed on your implementation</p>
-  </div>
+  </hgroup>
 
   <div class="benefits">
     <article>
@@ -73,7 +73,7 @@
     gap: var(--size-2);
   }
 
-  .text-block {
+  hgroup {
     align-items: var(--block-align-items);
     padding: var(--block-padding);
 

@@ -39,7 +39,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.text-block {
+hgroup {
   display: flex;
   flex-direction: column;
   gap: var(--size-4);
