@@ -109,7 +109,7 @@
     @media (--sm-n-above) {
       --logo-height: 24px;
       --footer-direction: row;
-      --footer-justify: space-around;
+      --footer-justify: space-between;
       --footer-padding: var(--size-8) var(--size-2);
       --footer-about-direction: column;
       --footer-about-justify: none;
