@@ -78,7 +78,6 @@
 <main>
   <section class="hero">
     <img class="shadow" src="/images/hero-shadow.svg" alt="shadow" aria-hidden/>
-    <img class="logo" src="/images/logo-white.svg" alt="AirBadge logo" />
 
     <div class="text">
       <h1>
@@ -104,6 +103,7 @@
     </div>
   </section>
 
+  <!--
   <div class="demo-container view-{selected.view}">
     <Steps bind:selectedIndex {selected} {steps} />
 
@@ -115,44 +115,30 @@
       <Webhooks {selected} />
     </section>
   </div>
+  -->
 </main>
 
 <style lang="postcss">
   @import 'open-props/media.min.css';
 
   :root {
-    --logo-height: 22px;
     --heading-size: 2rem;
     --subhead-size: var(--font-size-1);
     --hero-margin: var(--size-9) var(--size-7) var(--size-7);
     --hero-gap: var(--size-7);
     --text-gap: var(--size-5);
-    --screen-width: 98vw;
 
     @media (--sm-n-above) {
-      --logo-height: 24px;
       --heading-size: 2.4rem;
       --subhead-size: var(--font-size-2);
       --hero-gap: var(--size-7);
-      --screen-width: 90vw;
     }
 
     @media (--md-n-above) {
-      --logo-height: 26px;
-      --heading-size: 2.8rem;
-      --subhead-size: var(--font-size-3);
-      --hero-margin: var(--size-10);
-      --hero-gap: var(--size-8);
-      --screen-width: 480px;
-    }
-
-    @media (--lg-n-above) {
-      --logo-height: 28px;
       --heading-size: 3.4rem;
       --subhead-size: var(--font-size-3);
       --hero-margin: var(--size-11);
       --hero-gap: var(--size-9);
-      --screen-width: 580px;
     }
   }
 
@@ -174,6 +160,7 @@
   }
 
   .hero .shadow {
+    z-index: -1;
     background: url(/images/hero-shadow.svg) center no-repeat;
     position: absolute;
     width: 100vw;
@@ -182,14 +169,6 @@
     opacity: 0;
     animation: 0.7s fade-in 0.5s forwards;
     animation-timing-function: var(--ease-in-out-3);
-  }
-
-
-  .hero img.logo {
-    height: var(--logo-height);
-    animation:
-      var(--animation-slide-in-down) forwards,
-      var(--animation-scale-up) forwards;
   }
 
   .hero .text {
@@ -243,8 +222,8 @@
     scale: 0.8;
     animation:
       var(--animation-fade-in) 0.5s forwards,
-      var(--animation-slide-in-up) 0.5s forwards,
-      var(--animation-scale-up) 0.5s forwards;
+      var(--animation-slide-in-up) 0.4s forwards,
+      var(--animation-scale-up) 0.4s forwards;
 
     &:hover {
       background: var(--violet-5);
@@ -256,8 +235,8 @@
     color: var(--gray-1);
     border: solid 1px var(--gray-4);
     animation:
-      var(--animation-fade-in) 0.4s forwards,
-      var(--animation-slide-in-up) 0.4s forwards;
+      var(--animation-fade-in) 0.5s forwards,
+      var(--animation-slide-in-up) 0.5s forwards;
 
     &:hover {
       background: var(--gray-6);

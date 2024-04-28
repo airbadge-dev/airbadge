@@ -7,15 +7,26 @@
   --font-heading: Inter;
   --font-mono: "JetBrains Mono", monospace;
   --background-color: #0A0A0E;
+  --screen-width: 100vw;
+
+  @media (--sm-n-above) {
+  }
+
+  @media (--md-n-above) {
+    --screen-width: 100vw;
+  }
+
+  @media (--lg-n-above) {
+    --screen-width: 1000px;
+  }
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0;
-  padding-bottom: 10rem;
   background-color: var(--background-color);
   background-image: url(/images/background.svg);
   background-repeat: no-repeat;
