@@ -84,6 +84,7 @@
       <nav>
         <a href="https://github.com/joshnuss/airbadge">GitHub</a>
         <a href="https://demo.airbadge.dev">Demo</a>
+        <a href="https://github.com/joshnuss/airbadge-example">Template</a>
         <a href="/discord">Discord</a>
       </nav>
     </section>
