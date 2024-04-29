@@ -8,6 +8,7 @@
   import Carousel from './Carousel.svelte'
   import Hero from './Hero.svelte'
   import Benefits from './Benefits.svelte'
+  import Demo from './Demo.svelte'
   import CTA from './CTA.svelte'
 
   const steps = [
@@ -80,6 +81,7 @@
 <main>
   <Hero/>
   <Benefits/>
+  <Demo/>
   <CTA/>
 
   <!--
