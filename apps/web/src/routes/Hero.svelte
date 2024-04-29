@@ -33,12 +33,12 @@
   </div>
 
   <div class="buttons">
-    <a class="start" href="https://docs.airbadge.dev/getting-started">
+    <a class="btn primary start" href="https://docs.airbadge.dev/getting-started">
       <span>Get started</span>
       <Icon icon="ic:round-chevron-right" />
     </a>
 
-    <a class="docs" href="https://docs.airbadge.dev">
+    <a class="btn docs" href="https://docs.airbadge.dev">
       <Icon icon="tabler:book" />
       <span>Documentation</span>
     </a>
@@ -139,44 +139,21 @@
   }
 
   .hero .buttons a {
-    display: flex;
-    flex-direction: row;
-    gap: var(--size-1);
-    font-size: var(--font-size-2);
-    font-weight: 500;
-    padding: var(--size-2) var(--size-4);
-    border-radius: var(--radius-2);
-    text-decoration: none;
     opacity: 0;
-    text-wrap: nowrap;
-    letter-spacing: -0.04em;
   }
 
   .hero .start {
-    background: var(--gray-1);
-    color: var(--gray-8);
     scale: 0.8;
     animation:
       var(--animation-fade-in) 0.5s forwards,
       var(--animation-slide-in-up) 0.4s forwards,
       var(--animation-scale-up) 0.4s forwards;
-
-    &:hover {
-      background: var(--violet-5);
-    }
   }
 
   .hero .docs {
-    background: var(--background-color);
-    color: var(--gray-1);
-    border: solid 1px var(--gray-4);
     animation:
       var(--animation-fade-in) 0.5s forwards,
       var(--animation-slide-in-up) 0.5s forwards;
-
-    &:hover {
-      background: var(--gray-6);
-    }
   }
 
   h1 {

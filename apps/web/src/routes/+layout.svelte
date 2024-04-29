@@ -42,7 +42,7 @@
       <a class="action" href={menu.path}>{menu.title}</a>
     {/each}
 
-    <a href="https://docs.airbadge.dev/getting-started" class="cta">
+    <a href="https://docs.airbadge.dev/getting-started" class="cta btn primary">
       Get started
     </a>
 
@@ -175,15 +175,11 @@
 
   header .cta {
     padding: 0.3rem 1rem;
-    color: var(--gray-10);
     border-radius: var(--radius-2);
-    background: var(--gray-1);
-    font-weight: 500;
-    transition: all 0.1s var(--ease-in-out-3);
+    color: var(--gray-7);
   }
 
   header .cta:hover {
-    background: var(--violet-4);
     color: var(--gray-1);
     text-decoration: none;
   }
@@ -201,7 +197,7 @@
   footer {
     width: 100%;
     background: var(--background-color);
-    border-top: solid 1px var(--gray-8);
+    border-top: solid 1px var(--gray-10);
     display: flex;
     justify-content: center;
     gap: var(--size-4);

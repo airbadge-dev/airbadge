@@ -82,3 +82,36 @@ h3 {
     text-wrap: nowrap;
   }
 }
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  gap: var(--size-1);
+  font-size: var(--font-size-2);
+  font-weight: 500;
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-2);
+  text-decoration: none;
+  text-wrap: nowrap;
+  letter-spacing: -0.04em;
+  background: var(--background-color);
+  color: var(--gray-1);
+  border: solid 1px var(--gray-4);
+  transition: all 0.2s var(--ease-in-out-2);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--gray-8);
+  }
+}
+
+.btn.primary {
+  background: var(--gray-1);
+  color: var(--gray-8);
+
+  &:hover {
+    color: var(--gray-2);
+    border-color: var(--gray-8);
+    background: var(--violet-5);
+  }
+}
