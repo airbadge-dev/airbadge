@@ -39,6 +39,10 @@ export const handle = SvelteKitAuth({
     --block-align-items: center;
     --block-align-text: center;
     --block-padding: 0 0 4rem 0;
+    --flex-direction: column;
+    --flex-gap: var(--size-2);
+    --flex-align: center;
+    --font-size: 1rem;
 
     @media (--sm-n-above) {
       --block-padding: 0 0 6rem 0;
@@ -47,24 +51,25 @@ export const handle = SvelteKitAuth({
     @media (--md-n-above) {
       --block-align-items: flex-start;
       --block-align-text: left;
-      --block-padding: 0 var(--size-6);
     }
 
     @media (--lg-n-above) {
       --block-padding: 0;
+      --flex-direction: row-reverse;
+      --flex-gap: var(--size-9);
+      --flex-align: flex-start;
+      --font-size: 1.05rem;
     }
   }
 
   section {
     width: var(--screen-width);
     position: relative;
-    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    gap: var(--size-2);
+    flex-direction: var(--flex-direction);
+    align-items: var(--flex-align);
+    gap: var(--flex-gap);
     padding: 12rem 0;
-    display: flex;
-    align-items: center;
   }
 
   hgroup {
@@ -82,6 +87,7 @@ export const handle = SvelteKitAuth({
     border: solid 1px var(--gray-7);
     border-radius: var(--radius-2);
     background: linear-gradient(180deg, #0A0A0D 5%, #15151F 50%);
-    overflow: scroll;
+    overflow: auto;
+    font-size: var(--font-size);
   }
 </style>
