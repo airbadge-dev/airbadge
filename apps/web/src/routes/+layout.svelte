@@ -52,6 +52,20 @@
   </nav>
 </header>
 
+<div class="overlay" class:open on:click={closeMenu} aria-hidden="true" />
+<div class="popup-menu" class:open role="dialog">
+  <nav>
+    {#each menus as menu}
+      <a href={menu.path} on:click={closeMenu}>{menu.title}</a>
+    {/each}
+
+  </nav>
+
+  <a href="https://docs.airbadge.dev/getting-started" class="cta btn primary" on:click={closeMenu}>
+    Get started
+  </a>
+</div>
+
 <slot />
 
 <footer>
@@ -249,5 +263,66 @@
 
   footer a {
     color: var(--gray-2);
+  }
+
+  .overlay {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #2226;
+    top: 80px;
+    backdrop-filter: blur(4px);
+    z-index: var(--layer-4);
+
+    @media (--lg-n-above) {
+      display: none !important;
+    }
+  }
+
+  .overlay.open {
+    opacity: 0;
+    animation: fade-in 0.2s forwards;
+  }
+
+  .popup-menu {
+    display: none;
+    position: absolute;
+    top: 82px;
+    background: var(--background-color);
+    width: 100vw;
+    margin: -1rem 1rem 0 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: solid 1px var(--gray-8);
+    box-shadow: var(--shadow-5);
+    font-size: var(--font-size-3);
+    z-index: var(--layer-4);
+
+    @media (--lg-n-above) {
+      display: none !important;
+    }
+  }
+
+  .popup-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+  }
+
+  .popup-menu nav a {
+    padding: var(--size-3) 0;
+    color: var(--gray-2);
+    border-bottom: solid 0.5px var(--gray-8);
+  }
+
+  .popup-menu .cta {
+    margin: var(--size-4) 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .open {
+    display: block;
   }
 </style>
