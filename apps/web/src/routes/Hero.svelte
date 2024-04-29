@@ -60,7 +60,7 @@
 <style lang="postcss">
   @import 'open-props/media.min.css';
 
-  :root {
+  section {
     --heading-size: 2rem;
     --subhead-size: var(--font-size-1);
     --hero-margin: var(--size-11) var(--size-7) var(--size-7);

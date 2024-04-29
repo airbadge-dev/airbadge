@@ -42,7 +42,7 @@
 <style>
   @import 'open-props/media.min.css';
 
-  :root {
+  section {
     --block-align-items: center;
     --block-align-text: center;
     --block-padding: 0;
