@@ -63,7 +63,7 @@
   :root {
     --heading-size: 2rem;
     --subhead-size: var(--font-size-1);
-    --hero-margin: var(--size-9) var(--size-7) var(--size-7);
+    --hero-margin: var(--size-11) var(--size-7) var(--size-7);
     --hero-gap: var(--size-7);
     --hero-height: auto;
     --text-gap: var(--size-5);
