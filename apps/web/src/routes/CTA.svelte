@@ -1,7 +1,3 @@
-<script>
-  import Icon from '@iconify/svelte'
-</script>
-
 <section id="#cta">
   <img class="globe" src="/images/globe.svg" aria-hidden alt="globe"/>
   <div class="container">
