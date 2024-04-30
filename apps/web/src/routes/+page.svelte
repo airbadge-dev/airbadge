@@ -9,6 +9,7 @@
   import Hero from './Hero.svelte'
   import Benefits from './Benefits.svelte'
   import Demo from './Demo.svelte'
+  import Pricing from './Pricing.svelte'
   import CTA from './CTA.svelte'
 
   const steps = [
@@ -82,6 +83,7 @@
   <Hero/>
   <Benefits/>
   <Demo/>
+  <Pricing/>
   <CTA/>
 
   <!--
