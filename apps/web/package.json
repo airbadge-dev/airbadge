@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "@repo/shared": "workspace:^",
     "@iconify/svelte": "^3.1.6",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",

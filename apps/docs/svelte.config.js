@@ -4,7 +4,7 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeToc from '@jsdevtools/rehype-toc'
 import rehypeWrap from 'rehype-wrap'
-import { highlighter } from './src/lib/highlighter.js'
+import { highlighter } from '@repo/shared/highlighter'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
