@@ -142,11 +142,20 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-7);
+    transition: all 0.2s var(--ease-in-out-2);
+  }
 
-    &.recommended {
-      background: linear-gradient(180deg, #0A0A0E, #15151F);
-      border: solid 1px var(--indigo-8);
-    }
+  .plan:hover {
+    border-color: var(--gray-5);
+    scale: 1.015;
+  }
+
+  .plan.recommended {
+    background: linear-gradient(180deg, #0A0A0E, #15151F);
+    border: solid 1px var(--indigo-8);
+  }
+  .plan.recommended:hover {
+    border-color: var(--indigo-4);
   }
 
   .title {
