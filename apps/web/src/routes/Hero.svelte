@@ -143,11 +143,9 @@
   }
 
   .hero .start {
-    scale: 0.8;
     animation:
       var(--animation-fade-in) 0.5s forwards,
-      var(--animation-slide-in-up) 0.4s forwards,
-      var(--animation-scale-up) 0.4s forwards;
+      var(--animation-slide-in-up) 0.4s forwards;
   }
 
   .hero .docs {
