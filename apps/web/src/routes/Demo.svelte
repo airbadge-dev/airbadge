@@ -7,10 +7,7 @@
 export const handle = SvelteKitAuth({
   adapter: PrismaAdapter(...),
 
-  providers: [
-    Google(...),
-    Apple(...),
-  ],
+  providers: [ Google, Apple ],
 
   plans: [
     { id: 'basic', priceId: 'price_X213DS3'},
