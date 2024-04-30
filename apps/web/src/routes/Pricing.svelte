@@ -38,7 +38,7 @@
   ]
 </script>
 
-<section id="#pricing">
+<section id="pricing">
   <hgroup>
     <span class="pill"><span>Pricing</span></span>
 

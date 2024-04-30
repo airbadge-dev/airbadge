@@ -1,4 +1,4 @@
-<section id="#cta">
+<section id="cta">
   <img class="globe" src="/images/globe.svg" aria-hidden alt="globe"/>
   <div class="container">
     <hgroup>

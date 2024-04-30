@@ -21,7 +21,7 @@ export const handle = SvelteKitAuth({
     console.log({ formatted })
   })
 </script>
-<section id="#demo">
+<section id="demo">
   <hgroup>
     <span class="pill"><span>Demo</span></span>
 

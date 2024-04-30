@@ -2,7 +2,7 @@
   import Icon from '@iconify/svelte'
 </script>
 
-<section id="#benefits">
+<section id="benefits">
   <hgroup class="text-block">
     <span class="pill"><span>Benefits</span></span>
     <h2 class="text-gradient">What if starting was easier?</h2>

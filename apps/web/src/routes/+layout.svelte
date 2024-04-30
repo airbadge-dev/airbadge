@@ -5,7 +5,7 @@
   const menus = [
     {
       title: 'How it works',
-      path: '/#how-it-works'
+      path: '/#demo'
     },
     {
       title: 'Features',
