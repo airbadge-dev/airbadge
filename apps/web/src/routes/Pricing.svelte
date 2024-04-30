@@ -142,6 +142,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-7);
+
+    &.recommended {
+      background: linear-gradient(180deg, #0A0A0E, #15151F);
+      border: solid 1px var(--indigo-8);
+    }
   }
 
   .title {
