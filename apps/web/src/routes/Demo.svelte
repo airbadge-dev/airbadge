@@ -1,4 +1,7 @@
 <script>
+  import { highlighter } from '@repo/shared/highlighter'
+  import { onMount } from 'svelte'
+
   const code = `import { SvelteKitAuth } from '@airbadge/sveltekit'
 
 export const handle = SvelteKitAuth({
@@ -10,11 +13,16 @@ export const handle = SvelteKitAuth({
   ],
 
   plans: [
-    { id: "basic", priceId: 'price_X213DS3'},
-    { id: "pro", priceId: 'price_4F32FA6'}
+    { id: 'basic', priceId: 'price_X213DS3'},
+    { id: 'pro', priceId: 'price_4F32FA6'}
   ]
-})
-`
+})`
+  let formatted
+
+  onMount(async () => {
+    formatted = await highlighter(code, 'js')
+    console.log({ formatted })
+  })
 </script>
 <section id="#demo">
   <hgroup>
@@ -29,7 +37,7 @@ export const handle = SvelteKitAuth({
     </a>
   </hgroup>
 
-  <pre>{code}</pre>
+  <pre>{@html formatted}</pre>
 </section>
 
 <style>
@@ -43,6 +51,7 @@ export const handle = SvelteKitAuth({
     --flex-gap: var(--size-2);
     --flex-align: center;
     --font-size: 1rem;
+    --pre-padding: var(--size-3);
 
     @media (--sm-n-above) {
       --block-padding: 0 0 6rem 0;
@@ -55,6 +64,7 @@ export const handle = SvelteKitAuth({
 
     @media (--lg-n-above) {
       --block-padding: 0;
+      --pre-padding: var(--size-6);
       --flex-direction: row-reverse;
       --flex-gap: var(--size-9);
       --flex-align: flex-start;
@@ -83,11 +93,15 @@ export const handle = SvelteKitAuth({
 
   pre {
     width: calc(var(--screen-width) - 3rem);
-    padding: var(--size-3);
+    padding: var(--pre-padding);
     border: solid 1px var(--gray-7);
     border-radius: var(--radius-2);
     background: linear-gradient(180deg, #0A0A0D 5%, #15151F 50%);
     overflow: auto;
     font-size: var(--font-size);
+  }
+
+  section :global(button.copy) {
+    display: none;
   }
 </style>

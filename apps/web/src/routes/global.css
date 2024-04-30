@@ -115,3 +115,9 @@ h3 {
     background: var(--violet-5);
   }
 }
+
+pre {
+  --shiki-token-keyword: #F97583;
+  --shiki-token-function: #B392F0;
+  --shiki-token-string-expression: #9ECBFF;
+}
