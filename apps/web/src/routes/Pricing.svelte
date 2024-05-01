@@ -39,42 +39,44 @@
 </script>
 
 <section id="pricing">
-  <hgroup>
-    <span class="pill"><span>Pricing</span></span>
+  <div class="container">
+    <hgroup>
+      <span class="pill"><span>Pricing</span></span>
 
-    <h2 class="text-gradient">Pricing that<br/>scales with you</h2>
+      <h2 class="text-gradient">Pricing that<br/>scales with you</h2>
 
-    <p>10,000 monthly active users free. Surprisingly simple, exceptionally powerful. Every feature you need now and as you scale.</p>
-  </hgroup>
+      <p>10,000 monthly active users free. Surprisingly simple, exceptionally powerful. Every feature you need now and as you scale.</p>
+    </hgroup>
 
-  <div class="plans">
-    {#each plans as plan, index}
-      <div class="plan" class:recommended={plan.recommended}>
-        <div class="title">
-          <h3 class="text-gradient">{plan.name}</h3>
-          <p>{plan.description}</p>
+    <div class="plans">
+      {#each plans as plan, index}
+        <div class="plan" class:recommended={plan.recommended}>
+          <div class="title">
+            <h3 class="text-gradient">{plan.name}</h3>
+            <p>{plan.description}</p>
+          </div>
+
+          <div class="price">
+            <span class="amount text-gradient">${plan.price/100}</span>
+            <span class="period">{ plan.price == 0 ? 'Forever' : 'Monthly' }</span>
+          </div>
+
+          <div class="features">
+            <h4>{ index == 0 ? "Includes" : `Everything in ${plans[index-1].name}, plus`}:</h4>
+            <ul>
+              {#each plan.features as feature}
+                <li>
+                  <Icon icon="ic:twotone-check"/>
+                  {feature}
+                </li>
+              {/each}
+            </ul>
+          </div>
+
+          <a class="btn" class:primary={plan.recommended} href="https://app.airbadge.dev/billing/checkout?plan={plan.id}">Get started</a>
         </div>
-
-        <div class="price">
-          <span class="amount text-gradient">${plan.price/100}</span>
-          <span class="period">{ plan.price == 0 ? 'Forever' : 'Monthly' }</span>
-        </div>
-
-        <div class="features">
-          <h4>{ index == 0 ? "Includes" : `Everything in ${plans[index-1].name}, plus`}:</h4>
-          <ul>
-            {#each plan.features as feature}
-              <li>
-                <Icon icon="ic:twotone-check"/>
-                {feature}
-              </li>
-            {/each}
-          </ul>
-        </div>
-
-        <a class="btn" class:primary={plan.recommended} href="https://app.airbadge.dev/billing/checkout?plan={plan.id}">Get started</a>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 
 </section>
@@ -106,8 +108,16 @@
   }
 
   section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background:
+      url(/images/cube1.svg) 20% bottom no-repeat,
+      url(/images/cube2.svg) 90% 90% no-repeat;
+  }
+
+  .container {
     width: var(--screen-width);
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: var(--flex-align);
@@ -135,6 +145,7 @@
 
   .plan {
     flex: 1;
+    background: var(--background-color);
     border-radius: var(--radius-3);
     border: solid 1px var(--gray-8);
     padding: var(--size-6);
