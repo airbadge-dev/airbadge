@@ -81,7 +81,7 @@
     display: flex;
     justify-content: center;
     background:
-      url(/images/star.svg) 90% 90% no-repeat;
+      url(/images/star.svg) 90% 70% no-repeat;
   }
 
   .container {
