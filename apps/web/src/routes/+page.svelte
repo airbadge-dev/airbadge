@@ -3,6 +3,7 @@
   import Benefits from './Benefits.svelte'
   import Demo from './Demo.svelte'
   import Pricing from './Pricing.svelte'
+  import Features from './Features.svelte'
   import CTA from './CTA.svelte'
 </script>
 
@@ -13,6 +14,7 @@
 <main>
   <Hero/>
   <Benefits/>
+  <Features/>
   <Demo/>
   <Pricing/>
   <CTA/>
