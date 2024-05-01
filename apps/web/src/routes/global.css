@@ -43,6 +43,7 @@ hgroup {
   display: flex;
   flex-direction: column;
   gap: var(--size-4);
+  margin: 0 var(--size-3);
 }
 
 p {

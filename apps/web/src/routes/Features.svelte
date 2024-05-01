@@ -1,40 +1,25 @@
 <script>
-  import Icon from '@iconify/svelte'
-
-  const plans = [
+  const features = [
     {
-      id: 'free',
-      name: 'Free',
-      description: 'For individuals and teams who want to start building products',
-      price: 0,
-      features: [
-        'Feature #1',
-        'Feature #2',
-        'Feature #3',
-      ]
+      title: 'Payment integration',
+      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
     },
     {
-      id: 'pro',
-      name: 'Pro',
-      description: 'For individuals and teams who want to start building products',
-      price: 9900,
-      recommended: true,
-      features: [
-        'Feature #1',
-        'Feature #2',
-      ]
+      title: 'Authentication',
+      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
     },
     {
-      id: 'enterprise',
-      name: 'Enterprise',
-      description: 'For individuals and teams who want to start building products',
-      price: 20000,
-      features: [
-        'Feature #1',
-        'Feature #2',
-        'Feature #3',
-      ]
-    }
+      title: 'Minimal code',
+      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+    },
+    {
+      title: 'Open Source & Self-hostable',
+      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+    },
+    {
+      title: 'Team support',
+      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+    },
   ]
 </script>
 
@@ -49,7 +34,12 @@
     </hgroup>
 
     <div class="features">
-
+      {#each features as feature}
+        <div class="feature">
+          <h3 class="text-shadow">{feature.title}</h3>
+          <p>{feature.description}</p>
+        </div>
+      {/each}
     </div>
   </div>
 
@@ -63,19 +53,26 @@
     --block-align-text: center;
     --block-padding: 0 0 4rem 0;
     --flex-gap: var(--size-2);
-    --flex-align: center;
+    --grid-template-columns: 1fr;
+    --grid-template-rows: auto;
+    --grid-column: 1;
 
     @media (--sm-n-above) {
       --block-padding: 0 0 6rem 0;
     }
 
     @media (--md-n-above) {
+      --grid-template-columns: repeat(2, 1fr);
+      --grid-template-rows: auto;
+      --grid-column: 1 / 3;
     }
 
     @media (--lg-n-above) {
       --block-padding: 0;
       --pre-padding: var(--size-6);
       --flex-gap: var(--size-9);
+      --grid-template-columns: repeat(3, 1fr);
+      --grid-column: 1 / 3;
     }
   }
 
@@ -91,7 +88,6 @@
     width: var(--screen-width);
     display: flex;
     flex-direction: column;
-    align-items: var(--flex-align);
     gap: var(--flex-gap);
     padding: 4rem 0;
   }
@@ -106,11 +102,34 @@
   }
 
   .features {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: var(--grid-template-columns);
+    grid-template-rows: var(--grid-template-rows);
     width: var(--screen-width);
     padding: var(--size-4);
+    gap: var(--size-2);
+  }
+
+  .feature {
+    border: solid 1px var(--gray-9);
+    border-radius: var(--radius-3);
+    background: linear-gradient(180deg, #0A0A0E, #15151F);
+    padding: var(--size-6);
+    display: flex;
+    flex-direction: column;
     gap: var(--size-4);
+  }
+
+  .feature:nth-child(4) {
+    grid-column: var(--grid-column);
+  }
+
+  .feature h3 {
+    font-size: var(--font-size-3);
+  }
+
+  .feature p {
+    max-width: 40ch;
+    font-size: 0.9rem;
   }
 </style>
