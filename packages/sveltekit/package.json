@@ -26,6 +26,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js"
+    },
+    "client": {
+      "types": "./dist/client.d.ts",
+      "svelte": "./dist/client.js"
     }
   },
   "files": [
