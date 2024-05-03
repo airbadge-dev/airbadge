@@ -26,7 +26,7 @@
   text {
     transition: var(--transition);
     font-size: 8px;
-    fill: var(--gray-2);
+    fill: var(--gray-4);
   }
 
   .active text {
@@ -41,13 +41,16 @@
     transition: var(--transition);
     width: 6px;
     height: 6px;
-    fill: var(--gray-1);
+    fill: var(--gray-6);
+  }
+  .active rect {
+    fill: var(--gray-2);
   }
   .green {
-    fill: var(--green-3);
+    fill: var(--gray-6);
   }
   .red {
-    fill: var(--red-3);
+    fill: var(--gray-8);
   }
   .active .green {
     fill: var(--green-8);
