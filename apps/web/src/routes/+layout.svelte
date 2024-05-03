@@ -160,6 +160,7 @@
     opacity: 0;
     animation: 2s fade-in 1s forwards var(--ease-4);
     width: var(--screen-width);
+    margin-top: var(--header-margin-top);
 
     & .logo img {
       height: var(--logo-height);
@@ -170,7 +171,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-top: var(--header-margin-top);
   }
 
   header nav a {
