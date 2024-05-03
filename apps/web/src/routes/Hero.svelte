@@ -210,4 +210,8 @@
       }
     }
   }
+
+  .btn {
+    font-size: var(--font-size-1);
+  }
 </style>
