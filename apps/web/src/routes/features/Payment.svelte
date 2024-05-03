@@ -8,7 +8,7 @@
 	</div>
 
 	<svg viewBox="0 0 10 10" height=10 width=120>
-		<line x1=30 y1=0 x2=140 y2=0/>
+		<line x1=30 y1=0 x2=134 y2=0/>
 	</svg>
 
   <div class="circle">
@@ -59,7 +59,7 @@
 
 	.core {
 		position: relative;
-		z-index: var(--layer-2);
+		z-index: var(--layer-3);
 		display: flex;
 		align-items: center;
 		justify-content: center;
