@@ -30,13 +30,14 @@ export const handle = SvelteKitAuth({
     <p>Get up and running without writing a lot of code or tests. Integrate from scratch or use a pre-built starter template.</p>
 
     <div class="buttons">
-      <a class="btn" href="https://docs.airbadge.dev">
-        Starter template
-      </a>
-
       <a class="btn primary" href="https://docs.airbadge.dev">
         Setup guide
       </a>
+
+      <a class="btn" href="https://github.com/joshnuss/airbadge-example">
+        Starter template
+      </a>
+
     </div>
   </hgroup>
 
