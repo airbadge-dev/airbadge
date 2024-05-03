@@ -28,7 +28,7 @@
       Auth & Payment<br/>ready in <em>minutes</em>.
     </h1>
     <p>
-      Build your SaaS faster. <b>AirBadge</b> connects <b>Auth.js</b> with <b>Stripe</b>. It's free and open source.
+      Build your SaaS faster. <b>AirBadge</b> connects <b>Auth.js</b> with <b>Stripe</b>. It's open source and free to self-host.
     </p>
   </div>
 
