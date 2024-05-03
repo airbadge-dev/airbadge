@@ -21,6 +21,13 @@
   syncToc('main .toc')
 </script>
 
+<svelte:head>
+  <meta
+    property="og:image"
+    content="https://image.social/get?url=docs.airbadge.dev{$page.url.pathname}"
+  />
+</svelte:head>
+
 <Menu {menuItems} bind:this={menu} />
 
 <header>
