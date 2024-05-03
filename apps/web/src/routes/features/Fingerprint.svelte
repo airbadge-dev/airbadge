@@ -14,6 +14,10 @@
     bottom: 0;
     right: 0;
   }
+  svg.active {
+    scale: 1.05;
+    rotate: 3deg;
+  }
   path {
     fill: var(--gray-8);
     transition: var(--transition);
