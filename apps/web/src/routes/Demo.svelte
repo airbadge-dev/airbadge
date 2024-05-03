@@ -25,7 +25,7 @@ export const handle = SvelteKitAuth({
   <hgroup>
     <span class="pill"><span>Demo</span></span>
 
-    <h2 class="text-gradient">Implement AirBadge in any application in just five minutes</h2>
+    <h2 class="text-gradient">Implement AirBadge in just five minutes</h2>
 
     <p>With a few lines of code you can have Auth0 integrated in any app written in any language, and any framework. We provide 30+ SDKs & Quickstarts to help you succeed on your implementation</p>
 

@@ -6,7 +6,7 @@
   <hgroup class="text-block">
     <span class="pill"><span>Benefits</span></span>
     <h2 class="text-gradient">What if starting was easier?</h2>
-    <p>Bootstrapping a SaaS is a multi-dicipline endevour. By removing some of the technical work, developers can focus on the harder parts: marketing, sales, and customer development.</p>
+    <p>AirBadge eliminates common integration code, so you can focus on the bigger unknowns - marketing, sales, and feature development.</p>
   </hgroup>
 
   <div class="benefits">
@@ -15,7 +15,7 @@
 
       <div class="content">
         <h3>Instant setup</h3>
-        <p>Start charging in minutes instead of days.</p>
+        <p>Start charging in minutes, instead of days.</p>
       </div>
     </article>
 
@@ -24,7 +24,7 @@
 
       <div class="content">
         <h3>Faster experiments</h3>
-        <p>Test your SaaS ideas faster by spending less time on auth & billing.</p>
+        <p>Test your ideas faster by skipping the auth & billing code.</p>
       </div>
     </article>
 

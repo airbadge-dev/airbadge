@@ -5,34 +5,40 @@
     {
       id: 'free',
       name: 'Free',
-      description: 'For individuals and teams who want to start building products',
+      description: 'For individuals who want to start building products.',
       price: 0,
+      period: 'forever',
       features: [
-        'Feature #1',
-        'Feature #2',
-        'Feature #3',
+        'Unlimited users & subscriptions',
+        '50+ auth providers',
+        'Stripe integration',
+        'Self-hosted',
+        'Open source',
       ]
     },
     {
       id: 'pro',
       name: 'Pro',
-      description: 'For individuals and teams who want to start building products',
-      price: 9900,
+      description: 'For businesses that want to sell B2B software.',
+      price: 25000,
+      period: 'year',
       recommended: true,
       features: [
-        'Feature #1',
-        'Feature #2',
+        'Teams',
+        'Tiered pricing',
+        'Per-seat plans',
       ]
     },
     {
       id: 'enterprise',
       name: 'Enterprise',
-      description: 'For individuals and teams who want to start building products',
+      description: 'For businesses that are building critical billing infrastructure.',
       price: 20000,
+      period: 'month',
       features: [
-        'Feature #1',
-        'Feature #2',
-        'Feature #3',
+        'E-mail support',
+        'Phone support',
+        'Onboarding & strategy',
       ]
     }
   ]
@@ -58,7 +64,7 @@
 
           <div class="price">
             <span class="amount text-gradient">${plan.price/100}</span>
-            <span class="period">{ plan.price == 0 ? 'Forever' : 'Monthly' }</span>
+            <span class="period">{ plan.period == 'forever' ? 'Forever' : `Per ${plan.period}` }</span>
           </div>
 
           <div class="features">

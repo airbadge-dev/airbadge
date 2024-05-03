@@ -2,23 +2,24 @@
   const features = [
     {
       title: 'Payment integration',
-      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+      description: 'Based on Stripe Checkout. AirBadge adds a playment step to the signup flow. It works for subscriptions and one-off purchases.'
     },
     {
       title: 'Authentication',
-      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+      description: 'Built on top of Auth.js, AirBadge supports over 50+ authentication methods, including OAuth, SAML, passwords and passwordless logins.',
+      image: '/images/fingerprint.svg'
     },
     {
       title: 'Minimal code',
-      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+      description: 'It takes very little code to get started. That means less to learn and less to maintain.'
     },
     {
       title: 'Open Source & Self-hostable',
-      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+      description: "Deploys to any hosting platform, including serverless or Docker-based platforms. All data lives in your own database. The code is fully open-source, so it's easy to modify or contribute"
     },
     {
       title: 'Team support',
-      description: 'Support Stripe subscriptions and products. Users can pay during signup. Supports many authentication providers. Including OAuth, SAML.'
+      description: 'Coming soon. Share one subscription between multiple users. With the ability to increase the monthly charge based on number of seats used.'
     },
   ]
 </script>
@@ -28,7 +29,10 @@
     <hgroup>
       <span class="pill"><span>Features</span></span>
 
-      <h2 class="text-gradient">Everything you need for authentication</h2>
+      <h2 class="text-gradient">
+        Focus on building.<br/>
+        Let us handle identity & billing.
+      </h2>
 
       <p>Ever feel like authentication requirements change with the season? Clerk keeps up with the latest trends and security best practices.</p>
     </hgroup>

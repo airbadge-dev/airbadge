@@ -3,7 +3,7 @@
   <div class="container">
     <hgroup>
       <span class="pill"><span>Get started</span></span>
-      <h2 class="text-gradient">Last CTA section title goes here</h2>
+      <h2 class="text-gradient">Up and running in 5 minutes</h2>
       <p>With a few lines of code you can have Auth0 integrated in any app written in any language, and any framework. We provide 30+ SDKs & Quickstarts to help you succeed on your implementation</p>
 
       <a class="btn primary" href="https://docs.airbadge.dev/getting-started">
