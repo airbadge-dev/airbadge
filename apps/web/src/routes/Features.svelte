@@ -2,6 +2,7 @@
   import Fingerprint from './features/Fingerprint.svelte'
   import Cube from './features/Cube.svelte'
   import Team from './features/Team.svelte'
+  import MinimalCode from './features/MinimalCode.svelte'
 
   const features = [
     {
@@ -17,7 +18,7 @@
     {
       title: 'Minimal code',
       description: 'It takes very little code to get started. That means less to learn and less to maintain.',
-      component: Fingerprint
+      component: MinimalCode
     },
     {
       title: 'Open Source & Self-hostable',
@@ -161,7 +162,7 @@
   }
 
   .feature :global(svg) {
-    --transition: all 0.4s var(--ease-in-out-2);
+    --transition: all 0.2s var(--ease-in-out-2);
     transition: var(--transition);
   }
 </style>
