@@ -79,6 +79,7 @@ h3 {
   border-radius: var(--radius);
 
   & span {
+    font-size: 14px;
     margin-top: 5px;
     display: inline-block;
     padding: var(--size-1) var(--size-2);
