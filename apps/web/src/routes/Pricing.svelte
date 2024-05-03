@@ -159,7 +159,6 @@
     border-radius: var(--radius-3);
     border: solid 1px var(--gray-8);
     padding: var(--size-6);
-    padding-bottom: var(--size-12);
     display: flex;
     flex-direction: column;
     gap: var(--size-7);
