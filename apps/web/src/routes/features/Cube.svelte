@@ -12,6 +12,12 @@
 </svg>
 
 <style>
+  svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
   path {
     filter: grayscale(1) brightness(0.9);
     transition: var(--transition);

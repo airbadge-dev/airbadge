@@ -22,6 +22,11 @@
 </svg>
 
 <style>
+  svg {
+    position: absolute;
+    padding: 2rem;
+  }
+
   rect, path {
     transition: var(--transition);
   }

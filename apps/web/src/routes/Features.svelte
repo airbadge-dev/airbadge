@@ -162,9 +162,6 @@
 
   .feature :global(svg) {
     --transition: all 0.4s var(--ease-in-out-2);
-    position: absolute;
-    bottom: 0;
-    right: 0;
     transition: var(--transition);
   }
 </style>

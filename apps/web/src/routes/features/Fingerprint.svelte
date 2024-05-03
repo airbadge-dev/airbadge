@@ -9,6 +9,11 @@
 </svg>
 
 <style>
+  svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
   path {
     fill: var(--gray-8);
     transition: var(--transition);
