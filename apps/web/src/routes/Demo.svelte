@@ -25,13 +25,19 @@ export const handle = SvelteKitAuth({
   <hgroup>
     <span class="pill"><span>Demo</span></span>
 
-    <h2 class="text-gradient">Implement AirBadge in just five minutes</h2>
+    <h2 class="text-gradient">Under 10 lines of code</h2>
 
-    <p>With a few lines of code you can have Auth0 integrated in any app written in any language, and any framework. We provide 30+ SDKs & Quickstarts to help you succeed on your implementation</p>
+    <p>Get up and running without writing a lot of code or tests. Integrate from scratch or use a pre-built starter template.</p>
 
-    <a class="btn" href="https://docs.airbadge.dev">
-      Go to documentation
-    </a>
+    <div class="buttons">
+      <a class="btn" href="https://docs.airbadge.dev">
+        Starter template
+      </a>
+
+      <a class="btn primary" href="https://docs.airbadge.dev">
+        Setup guide
+      </a>
+    </div>
   </hgroup>
 
   <pre>{@html formatted}</pre>
@@ -86,6 +92,11 @@ export const handle = SvelteKitAuth({
     & * {
       text-align: var(--block-align-text);
     }
+  }
+
+  .buttons {
+    display: flex;
+    gap: var(--size-4);
   }
 
   pre {
