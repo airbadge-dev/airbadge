@@ -1,4 +1,5 @@
 <script>
+  import Payment from './features/Payment.svelte'
   import Fingerprint from './features/Fingerprint.svelte'
   import Cube from './features/Cube.svelte'
   import Team from './features/Team.svelte'
@@ -8,7 +9,7 @@
     {
       title: 'Payment integration',
       description: 'Based on Stripe Checkout. AirBadge adds a playment step to the signup flow. It works for subscriptions and one-off purchases.',
-      component: Fingerprint
+      component: Payment
     },
     {
       title: 'Authentication',
