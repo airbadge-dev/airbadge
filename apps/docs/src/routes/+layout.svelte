@@ -24,7 +24,7 @@
 <svelte:head>
   <meta
     property="og:image"
-    content="https://image.social/get?url=docs.airbadge.dev{$page.url.pathname}"
+    content="https://image.social/get?url={$page.url.toString()}"
   />
 </svelte:head>
 
