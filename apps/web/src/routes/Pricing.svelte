@@ -229,7 +229,7 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    min-height: 5rem;
+    min-height: 8rem;
   }
 
   .features li {
