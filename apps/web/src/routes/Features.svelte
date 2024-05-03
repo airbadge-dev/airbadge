@@ -59,7 +59,7 @@
     --flex-gap: var(--size-2);
     --grid-template-columns: 1fr;
     --grid-template-rows: auto;
-    --grid-column: 1;
+    --grid-column: auto;
 
     @media (--sm-n-above) {
       --block-padding: 0 0 6rem 0;
@@ -68,7 +68,6 @@
     @media (--md-n-above) {
       --grid-template-columns: repeat(2, 1fr);
       --grid-template-rows: auto;
-      --grid-column: 1 / 3;
     }
 
     @media (--lg-n-above) {
