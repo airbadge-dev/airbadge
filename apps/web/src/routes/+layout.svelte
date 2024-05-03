@@ -173,6 +173,10 @@
     margin-top: var(--header-margin-top);
   }
 
+  header nav a {
+    font-size: 0.9rem;
+  }
+
   header .action, header .cta {
     display: var(--nav-display);
   }
