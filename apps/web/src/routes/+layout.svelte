@@ -18,6 +18,10 @@
     {
       title: 'Documentation',
       path: 'https://docs.airbadge.dev'
+    },
+    {
+      title: 'GitHub',
+      path: 'https://github.com/joshnuss/airbadge'
     }
   ]
 
