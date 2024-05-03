@@ -53,7 +53,7 @@
     fill: var(--gray-8);
   }
   .active .green {
-    fill: var(--green-8);
+    fill: var(--green-4);
   }
   .active .red {
     fill: var(--red-8);
