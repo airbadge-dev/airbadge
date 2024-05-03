@@ -124,6 +124,7 @@
     --footer-about-direction: row;
     --footer-about-justify: space-between;
     --footer-about-order: unset;
+    --header-margin-top: 0;
 
     @media (--sm-n-above) {
       --logo-height: 24px;
@@ -143,6 +144,7 @@
     @media (--lg-n-above) {
       --border-bottom: none;
       --header-background: none;
+      --header-margin-top: 10px;
       --hamburger-display: none;
       --nav-display: flex;
     }
@@ -168,6 +170,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-top: var(--header-margin-top);
   }
 
   header .action, header .cta {
