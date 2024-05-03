@@ -18,6 +18,10 @@
     right: 0;
   }
 
+  svg.active {
+    scale: 1.1
+  }
+
   path {
     filter: grayscale(1) brightness(0.9);
     transition: var(--transition);
