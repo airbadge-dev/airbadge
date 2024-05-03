@@ -79,7 +79,11 @@
             </ul>
           </div>
 
-          <a class="btn" class:primary={plan.recommended} href="https://app.airbadge.dev/billing/checkout?plan={plan.id}">Get started</a>
+          <a class="btn"
+             class:primary={plan.recommended}
+             href={ plan.price == 0 ? 'https://docs.airbadge.dev/getting-started' : `https://app.airbadge.dev/billing/checkout?plan=${plan.id}`}>
+            Get started
+          </a>
         </div>
       {/each}
     </div>
