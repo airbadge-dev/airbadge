@@ -117,4 +117,8 @@
     flex-direction: column;
     gap: var(--size-3);
   }
+
+  .content p {
+    letter-spacing: -0.04em;
+  }
 </style>
