@@ -44,7 +44,7 @@
         Let us handle identity & billing.
       </h2>
 
-      <p>Ever feel like authentication requirements change with the season? Clerk keeps up with the latest trends and security best practices.</p>
+      <p>We built AirBadge to save you time. Spend your time writing features or trying more experiments, instead of writing billing and auth code.</p>
     </hgroup>
 
     <div class="features">

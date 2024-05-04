@@ -51,7 +51,7 @@
 
       <h2 class="text-gradient">Pricing that<br/>scales with you</h2>
 
-      <p>10,000 monthly active users free. Surprisingly simple, exceptionally powerful. Every feature you need now and as you scale.</p>
+      <p>AirBadge is free to self-host, and comes with optional paid features for businesses that need support or B2B features.</p>
     </hgroup>
 
     <div class="plans">
