@@ -45,7 +45,7 @@
   </div>
 
   <div class="logos">
-    <h2>Built with</h2>
+    <h2>Built for</h2>
 
     <nav>
       {#each logos as logo}
@@ -183,24 +183,24 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: var(--size-5);
+    gap: var(--size-3);
     opacity: 0;
     animation: 0.8s fade-in 1.1s forwards var(--ease-in-out-4);
 
     & h2 {
       font-size: var(--font-size-1);
-      font-weight: normal;
-      color: var(--gray-3);
+      font-weight: bold;
+      color: var(--gray-7);
     }
   }
 
   .logos nav {
     display: flex;
     flex-direction: row;
-    gap: var(--size-6);
+    gap: var(--size-8);
 
     & img {
-      height: 50px;
+      height: 40px;
       filter: grayscale(1) brightness(0.75) invert(1);
       transition: 0.2s all var(--ease-in-out-2);
 
