@@ -2,7 +2,7 @@
   export let active
 </script>
 
-<svg class:active width="218" height="257" viewBox="0 0 218 257" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class:active viewBox="0 0 218 257" xmlns="http://www.w3.org/2000/svg">
   <path d="M250.793 73.1307L126.016 145.342L0.413574 73.1307L125.19 0.948975L250.793 73.1307Z" fill="#D9D0FF"/>
   <path d="M250.379 216.818L125.603 289V145.422L250.792 73.1306L250.379 216.818Z" fill="#C5BFDF"/>
   <path d="M126.016 145.342L125.603 289L0 216.818L0.413167 73.1306L126.016 145.342Z" fill="#9F96C4"/>
@@ -12,10 +12,24 @@
 </svg>
 
 <style>
+  @import 'open-props/media.min.css';
+
   svg {
     position: absolute;
     bottom: 0;
     right: 0;
+
+    width: 130px;
+
+    @media (--sm-n-above) {
+      width: 160px;
+    }
+    @media (--md-n-above) {
+      width: 180px;
+    }
+    @media (--lg-n-above) {
+      width: 200px;
+    }
   }
 
   svg.active {
