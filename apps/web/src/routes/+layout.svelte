@@ -144,7 +144,7 @@
     @media (--lg-n-above) {
       --border-bottom: none;
       --header-background: none;
-      --header-margin-top: 10px;
+      --header-margin-top: 3px;
       --hamburger-display: none;
       --nav-display: flex;
     }
