@@ -60,8 +60,8 @@
   }
 
   .active .animate-red {
-    --delay: calc(var(--index) * 0.1s);
-    animation: 1s color var(--delay) forwards;
+    --delay: calc(var(--index) * 75ms);
+    animation: 0.2s color var(--delay) forwards;
     animation-timing-function: var(--ease-elastic-in-out-2);
   }
 
