@@ -118,12 +118,48 @@
   }
 
   section {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
-    background:
-      url(/images/cube1.svg) 20% bottom no-repeat,
-      url(/images/cube2.svg) 90% 90% no-repeat;
+  }
+
+  section::before, section::after {
+    content: '';
+    position: absolute;
+    z-index: var(--layer-1);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: 1ms entrance forwards;
+    animation-timeline: view(200px);
+  }
+
+  section::before {
+    background: url(/images/cube1.svg) 20% bottom no-repeat;
+    animation-range: entry -30% exit 60%;
+    --from: 30% 80%;
+  }
+  section::after {
+    background: url(/images/cube2.svg) 90% 90% no-repeat;
+    animation-range: entry 0% exit 60%;
+    --from: 120% 80%;
+  }
+
+  @keyframes entrance {
+    from {
+      opacity: 0;
+      background-position: var(--from);
+    }
+    40% {
+      opacity: 1;
+      background-position: var(--from);
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .container {
@@ -163,6 +199,7 @@
     flex-direction: column;
     gap: var(--size-7);
     transition: all 0.2s var(--ease-in-out-2);
+    z-index: var(--layer-2);
   }
 
   .plan:hover {

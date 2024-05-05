@@ -62,6 +62,8 @@
         </div>
       {/each}
     </div>
+
+    <img class="star" src="/images/star.svg" aria-hidden alt="shooting star"/>
   </div>
 
 </section>
@@ -77,6 +79,11 @@
     --grid-template-columns: 1fr;
     --grid-template-rows: auto;
     --grid-column: auto;
+
+    --star-from-top: 100px;
+    --star-from-right: 200px;
+    --star-to-top: 400px;
+    --star-to-right: 600px;
 
     @media (--sm-n-above) {
       --block-padding: 0 0 6rem 0;
@@ -97,11 +104,22 @@
   }
 
   section {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
-    background:
-      url(/images/star.svg) 90% 70% no-repeat;
+  }
+
+  .star {
+    position: absolute;
+    top: var(--star-from-top);
+    right: var(--star-from-right);
+    z-index: var(--layer-1);
+    opacity: 0;
+    animation-name: entrance;
+    animation-duration: 1ms;
+    animation-timeline: view(10%);
+    animation-range: entry 30% exit 80%;
   }
 
   .container {
@@ -140,8 +158,9 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-4);
-    overflow: hidden;
     transition: all 0.2s var(--ease-2);
+    z-index: var(--layer-2);
+    overflow: hidden;
 
     &:hover {
       border-color: var(--gray-8);
@@ -165,5 +184,22 @@
   .feature :global(svg) {
     --transition: all 0.2s var(--ease-in-out-2);
     transition: var(--transition);
+  }
+
+  @keyframes entrance {
+    from {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    to {
+      top: var(--star-to-top);
+      right: var(--star-to-right);
+      opacity: 0;
+    }
   }
 </style>
