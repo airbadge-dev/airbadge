@@ -53,6 +53,7 @@ hgroup {
 p {
   max-width: 60ch;
   color: var(--gray-5);
+  font-size: var(--font-size-1);
 }
 
 h2 {
@@ -94,10 +95,10 @@ h3 {
   flex-direction: row;
   justify-content: center;
   gap: var(--size-1);
-  font-size: var(--font-size-1);
+  font-size: 15px;
   font-weight: 500;
   padding: var(--size-2) var(--size-4);
-  border-radius: var(--radius-2);
+  border-radius: 8px;
   text-decoration: none;
   text-wrap: nowrap;
   letter-spacing: -0.04em;
@@ -128,4 +129,6 @@ pre {
   --shiki-token-keyword: #F97583;
   --shiki-token-function: #B392F0;
   --shiki-token-string-expression: #9ECBFF;
+
+  font-size: 14px;
 }

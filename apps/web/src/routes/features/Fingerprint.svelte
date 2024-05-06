@@ -23,6 +23,6 @@
     transition: var(--transition);
   }
   .active path {
-    fill: var(--violet-12);
+    fill: var(--violet-5);
   }
 </style>

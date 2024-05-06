@@ -55,7 +55,7 @@
           on:focus={() => feature.active = true}
           on:blur={() => feature.active = false}
         >
-          <h3 class="text-shadow">{feature.title}</h3>
+          <h3 class="text-gradient">{feature.title}</h3>
           <p>{feature.description}</p>
 
           <svelte:component this={feature.component} active={feature.active}/>
@@ -174,11 +174,16 @@
 
   .feature h3 {
     font-size: var(--font-size-3);
+    line-height: var(--font-size-4);
+    background: linear-gradient(180deg, #fff, #676767);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .feature p {
     max-width: 40ch;
     font-size: 0.9rem;
+    color: var(--gray-6);
   }
 
   .feature :global(svg) {

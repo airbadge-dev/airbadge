@@ -53,10 +53,10 @@
     fill: var(--gray-8);
   }
   .active .green {
-    fill: var(--green-4);
+    fill: var(--green-5);
   }
   .active .red {
-    fill: var(--red-8);
+    fill: var(--red-6);
   }
 
   .active .animate-red {
@@ -67,7 +67,7 @@
 
   @keyframes color {
     to {
-      fill: var(--red-8);
+      fill: var(--red-6);
     }
   }
 </style>

@@ -118,7 +118,8 @@
 
   .hero p {
     font-size: var(--subhead-size);
-    letter-spacing: -0.02em;
+    font-weight: normal;
+    letter-spacing: -0.03px;
     color: var(--gray-5);
     max-width: 45ch;
     text-align: center;

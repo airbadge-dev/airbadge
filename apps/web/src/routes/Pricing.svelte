@@ -57,33 +57,35 @@
     <div class="plans">
       {#each plans as plan, index}
         <div class="plan" class:recommended={plan.recommended}>
-          <div class="title">
-            <h3 class="text-gradient">{plan.name}</h3>
-            <p>{plan.description}</p>
-          </div>
+          <div class="content">
+            <div class="title">
+              <h3 class="text-gradient">{plan.name}</h3>
+              <p>{plan.description}</p>
+            </div>
 
-          <div class="price">
-            <span class="amount text-gradient">${plan.price/100}</span>
-            <span class="period">{ plan.period == 'forever' ? 'Forever' : `Per ${plan.period}` }</span>
-          </div>
+            <div class="price">
+              <span class="amount text-gradient">${plan.price/100}</span>
+              <span class="period">{ plan.period == 'forever' ? 'Forever' : `Per ${plan.period}` }</span>
+            </div>
 
-          <div class="features">
-            <h4>{ index == 0 ? "Includes" : `Everything in ${plans[index-1].name}, plus`}:</h4>
-            <ul>
-              {#each plan.features as feature}
-                <li>
-                  <Icon icon="ic:twotone-check"/>
-                  {feature}
-                </li>
-              {/each}
-            </ul>
-          </div>
+            <div class="features">
+              <h4>{ index == 0 ? "Includes" : `Everything in ${plans[index-1].name}, plus`}:</h4>
+              <ul>
+                {#each plan.features as feature}
+                  <li>
+                    <Icon icon="ic:twotone-check"/>
+                    {feature}
+                  </li>
+                {/each}
+              </ul>
+            </div>
 
-          <a class="btn"
-             class:primary={plan.recommended}
-             href={ plan.price == 0 ? 'https://docs.airbadge.dev/getting-started' : `https://app.airbadge.dev/billing/checkout?plan=${plan.id}`}>
-            Get started
-          </a>
+            <a class="btn"
+               class:primary={plan.recommended}
+               href={ plan.price == 0 ? 'https://docs.airbadge.dev/getting-started' : `https://app.airbadge.dev/billing/checkout?plan=${plan.id}`}>
+              Get started
+            </a>
+          </div>
         </div>
       {/each}
     </div>
@@ -191,15 +193,23 @@
 
   .plan {
     flex: 1;
-    background: var(--background-color);
-    border-radius: var(--radius-3);
-    border: solid 1px var(--gray-8);
+    border-radius: 2px;
+    padding: 0.5px;
+    background-image: linear-gradient(var(--gray-8), var(--gray-8)),
+	                    linear-gradient(to bottom, var(--gray-8), var(--gray-8));
+	  background-origin: border-box;
+	  background-clip: content-box, border-box;
+		border-radius: 10px;
+  }
+
+  .plan .content {
     padding: var(--size-6);
     display: flex;
     flex-direction: column;
     gap: var(--size-7);
     transition: all 0.2s var(--ease-in-out-2);
-    z-index: var(--layer-2);
+    background: var(--background-color);
+    border-radius: 10px;
   }
 
   .plan:hover {
@@ -208,9 +218,13 @@
   }
 
   .plan.recommended {
-    background: linear-gradient(180deg, #0A0A0E, #15151F);
-    border: solid 1px var(--indigo-8);
+    background-image: linear-gradient(var(--gray-8), var(--gray-8)),
+                      linear-gradient(to bottom, #6741D9, #50505066);
   }
+  .plan.recommended .content {
+    background: linear-gradient(to bottom, #0A0A0E, #15151F);
+  }
+
   .plan.recommended:hover {
     border-color: var(--indigo-4);
   }
