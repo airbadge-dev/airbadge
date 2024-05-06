@@ -141,7 +141,7 @@
 
   section::before {
     background: url(/images/cube1.svg) 20% bottom no-repeat;
-    animation-range: entry -30% exit 60%;
+    animation-range: entry -40% exit 80%;
     --from: 30% 80%;
   }
   section::after {
@@ -189,6 +189,7 @@
     width: var(--screen-width);
     padding: var(--size-4);
     gap: var(--size-4);
+    z-index: var(--layer-2);
   }
 
   .plan {
@@ -221,6 +222,7 @@
     background-image: linear-gradient(var(--gray-8), var(--gray-8)),
                       linear-gradient(to bottom, #6741D9, #50505066);
   }
+
   .plan.recommended .content {
     background: linear-gradient(to bottom, #0A0A0E, #15151F);
   }
