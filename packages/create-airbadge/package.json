@@ -1,6 +1,6 @@
 {
   "name": "create-airbadge",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "bin": "./src/bin.js",
   "scripts": {
