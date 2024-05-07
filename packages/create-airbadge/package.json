@@ -3,9 +3,6 @@
   "version": "0.0.4",
   "type": "module",
   "bin": "./src/bin.js",
-  "scripts": {
-    "test": "vitest"
-  },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "degit": "^2.8.4"
