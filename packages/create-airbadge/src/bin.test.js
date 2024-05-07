@@ -1,0 +1,3 @@
+test('calls degit', () => {
+
+})
