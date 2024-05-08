@@ -18,7 +18,7 @@
     },
     {
       title: 'Minimal code',
-      description: 'It takes very little code to get started. That means less to learn and less to maintain.',
+      description: 'It takes very little code to get started. That means less stuff to learn and less to maintain.',
       component: MinimalCode
     },
     {
@@ -44,7 +44,7 @@
         Let us handle identity & billing.
       </h2>
 
-      <p>We built AirBadge to save you time. Spend your time writing features or trying more experiments, instead of writing billing and auth code.</p>
+      <p>We built AirBadge to save you time. Spend more time building features and experimenting, instead of writing billing and auth code.</p>
     </hgroup>
 
     <div class="features">

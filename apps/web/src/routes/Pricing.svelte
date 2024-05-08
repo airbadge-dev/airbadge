@@ -51,7 +51,7 @@
 
       <h2 class="text-gradient">Pricing that<br/>scales with you</h2>
 
-      <p>AirBadge is free to self-host, and comes with optional paid features for businesses that need support or B2B features.</p>
+      <p>AirBadge is free to self-host, and comes with optional paid features for B2B businesses or companies that need support.</p>
     </hgroup>
 
     <div class="plans">
@@ -176,6 +176,7 @@
   }
 
   hgroup {
+    z-index: var(--layer-2);
     align-items: var(--block-align-items);
     padding: var(--block-padding);
 

@@ -77,9 +77,8 @@
     @media (--md-n-above) {
       --heading-size: 3.4rem;
       --subhead-size: var(--font-size-3);
-      --hero-margin: var(--size-11) 0 var(--size-7) 0;
+      --hero-margin: var(--size-11);
       --hero-gap: var(--size-8);
-      --hero-height: 90vh;
     }
   }
 
