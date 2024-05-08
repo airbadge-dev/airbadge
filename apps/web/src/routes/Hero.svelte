@@ -78,11 +78,8 @@
       --heading-size: 3.4rem;
       --subhead-size: var(--font-size-3);
       --hero-margin: var(--size-11);
-      --hero-gap: var(--size-9);
+      --hero-gap: var(--size-8);
       --hero-height: 90vh;
-    }
-
-    @media (--md-n-above) {
     }
   }
 
@@ -179,7 +176,7 @@
   }
 
   .logos {
-    margin-top: 6rem;
+    margin-top: 4rem;
     padding: var(--size-6);
     display: flex;
     align-items: center;
