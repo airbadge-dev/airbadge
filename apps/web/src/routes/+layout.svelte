@@ -76,7 +76,8 @@
   <div class="container">
     <section class="about">
       <img class="logo" src="/images/logo-white.svg" alt="logo"/>
-      <p class="copyright">&copy; {new Date().getFullYear()} &mdash; Copyright</p>
+      <p>AirBadge connects Auth.js with Stripe. Test your next SaaS idea quickly. It's free and open source.</p>
+      <p>&copy; {new Date().getFullYear()} &mdash; Copyright</p>
     </section>
 
     <section>
@@ -124,6 +125,8 @@
     --footer-about-direction: row;
     --footer-about-justify: space-between;
     --footer-about-order: unset;
+    --footer-about-align: flex-start;
+    --footer-about-text-align: left;
     --header-margin-top: 0;
 
     @media (--sm-n-above) {
@@ -134,6 +137,8 @@
       --footer-about-direction: column;
       --footer-about-justify: none;
       --footer-about-order: 1;
+      --footer-about-align: flex-end;
+      --footer-about-text-align: right;
     }
 
     @media (--md-n-above) {
@@ -241,11 +246,6 @@
     width: 120px;
   }
 
-  footer .copyright {
-    font-size: 0.7rem;
-    color: var(--gray-6);
-  }
-
   footer h3 {
     font-size: 0.8rem;
     font-weight: normal;
@@ -261,10 +261,19 @@
 
   footer .about {
     display: flex;
-    flex-direction: var(--footer-about-direction);
+    flex-direction: column;
     justify-content: var(--footer-about-justify);
+    align-items: var(--footer-about-align);
     order: var(--footer-about-order);
   }
+
+  footer .about p {
+    text-align: var(--footer-about-text-align);
+    max-width: 30ch;
+    font-size: 0.7rem;
+    color: var(--gray-6);
+  }
+
 
   footer nav {
     display: flex;
