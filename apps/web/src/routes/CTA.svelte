@@ -17,26 +17,38 @@
   @import 'open-props/media.min.css';
 
   section {
+    --section-padding: var(--size-6);
     --block-align-items: center;
     --block-align-text: center;
     --block-padding: 0 0 10rem 0;
-    --globe-margin: 18rem 0 0 0;
+    --globe-margin: 12rem 0 0 0;
+    --globe-right: -200px;
+    --globe-bottom: -200px;
+    --globe-scale: 1;
 
     @media (--sm-n-above) {
+      --section-padding: var(--size-6) 0;
       --block-padding: 0 0 8rem 0;
-      --globe-margin: 10rem 0 0 0;
+      --globe-margin: 0 0 0 0;
+      --globe-scale: 1.1;
     }
 
     @media (--md-n-above) {
       --block-align-items: flex-start;
       --block-align-text: left;
       --block-padding: 0 var(--size-6);
-      --globe-margin: 5rem 0 0 0;
+      --globe-right: -80px;
+      --globe-bottom: -100px;
+      --globe-scale: 1.3;
     }
 
     @media (--lg-n-above) {
       --block-padding: 0;
       --globe-margin: 0;
+      --globe-right: -100px;
+      --globe-bottom: -145px;
+      --globe-scale: 1.7;
+      --section-padding: var(--size-8) 0 var(--size-12) 0;
     }
   }
 
@@ -48,7 +60,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
-    padding: 12rem 0;
+    padding: var(--section-padding);
     display: flex;
     align-items: center;
   }
@@ -60,11 +72,12 @@
 
   .globe {
     position: absolute;
-    height: 100%;
-    right: -245px;
-    bottom: -245px;
+    height: 90%;
+    right: var(--globe-right);
+    bottom: var(--globe-bottom);
     z-index: var(--layer-1);
     margin: var(--globe-margin);
+    scale: var(--globe-scale);
     animation: 290s rotate linear;
   }
 

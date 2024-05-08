@@ -83,7 +83,7 @@ export const handle = SvelteKitAuth({
     flex-direction: var(--flex-direction);
     align-items: var(--flex-align);
     gap: var(--flex-gap);
-    padding: 12rem 0;
+    margin: var(--size-7) 0;
   }
 
   hgroup {

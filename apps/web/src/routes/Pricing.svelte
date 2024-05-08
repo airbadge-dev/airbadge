@@ -103,6 +103,7 @@
     --flex-gap: var(--size-2);
     --flex-align: center;
     --plan-direction: column;
+    --plans-padding: var(--size-4);
 
     @media (--sm-n-above) {
       --block-padding: 0 0 6rem 0;
@@ -116,6 +117,7 @@
       --pre-padding: var(--size-6);
       --flex-gap: var(--size-9);
       --plan-direction: row;
+      --plans-padding: 0;
     }
   }
 
@@ -187,7 +189,7 @@
     flex-direction: var(--plan-direction);
     justify-content: center;
     width: var(--screen-width);
-    padding: var(--size-4);
+    padding: var(--plans-padding);
     gap: var(--size-4);
     z-index: var(--layer-2);
   }
