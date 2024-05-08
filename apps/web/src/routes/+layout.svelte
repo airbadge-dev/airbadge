@@ -144,7 +144,7 @@
     @media (--lg-n-above) {
       --border-bottom: none;
       --header-background: none;
-      --header-margin-top: 3px;
+      --header-margin-top: 5px;
       --hamburger-display: none;
       --nav-display: flex;
     }
@@ -274,6 +274,7 @@
 
   footer a {
     color: var(--gray-2);
+    font-size: 14px;
   }
 
   .overlay {

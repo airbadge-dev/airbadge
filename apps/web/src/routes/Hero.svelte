@@ -190,7 +190,7 @@
 
     & h2 {
       font-size: var(--font-size-1);
-      font-weight: bold;
+      font-weight: 600;
       color: var(--gray-7);
     }
   }

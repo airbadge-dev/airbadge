@@ -61,9 +61,11 @@
   .globe {
     position: absolute;
     height: 100%;
-    right: 0;
+    right: -245px;
+    bottom: -245px;
     z-index: var(--layer-1);
     margin: var(--globe-margin);
+    animation: 290s rotate linear;
   }
 
   hgroup {
@@ -72,6 +74,15 @@
 
     & * {
       text-align: var(--block-align-text);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      rotate: 0deg
+    }
+    to {
+      rotate: 360deg
     }
   }
 </style>
