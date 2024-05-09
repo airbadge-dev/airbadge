@@ -8,27 +8,27 @@
   const features = [
     {
       title: 'Payment integration',
-      description: 'Based on Stripe Checkout. AirBadge adds a playment step to the signup flow. It works for subscriptions and one-off purchases.',
+      description: 'Based on Stripe Checkout, AirBadge adds a playment step to the signup flow. It works for subscriptions and one-off purchases.',
       component: Payment
     },
     {
       title: 'Authentication',
-      description: 'Built on top of Auth.js, AirBadge supports over 50+ authentication methods, including OAuth, SAML, passwords and passwordless logins.',
+      description: 'Built on top of Auth.js, over 50+ authentication methods are supported. Including OAuth, SAML, passwords and passwordless logins.',
       component: Fingerprint
     },
     {
       title: 'Minimal code',
-      description: 'It takes very little code to get started. That means less stuff to learn and less to maintain.',
+      description: 'It takes very little code to get started. That means less stuff to learn and maintain.',
       component: MinimalCode
     },
     {
       title: 'Open Source & Self-hostable',
-      description: "Deploys to any hosting platform, including serverless or Docker-based platforms. All data lives in your own database. The code is fully open-source, so it's easy to modify or contribute",
+      description: "Deploys to any hosting platform, serverless or Docker-based. All data lives in your own database. The code is fully open-source, so it's easy to modify and contribute.",
       component: Cube
     },
     {
       title: 'Team support',
-      description: 'Coming soon. Share one subscription between multiple users. With the ability to increase the monthly charge based on number of seats used.',
+      description: 'Coming soon. Share one subscription between multiple users. With the ability charge based on number of seats used.',
       component: Team
     },
   ]
@@ -44,7 +44,7 @@
         Let us handle identity & billing.
       </h2>
 
-      <p>We built AirBadge to save you time. Spend more time building features and experimenting, instead of writing billing and auth code.</p>
+      <p>We built AirBadge to save you time. Spend your time on the important stuff - building features and experimenting, not writing billing code.</p>
     </hgroup>
 
     <div class="features">
