@@ -204,6 +204,7 @@
 	  background-origin: border-box;
 	  background-clip: content-box, border-box;
 		border-radius: 10px;
+    transition: all 0.2s var(--ease-in-out-2);
   }
 
   .plan .content {
@@ -211,7 +212,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-7);
-    transition: all 0.2s var(--ease-in-out-2);
     background: var(--background-color);
     border-radius: 10px;
   }
