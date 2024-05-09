@@ -6,7 +6,7 @@
   <hgroup class="text-block">
     <span class="pill"><span>Benefits</span></span>
     <h2 class="text-gradient">What if starting was easier?</h2>
-    <p>AirBadge eliminates common integration code, so you can focus on the bigger unknowns - marketing, sales, and feature development.</p>
+    <p>AirBadge eliminates common billing code, so you can focus on the bigger unknowns - marketing, sales, and feature development.</p>
   </hgroup>
 
   <div class="benefits">
