@@ -4,7 +4,7 @@
     <hgroup>
       <span class="pill"><span>Get started</span></span>
       <h2 class="text-gradient">Up and running in 5 minutes</h2>
-      <p>With a few lines of code you can have Auth0 integrated in any app written in any language, and any framework. We provide 30+ SDKs & Quickstarts to help you succeed on your implementation</p>
+      <p>Launch your experiment with payments, without writing a ton of integration. AirBadge will cut a week or two off your build.</p>
 
       <a class="btn primary" href="https://docs.airbadge.dev/getting-started">
         Get started
