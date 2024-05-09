@@ -20,8 +20,8 @@
       id: 'pro',
       name: 'Pro',
       description: 'For businesses that want to sell B2B software.',
-      price: 10000,
-      period: 'month',
+      price: 25000,
+      period: 'year',
       recommended: true,
       features: [
         'Teams',
@@ -33,7 +33,7 @@
       id: 'enterprise',
       name: 'Enterprise',
       description: 'For businesses that are building critical billing infrastructure.',
-      price: 20000,
+      price: 10000,
       period: 'month',
       features: [
         'E-mail support',
