@@ -20,8 +20,8 @@
       id: 'pro',
       name: 'Pro',
       description: 'For businesses that want to sell B2B software.',
-      price: 25000,
-      period: 'year',
+      price: 10000,
+      period: 'month',
       recommended: true,
       features: [
         'Teams',
