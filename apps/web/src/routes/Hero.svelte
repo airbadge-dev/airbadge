@@ -34,8 +34,8 @@
 
   <div class="buttons">
     <a class="btn primary start" href="https://docs.airbadge.dev/getting-started">
+      <Icon icon="solar:rocket-bold" />
       <span>Get started</span>
-      <Icon icon="ic:round-chevron-right" />
     </a>
 
     <a class="btn docs" href="https://docs.airbadge.dev">
