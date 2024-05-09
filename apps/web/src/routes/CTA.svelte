@@ -53,7 +53,7 @@
   }
 
   section {
-    width: calc(100vw - 1rem);
+    width: calc(100vw - 2rem);
     background: linear-gradient(180deg, #0A0A0E 0%, #0B061A 44%, #0C061C 89%);
     position: relative;
     overflow: hidden;
