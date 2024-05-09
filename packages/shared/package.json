@@ -1,0 +1,17 @@
+{
+  "name": "@repo/shared",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "@shikijs/transformers": "^1.1.1",
+    "shiki": "^1.1.1",
+    "shiki-transformer-copy-button": "^0.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./src/lib",
+    "./highlighter": "./src/lib/highlighter.js"
+  }
+}

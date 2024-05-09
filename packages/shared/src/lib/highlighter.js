@@ -10,8 +10,7 @@ import { addCopyButton } from 'shiki-transformer-copy-button'
 
 const theme = createCssVariablesTheme()
 
-export async function highlighter(code, lang, meta) {
-  console.log(meta)
+export async function highlighter(code, lang, meta = '') {
   const html = await codeToHtml(code, {
     lang,
     theme,
