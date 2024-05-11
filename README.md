@@ -20,92 +20,41 @@ Launch a SaaS app without writing any authentiction or payment code!
 - **Open source**: https://github.com/joshnuss/airbadge
 - **BSL Licence**: Free to use. With optional [paid features](https://docs.airbadge.dev/license#paid-features).
 
-## Authorization
+## Gating
 
-### Conditional UI
+The session contain subscription data, so it's easy to gate on the server or client.
 
-Conditionally display components based on the user's subscription status.
+### Gating Routes
 
-Two component wrappers are provided:
-
-- `<NonSubscriber/>`: Display content when user doesn't have a subscription.
-- `<Subscriber/>`: Display content when user has a subscription. Can also filter by plan or payment state.
-
-### Examples
-
-```html
-<script>
-  import { Subscriber, NonSubscriber } from '@airbadge/sveltekit'
-</script>
-
-<!-- show to all subscribers -->
-<Subscriber>
-  <p>Welcome back subscriber!</p>
-</Subscriber>
-
-<!-- show to unpaid subscribers -->
-<Subscriber unpaid>
-  <p>Whoops, we couldn't collect a payment.</p>
-
-  <a href="/billing/portal">Upgrade</a>
-</Subscriber>
-
-<!-- show to subscribers with canceled subscriptions -->
-<Subscriber canceled>
-  <p>Your account has been canceled</p>
-  <a href="/billing/checkout">Sign up</a>
-</Subscriber>
-
-<!-- show to subscribers on the "pro" plan -->
-<Subscriber plan="pro">
-  You're on the Pro plan!!
-</Subscriber>
-
-<!-- show to subscribers on the "pro" or "enterprise" plan -->
-<Subscriber plans={["pro", "enterprise"]}>
-  You're a real player!!
-</Subscriber>
-
-<!-- show to non-subscribers -->
-<NonSubscriber>
-  <a href="/billing/checkout">Sign up</a>
-</NonSubscriber>
-```
-
-### Restricting Routes
-
-Guards are helper functions that can restrict access to a route based on the subscription status or plan:
+To gate routes, check the `session.subscription` for authorization:
 
 ```javascript
-// in +page.server.js
-import { nonSubscriber, member } from '@airbadge/sveltekit'
+export async function load({ locals }) {
+  const session = await locals.getSession()
 
-// route is for subscribers only (including canceled, or late on payment)
-export const load = subscriber(callback)
+  // check if user is on pro plan
+  if (session?.subscription?.plan?.id != 'pro') {
+    return error(401, 'Must be on pro plan')
+  }
 
-// route is for fully paid subscribers only
-export const load = subscriber.active(callback)
+  // do the gated thing here
+}
+```
 
-// route is for past due subscribers only
-export const load = subscriber.pastDue(callback)
+### Components
 
-// route is for unpaid subscribers only
-export const load = subscriber.unpaid(callback)
+Gating components is similar to gating routes. The same `session.subscription` data is available.
 
-// route is for trailing subscribers only
-export const load = subscriber.trialing(callback)
+```svelte
+<script>
+  export let data
 
-// route is for subscribers that have canceled their subscription
-export const load = subscriber.canceled(callback)
+  $: ({ session } = data)
+</script>
 
-// route is for subscribers on the "pro" plan
-export const load = subscriber.plan('pro', callback)
-
-// route is for subscribers on the "pro" or "enterprise" plans
-export const load = subscriber.plans(['pro', 'enterprise'], callback)
-
-// route is for non-subscribers only
-export const load = nonSubscriber(callback)
+{#if session?.subscription?.plan?.id == 'pro'}
+  Your on the PRO plan!
+{/if}
 ```
 
 ## Billing Endpoint

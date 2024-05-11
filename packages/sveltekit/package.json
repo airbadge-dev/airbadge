@@ -27,7 +27,7 @@
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js"
     },
-    "client": {
+    "./client.js": {
       "types": "./dist/client.d.ts",
       "svelte": "./dist/client.js"
     }
