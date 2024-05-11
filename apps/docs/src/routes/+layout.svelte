@@ -9,7 +9,7 @@
     { url: '/configuration', name: 'Configuration' },
     { url: '/database', name: 'Database' },
     { url: '/session', name: 'Session' },
-    { url: '/authorization', name: 'Authorization' },
+    { url: '/gating', name: 'Gating' },
     { url: '/endpoints', name: 'Endpoints' },
     { url: 'https://demo.airbadge.dev', name: 'Live Demo' },
     { url: 'https://github.com/joshnuss/airbadge-example', name: 'Example Code' },
