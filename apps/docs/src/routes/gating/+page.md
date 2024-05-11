@@ -4,7 +4,7 @@ There are two ways to do gating.
 
 ## Gating Routes
 
-To gate routes, check the `session.subscription` for applicable data.
+To gate routes, check the `session.subscription` for authorization:
 
 **Example**
 
@@ -17,7 +17,7 @@ export async function load({ locals }) {
     return error(401, 'Must be on pro plan')
   }
 
-  // do the thing here
+  // do the gated thing here
 }
 ```
 

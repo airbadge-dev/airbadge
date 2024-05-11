@@ -26,7 +26,7 @@ The session contain subscription data, so it's easy to gate on the server or cli
 
 ### Gating Routes
 
-To gate routes, check the `session.subscription` for applicable data.
+To gate routes, check the `session.subscription` for authorization:
 
 ```javascript
 export async function load({ locals }) {
@@ -37,7 +37,7 @@ export async function load({ locals }) {
     return error(401, 'Must be on pro plan')
   }
 
-  // do the thing here
+  // do the gated thing here
 }
 ```
 
