@@ -12,7 +12,7 @@ Launch a SaaS app without writing any authentiction or payment code!
 
 - **Integrated Payment**: Stripe Checkout is built into the signup flow.
 - **Authentication**: Over 50 OAuth options (Google, Apple, GitHub...), provided by Auth.js.
-- **Authorization**: Routes and UI can be restricted based on subscription.
+- **Gating**: Access to routes and components can be restricted based on subscription.
 - **Self-service account management**: Changing or canceling plans is accessible via `/billing/portal`.
 - **Webhook handling**: All Stripe webhooks are handled for you.
 - **Trials & Free plans**: Checkout can be skipped for free plans or trials.
