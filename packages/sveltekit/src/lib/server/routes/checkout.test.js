@@ -45,7 +45,7 @@ describe('checkout', () => {
 
     const response = handler(event, state)
 
-    await expect(response).toError(403, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+    await expect(response).toError(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
   })
 
   describe('with product', () => {

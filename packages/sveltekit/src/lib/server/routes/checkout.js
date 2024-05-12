@@ -8,7 +8,7 @@ export default async function handler({ url }, { user, catalog, billing, options
   const id = url.searchParams.get('id')
   const price = await catalog.get(id)
 
-  if (!price) error(403, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+  if (!price) error(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
 
   if (price.type == 'recurring' && price.unit_amount == 0) {
     await billing.createSubscription(user, price)
