@@ -60,7 +60,7 @@ When user clicks the button, `POST` to `/billing/cancel`:
 Pull pricing from Stripe in `src/routes/pricing/+page.js`:
 
 ```javascript
-import { SECRET_STRIPE_KEY }
+import { SECRET_STRIPE_KEY } from '$env/static/private'
 
 const stripe = new Stripe(SECRET_STRIPE_KEY)
 
