@@ -1,4 +1,3 @@
-import plans from './plans'
 import portal from './portal'
 import modify from './modify'
 import cancel from './cancel'
@@ -35,10 +34,5 @@ export const routes = {
   '/billing/webhooks': {
     method: 'POST',
     handler: webhooks
-  },
-
-  '/billing/plans': {
-    method: 'GET',
-    handler: plans
   }
 }

@@ -61,7 +61,7 @@ describe('SvelteKitAuth', () => {
 
       const response = await handler({
         event: {
-          url: new URL('http://localhost/billing/plans'),
+          url: new URL('http://localhost/billing/portal'),
           locals: {
             getSession() {}
           },
@@ -71,7 +71,7 @@ describe('SvelteKitAuth', () => {
         }
       })
 
-      expect(response.status).toEqual(200)
+      expect(response.status).toEqual(303)
     })
 
     test('ignores everything else', async () => {

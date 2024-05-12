@@ -11,7 +11,6 @@ The following routes are provided:
 | `/billing/modify`            | Modify the current user's billing plan.                        |
 | `/billing/cancel`            | Cancels the current user's subscription.                       |
 | `/billing/checkout/complete` | Handles post-checkout housekeeping.                            |
-| `/billing/plans`             | Lists plans in `JSON` format.                                    |
 | `/billing/webhooks`          | Handles all Stripe webhooks for you.                           |
 
 ## Use cases
@@ -58,14 +57,21 @@ When user clicks the button, `POST` to `/billing/cancel`:
 
 ### Create a pricing page
 
-Pull JSON data from `/billing/plans` in `src/routes/pricing/+page.js`:
+Pull pricing from Stripe in `src/routes/pricing/+page.js`:
 
 ```javascript
+import { SECRET_STRIPE_KEY }
+
+const stripe = new Stripe(SECRET_STRIPE_KEY)
+
 export async function load({ fetch }) {
-  const response = await fetch('/billing/plans')
+  const { data } = await stripe.products.list({
+    active: true,
+    type: 'recurring'
+  })
 
   return {
-    plans: await response.json()
+    prices: data
   }
 }
 ```
