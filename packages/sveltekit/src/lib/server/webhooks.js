@@ -1,4 +1,4 @@
-import { stripe } from './billing'
+import { stripe } from './stripe'
 import { env } from '$env/dynamic/private'
 
 export async function handleWebhook(billing, body, signature) {
