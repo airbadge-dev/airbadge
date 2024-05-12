@@ -1,4 +1,3 @@
-import Stripe from 'stripe'
 import { DOMAIN } from '$env/static/private'
 import { stripe } from './stripe'
 

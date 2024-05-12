@@ -1,4 +1,5 @@
-import { stripe, createBillingService } from './billing'
+import { stripe } from './stripe'
+import { createBillingService } from './billing'
 
 vi.mock('stripe', () => {
   const Stripe = vi.fn(() => {
