@@ -2,7 +2,7 @@ import handler from './checkout'
 
 describe('checkout', () => {
   describe('without user, redirects to sign in', () => {
-    test('without plan', async () => {
+    test('without id', async () => {
       const event = {
         url: new URL('http://localhost/billing/checkout')
       }
@@ -11,13 +11,13 @@ describe('checkout', () => {
       await expect(response).toRedirect(303, '/auth/signin?callbackUrl=/billing/checkout')
     })
 
-    test('with plan', async () => {
+    test('with id', async () => {
       const event = {
-        url: new URL('http://localhost/billing/checkout?plan=basic')
+        url: new URL('http://localhost/billing/checkout?id=basic')
       }
       const response = handler(event, {})
 
-      await expect(response).toRedirect(303, '/auth/signin?callbackUrl=/billing/checkout?plan=basic')
+      await expect(response).toRedirect(303, '/auth/signin?callbackUrl=/billing/checkout?id=basic')
     })
   })
 
@@ -32,11 +32,11 @@ describe('checkout', () => {
     await expect(response).toRedirect(303, '/?event=already-subscribed')
   })
 
-  test('when plan not found, raises error', async () => {
+  test('when price not found, raises error', async () => {
     const state = {
       user: {},
-      plans: {
-        getDefault() {}
+      catalog: {
+        get() {}
       }
     }
     const event = {
@@ -45,11 +45,11 @@ describe('checkout', () => {
 
     const response = handler(event, state)
 
-    await expect(response).toError(403, 'No default plan, and plan was not specified in URL')
+    await expect(response).toError(403, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
   })
 
-  describe('with plan', () => {
-    const plan = {}
+  describe('with product', () => {
+    const price = {}
     const billing = {
       createSubscription: vi.fn(),
       createCheckout: vi.fn()
@@ -57,9 +57,9 @@ describe('checkout', () => {
     const user = {}
     const state = {
       user,
-      plans: {
-        getDefault() {
-          return plan
+      catalog: {
+        get() {
+          return price
         }
       },
       billing,
@@ -76,31 +76,19 @@ describe('checkout', () => {
       url: new URL('http://localhost/billing/checkout')
     }
 
-    test('when plan has trial, creates subscription and redirects', async () => {
-      plan.price = 10000
-      plan.trial = true
+    test('when price is free and recurring, creates subscription and redirects', async () => {
+      price.type = 'recurring'
+      price.unit_amount = 0
 
       const response = handler(event, state)
 
       await expect(response).toRedirect(303, '/welcome')
 
-      expect(billing.createSubscription).toHaveBeenCalledWith(user, plan)
+      expect(billing.createSubscription).toHaveBeenCalledWith(user, price)
     })
 
-    test('when plan is free, creates subscription and redirects', async () => {
-      plan.trial = false
-      plan.price = 0
-
-      const response = handler(event, state)
-
-      await expect(response).toRedirect(303, '/welcome')
-
-      expect(billing.createSubscription).toHaveBeenCalledWith(user, plan)
-    })
-
-    test('when plan isnt free or trial, redirects to checkout', async () => {
-      plan.trial = false
-      plan.price = 10000
+    test('when price isnt free or trial, redirects to checkout', async () => {
+      price.unit_amount = 10000
 
       billing.createCheckout.mockReturnValueOnce({
         url: 'https://checkout.stripe.com/checkout_1234'
@@ -110,7 +98,7 @@ describe('checkout', () => {
 
       await expect(response).toRedirect(303, 'https://checkout.stripe.com/checkout_1234')
 
-      expect(billing.createCheckout).toHaveBeenCalledWith(user, plan)
+      expect(billing.createCheckout).toHaveBeenCalledWith(user, price)
     })
   })
 })
