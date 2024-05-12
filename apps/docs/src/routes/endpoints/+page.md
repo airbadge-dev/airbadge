@@ -66,7 +66,8 @@ const stripe = new Stripe(SECRET_STRIPE_KEY)
 
 export async function load({ fetch }) {
   const { data } = await stripe.products.list({
-    active: true
+    active: true,
+    expand: ['data.default_price']
   })
 
   return {
@@ -87,8 +88,11 @@ Data bind the products in `src/routes/pricing/+page.svelte`:
 {#each data.products as product}
   <section>
     <h2>{product.name}</h2>
+    <p>
+      Price: {product.default_price.unit_amount / 100}
+    </p>
 
-    <a href="/billing/checkout?id={product.id}">
+    <a href="/billing/checkout?id={product.default_price.id}">
       Subscribe
     </a>
   </section>
