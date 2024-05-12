@@ -23,7 +23,7 @@ export async function load({ locals }) {
 
 ## Gating Components
 
-Gating components is similar to gating routes. The subscription data is available in `session.subscription`.
+Gating components is similar to gating routes. The subscription data is available in `data.session.subscription`.
 
 **Example**
 
