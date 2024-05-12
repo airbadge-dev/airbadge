@@ -1,9 +1,11 @@
 import { error } from '@sveltejs/kit'
 import { redirect } from './utils'
 
+const expiredStates = [ 'INCOMPLETE_EXPIRED', 'CANCELED' ]
+
 export default async function handler({ url }, { user, catalog, billing, options }) {
   if (!user) return redirect(303, `/auth/signin?callbackUrl=${url.pathname}${url.search}`)
-  if (user.subscriptionId) return redirect(303, '/?event=already-subscribed')
+  if (user.subscriptionId && !expiredStates.includes(user.subscriptionStatus)) return redirect(303, '/?event=already-subscribed')
 
   const id = url.searchParams.get('id')
   const price = await catalog.get(id)

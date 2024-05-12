@@ -32,6 +32,42 @@ describe('checkout', () => {
     await expect(response).toRedirect(303, '/?event=already-subscribed')
   })
 
+  test('when user canceled subscribed, doesnt redirect', async () => {
+    const state = {
+      user: {
+        subscriptionId: 'sub_1234',
+        subscriptionStatus: 'CANCELED'
+      },
+      catalog: {
+        get() {}
+      }
+    }
+    const event = {
+      url: new URL('http://localhost/billing/checkout')
+    }
+    const response = handler(event, state)
+
+    await expect(response).toError(406)
+  })
+
+  test('when user has incomplete expired subscription, doesnt redirect', async () => {
+    const state = {
+      user: {
+        subscriptionId: 'sub_1234',
+        subscriptionStatus: 'INCOMPLETE_EXPIRED'
+      },
+      catalog: {
+        get() {}
+      }
+    }
+    const event = {
+      url: new URL('http://localhost/billing/checkout')
+    }
+    const response = handler(event, state)
+
+    await expect(response).toError(406)
+  })
+
   test('when price not found, raises error', async () => {
     const state = {
       user: {},
