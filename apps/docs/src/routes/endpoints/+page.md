@@ -66,17 +66,16 @@ const stripe = new Stripe(SECRET_STRIPE_KEY)
 
 export async function load({ fetch }) {
   const { data } = await stripe.products.list({
-    active: true,
-    type: 'recurring'
+    active: true
   })
 
   return {
-    prices: data
+    products: data
   }
 }
 ```
 
-Data bind the plans in `src/routes/pricing/+page.svelte`:
+Data bind the products in `src/routes/pricing/+page.svelte`:
 
 ```svelte
 <script>
@@ -85,12 +84,12 @@ Data bind the plans in `src/routes/pricing/+page.svelte`:
 
 <h1>Pricing</h1>
 
-{#each data.plans as plan}
+{#each data.products as product}
   <section>
-    <h2>{plan.name}</h2>
+    <h2>{product.name}</h2>
 
-    <a href="/billing/checkout?plan={plan.id}">
-      Buy {plan.name}
+    <a href="/billing/checkout?id={product.id}">
+      Subscribe
     </a>
   </section>
 {/each}

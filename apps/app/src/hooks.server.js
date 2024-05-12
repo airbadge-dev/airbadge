@@ -35,18 +35,6 @@ export const handle = sequence(
         clientSecret: env.GITHUB_SECRET
       })
     ],
-
-    // configure list of plans.
-    plans: [
-      { id: 'pro', name: 'Pro', priceId: env.PRO_PRICE_ID, price: 250000 },
-      {
-        id: 'enterprise',
-        name: 'Enterprise',
-        priceId: env.ENTERPRISE_PRICE_ID,
-        price: 120000,
-        default: true
-      }
-    ]
   })
 )
 export const handleError = Sentry.handleErrorWithSentry()

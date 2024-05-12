@@ -142,18 +142,21 @@ stripe login
 # create products & pricing
 stripe prices create \
   --product-data.name="Basic Plan" \
+  --lookup-key='basic_monthly'
   --currency=usd \
   --unit-amount=1000 \
   --recurring.interval=month
 
 stripe prices create \
   --product-data.name="Pro Plan" \
+  --lookup-key='pro_monthly'
   --currency=usd \
   --unit-amount=2500 \
   --recurring.interval=month
 
 stripe prices create \
   --product-data.name="Enterprise Plan" \
+  --lookup-key='enterprise_monthly'
   --currency=usd \
   --unit-amount=10000 \
   --recurring.interval=month
@@ -190,13 +193,6 @@ export const handle = SvelteKitAuth({
       clientId: env.GITHUB_ID,
       clientSecret: env.GITHUB_SECRET
     })
-  ],
-
-  // configure list of plans.
-  plans: [
-    { id: 'basic', name: 'Basic', priceId: '...', default: true },
-    { id: 'pro', name: 'Pro', priceId: '...' }
-    { id: 'enterprise', name: 'Enterprise', priceId: '...' }
   ]
 })
 ```
@@ -213,4 +209,4 @@ stripe listen --forward-to localhost:5173/billing/webhooks
 
 You now have a working SaaS app!
 
-Visit [http://localhost:5173/auth/signin](http://localhost:5173/auth/signin) to sign up and pay.
+Visit [http://localhost:5173/billing/checkout](http://localhost:5173/billing/checkout) to sign up and pay.

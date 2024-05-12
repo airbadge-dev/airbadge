@@ -30,22 +30,5 @@ export const handle = SvelteKitAuth({
     checkout: {
       success: '/welcome'
     }
-  },
-
-  // specify plans & pricing
-  plans: [
-    {
-      id: 'basic',
-      name: 'Basic',
-      priceId: env.BASIC_PRICE_ID,
-      price: 1000,
-      default: true
-    },
-    {
-      id: 'pro',
-      name: 'Pro',
-      priceId: env.PRO_PRICE_ID,
-      price: 10000
-    }
-  ]
+  }
 })

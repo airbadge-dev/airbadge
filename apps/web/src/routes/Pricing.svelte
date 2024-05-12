@@ -82,7 +82,7 @@
 
             <a class="btn"
                class:primary={plan.recommended}
-               href={ plan.price == 0 ? 'https://docs.airbadge.dev/getting-started' : `https://app.airbadge.dev/billing/checkout?plan=${plan.id}`}>
+               href={ plan.price == 0 ? 'https://docs.airbadge.dev/getting-started' : `https://app.airbadge.dev/billing/checkout?id=${plan.id}`}>
               Get started
             </a>
           </div>

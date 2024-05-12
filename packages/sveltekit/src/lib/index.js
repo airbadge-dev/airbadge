@@ -5,8 +5,6 @@ import { sequence } from '@sveltejs/kit/hooks'
 import { routes } from '$lib/server/routes'
 
 export function SvelteKitAuth(options = {}) {
-  if (!options.plans || options.plans.length == 0) throw new Error('Must have at least one plan')
-
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')
 

@@ -117,13 +117,6 @@ export const handle = SvelteKitAuth({
       clientId: env.GITHUB_ID,
       clientSecret: env.GITHUB_SECRET
     })
-  ],
-
-  // configure list of plans.
-  plans: [
-    { id: 'basic', name: 'Basic', price: 1000, default: true },
-    { id: 'pro', name: 'Pro', price: 2500 }
-    { id: 'enterprise', name: 'Enterprise', price: 10000 }
   ]
 })
 ```
