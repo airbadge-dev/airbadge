@@ -209,4 +209,4 @@ stripe listen --forward-to localhost:5173/billing/webhooks
 
 You now have a working SaaS app!
 
-Visit [http://localhost:5173/billing/checkout](http://localhost:5173/billing/checkout) to sign up and pay.
+Visit [http://localhost:5173/billing/checkout?id=pro_monthly](http://localhost:5173/billing/checkout?id=pro_monthly) to sign up and pay.
