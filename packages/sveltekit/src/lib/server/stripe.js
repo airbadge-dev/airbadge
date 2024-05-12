@@ -1,3 +1,4 @@
+import Stripe from 'stripe'
 import { SECRET_STRIPE_KEY } from '$env/static/private'
 
 export const stripe = Stripe(SECRET_STRIPE_KEY, {
