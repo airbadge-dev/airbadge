@@ -40,6 +40,7 @@ function authHandler(options) {
           session.subscription = {
             id: user.subscriptionId,
             customerId: user.customerId,
+            priceId: user.priceId,
             plan: user.plan,
             status: user.subscriptionStatus.toLowerCase()
           }
