@@ -1,9 +1,6 @@
 import Stripe from 'stripe'
-import { SECRET_STRIPE_KEY, DOMAIN } from '$env/static/private'
-
-export const stripe = Stripe(SECRET_STRIPE_KEY, {
-  apiVersion: '2022-11-15'
-})
+import { DOMAIN } from '$env/static/private'
+import { stripe } from './stripe'
 
 export function createBillingService(adapter, urls) {
   return {
