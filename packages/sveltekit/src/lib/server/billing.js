@@ -5,23 +5,23 @@ export const stripe = Stripe(SECRET_STRIPE_KEY, {
   apiVersion: '2022-11-15'
 })
 
-export function createBillingService(adapter, plans, urls) {
+export function createBillingService(adapter, urls) {
   return {
-    async createSubscription(user, plan) {
-      const metadata = {
-        userId: user.id
-      }
-
+    async createSubscription(user, price) {
       const customer = await stripe.customers.create({
         name: user.name,
         email: user.email,
-        metadata
+        metadata: {
+          userId: user.id
+        }
       })
 
       const subscription = await stripe.subscriptions.create({
         customer: customer.id,
-        metadata,
-        items: [{ price: plan.priceId }]
+        metadata: {
+          userId: user.id
+        },
+        items: [{ price: price.id }]
       })
 
       await adapter.updateUser({
@@ -29,14 +29,16 @@ export function createBillingService(adapter, plans, urls) {
         customerId: subscription.customer,
         subscriptionId: subscription.id,
         subscriptionStatus: subscription.status.toUpperCase(),
-        plan: plan.id,
-        priceId: plan.priceId
+        plan: price.lookup_key,
+        priceId: price.id
       })
     },
 
-    async createCheckout(user, plan) {
+    async createCheckout(user, price) {
       const metadata = {
-        userId: user.id
+        userId: user.id,
+        productId: price.product,
+        priceId: price.id
       }
 
       return stripe.checkout.sessions.create({
@@ -50,11 +52,13 @@ export function createBillingService(adapter, plans, urls) {
         client_reference_id: user.id,
         metadata,
         subscription_data: {
-          metadata
+          metadata: {
+            userId: user.id
+          }
         },
         line_items: [
           {
-            price: plan.priceId,
+            price: price.id,
             quantity: 1
           }
         ]
@@ -81,18 +85,15 @@ export function createBillingService(adapter, plans, urls) {
       if (!userId) throw new Error(`Missing user id metadata for subscription '${subscriptionId}'`)
 
       const item = subscription.items.data[0]
-      const priceId = item.price.id
-      const plan = plans.getByPriceId(priceId)
-
-      if (!plan) throw new Error(`Missing plan for price '${priceId}'`)
+      const { price } = item
 
       await adapter.updateUser({
         id: userId,
         customerId: subscription.customer,
         subscriptionId: subscription.id,
         subscriptionStatus: subscription.status.toUpperCase(),
-        plan: plan.id,
-        priceId
+        plan: price.lookup_key,
+        priceId: price.id
       })
     },
 
@@ -100,24 +101,22 @@ export function createBillingService(adapter, plans, urls) {
       return stripe.subscriptions.update(user.subscriptionId, { cancel_at_period_end: true })
     },
 
-    async updateSubscription(user, planId) {
-      const plan = plans.getById(planId)
-
-      if (!plan) throw new Error(`Missing plan '${planId}'`)
+    async updateSubscription(user, price) {
+      if (!price) throw new Error('Missing price')
 
       const subscription = await stripe.subscriptions.retrieve(user.subscriptionId)
 
       const subscriptionItem = await stripe.subscriptionItems.update(
         subscription.items.data[0].id,
         {
-          price: plan.priceId
+          price: price.id
         }
       )
 
       await adapter.updateUser({
         id: user.id,
-        plan: plan.id,
-        priceId: plan.priceId
+        plan: price.lookup_key,
+        priceId: price.id
       })
 
       return subscriptionItem
