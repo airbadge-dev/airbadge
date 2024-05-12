@@ -90,4 +90,11 @@ describe('get', () => {
     expect(result).toBeNull()
     expect(stripe.prices.list).toHaveBeenCalledWith({ limit: 1, active: true, lookup_keys: ['unknown']})
   })
+
+  test('when id is empty, returns null', async () => {
+    const result = await catalog.get('')
+
+    expect(result).toBeNull()
+    expect(stripe.prices.list).not.toHaveBeenCalledWith()
+  })
 })

@@ -3,6 +3,8 @@ import { stripe } from './stripe'
 export function createCatalog() {
   return {
     async get(id) {
+      if (!id) return null
+
       if (id.startsWith('prod_')) {
         const product = await stripe.products.retrieve(id)
         if (!product.default_price) return null
