@@ -33,7 +33,7 @@ export async function load({ locals }) {
   const session = await locals.getSession()
 
   // check if user is on pro plan
-  if (session?.subscription?.plan?.id != 'pro') {
+  if (session?.subscription?.plan != 'pro') {
     return error(401, 'Must be on pro plan')
   }
 
@@ -52,7 +52,7 @@ Gating components is similar to gating routes. The same `session.subscription` d
   $: ({ session } = data)
 </script>
 
-{#if session?.subscription?.plan?.id == 'pro'}
+{#if session?.subscription?.plan == 'pro'}
   Your on the PRO plan!
 {/if}
 ```
