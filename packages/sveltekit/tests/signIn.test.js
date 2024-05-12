@@ -22,6 +22,7 @@ test('sign in with subscription', async ({ page }) => {
     subscriptionId: 'sub_1234',
     subscriptionStatus: 'ACTIVE',
     customerId: 'cus_1234',
+    priceId: 'price_1234',
     plan: 'pro'
   })
 
@@ -36,11 +37,8 @@ test('sign in with subscription', async ({ page }) => {
       id: 'sub_1234',
       customerId: 'cus_1234',
       status: 'active',
-      plan: {
-        id: 'pro',
-        name: 'Pro',
-        price: 10000
-      }
+      priceId: 'price_1234',
+      plan: 'pro',
     }
   })
 })

@@ -13,10 +13,8 @@ They are available on both the [client](#client-side) and [server](#server-side)
 | `subscription.id`           | The user's subscription id.                                                                                            |
 | `subscription.status`       | The current [status of the subscription](https://stripe.com/docs/api/subscriptions/object#subscription_object-status). |
 | `subscription.customer`     | The user's Stripe customer id.                                                                                         |
-| `subscription.plan.id`      | The id of the plan. Example: `pro` or `enterprise`                                                                     |
-| `subscription.plan.name`    | The name of the plan. Example: `Pro` or `Enterprise`                                                                   |
-| `subscription.plan.priceId` | The Stripe price id of the plan. Example: `price_1234`                                                                 |
-| `subscription.plan.price`   | The price of the plan in cents. Example: `1000`                                                                        |
+| `subscription.plan`         | The lookup key of the Stripe price. Example: `pro_monthly` or `basic_yearly`                                           |
+| `subscription.priceId` | The Stripe price id of the plan. Example: `price_1234`                                                                 |
 
 ## Server-side
 
@@ -65,12 +63,8 @@ This is an example of what session data would look like:
     "id": "sub_1234",
     "customerId": "cus_1234",
     "status": "active",
-    "plan": {
-      "id": "basic",
-      "name": "Basic",
-      "priceId": "price_1234",
-      "price": 1000
-    }
+    "priceId": "price_1234",
+    "plan": "basic_monthly"
   }
 }
 ```
