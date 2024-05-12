@@ -20,7 +20,7 @@ export function SvelteKitAuth(options = {}) {
   options.pages.portalReturn ||= '/?event=portal-return'
 
   const plans = createPlanList(options.plans)
-  const billing = createBillingService(options.adapter, plans, options.pages)
+  const billing = createBillingService(options.adapter, options.pages)
   const state = {
     plans,
     billing,
