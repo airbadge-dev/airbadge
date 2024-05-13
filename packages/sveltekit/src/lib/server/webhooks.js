@@ -10,6 +10,7 @@ export async function handleWebhook(billing, body, signature) {
     case 'customer.subscription.updated':
     case 'customer.subscription.deleted':
     case 'customer.subscription.trial_will_end':
+    case 'customer.subscription.paused':
       await billing.syncSubscription(object.id)
       console.log(`Synced subscription ${object.id}`)
       break

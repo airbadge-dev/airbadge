@@ -87,4 +87,19 @@ describe('handleWebhook', () => {
 
     expect(billing.syncSubscription).toHaveBeenCalledWith('sub_1234')
   })
+
+  test('when subscription.paused event, syncs subscription', async () => {
+    stripe.webhooks.constructEvent.mockReturnValue({
+      type: 'customer.subscription.paused',
+      data: {
+        object: {
+          id: 'sub_1234'
+        }
+      }
+    })
+
+    await handleWebhook(billing, 'fake-body', 'fake-sig')
+
+    expect(billing.syncSubscription).toHaveBeenCalledWith('sub_1234')
+  })
 })
