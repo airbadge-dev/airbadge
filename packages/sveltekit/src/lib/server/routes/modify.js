@@ -1,13 +1,18 @@
 import { json, error } from '@sveltejs/kit'
 
-export default async function handler({ url }, { user, billing }) {
+export default async function handler({ url }, { user, catalog, billing }) {
   if (!user) error(401, 'Authentication required')
 
-  const plan = url.searchParams.get('plan')
+  const id = url.searchParams.get('id')
 
-  if (!plan) error(406, 'Plan is required')
+  if (!id) error(406, 'id param is required')
 
-  await billing.updateSubscription(user, plan)
+  const price = await catalog.get(id)
+
+  if (!price) error(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+  if (price.type !== 'recurring') error(406, 'Modifying a subscription requires a recurring price.')
+
+  await billing.updateSubscription(user, price)
 
   return json({ updated: true })
 }
