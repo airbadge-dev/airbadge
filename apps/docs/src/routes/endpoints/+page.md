@@ -11,7 +11,6 @@ The following routes are provided:
 | `/billing/modify`            | Modify the current user's billing plan.                        |
 | `/billing/cancel`            | Cancels the current user's subscription.                       |
 | `/billing/checkout/complete` | Handles post-checkout housekeeping.                            |
-| `/billing/plans`             | Lists plans in `JSON` format.                                    |
 | `/billing/webhooks`          | Handles all Stripe webhooks for you.                           |
 
 ## Use cases
@@ -26,12 +25,12 @@ Just link to `/billing/portal`
 
 ### Create an upgrade button
 
-When user clicks the button, `POST` to `/billing/modify` and pass `plan=pro` as a query param:
+When a user clicks the button, `POST` to `/billing/modify` and pass `id` as a query param. The `id` can be either a price id, product id or lookup key.
 
 ```svelte
 <script>
   function upgrade() {
-    return fetch('/billing/modify?plan=pro', {
+    return fetch('/billing/modify?id=price_1234', {
       method: 'POST'
     })
   }
@@ -58,19 +57,26 @@ When user clicks the button, `POST` to `/billing/cancel`:
 
 ### Create a pricing page
 
-Pull JSON data from `/billing/plans` in `src/routes/pricing/+page.js`:
+Pull pricing from Stripe in `src/routes/pricing/+page.js`:
 
 ```javascript
+import { SECRET_STRIPE_KEY } from '$env/static/private'
+
+const stripe = new Stripe(SECRET_STRIPE_KEY)
+
 export async function load({ fetch }) {
-  const response = await fetch('/billing/plans')
+  const { data } = await stripe.products.list({
+    active: true,
+    expand: ['data.default_price']
+  })
 
   return {
-    plans: await response.json()
+    products: data
   }
 }
 ```
 
-Data bind the plans in `src/routes/pricing/+page.svelte`:
+Data bind the products in `src/routes/pricing/+page.svelte`:
 
 ```svelte
 <script>
@@ -79,12 +85,15 @@ Data bind the plans in `src/routes/pricing/+page.svelte`:
 
 <h1>Pricing</h1>
 
-{#each data.plans as plan}
+{#each data.products as product}
   <section>
-    <h2>{plan.name}</h2>
+    <h2>{product.name}</h2>
+    <p>
+      Price: {product.default_price.unit_amount / 100}
+    </p>
 
-    <a href="/billing/checkout?plan={plan.id}">
-      Buy {plan.name}
+    <a href="/billing/checkout?id={product.default_price.id}">
+      Subscribe
     </a>
   </section>
 {/each}

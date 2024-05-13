@@ -33,7 +33,7 @@ export async function load({ locals }) {
   const session = await locals.getSession()
 
   // check if user is on pro plan
-  if (session?.subscription?.plan?.id != 'pro') {
+  if (session?.subscription?.plan != 'pro') {
     return error(401, 'Must be on pro plan')
   }
 
@@ -52,7 +52,7 @@ Gating components is similar to gating routes. The same `session.subscription` d
   $: ({ session } = data)
 </script>
 
-{#if session?.subscription?.plan?.id == 'pro'}
+{#if session?.subscription?.plan == 'pro'}
   Your on the PRO plan!
 {/if}
 ```
@@ -67,7 +67,6 @@ The following routes are provided:
 - `/billing/portal`: Opens the billing portal for the current signed-in user.
 - `/billing/cancel`: Cancels the current user's subscription.
 - `/billing/webhooks`: Handles all Stripe webhooks for you.
-- `/billing/plans`: List plans in json format.
 - `/billing/modify`: Modify the current user's billing plan.
 - `/billing/checkout/complete`: Handles post-checkout housekeeping.
 
@@ -118,13 +117,6 @@ export const handle = SvelteKitAuth({
       clientId: env.GITHUB_ID,
       clientSecret: env.GITHUB_SECRET
     })
-  ],
-
-  // configure list of plans.
-  plans: [
-    { id: 'basic', name: 'Basic', price: 1000, default: true },
-    { id: 'pro', name: 'Pro', price: 2500 }
-    { id: 'enterprise', name: 'Enterprise', price: 10000 }
   ]
 })
 ```

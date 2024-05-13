@@ -1,7 +1,7 @@
-import { stripe } from './billing'
+import { stripe } from './stripe'
 import { handleWebhook } from './webhooks'
 
-vi.mock('./billing', () => {
+vi.mock('./stripe', () => {
   return {
     stripe: {
       webhooks: {

@@ -1,12 +1,10 @@
 import { SvelteKitAuth as BaseAuth } from '@auth/sveltekit'
-import { createPlanList } from '$lib/server/plans'
+import { createCatalog } from '$lib/server/catalog'
 import { createBillingService } from '$lib/server/billing'
 import { sequence } from '@sveltejs/kit/hooks'
 import { routes } from '$lib/server/routes'
 
 export function SvelteKitAuth(options = {}) {
-  if (!options.plans || options.plans.length == 0) throw new Error('Must have at least one plan')
-
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')
 
@@ -19,18 +17,18 @@ export function SvelteKitAuth(options = {}) {
   options.pages.checkout.cancel = '/?event=checkout-cancel'
   options.pages.portalReturn ||= '/?event=portal-return'
 
-  const plans = createPlanList(options.plans)
-  const billing = createBillingService(options.adapter, plans, options.pages)
+  const catalog = createCatalog()
+  const billing = createBillingService(options.adapter, options.pages)
   const state = {
-    plans,
+    catalog,
     billing,
     options
   }
 
-  return sequence(authHandler(plans, options), paymentHandler(state))
+  return sequence(authHandler(options), paymentHandler(state))
 }
 
-function authHandler(plans, options) {
+function authHandler(options) {
   return BaseAuth({
     ...options,
 
@@ -42,7 +40,8 @@ function authHandler(plans, options) {
           session.subscription = {
             id: user.subscriptionId,
             customerId: user.customerId,
-            plan: plans.getById(user.plan),
+            priceId: user.priceId,
+            plan: user.plan,
             status: user.subscriptionStatus.toLowerCase()
           }
         }

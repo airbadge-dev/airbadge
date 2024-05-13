@@ -1,4 +1,5 @@
-import { stripe, createBillingService } from './billing'
+import { stripe } from './stripe'
+import { createBillingService } from './billing'
 
 vi.mock('stripe', () => {
   const Stripe = vi.fn(() => {
@@ -35,11 +36,6 @@ const adapter = {
   updateUser: vi.fn()
 }
 
-const plans = {
-  getByPriceId: vi.fn(),
-  getById: vi.fn()
-}
-
 const user = {
   id: 'user_1234',
   name: 'John Smith',
@@ -57,7 +53,7 @@ const urls = {
 let billing
 
 beforeEach(() => {
-  billing = createBillingService(adapter, plans, urls)
+  billing = createBillingService(adapter, urls)
 })
 
 afterEach(() => {
@@ -65,9 +61,9 @@ afterEach(() => {
 })
 
 describe('createSubscription', () => {
-  const plan = {
-    id: 'pro',
-    priceId: 'price_1234'
+  const price = {
+    id: 'price_1234',
+    lookup_key: 'pro',
   }
 
   test('creates subscription', async () => {
@@ -81,20 +77,20 @@ describe('createSubscription', () => {
       status: 'active'
     })
 
-    await billing.createSubscription(user, plan)
+    await billing.createSubscription(user, price)
 
     expect(stripe.customers.create).toHaveBeenCalledWith({
       name: 'John Smith',
       email: 'user@home.com',
       metadata: {
-        userId: 'user_1234'
+        userId: 'user_1234',
       }
     })
 
     expect(stripe.subscriptions.create).toHaveBeenCalledWith({
       customer: 'cus_1234',
       metadata: {
-        userId: 'user_1234'
+        userId: 'user_1234',
       },
       items: [
         {
@@ -115,8 +111,9 @@ describe('createSubscription', () => {
 })
 
 describe('createCheckout', () => {
-  const plan = {
-    priceId: 'price_1234'
+  const price = {
+    id: 'price_1234',
+    product: 'prod_1234'
   }
 
   test('creates checkout session', async () => {
@@ -124,7 +121,7 @@ describe('createCheckout', () => {
       url: 'https://checkout.stripe.com/1234'
     })
 
-    const result = await billing.createCheckout(user, plan)
+    const result = await billing.createCheckout(user, price)
 
     expect(result).toEqual({ url: 'https://checkout.stripe.com/1234' })
     expect(stripe.checkout.sessions.create).toHaveBeenCalledWith({
@@ -136,7 +133,9 @@ describe('createCheckout', () => {
       customer_email: 'user@home.com',
       client_reference_id: 'user_1234',
       metadata: {
-        userId: 'user_1234'
+        userId: 'user_1234',
+        priceId: 'price_1234',
+        productId: 'prod_1234',
       },
       subscription_data: {
         metadata: {
@@ -192,7 +191,7 @@ describe('syncSubscription', () => {
     )
   })
 
-  test('when plan not found, raises', async () => {
+  test('updates user', async () => {
     stripe.subscriptions.retrieve.mockResolvedValue({
       id: 'sub_1234',
       customer: 'cus_1234',
@@ -203,33 +202,8 @@ describe('syncSubscription', () => {
         data: [
           {
             price: {
-              id: 'price_1234'
-            }
-          }
-        ]
-      },
-      status: 'active'
-    })
-
-    await expect(() => billing.syncSubscription('sub_1234')).rejects.toThrowError(
-      "Missing plan for price 'price_1234'"
-    )
-  })
-
-  test('when plan found, updates user', async () => {
-    plans.getByPriceId.mockReturnValue({ id: 'pro', priceId: 'plan_1234' })
-
-    stripe.subscriptions.retrieve.mockResolvedValue({
-      id: 'sub_1234',
-      customer: 'cus_1234',
-      metadata: {
-        userId: 'user_1234'
-      },
-      items: {
-        data: [
-          {
-            price: {
-              id: 'price_1234'
+              id: 'price_1234',
+              lookup_key: 'pro'
             }
           }
         ]
@@ -281,7 +255,7 @@ describe('syncCheckout', () => {
     expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
   })
 
-  test('when plan not found, raises', async () => {
+  test('updates user', async () => {
     stripe.subscriptions.retrieve.mockResolvedValue({
       id: 'sub_1234',
       customer: 'cus_1234',
@@ -292,35 +266,8 @@ describe('syncCheckout', () => {
         data: [
           {
             price: {
-              id: 'price_1234'
-            }
-          }
-        ]
-      },
-      status: 'active'
-    })
-
-    await expect(() => billing.syncCheckout('checkout_1234')).rejects.toThrowError(
-      "Missing plan for price 'price_1234'"
-    )
-
-    expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
-  })
-
-  test('when plan found, updates user', async () => {
-    plans.getByPriceId.mockReturnValue({ id: 'pro', priceId: 'plan_1234' })
-
-    stripe.subscriptions.retrieve.mockResolvedValue({
-      id: 'sub_1234',
-      customer: 'cus_1234',
-      metadata: {
-        userId: 'user_1234'
-      },
-      items: {
-        data: [
-          {
-            price: {
-              id: 'price_1234'
+              id: 'price_1234',
+              lookup_key: 'pro'
             }
           }
         ]
@@ -365,20 +312,13 @@ describe('cancelSubscription', () => {
 })
 
 describe('updateSubscription', () => {
-  test('when plan not found, raises', async () => {
-    plans.getById.mockReturnValueOnce(null)
-
+  test('when price missing, raises', async () => {
     await expect(() =>
-      billing.updateSubscription('checkout_1234', 'unknown-plan')
-    ).rejects.toThrowError("Missing plan 'unknown-plan'")
+      billing.updateSubscription({}, null)
+    ).rejects.toThrowError("Missing price")
   })
 
-  test('when plan found, updates subscription item', async () => {
-    plans.getById.mockReturnValueOnce({
-      id: 'pro',
-      priceId: 'price_new'
-    })
-
+  test('when price found, updates subscription item', async () => {
     stripe.subscriptions.retrieve.mockResolvedValue({
       id: 'sub_1234',
       items: {
@@ -386,7 +326,8 @@ describe('updateSubscription', () => {
           {
             id: 'si_1234',
             price: {
-              id: 'price_1234'
+              id: 'price_1234',
+              lookup_key: 'price_new'
             }
           }
         ]
@@ -402,7 +343,10 @@ describe('updateSubscription', () => {
       subscriptionId: 'sub_1234'
     }
 
-    const result = await billing.updateSubscription(user, 'pro')
+    const result = await billing.updateSubscription(user, {
+      id: 'price_new',
+      lookup_key: 'pro'
+    })
 
     expect(result).toMatchObject({
       id: 'si_1234'

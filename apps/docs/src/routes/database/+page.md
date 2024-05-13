@@ -6,13 +6,13 @@ It requires some extra fields to the `User` schema.
 
 ## Extra fields
 
-| Name                 | Type   | Description                                                                  |
-| :------------------- | :----- | :--------------------------------------------------------------------------- |
-| `subscriptionId`     | String | The id of the Stripe subscription.                                           |
-| `subscriptionStatus` | String | The status of the Stripe subscription.                                       |
-| `customerId`         | String | The customerId of the user in Stripe.                                        |
-| `priceId`            | String | The priceId of the subscription.                                             |
-| `plan`               | String | The plan the user is on. Maps to [plan configuration](/configuration#plans). |
+| Name                 | Type   | Description                                                                                                               |
+| :------------------- | :----- | :---------------------------------------------------------------------------                                              |
+| `subscriptionId`     | String | The id of the Stripe subscription.                                                                                        |
+| `subscriptionStatus` | String | The status of the Stripe subscription.                                                                                    |
+| `customerId`         | String | The customerId of the user in Stripe.                                                                                     |
+| `priceId`            | String | The priceId of the subscription.                                                                                          |
+| `plan`               | String | The plan the user is on. Maps to [Price's lookup_key](https://docs.stripe.com/api/prices/object#price_object-lookup_key). |
 
 ## Prisma
 

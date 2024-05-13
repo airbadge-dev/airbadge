@@ -5,26 +5,18 @@ import { PrismaClient } from '@prisma/client'
 const db = new PrismaClient()
 
 describe('SvelteKitAuth', () => {
-  test('when no plans, raises an error', () => {
-    expect(() => SvelteKitAuth({})).toThrowError('Must have at least one plan')
-  })
-
-  test('when plans empty, raises an error', () => {
-    expect(() => SvelteKitAuth({ plans: [] })).toThrowError('Must have at least one plan')
-  })
-
   test('when no providers, raises an error', () => {
-    expect(() => SvelteKitAuth({ plans: [{}] })).toThrowError('Must have at least one provider')
+    expect(() => SvelteKitAuth({})).toThrowError('Must have at least one provider')
   })
 
   test('when providers empty, raises an error', () => {
-    expect(() => SvelteKitAuth({ plans: [{}], providers: [] })).toThrowError(
+    expect(() => SvelteKitAuth({ providers: [] })).toThrowError(
       'Must have at least one provider'
     )
   })
 
   test('when no adapter, raises an error', () => {
-    expect(() => SvelteKitAuth({ plans: [{}], providers: [{}] })).toThrowError(
+    expect(() => SvelteKitAuth({ providers: [{}] })).toThrowError(
       'An adapter is required'
     )
   })
@@ -33,7 +25,6 @@ describe('SvelteKitAuth', () => {
     const config = {
       adapter: new PrismaAdapter(db),
       providers: [{ id: 'google' }],
-      plans: [{ id: 'pro', name: 'Pro' }]
     }
 
     test('handles /auth', async () => {
@@ -61,7 +52,7 @@ describe('SvelteKitAuth', () => {
 
       const response = await handler({
         event: {
-          url: new URL('http://localhost/billing/plans'),
+          url: new URL('http://localhost/billing/portal'),
           locals: {
             getSession() {}
           },
@@ -71,7 +62,7 @@ describe('SvelteKitAuth', () => {
         }
       })
 
-      expect(response.status).toEqual(200)
+      expect(response.status).toEqual(303)
     })
 
     test('ignores everything else', async () => {
