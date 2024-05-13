@@ -25,12 +25,12 @@ Just link to `/billing/portal`
 
 ### Create an upgrade button
 
-When user clicks the button, `POST` to `/billing/modify` and pass `plan=pro` as a query param:
+When a user clicks the button, `POST` to `/billing/modify` and pass `id` as a query param. The `id` can be either a price id, product id or lookup key.
 
 ```svelte
 <script>
   function upgrade() {
-    return fetch('/billing/modify?plan=pro', {
+    return fetch('/billing/modify?id=price_1234', {
       method: 'POST'
     })
   }
