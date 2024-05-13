@@ -17,7 +17,7 @@
       ]
     },
     {
-      id: 'pro',
+      id: 'pro_yearly',
       name: 'Pro',
       description: 'For businesses that want to sell B2B software.',
       price: 25000,
@@ -30,7 +30,7 @@
       ]
     },
     {
-      id: 'enterprise',
+      id: 'enterprise_monthly',
       name: 'Enterprise',
       description: 'For businesses that are building critical billing infrastructure.',
       price: 10000,
