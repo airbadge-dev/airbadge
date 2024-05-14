@@ -43,7 +43,7 @@ export function createBillingService(adapter, urls) {
         ),
         cancel_url: absoluteURL(urls.checkout.cancel),
         currency: 'usd',
-        mode: 'subscription',
+        mode: price.type == 'recurring' ? 'subscription' : 'payment',
         customer_email: user.email,
         client_reference_id: user.id,
         metadata,

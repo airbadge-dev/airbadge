@@ -113,7 +113,8 @@ describe('createSubscription', () => {
 describe('createCheckout', () => {
   const price = {
     id: 'price_1234',
-    product: 'prod_1234'
+    product: 'prod_1234',
+    type: 'recurring'
   }
 
   test('creates checkout session', async () => {
@@ -151,7 +152,7 @@ describe('createCheckout', () => {
     })
   })
 
-  test('uses quantity specified', async () => {
+  test('uses specifed quantity', async () => {
     stripe.checkout.sessions.create.mockResolvedValue({
       url: 'https://checkout.stripe.com/1234'
     })
@@ -165,6 +166,47 @@ describe('createCheckout', () => {
       cancel_url: 'http://localhost:5173/checkout-cancel',
       currency: 'usd',
       mode: 'subscription',
+      customer_email: 'user@home.com',
+      client_reference_id: 'user_1234',
+      metadata: {
+        userId: 'user_1234',
+        priceId: 'price_1234',
+        productId: 'prod_1234',
+      },
+      subscription_data: {
+        metadata: {
+          userId: 'user_1234'
+        }
+      },
+      line_items: [
+        {
+          price: 'price_1234',
+          quantity: 3
+        }
+      ]
+    })
+  })
+
+  test('when price type is one_time, uses payment mode', async () => {
+    const price = {
+      id: 'price_1234',
+      product: 'prod_1234',
+      type: 'one_time'
+    }
+
+    stripe.checkout.sessions.create.mockResolvedValue({
+      url: 'https://checkout.stripe.com/1234'
+    })
+
+    const result = await billing.createCheckout(user, price, 3)
+
+    expect(result).toEqual({ url: 'https://checkout.stripe.com/1234' })
+    expect(stripe.checkout.sessions.create).toHaveBeenCalledWith({
+      success_url:
+        'http://localhost:5173/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:5173/checkout-cancel',
+      currency: 'usd',
+      mode: 'payment',
       customer_email: 'user@home.com',
       client_reference_id: 'user_1234',
       metadata: {
