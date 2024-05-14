@@ -15,7 +15,8 @@ afterEach(() => vi.resetAllMocks())
 
 describe('handleWebhook', () => {
   const billing = {
-    syncSubscription: vi.fn()
+    syncSubscription: vi.fn(),
+    syncCheckout: vi.fn()
   }
 
   test('when signature fails, raises error', async () => {
@@ -101,5 +102,20 @@ describe('handleWebhook', () => {
     await handleWebhook(billing, 'fake-body', 'fake-sig')
 
     expect(billing.syncSubscription).toHaveBeenCalledWith('sub_1234')
+  })
+
+  test('when checkout.session.completed event, syncs checkout', async () => {
+    stripe.webhooks.constructEvent.mockReturnValue({
+      type: 'checkout.session.completed',
+      data: {
+        object: {
+          id: 'cs_1234'
+        }
+      }
+    })
+
+    await handleWebhook(billing, 'fake-body', 'fake-sig')
+
+    expect(billing.syncCheckout).toHaveBeenCalledWith('cs_1234')
   })
 })
