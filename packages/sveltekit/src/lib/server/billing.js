@@ -30,7 +30,7 @@ export function createBillingService(adapter, urls) {
       })
     },
 
-    async createCheckout(user, price) {
+    async createCheckout(user, price, quantity = 1) {
       const metadata = {
         userId: user.id,
         productId: price.product,
@@ -55,7 +55,7 @@ export function createBillingService(adapter, urls) {
         line_items: [
           {
             price: price.id,
-            quantity: 1
+            quantity
           }
         ]
       })

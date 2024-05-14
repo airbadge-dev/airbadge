@@ -150,6 +150,41 @@ describe('createCheckout', () => {
       ]
     })
   })
+
+  test('uses quantity specified', async () => {
+    stripe.checkout.sessions.create.mockResolvedValue({
+      url: 'https://checkout.stripe.com/1234'
+    })
+
+    const result = await billing.createCheckout(user, price, 3)
+
+    expect(result).toEqual({ url: 'https://checkout.stripe.com/1234' })
+    expect(stripe.checkout.sessions.create).toHaveBeenCalledWith({
+      success_url:
+        'http://localhost:5173/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:5173/checkout-cancel',
+      currency: 'usd',
+      mode: 'subscription',
+      customer_email: 'user@home.com',
+      client_reference_id: 'user_1234',
+      metadata: {
+        userId: 'user_1234',
+        priceId: 'price_1234',
+        productId: 'prod_1234',
+      },
+      subscription_data: {
+        metadata: {
+          userId: 'user_1234'
+        }
+      },
+      line_items: [
+        {
+          price: 'price_1234',
+          quantity: 3
+        }
+      ]
+    })
+  })
 })
 
 describe('createPortalSession', () => {
