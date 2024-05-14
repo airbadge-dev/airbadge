@@ -1,5 +1,9 @@
 import handler from './checkout'
 
+afterEach(() => {
+  vi.restoreAllMocks()
+})
+
 describe('checkout', () => {
   describe('without user, redirects to sign in', () => {
     test('without id', async () => {
@@ -134,7 +138,25 @@ describe('checkout', () => {
 
       await expect(response).toRedirect(303, 'https://checkout.stripe.com/checkout_1234')
 
-      expect(billing.createCheckout).toHaveBeenCalledWith(user, price)
+      expect(billing.createCheckout).toHaveBeenCalledWith(user, price, 1)
+    })
+
+    test('when quantity param is specified, uses it to create checkout', async () => {
+      price.unit_amount = 10000
+
+      billing.createCheckout.mockReturnValueOnce({
+        url: 'https://checkout.stripe.com/checkout_1234'
+      })
+
+      const event = {
+        url: new URL('http://localhost/billing/checkout?id=price_1234&quantity=3')
+      }
+
+      const response = handler(event, state)
+
+      await expect(response).toRedirect(303, 'https://checkout.stripe.com/checkout_1234')
+
+      expect(billing.createCheckout).toHaveBeenCalledWith(user, price, 3)
     })
   })
 })
