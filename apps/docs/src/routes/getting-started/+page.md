@@ -32,6 +32,10 @@ DOMAIN=http://localhost:5173
 # For examples, see: https://www.prisma.io/docs/orm/reference/connection-urls
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mydb?schema=public"
 
+# Secret for Auth.js to encrypt tokens
+# Can be generated with: pnpx auth secret
+AUTH_SECRET=
+
 # Client Id and Client Secret of GitHub OAuth app
 # In GitHub: Settings -> Developer Settings -> OAuth Apps
 GITHUB_ID=
