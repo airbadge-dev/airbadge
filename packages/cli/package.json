@@ -1,0 +1,19 @@
+{
+  "name": "@airbadge/cli",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "airbadge": "./src/bin.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "envfile": "^7.1.0",
+    "sade": "^1.8.1"
+  }
+}
