@@ -6,6 +6,11 @@ export async function handleWebhook(billing, body, signature) {
   const { object } = event.data
 
   switch (event.type) {
+    case 'checkout.session.completed':
+      await billing.syncCheckout(object.id)
+      console.log(`Synced checkout ${object.id}`)
+      break
+
     case 'customer.subscription.created':
     case 'customer.subscription.updated':
     case 'customer.subscription.deleted':
