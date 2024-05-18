@@ -214,11 +214,6 @@ describe('createCheckout', () => {
         priceId: 'price_1234',
         productId: 'prod_1234',
       },
-      subscription_data: {
-        metadata: {
-          userId: 'user_1234'
-        }
-      },
       line_items: [
         {
           price: 'price_1234',
@@ -304,7 +299,8 @@ describe('syncSubscription', () => {
 describe('syncCheckout', () => {
   beforeEach(() => {
     stripe.checkout.sessions.retrieve.mockResolvedValue({
-      subscription: 'sub_1234'
+      subscription: 'sub_1234',
+      mode: 'subscription'
     })
   })
 

@@ -36,6 +36,12 @@ export function createBillingService(adapter, urls) {
         productId: price.product,
         priceId: price.id
       }
+      const recurring = price.type == 'recurring'
+      const subscription_data = {
+        metadata: {
+          userId: user.id
+        }
+      }
 
       return stripe.checkout.sessions.create({
         success_url: absoluteURL(
@@ -43,21 +49,17 @@ export function createBillingService(adapter, urls) {
         ),
         cancel_url: absoluteURL(urls.checkout.cancel),
         currency: 'usd',
-        mode: price.type == 'recurring' ? 'subscription' : 'payment',
+        mode: recurring ? 'subscription' : 'payment',
         customer_email: user.email,
         client_reference_id: user.id,
         metadata,
-        subscription_data: {
-          metadata: {
-            userId: user.id
-          }
-        },
         line_items: [
           {
             price: price.id,
             quantity
           }
-        ]
+        ],
+        ...(recurring ? { subscription_data } : {})
       })
     },
 
@@ -71,7 +73,10 @@ export function createBillingService(adapter, urls) {
     async syncCheckout(sessionId) {
       const checkout = await stripe.checkout.sessions.retrieve(sessionId)
 
-      return this.syncSubscription(checkout.subscription)
+
+      if (checkout.mode == 'subscription') {
+        return this.syncSubscription(checkout.subscription)
+      }
     },
 
     async syncSubscription(subscriptionId) {

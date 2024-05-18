@@ -26,14 +26,51 @@ describe('checkout', () => {
   })
 
   test('when user already subscribed, raises error', async () => {
+    const event = {
+      url: new URL('http://localhost/billing/checkout')
+    }
     const state = {
       user: {
         subscriptionId: 'sub_1234'
+      },
+      catalog: {
+        get() {
+          return { type: 'recurring' }
+        }
       }
     }
-    const response = handler({}, state)
+    const response = handler(event, state)
 
     await expect(response).toRedirect(303, '/?event=already-subscribed')
+  })
+
+  test('when user already subscribed, but buying a one time product, doesnt raises error', async () => {
+    const event = {
+      url: new URL('http://localhost/billing/checkout')
+    }
+    const price = { id: 'price_999', type: 'one_time', unit_amount: 1000 }
+
+    const state = {
+      billing: {
+        createCheckout: vi.fn(),
+      },
+      user: {
+        subscriptionId: 'sub_1234'
+      },
+      catalog: {
+        get: async () => price
+      },
+    }
+
+    state.billing.createCheckout.mockReturnValueOnce({
+      url: 'https://checkout.stripe.com/checkout_1234'
+    })
+
+    const response = handler(event, state)
+
+    await expect(response).toRedirect(303, 'https://checkout.stripe.com/checkout_1234')
+
+    expect(state.billing.createCheckout).toHaveBeenCalledWith(state.user, price, 1)
   })
 
   test('when user canceled subscribed, doesnt redirect', async () => {
