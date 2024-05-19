@@ -27,6 +27,7 @@ const { handle: handleAuth } = SvelteKitAuth({
   providers: [
     GitHub
   ],
+  trustHost: true
 })
 
 export const handle = sequence(
