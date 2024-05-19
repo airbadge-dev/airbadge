@@ -24,8 +24,9 @@ export function SvelteKitAuth(options = {}) {
     billing,
     options
   }
+  const { handle, ...rest } = authHandler(options)
 
-  return sequence(authHandler(options), paymentHandler(state))
+  return { ...rest, handle: sequence(handle, paymentHandler(state)) }
 }
 
 function authHandler(options) {

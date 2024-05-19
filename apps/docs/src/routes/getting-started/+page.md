@@ -7,7 +7,7 @@ This guide uses [Prisma](https://prisma.io) for database access and [GitHub](htt
 For Auth & Payment:
 
 ```sh
-pnpm install -D @auth/core @airbadge/sveltekit
+pnpm install -D @airbadge/sveltekit
 ```
 
 For Prisma:
@@ -34,8 +34,8 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mydb?schema=public"
 
 # Client Id and Client Secret of GitHub OAuth app
 # In GitHub: Settings -> Developer Settings -> OAuth Apps
-GITHUB_ID=
-GITHUB_SECRET=
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
 ```
 
 ## Setup database
@@ -170,7 +170,7 @@ Configure authentication and billing options in `src/hooks.server.js`:
 import { SvelteKitAuth } from '@airbadge/sveltekit'
 
 // use GitHub OAuth provider
-import GitHub from '@auth/core/providers/github'
+import GitHub from '@auth/sveltekit/providers/github'
 
 // use Prisma database adapter
 import { PrismaAdapter } from '@auth/prisma-adapter'
@@ -178,22 +178,14 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 // import Prisma client for database adapter
 import { PrismaClient } from '@prisma/client'
 
-// import env vars for OAuth client
-import { env } from '$env/dynamic/private'
-
 // init database client
 const db = new PrismaClient()
 
 // add Auth.js + Stripe handler
 // API is similar to Auth.js
-export const handle = SvelteKitAuth({
+export const { handle } = SvelteKitAuth({
   adapter: PrismaAdapter(db),
-  providers: [
-    GitHub({
-      clientId: env.GITHUB_ID,
-      clientSecret: env.GITHUB_SECRET
-    })
-  ]
+  providers: [ GitHub ]
 })
 ```
 
