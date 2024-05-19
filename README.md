@@ -89,6 +89,8 @@ PUBLIC_STRIPE_KEY=pk_...
 SECRET_STRIPE_KEY=sk_...
 DOMAIN=http://localhost:5173
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/auth_stripe_sveltekit_dev?schema=public"
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
 ```
 
 Configure authentication and billing options in `src/hooks.server.js`:
@@ -97,7 +99,7 @@ Configure authentication and billing options in `src/hooks.server.js`:
 import { SvelteKitAuth } from '@airbadge/sveltekit'
 
 // use any OAuth provider (or multiple)
-import GitHub from '@auth/core/providers/github'
+import GitHub from '@auth/sveltekit/providers/github'
 
 // import prisma client for Auth.js's database adapter
 import { PrismaClient } from '@prisma/client'
@@ -107,17 +109,12 @@ const db = new PrismaClient()
 
 // add Auth.js + Stripe handler
 // API is similar to Auth.js
-export const handle = SvelteKitAuth({
+export const { handle } = SvelteKitAuth({
   // configure database adapter
   adapter: PrismaAdapter(db),
 
   // configure OAuth providers
-  providers: [
-    GitHub({
-      clientId: env.GITHUB_ID,
-      clientSecret: env.GITHUB_SECRET
-    })
-  ]
+  providers: [ GitHub ]
 })
 ```
 

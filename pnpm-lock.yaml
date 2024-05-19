@@ -36,12 +36,12 @@ importers:
       '@airbadge/sveltekit':
         specifier: link:../../packages/sveltekit
         version: link:../../packages/sveltekit
-      '@auth/core':
-        specifier: ^0.25.0
-        version: 0.25.0
       '@auth/prisma-adapter':
+        specifier: ^2.1.0
+        version: 2.1.0(@prisma/client@5.9.0)
+      '@auth/sveltekit':
         specifier: ^1.1.0
-        version: 1.1.0(@prisma/client@5.9.0)
+        version: 1.1.0(@sveltejs/kit@2.0.6)(svelte@4.2.8)
       '@iconify/svelte':
         specifier: ^3.1.6
         version: 3.1.6(svelte@4.2.8)
@@ -285,12 +285,9 @@ importers:
 
   packages/sveltekit:
     dependencies:
-      '@auth/core':
-        specifier: ^0.25.0
-        version: 0.25.0
       '@auth/sveltekit':
-        specifier: ^0.10.0
-        version: 0.10.0(@sveltejs/kit@2.0.6)(svelte@4.2.8)
+        specifier: ^1.1.0
+        version: 1.1.0(@sveltejs/kit@2.0.6)(svelte@4.2.8)
       '@sveltejs/kit':
         specifier: ^2.0.6
         version: 2.0.6(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.11)
@@ -299,8 +296,8 @@ importers:
         version: 14.14.0
     devDependencies:
       '@auth/prisma-adapter':
-        specifier: ^1.1.0
-        version: 1.1.0(@prisma/client@5.9.0)
+        specifier: ^2.1.0
+        version: 2.1.0(@prisma/client@5.9.0)
       '@faker-js/faker':
         specifier: ^8.4.0
         version: 8.4.0
@@ -381,11 +378,17 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.22
 
-  /@auth/core@0.24.0:
-    resolution: {integrity: sha512-wwTyapljg4ydyvtQRXSeOaj6nBVSvPkVoXws6i+/vPfINxz4lo9UuLifPLqW7iO72/f4Ttaez0g3XA42VtKQ8A==}
+  /@auth/core@0.31.0:
+    resolution: {integrity: sha512-UKk3psvA1cRbk4/c9CkpWB8mdWrkKvzw0DmEYRsWolUQytQ2cRqx+hYuV6ZCsngw/xbj9hpmkZmAZEyq2g4fMg==}
     peerDependencies:
+      '@simplewebauthn/browser': ^9.0.1
+      '@simplewebauthn/server': ^9.0.2
       nodemailer: ^6.8.0
     peerDependenciesMeta:
+      '@simplewebauthn/browser':
+        optional: true
+      '@simplewebauthn/server':
+        optional: true
       nodemailer:
         optional: true
     dependencies:
@@ -397,46 +400,39 @@ packages:
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
 
-  /@auth/core@0.25.0:
-    resolution: {integrity: sha512-UxENsD+WNlY1NOFsr3Ygc7F1Ypbia8VCd9NU8cbAhSJ0Z8dtyZ0xmssRo1G3ZW50QnW0AaAMuYzY5oumnPMQzA==}
-    peerDependencies:
-      nodemailer: ^6.8.0
-    peerDependenciesMeta:
-      nodemailer:
-        optional: true
-    dependencies:
-      '@panva/hkdf': 1.1.1
-      '@types/cookie': 0.6.0
-      cookie: 0.6.0
-      jose: 5.2.0
-      oauth4webapi: 2.8.1
-      preact: 10.11.3
-      preact-render-to-string: 5.2.3(preact@10.11.3)
-
-  /@auth/prisma-adapter@1.1.0(@prisma/client@5.9.0):
-    resolution: {integrity: sha512-FSHnAmdrrW7b87pKjtnSCOgEthNK9ZAdZJDfncuG3YpXr4whiDfFhqg4UXgmnn/nEXuCIAY6wL3eZIa044vIOQ==}
+  /@auth/prisma-adapter@2.1.0(@prisma/client@5.9.0):
+    resolution: {integrity: sha512-x1gYsi8xCFdxpEM6pxhh7OTV+VHB3PgID2L18y8F1kXu+PbcEWt4VZSQ8zk6dI/4YRStcuwQdHe7neCpczr0mg==}
     peerDependencies:
       '@prisma/client': '>=2.26.0 || >=3 || >=4 || >=5'
     dependencies:
-      '@auth/core': 0.24.0
+      '@auth/core': 0.31.0
       '@prisma/client': 5.9.0(prisma@5.9.0)
     transitivePeerDependencies:
+      - '@simplewebauthn/browser'
+      - '@simplewebauthn/server'
       - nodemailer
     dev: true
 
-  /@auth/sveltekit@0.10.0(@sveltejs/kit@2.0.6)(svelte@4.2.8):
-    resolution: {integrity: sha512-M6FSF7cpHrqKh56VLaU2+GEbCTZCJH2Eb5hkjAaScZGolIqQ9UoVUx6dlOiC0dF9Fewz7Rq3sC8L0RN4n/ifkw==}
+  /@auth/sveltekit@1.1.0(@sveltejs/kit@2.0.6)(svelte@4.2.8):
+    resolution: {integrity: sha512-RdnRBvz09R+dNR7SkjYOedcq2tBozfRidbzq+YogIRHF7+HEeXksJClo4CW6jUC1slWLcTgOpkM9NFPD+4dg6w==}
     peerDependencies:
+      '@simplewebauthn/browser': ^9.0.1
+      '@simplewebauthn/server': ^9.0.3
       '@sveltejs/kit': ^1.0.0 || ^2.0.0
+      nodemailer: ^6.6.5
       svelte: ^3.54.0 || ^4.0.0 || ^5
+    peerDependenciesMeta:
+      '@simplewebauthn/browser':
+        optional: true
+      '@simplewebauthn/server':
+        optional: true
+      nodemailer:
+        optional: true
     dependencies:
-      '@auth/core': 0.24.0
+      '@auth/core': 0.31.0
       '@sveltejs/kit': 2.0.6(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.11)
       set-cookie-parser: 2.6.0
       svelte: 4.2.8
-    transitivePeerDependencies:
-      - nodemailer
-    dev: false
 
   /@babel/helper-string-parser@7.23.4:
     resolution: {integrity: sha512-803gmbQdqwdf4olxrX4AJyFBV/RTr3rSmOj0rKwesmzlfhYNDEs+/iOcznzpNWlJlIlTJC2QfPFcHB6DlzdVLQ==}

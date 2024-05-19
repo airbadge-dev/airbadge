@@ -28,19 +28,13 @@ AirBadge supports all [Auth.js authentication providers](https://authjs.dev/refe
 
 ### Example
 
-```js {7-11}
+```js {6-6}
 // in src/hooks.server.js
 import { SvelteKitAuth } from '@airbadge/sveltekit'
-import GitHub from '@auth/core/providers/github'
-import { env } from '$env/dynamic/private'
+import GitHub from '@auth/sveltekit/providers/github'
 
-export const handle = SvelteKitAuth({
-  providers: [
-    GitHub({
-      clientId: env.GITHUB_ID,
-      clientSecret: env.GITHUB_SECRET
-    })
-  ]
+export const { handle } = SvelteKitAuth({
+  providers: [ GitHub ]
 })
 ```
 

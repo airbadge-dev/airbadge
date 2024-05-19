@@ -41,7 +41,7 @@
     "svelte": "^4.0.0"
   },
   "devDependencies": {
-    "@auth/prisma-adapter": "^1.1.0",
+    "@auth/prisma-adapter": "^2.1.0",
     "@faker-js/faker": "^8.4.0",
     "@playwright/test": "^1.28.1",
     "@prisma/client": "^5.9.0",
@@ -69,8 +69,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "dependencies": {
-    "@auth/core": "^0.25.0",
-    "@auth/sveltekit": "^0.10.0",
+    "@auth/sveltekit": "^1.1.0",
     "stripe": "^14.14.0",
     "@sveltejs/kit": "^2.0.6"
   },

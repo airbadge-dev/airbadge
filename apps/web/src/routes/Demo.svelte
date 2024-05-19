@@ -3,8 +3,9 @@
   import { onMount } from 'svelte'
 
   const code = `import { SvelteKitAuth } from '@airbadge/sveltekit'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 
-export const handle = SvelteKitAuth({
+export const { handle } = SvelteKitAuth({
   adapter: PrismaAdapter(...),
 
   providers: [

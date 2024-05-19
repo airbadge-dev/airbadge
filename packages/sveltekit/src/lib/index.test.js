@@ -28,11 +28,11 @@ describe('SvelteKitAuth', () => {
     }
 
     test('handles /auth', async () => {
-      const handler = SvelteKitAuth(config)
+      const { handle } = SvelteKitAuth(config)
 
       const url = new URL('http://localhost/auth/providers')
-      //
-      const response = await handler({
+
+      const response = await handle({
         event: {
           url,
           locals: {},
@@ -48,9 +48,9 @@ describe('SvelteKitAuth', () => {
     })
 
     test('handles /billing', async () => {
-      const handler = SvelteKitAuth(config)
+      const { handle } = SvelteKitAuth(config)
 
-      const response = await handler({
+      const response = await handle({
         event: {
           url: new URL('http://localhost/billing/portal'),
           locals: {
@@ -67,7 +67,7 @@ describe('SvelteKitAuth', () => {
 
     test('ignores everything else', async () => {
       const resolve = vi.fn()
-      const handler = SvelteKitAuth(config)
+      const { handle } = SvelteKitAuth(config)
       const event = {
         url: new URL('http://localhost/unknown'),
         locals: {
@@ -78,7 +78,7 @@ describe('SvelteKitAuth', () => {
         }
       }
 
-      const response = await handler({ resolve, event })
+      const response = await handle({ resolve, event })
 
       expect(response).toBeUndefined()
       expect(resolve).toHaveBeenCalled()

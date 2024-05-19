@@ -1,12 +1,12 @@
 import { SvelteKitAuth } from '$lib'
 import { PrismaClient } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import Credentials from '@auth/core/providers/credentials'
+import Credentials from '@auth/sveltekit/providers/credentials'
 import { env } from '$env/dynamic/private'
 
 const db = new PrismaClient()
 
-export const handle = SvelteKitAuth({
+export const { handle } = SvelteKitAuth({
   trustHost: true,
   adapter: new PrismaAdapter(db),
   session: {
