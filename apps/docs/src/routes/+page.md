@@ -15,5 +15,5 @@ It integrates [Stripe Checkout](https://stripe.com/payments/checkout), [Customer
 - [Gating](/gating)
 - [Endpoints](/endpoints)
 - [Live Demo](https://demo.airbadge.dev)
-- [Example Code](https://github.com/joshnuss/airbadge-example)
+- [Example Code](https://github.com/airbadge-dev/airbadge-example)
 - [License](/license)

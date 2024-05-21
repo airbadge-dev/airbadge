@@ -17,7 +17,7 @@ Launch a SaaS app without writing any authentiction or payment code!
 - **Webhook handling**: All Stripe webhooks are handled for you.
 - **Trials & Free plans**: Checkout can be skipped for free plans or trials.
 - **Session data**: Subscription and plan data is included in the session.
-- **Open source**: https://github.com/joshnuss/airbadge
+- **Open source**: https://github.com/airbadge-dev/airbadge
 - **BSL Licence**: Free to use. With optional [paid features](https://docs.airbadge.dev/license#paid-features).
 
 ## Gating

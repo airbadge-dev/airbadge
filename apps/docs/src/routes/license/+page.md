@@ -16,4 +16,4 @@ The paid features will be:
 - **Per-seats pricing**: Ability to charge a fee based on number of seats.
 - **Enterprise pricing**: Capability to create custom plans.
 
-[Read full license](https://github.com/joshnuss/airbadge/blob/main/LICENSE.md)
+[Read full license](https://github.com/airbadge-dev/airbadge/blob/main/LICENSE.md)

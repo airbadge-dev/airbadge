@@ -12,7 +12,7 @@
     { url: '/gating', name: 'Gating' },
     { url: '/endpoints', name: 'Endpoints' },
     { url: 'https://demo.airbadge.dev', name: 'Live Demo' },
-    { url: 'https://github.com/joshnuss/airbadge-example', name: 'Example Code' },
+    { url: 'https://github.com/airbadge-dev/airbadge-example', name: 'Example Code' },
     { url: '/license', name: 'License' }
   ]
 
@@ -40,7 +40,7 @@
       <Icon icon="bi-discord" />
     </a>
 
-    <a href="https://github.com/joshnuss/airbadge">
+    <a href="https://github.com/airbadge-dev/airbadge">
       <Icon icon="bi-github" />
     </a>
 

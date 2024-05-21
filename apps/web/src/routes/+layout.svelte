@@ -21,7 +21,7 @@
     },
     {
       title: 'GitHub',
-      path: 'https://github.com/joshnuss/airbadge'
+      path: 'https://github.com/airbadge-dev/airbadge'
     }
   ]
 
@@ -101,9 +101,9 @@
     <section>
       <h3>Links</h3>
       <nav>
-        <a href="https://github.com/joshnuss/airbadge">GitHub</a>
+        <a href="https://github.com/airbadge-dev/airbadge">GitHub</a>
         <a href="https://demo.airbadge.dev">Demo</a>
-        <a href="https://github.com/joshnuss/airbadge-example">Template</a>
+        <a href="https://github.com/airbadge-dev/airbadge-example">Template</a>
         <a href="/discord">Discord</a>
       </nav>
     </section>

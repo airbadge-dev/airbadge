@@ -33,7 +33,7 @@ export const { handle } = SvelteKitAuth({
         Setup guide
       </a>
 
-      <a class="btn" href="https://github.com/joshnuss/airbadge-example">
+      <a class="btn" href="https://github.com/airbadge-dev/airbadge-example">
         Starter template
       </a>
 

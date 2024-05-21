@@ -28,6 +28,6 @@ const wait = prompt.spinner()
 
 wait.start('Installing...')
 
-spawnSync(degitPath, ['github:joshnuss/airbadge-example', cwd], { stdio: 'ignore' })
+spawnSync(degitPath, ['github:airbadge-dev/airbadge-example', cwd], { stdio: 'ignore' })
 
 wait.stop(`Installed to ${cwd}`)
