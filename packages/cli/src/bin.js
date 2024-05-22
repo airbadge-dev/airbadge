@@ -7,7 +7,7 @@ const prog = sade('airbadge').version(pkg.version)
 
 prog
 	.command('setup stripe')
-	.describe('sets up stripe environment variables')
+	.describe('Sets up Stripe environment variables')
 	.action(setupStripe)
 
 prog.parse(process.argv)
