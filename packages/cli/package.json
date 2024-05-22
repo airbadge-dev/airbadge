@@ -5,6 +5,9 @@
   "bin": {
     "airbadge": "./src/bin.js"
   },
+  "scripts": {
+    "test": "vitest"
+  },
   "publishConfig": {
     "access": "public"
   },
