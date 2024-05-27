@@ -7,7 +7,7 @@ This guide uses [Prisma](https://prisma.io) for database access and [GitHub](htt
 For Auth & Payment:
 
 ```sh
-pnpm install -D @airbadge/sveltekit
+pnpm install -D @airbadge/sveltekit @auth/sveltekit
 ```
 
 For Prisma:
@@ -30,10 +30,16 @@ DOMAIN=http://localhost:5173
 
 # Database URL for the Auth.js database adapter
 # For examples, see: https://www.prisma.io/docs/orm/reference/connection-urls
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mydb?schema=public"
+# If you don't have postgres locally, create one for free here: https://console.neon.tech/signup
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/airbadge_dev?schema=public"
 
-# Client Id and Client Secret of GitHub OAuth app
-# In GitHub: Settings -> Developer Settings -> OAuth Apps
+# Generate a secret key via Auth.js's CLI:
+# > npx auth secret
+AUTH_SECRET=
+
+# OAuth setup for GitHub:
+#  - Create an OAuth app: Settings -> Developer Settings -> OAuth Apps
+#  - Copy & paste Client Id and Client Secret here:
 AUTH_GITHUB_ID=
 AUTH_GITHUB_SECRET=
 ```
@@ -131,7 +137,7 @@ pnpm prisma db push
 
 ## Create pricing
 
-Create some plans and pricing. This can be done via the [Stripe Dashboard](https://dashboard.stripe.com) or from the [Stripe CLI](https://docs.stripe.com/cli).
+Create some plans and pricing. This can be done via the [Stripe Dashboard](https://dashboard.stripe.com) or from the [Stripe CLI](https://stripe.com/cli).
 
 To create them with the CLI:
 
