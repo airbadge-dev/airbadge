@@ -1,12 +1,12 @@
-import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
 import TOML from '@iarna/toml'
 import * as envfile from 'envfile'
+import { exec, hasCommand, fail } from '../utils.js'
 
 const envPath = '.env.local'
 
 export async function setupStripe() {
-  const cli = spawnSync('which', ['stripe']).status === 0;
+  const cli = hasCommand('stripe')
 
   if (!cli) {
     console.error("Stripe's CLI is missing\n\nTo install, follow setup instructions:\nhttps://stripe.com/cli")
@@ -17,25 +17,23 @@ export async function setupStripe() {
   const exists = fs.existsSync(envPath)
 
   if (exists) {
-    env = envfile.parse(fs.readFileSync(envPath, 'utf8'))
+    env = readEnv(envPath)
   }
 
   if (env.SECRET_STRIPE_KEY || env.PUBLIC_STRIPE_KEY) {
-    console.error('SECRET_STRIPE_KEY or PUBLIC_STRIPE_KEY is already configured in .env.local')
-    process.exit(0)
+    fail('SECRET_STRIPE_KEY or PUBLIC_STRIPE_KEY is already configured in .env.local')
   }
 
-  let result = spawnSync('stripe', ['config', '--list'])
-  let data = TOML.parse(result.stdout.toString())
+  let result = exec('stripe', ['config', '--list'])
+  let data = TOML.parse(result)
 
   if (!data.default) {
-    spawnSync('stripe', ['login'])
-    result = spawnSync('stripe', ['config', '--list'])
-    data = TOML.parse(result.stdout.toString())
+    exec('stripe', ['login'])
+    result = exec('stripe', ['config', '--list'])
+    data = TOML.parse(result)
   }
 
-  result = spawnSync('stripe', ['listen', '--print-secret'])
-  const webhookSecret = result.stdout.toString().trim()
+  const webhookSecret = exec('stripe', ['listen', '--print-secret'])
 
   env.SECRET_STRIPE_KEY = data.default.test_mode_api_key
   env.PUBLIC_STRIPE_KEY = data.default.test_mode_pub_key
@@ -45,7 +43,15 @@ export async function setupStripe() {
     env.DOMAIN = 'http://localhost:5173'
   }
 
-  fs.writeFileSync(envPath, envfile.stringify(env))
+  writeEnv(envPath, env)
 
   console.log(`${exists ? 'Updated' : 'Created'} ${envPath}`)
+}
+
+function writeEnv(path, env) {
+  fs.writeFileSync(path, envfile.stringify(env))
+}
+
+function readEnv(path) {
+  return envfile.parse(fs.readFileSync(path, 'utf8'))
 }
