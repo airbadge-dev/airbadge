@@ -51,3 +51,7 @@ await fs.cp(path.join(cwd, '.env.example'), envPath)
 await replaceVar(envPath, 'AUTH_SECRET', authSecret)
 
 wait.stop(`Installed to ${cwd}`)
+
+wait.start('Updating packages...')
+spawnSync('pnpm', ['install'], { cwd })
+wait.stop('Updated packages')
