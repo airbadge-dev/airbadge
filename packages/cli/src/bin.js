@@ -1,13 +1,14 @@
 import sade from 'sade'
 import fs from 'node:fs'
 import { setupStripe } from './commands/setupStripe.js'
+import pkg from '../package.json' assert { type: 'json' }
 
-const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf-8'))
 const prog = sade('airbadge').version(pkg.version)
+const envPath = '.env'
 
 prog
 	.command('setup stripe')
 	.describe('Sets up Stripe environment variables')
-	.action(setupStripe)
+	.action(() => setupStripe(envPath))
 
 prog.parse(process.argv)
