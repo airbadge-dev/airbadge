@@ -59,9 +59,9 @@ This is an example of what session data would look like:
     "emailVerified": null,
     "image": "https://avatars.githubusercontent.com/u/###"
   },
+  "customerId": "cus_1234",
   "subscription": {
     "id": "sub_1234",
-    "customerId": "cus_1234",
     "status": "active",
     "priceId": "price_1234",
     "plan": "basic_monthly"

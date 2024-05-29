@@ -34,7 +34,8 @@ export function createBillingService(adapter, urls) {
       const metadata = {
         userId: user.id,
         productId: price.product,
-        priceId: price.id
+        priceId: price.id,
+        lookupKey: price.lookup_key
       }
       const recurring = price.type == 'recurring'
       const subscription_data = {
@@ -72,7 +73,21 @@ export function createBillingService(adapter, urls) {
 
     async syncCheckout(sessionId) {
       const checkout = await stripe.checkout.sessions.retrieve(sessionId)
+      const { metadata } = checkout
+      const { userId, productId, priceId, lookupKey } = metadata
 
+      if (!userId) throw new Error(`Missing user id metadata for checkout '${sessionId}'`)
+
+      const user = await adapter.getUser(userId)
+      const purchase = { productId, priceId, lookupKey, paymentIntent: checkout.payment_intent }
+
+      if (!hasPurchase(user, checkout.payment_intent)) {
+        await adapter.updateUser({
+          id: userId,
+          customerId: checkout.customer,
+          purchases: [...user.purchases, purchase]
+        })
+      }
 
       if (checkout.mode == 'subscription') {
         return this.syncSubscription(checkout.subscription)
@@ -123,6 +138,10 @@ export function createBillingService(adapter, urls) {
       return subscriptionItem
     }
   }
+}
+
+function hasPurchase(user, paymentIntent) {
+  return user.purchases.find((purchase) => purchase.paymentIntent == paymentIntent)
 }
 
 function absoluteURL(path) {

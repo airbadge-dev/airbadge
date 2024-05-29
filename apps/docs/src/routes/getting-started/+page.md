@@ -106,6 +106,7 @@ model User {
   subscriptionStatus SubscriptionStatus?
   plan               String?
   priceId            String?
+  purchases          Json @default("[]")
 }
 
 // customization for AirBadge
