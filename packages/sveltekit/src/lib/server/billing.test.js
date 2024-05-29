@@ -33,6 +33,7 @@ vi.mock('stripe', () => {
 })
 
 const adapter = {
+  getUser: vi.fn(),
   updateUser: vi.fn()
 }
 
@@ -300,11 +301,22 @@ describe('syncCheckout', () => {
   beforeEach(() => {
     stripe.checkout.sessions.retrieve.mockResolvedValue({
       subscription: 'sub_1234',
-      mode: 'subscription'
+      mode: 'subscription',
+      customer: 'cus_1234',
+      payment_intent: 'pi_1234',
+      metadata: {
+        userId: 'user_1234',
+        productId: 'prod_1234',
+        priceId: 'price_1234',
+        lookupKey: 't-shirt',
+      }
     })
   })
 
   test('when user metadata not found, raises', async () => {
+    adapter.getUser.mockResolvedValue({
+      purchases: []
+    })
     stripe.subscriptions.retrieve.mockResolvedValue({
       id: 'sub_1234',
       customer: 'cus_1234',
@@ -329,6 +341,10 @@ describe('syncCheckout', () => {
   })
 
   test('updates user', async () => {
+    adapter.getUser.mockResolvedValue({
+      purchases: []
+    })
+
     stripe.subscriptions.retrieve.mockResolvedValue({
       id: 'sub_1234',
       customer: 'cus_1234',
@@ -351,6 +367,66 @@ describe('syncCheckout', () => {
     await billing.syncCheckout('checkout_1234')
 
     expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
+
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      customerId: 'cus_1234',
+      purchases: [
+        { productId: 'prod_1234', priceId: 'price_1234', lookupKey: 't-shirt', paymentIntent: 'pi_1234'} 
+      ]
+    })
+
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      customerId: 'cus_1234',
+      subscriptionId: 'sub_1234',
+      subscriptionStatus: 'ACTIVE',
+      plan: 'pro',
+      priceId: 'price_1234'
+    })
+  })
+
+  test('when called twice, registers purchase once', async () => {
+    adapter.getUser.mockResolvedValueOnce({
+      purchases: []
+    })
+    adapter.getUser.mockResolvedValueOnce({
+      purchases: [{ productId: 'prod_1234', priceId: 'price_1234', lookupKey: 't-shirt', paymentIntent: 'pi_1234'}]
+    })
+
+    stripe.subscriptions.retrieve.mockResolvedValue({
+      id: 'sub_1234',
+      customer: 'cus_1234',
+      metadata: {
+        userId: 'user_1234'
+      },
+      items: {
+        data: [
+          {
+            price: {
+              id: 'price_1234',
+              lookup_key: 'pro'
+            }
+          }
+        ]
+      },
+      status: 'active'
+    })
+
+    await billing.syncCheckout('checkout_1234')
+    await billing.syncCheckout('checkout_1234')
+
+    expect(stripe.checkout.sessions.retrieve).toHaveBeenCalledWith('checkout_1234')
+
+    expect(adapter.updateUser).toHaveBeenCalledTimes(3)
+    expect(adapter.updateUser).toHaveBeenCalledWith({
+      id: 'user_1234',
+      customerId: 'cus_1234',
+      purchases: [
+        { productId: 'prod_1234', priceId: 'price_1234', lookupKey: 't-shirt', paymentIntent: 'pi_1234'} 
+      ]
+    })
+
     expect(adapter.updateUser).toHaveBeenCalledWith({
       id: 'user_1234',
       customerId: 'cus_1234',

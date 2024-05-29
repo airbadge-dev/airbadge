@@ -37,14 +37,29 @@ function authHandler(options) {
       async session({ session }) {
         const user = await options.adapter.getUserByEmail(session.user.email)
 
+        if (user?.customerId) {
+          session.customerId = user.customerId
+        }
+
         if (user?.subscriptionId) {
           session.subscription = {
             id: user.subscriptionId,
-            customerId: user.customerId,
             priceId: user.priceId,
             plan: user.plan,
             status: user.subscriptionStatus.toLowerCase()
           }
+        }
+
+        if (user?.purchases) {
+          let purchases = []
+
+          user.purchases.forEach(({ productId, priceId, lookupKey }) => {
+            purchases.push(productId)
+            purchases.push(priceId)
+            purchases.push(lookupKey)
+          })
+
+          session.purchases = purchases
         }
 
         if (options?.callbacks?.session) {

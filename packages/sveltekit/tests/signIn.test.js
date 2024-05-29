@@ -33,12 +33,40 @@ test('sign in with subscription', async ({ page }) => {
       email: user.email,
       name: user.name
     },
+    customerId: 'cus_1234',
     subscription: {
       id: 'sub_1234',
-      customerId: 'cus_1234',
       status: 'active',
       priceId: 'price_1234',
       plan: 'pro',
     }
+  })
+})
+
+test('sign in with purchases', async ({ page }) => {
+  const user = await createUser({
+    customerId: 'cus_1234',
+    purchases: [
+      { priceId: 'price_123', productId: 'prod_123', lookupKey: 't-shirt'},
+      { priceId: 'price_456', productId: 'prod_456', lookupKey: 'socks'}
+    ]
+  })
+
+  const session = await signIn(page, user)
+
+  expect(session).toMatchObject({
+    user: {
+      email: user.email,
+      name: user.name
+    },
+    customerId: 'cus_1234',
+    purchases: [
+      'prod_123',
+      'price_123',
+      't-shirt',
+      'prod_456',
+      'price_456',
+      'socks'
+    ]
   })
 })
