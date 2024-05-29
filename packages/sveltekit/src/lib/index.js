@@ -62,6 +62,15 @@ function authHandler(options) {
           session.purchases = purchases
         }
 
+        if (session.user) {
+          delete session.user.customerId
+          delete session.user.subscriptionId
+          delete session.user.subscriptionStatus
+          delete session.user.plan
+          delete session.user.priceId
+          delete session.user.purchases
+        }
+
         if (options?.callbacks?.session) {
           return await options.callbacks.session(arguments)
         }
