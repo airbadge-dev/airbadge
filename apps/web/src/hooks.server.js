@@ -1,4 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks'
+import { redirections } from 'sveltekit-redirections'
 import { handleErrorWithSentry, sentryHandle } from '@sentry/sveltekit'
 import * as Sentry from '@sentry/sveltekit'
 
@@ -9,7 +10,17 @@ Sentry.init({
 })
 
 // If you have custom handlers, make sure to place them after `sentryHandle()` in the `sequence` function.
-export const handle = sequence(sentryHandle())
+export const handle = sequence(
+  sentryHandle(),
+  redirections({
+    '/discord': 'https://discord.gg/KjGNepeChg',
+    '/docs': 'https://docs.airbadge.dev',
+    '/github': 'https://github.com/airbadge-dev/airbadge',
+    '/start': 'https://docs.airbadge.dev/getting-started',
+    '/get-started': 'https://docs.airbadge.dev/getting-started',
+    '/getting-started': 'https://docs.airbadge.dev/getting-started',
+  })
+)
 
 // If you have a custom error handler, pass it to `handleErrorWithSentry`
 export const handleError = handleErrorWithSentry()

@@ -10,8 +10,8 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@repo/shared": "workspace:^",
     "@iconify/svelte": "^3.1.6",
+    "@repo/shared": "workspace:^",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -25,6 +25,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.2.7",
+    "sveltekit-redirections": "^0.0.2",
     "vite": "^5.0.3",
     "vite-plugin-json5": "^1.1.2"
   },
