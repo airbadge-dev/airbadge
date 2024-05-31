@@ -1,14 +1,15 @@
 # Deployment
 
-This guide will walk you through setting up hosting with Vercel and GitHub.
+This guide will walk you through setting up hosting with [Vercel](https://vercel.com) and [GitHub](https://github.com).
 
 Note that AirBadge works with almost any hosting provider, including [Fly](https://fly.io), [Railway](https://railway.app), [Netlify](https://netlify.com), [Docker](https://docker.com), and many more.
 
-## Preparing
+## Before you start
 
 Here's what you'll need:
 
 - A [Stripe account](https://dashboard.stripe.com/register). It's free to create.
+- A [Vercel account](https://vercel.com/signup). There's a free plan.
 - A database. Create a free one using [Neon](https://pg.new) or [Vercel](https://vercel.com/docs/storage/vercel-postgres).
 - OAuth credentials (optional). See [Auth.js Instructions](https://authjs.dev/guides/configuring-oauth-providers).
 
