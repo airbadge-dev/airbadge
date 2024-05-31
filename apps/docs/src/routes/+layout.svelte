@@ -11,6 +11,7 @@
     { url: '/session', name: 'Session' },
     { url: '/gating', name: 'Gating' },
     { url: '/endpoints', name: 'Endpoints' },
+    { url: '/deployment', name: 'Deployment' },
     { url: 'https://demo.airbadge.dev', name: 'Live Demo' },
     { url: 'https://github.com/airbadge-dev/airbadge-example', name: 'Example Code' },
     { url: '/license', name: 'License' }
