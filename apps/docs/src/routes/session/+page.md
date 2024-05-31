@@ -10,9 +10,10 @@ They are available on both the [client](#client-side) and [server](#server-side)
 
 | Attribute                   | Function                                                                                                               |
 | :-------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `customerId`                | The user's Stripe customer id.                                                                                         |
+| `purchases`                 | An array of the user's past purchases. Contains `price_id`, `product_id`, and `lookup_key`.                            |
 | `subscription.id`           | The user's subscription id.                                                                                            |
 | `subscription.status`       | The current [status of the subscription](https://stripe.com/docs/api/subscriptions/object#subscription_object-status). |
-| `subscription.customer`     | The user's Stripe customer id.                                                                                         |
 | `subscription.plan`         | The lookup key of the Stripe price. Example: `pro_monthly` or `basic_yearly`                                           |
 | `subscription.priceId` | The Stripe price id of the plan. Example: `price_1234`                                                                 |
 
@@ -44,7 +45,7 @@ On the client side, use the `data` prop:
 
 ### Example
 
-This is an example of what session data would look like:
+This what session data would look like:
 
 ```json
 {
@@ -65,6 +66,11 @@ This is an example of what session data would look like:
     "status": "active",
     "priceId": "price_1234",
     "plan": "basic_monthly"
-  }
+  },
+  "purchases": [
+    "price_1234",
+    "prod_1234",
+    "e-book"
+  ]
 }
 ```
