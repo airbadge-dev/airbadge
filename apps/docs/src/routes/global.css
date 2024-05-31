@@ -54,7 +54,7 @@ h2 {
 h3 {
   font-size: var(--font-size-2);
   font-weight: 600;
-  margin: var(--size-2) 0;
+  margin: var(--size-7) 0 var(--size-2) 0;
   color: var(--gray-8);
 }
 
