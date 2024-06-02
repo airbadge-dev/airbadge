@@ -233,7 +233,7 @@ importers:
       svelte:
         specifier: ^4.2.7
         version: 4.2.8
-      sveltekit-redirections:
+      sveltekit-reroute:
         specifier: ^0.0.2
         version: 0.0.2(svelte@4.2.8)
       vite:
@@ -4925,8 +4925,8 @@ packages:
       magic-string: 0.30.7
       periscopic: 3.1.0
 
-  /sveltekit-redirections@0.0.2(svelte@4.2.8):
-    resolution: {integrity: sha512-JPSeGnCUrt53wOAoifQXQuajoRYPCIyUrKRbiw+9+bOGFhiEnNwz+hWVZcufdyViODYoTxSvtQpdScC+Qd3KMw==}
+  /sveltekit-reroute@0.0.2(svelte@4.2.8):
+    resolution: {integrity: sha512-gLNUdXwj8Iz5o5o+Ig7/VmRGz4QZuplOvtdNfFSM9sDlFrTuiao58vl3rcd9Crs21YXMHuSEwif/qQWfjRoPGw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:

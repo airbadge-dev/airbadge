@@ -25,7 +25,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.2.7",
-    "sveltekit-redirections": "^0.0.2",
+    "sveltekit-reroute": "^0.0.2",
     "vite": "^5.0.3",
     "vite-plugin-json5": "^1.1.2"
   },
