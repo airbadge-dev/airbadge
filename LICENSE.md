@@ -1,20 +1,18 @@
 # Business Source License 1.1
 
-Parameters
+**Licensor**:             Joshua Nussbaum
 
-Licensor:             Joshua Nussbaum
-Licensed Work:        AirBadge 1.0
-                      The Licensed Work is (c) 2024 Joshua Nussbaum.
-Additional Use Grant: You may make use of the Licensed Work, provided that
-                      you may not use the Licensed Work for a Reseller 
-                      Service.
+**Licensed Work**:        AirBadge 1.0 - The Licensed Work is (c) 2024 Joshua Nussbaum.
 
-                      A “Reseller Service” is a commercial offering that
-                      resells instances of AirBadge.
+## Additional Use Grant
 
-Change Date:          2029-06-01
+You may make use of the Licensed Work, provided that you may not use the Licensed Work for a Reseller Service.
 
-Change License:       Apache License, Version 2.0
+A “Reseller Service” is a commercial offering that resells instances of AirBadge.
+
+**Change Date**:          2029-06-01
+
+**Change License**:       Apache License, Version 2.0
 
 For information about alternative licensing arrangements for the Software,
 please visit: https://airbadge.dev
