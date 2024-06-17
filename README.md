@@ -22,7 +22,7 @@ Launch a SaaS app without writing any authentiction or payment code!
 
 ## Gating
 
-The session contain subscription data, so it's easy to gate on the server or client.
+The session data contains info about the user's subscription & purchase history, so it's easy to gate routes and components in your app.
 
 ### Gating Routes
 
