@@ -26,16 +26,22 @@ The session contain subscription data, so it's easy to gate on the server or cli
 
 ### Gating Routes
 
-To gate routes, check the `session.subscription` for authorization:
+To gate routes, check the `session.subscription` or `session.purchases` for authorization:
 
 ```javascript
 export async function load({ locals }) {
   const session = await locals.getSession()
 
-  // check if user is on pro plan
+  // for a subscription, check session.subscription
   if (session?.subscription?.plan != 'pro') {
-    return error(401, 'Must be on pro plan')
+    error(401, 'Must be on pro plan')
   }
+
+  // alternatively, for one-time purchases, check session.purchases
+  if (session?.purchases.includes('e-book')) {
+    error(401, 'Please purchase the e-book to continue')
+  }
+
 
   // do the gated thing here
 }
@@ -43,17 +49,19 @@ export async function load({ locals }) {
 
 ### Components
 
-Gating components is similar to gating routes. The same `session.subscription` data is available.
+Gating components is similar to gating routes. The same `session.subscription` & `session.purchases` data is available.
 
 ```svelte
 <script>
   export let data
-
-  $: ({ session } = data)
 </script>
 
-{#if session?.subscription?.plan == 'pro'}
+{#if data.session?.subscription?.plan == 'pro'}
   Your on the PRO plan!
+{/if}
+
+{#if data.session?.purchases.includes('e-book')}
+  <a href="/download">Download e-book</a>
 {/if}
 ```
 
