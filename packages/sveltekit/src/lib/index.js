@@ -4,6 +4,23 @@ import { createBillingService } from '$lib/server/billing'
 import { sequence } from '@sveltejs/kit/hooks'
 import { routes } from '$lib/server/routes'
 
+/**
+ * @typedef {import('./types.d.ts').SvelteKitAuthConfig} SvelteKitAuthConfig
+ * @typedef {import('@sveltejs/kit').Handle} Handle
+ * @typedef {import('@sveltejs/kit').Action} Action
+ * @typedef {{handle: Handle, signIn: Action, signOut: Action}} SvelteKitAuthReturn
+*/
+
+/**
+ * SvelteKitAuth handles authentication and payment.
+ *
+ * - Authentication is provided by [Auth.js](https://authjs.dev).
+ * - Payment is provided by [Stripe Checkout](https://stripe.com).
+ *
+ * @param {SvelteKitAuthConfig} options
+ *
+ * @return {SvelteKitAuthReturn}
+*/
 export function SvelteKitAuth(options = {}) {
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')

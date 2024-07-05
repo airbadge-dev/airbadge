@@ -59,9 +59,9 @@
     "prisma": "^5.9.0",
     "publint": "^0.1.9",
     "svelte": "^4.2.7",
-    "svelte-check": "^3.6.0",
-    "tslib": "^2.4.1",
-    "typescript": "^5.0.0",
+    "svelte-check": "^3.6.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
     "vite": "^5.0.11",
     "vitest": "^1.2.0"
   },
@@ -69,9 +69,10 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "dependencies": {
+    "@auth/core": "^0.32.0",
     "@auth/sveltekit": "^1.1.0",
-    "stripe": "^14.14.0",
-    "@sveltejs/kit": "^2.0.6"
+    "@sveltejs/kit": "^2.0.6",
+    "stripe": "^14.14.0"
   },
   "prisma": {
     "seed": "node ./prisma/seed.js"
