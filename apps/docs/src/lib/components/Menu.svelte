@@ -3,7 +3,7 @@
   import { page } from '$app/stores'
   import Icon from '@iconify/svelte'
 
-  export let menuItems
+  export let menus
 
   let popover
 
@@ -22,7 +22,7 @@
   </button>
 
   <nav>
-    {#each menuItems as menu}
+    {#each menus as menu}
       <a href={menu.url} class:active={menu.url == $page.url.pathname}>
         {menu.name}
       </a>

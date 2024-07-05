@@ -4,7 +4,7 @@
   import { syncToc } from '$lib/toc'
   import Menu from '$lib/components/Menu.svelte'
 
-  const menuItems = [
+  const menus = [
     { url: '/getting-started', name: 'Getting Started' },
     { url: '/configuration', name: 'Configuration' },
     { url: '/database', name: 'Database' },
@@ -29,7 +29,7 @@
   />
 </svelte:head>
 
-<Menu {menuItems} bind:this={menu} />
+<Menu {menus} bind:this={menu} />
 
 <header>
   <a class="logo" href="/">
@@ -53,7 +53,7 @@
 
 <aside>
   <nav>
-    {#each menuItems as menu}
+    {#each menus as menu}
       <a href={menu.url} class:active={menu.url == $page.url.pathname}>
         {menu.name}
       </a>
