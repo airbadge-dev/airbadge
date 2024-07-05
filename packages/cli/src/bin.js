@@ -1,7 +1,9 @@
 import sade from 'sade'
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import { setupStripe } from './commands/setupStripe.js'
-import pkg from '../package.json' assert { type: 'json' }
+
+const data = await fs.readFile('./package.json', 'utf8')
+const pkg = JSON.parse(data)
 
 const prog = sade('airbadge').version(pkg.version)
 const envPath = '.env'
