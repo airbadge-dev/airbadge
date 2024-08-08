@@ -1,4 +1,4 @@
-import { stripe } from './stripe'
+import { stripe, initStripe } from './stripe'
 import { handleWebhook } from './webhooks'
 
 vi.mock('./stripe', () => {

@@ -1,4 +1,11 @@
 import { expect } from 'vitest'
+import { setEnv } from './src/env'
+
+setEnv({
+  STRIPE_SECRET_KEY: 'sk_test',
+  STRIPE_WEBHOOK_SECRET: 'wh_test',
+  DOMAIN: 'http://localhost:5173'
+})
 
 expect.extend({
   async toError(promise, status, message = null) {

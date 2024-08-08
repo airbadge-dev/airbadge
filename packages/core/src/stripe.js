@@ -1,6 +1,12 @@
 import Stripe from 'stripe'
-import { SECRET_STRIPE_KEY } from '$env/static/private'
+import { getEnv } from './env'
 
-export const stripe = Stripe(SECRET_STRIPE_KEY, {
-  apiVersion: '2022-11-15'
-})
+export let stripe = null
+
+export function initStripe() {
+  const privateKey = getEnv('STRIPE_SECRET_KEY')
+
+  stripe = Stripe(privateKey, {
+    apiVersion: '2022-11-15'
+  })
+}

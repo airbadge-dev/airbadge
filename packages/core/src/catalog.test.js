@@ -1,4 +1,4 @@
-import { stripe } from './stripe'
+import { stripe, initStripe } from './stripe'
 import { createCatalog } from './catalog'
 
 vi.mock('stripe', () => {
@@ -17,6 +17,7 @@ vi.mock('stripe', () => {
   return { default: Stripe }
 })
 
+beforeAll(() => initStripe())
 afterEach(() => {
   vi.restoreAllMocks()
 })

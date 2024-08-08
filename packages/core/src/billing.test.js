@@ -1,4 +1,4 @@
-import { stripe } from './stripe'
+import { stripe, initStripe } from './stripe'
 import { createBillingService } from './billing'
 
 vi.mock('stripe', () => {
@@ -53,6 +53,7 @@ const urls = {
 
 let billing
 
+beforeAll(() => initStripe())
 beforeEach(() => {
   billing = createBillingService(adapter, urls)
 })

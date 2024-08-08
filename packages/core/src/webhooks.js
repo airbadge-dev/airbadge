@@ -1,8 +1,9 @@
 import { stripe } from './stripe'
-import { env } from '$env/dynamic/private'
+import { getEnv } from './env'
 
 export async function handleWebhook(billing, body, signature) {
-  const event = stripe.webhooks.constructEvent(body, signature, env.STRIPE_WEBHOOK_SECRET)
+  const webhookSecret = getEnv('STRIPE_WEBHOOK_SECRET')
+  const event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
   const { object } = event.data
 
   switch (event.type) {

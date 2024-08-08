@@ -1,5 +1,5 @@
-import { DOMAIN } from '$env/static/private'
 import { stripe } from './stripe'
+import { getEnv } from './env'
 
 export function createBillingService(adapter, urls) {
   return {
@@ -31,6 +31,7 @@ export function createBillingService(adapter, urls) {
     },
 
     async createCheckout(user, price, quantity = 1) {
+      const domain = getEnv('DOMAIN')
       const metadata = {
         userId: user.id,
         productId: price.product,
@@ -46,9 +47,10 @@ export function createBillingService(adapter, urls) {
 
       return stripe.checkout.sessions.create({
         success_url: absoluteURL(
+          domain,
           '/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'
         ),
-        cancel_url: absoluteURL(urls.checkout.cancel),
+        cancel_url: absoluteURL(domain, urls.checkout.cancel),
         currency: 'usd',
         mode: recurring ? 'subscription' : 'payment',
         customer_email: user.email,
@@ -65,9 +67,11 @@ export function createBillingService(adapter, urls) {
     },
 
     async createPortalSession(user) {
+      const domain = getEnv('DOMAIN')
+
       return stripe.billingPortal.sessions.create({
         customer: user.customerId,
-        return_url: absoluteURL(urls.portalReturn)
+        return_url: absoluteURL(domain, urls.portalReturn)
       })
     },
 
@@ -144,6 +148,6 @@ function hasPurchase(user, paymentIntent) {
   return user.purchases.find((purchase) => purchase.paymentIntent == paymentIntent)
 }
 
-function absoluteURL(path) {
-  return new URL(path, DOMAIN).toString()
+function absoluteURL(domain, path) {
+  return new URL(path, domain).toString()
 }

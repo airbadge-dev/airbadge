@@ -1,4 +1,4 @@
-type Var = 'STRIPE_SECRET_KEY' | 'STRIPE_WEBHOOK_SECRET'
+type Var = 'STRIPE_SECRET_KEY' | 'STRIPE_WEBHOOK_SECRET' | 'DOMAIN'
 
 const env = new Map<Var, string>()
 
