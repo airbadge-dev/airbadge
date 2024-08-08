@@ -1,4 +1,4 @@
-import { setEnv, getEnv } from './env'
+import { setEnv, getEnv, reset } from './env'
 
 describe('env', () => {
   test('when variable exists, it returns value', () => {
@@ -31,5 +31,15 @@ describe('env', () => {
 
     expect(a).toEqual('1')
     expect(b).toEqual('2')
+  })
+
+  test('can reset', () => {
+    setEnv({BAZ: '1'})
+
+    reset()
+
+    expect(() => {
+      getEnv('BAZ')
+    }).toThrowError('Environment variable `BAZ` is missing')
   })
 })

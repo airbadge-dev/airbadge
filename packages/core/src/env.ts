@@ -18,3 +18,7 @@ export function getEnv(name: Var): string {
 
   return value
 }
+
+export function reset() {
+  env.clear()
+}
