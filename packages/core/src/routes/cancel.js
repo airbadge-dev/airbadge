@@ -1,8 +1,7 @@
-import { error } from '@sveltejs/kit'
-import { redirect } from './utils'
+import { error, redirect } from './utils'
 
 export default async function handler(_event, { user, billing }) {
-  if (!user) error(401, 'Authentication required')
+  if (!user) return error(401, 'Authentication required')
 
   await billing.cancelSubscription(user)
 

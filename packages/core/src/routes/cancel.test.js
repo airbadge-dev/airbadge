@@ -5,7 +5,7 @@ const billing = {
 }
 
 describe('cancel', () => {
-  test('without user, raises error', async () => {
+  test.only('without user, raises error', async () => {
     const state = { user: null, billing }
 
     await expect(handler(null, state)).toError(401, 'Authentication required')

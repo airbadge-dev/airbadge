@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && tsc",
+    "dev": "tsc --watch",
     "test": "vitest",
+    "clean": "rm -rf ./dist",
     "prepublishOnly": "publint",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write ."
@@ -12,11 +14,14 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "module": "./dist/index.js"
+      "default": "./dist/index.js"
     }
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "stripe": "^14.14.0"
   },
   "devDependencies": {
     "publint": "^0.1.9",

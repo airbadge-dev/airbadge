@@ -278,6 +278,10 @@ importers:
         version: 2.35.1(eslint@8.56.0)(svelte@4.2.10)
 
   packages/core:
+    dependencies:
+      stripe:
+        specifier: ^14.14.0
+        version: 14.14.0
     devDependencies:
       publint:
         specifier: ^0.1.9
@@ -316,6 +320,9 @@ importers:
 
   packages/sveltekit:
     dependencies:
+      '@airbadge/core':
+        specifier: ../core
+        version: link:../core
       '@auth/core':
         specifier: ^0.32.0
         version: 0.32.0
@@ -325,9 +332,6 @@ importers:
       '@sveltejs/kit':
         specifier: ^2.0.6
         version: 2.0.6(@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.8)(vite@5.0.11(@types/node@20.11.10)))(svelte@4.2.8)(vite@5.0.11(@types/node@20.11.10))
-      stripe:
-        specifier: ^14.14.0
-        version: 14.14.0
     devDependencies:
       '@auth/prisma-adapter':
         specifier: ^2.1.0

@@ -1,8 +1,6 @@
 import { SvelteKitAuth as BaseAuth } from '@auth/sveltekit'
-import { createCatalog } from '$lib/server/catalog'
-import { createBillingService } from '$lib/server/billing'
+import { createCatalog, createBillingService, routes } from '@airbadge/core'
 import { sequence } from '@sveltejs/kit/hooks'
-import { routes } from '$lib/server/routes'
 
 /**
  * @typedef {import('./types.d.ts').SvelteKitAuthConfig} SvelteKitAuthConfig

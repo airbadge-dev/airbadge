@@ -1,5 +1,4 @@
-import { error } from '@sveltejs/kit'
-import { redirect } from './utils'
+import { error, redirect } from './utils'
 
 const expiredStates = [ 'INCOMPLETE_EXPIRED', 'CANCELED' ]
 
@@ -10,7 +9,7 @@ export default async function handler({ url }, { user, catalog, billing, options
   const quantity = +(url.searchParams.get('quantity') || 1)
   const price = await catalog.get(id)
 
-  if (!price) error(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+  if (!price) return error(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
 
   if (user.subscriptionId && price.type == 'recurring' && !expiredStates.includes(user.subscriptionStatus)) return redirect(303, '/?event=already-subscribed')
 

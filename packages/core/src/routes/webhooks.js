@@ -1,5 +1,5 @@
 import { handleWebhook } from '../webhooks'
-import { json, error } from '@sveltejs/kit'
+import { json, error } from './utils'
 
 export default async function handler({ request }, { billing }) {
   const body = await request.text()
@@ -10,7 +10,7 @@ export default async function handler({ request }, { billing }) {
   } catch (err) {
     console.warn('⚠️  Webhook signature verification failed.', err.message)
 
-    error(400, 'Invalid request')
+    return error(400, 'Invalid request')
   }
 
   return json()

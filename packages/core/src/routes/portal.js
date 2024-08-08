@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit'
 import { redirect } from './utils'
 
 export default async function handler(_event, { user, billing }) {
