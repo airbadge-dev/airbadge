@@ -2,8 +2,11 @@ type Var = 'STRIPE_SECRET_KEY' | 'STRIPE_WEBHOOK_SECRET'
 
 const env = new Map<Var, string>()
 
-export function setEnv(name: Var, value: string) {
-  env.set(name, value)
+export function setEnv(vars: Record<Var, string>) {
+  for (let name in vars) {
+    const value = vars[name as Var]
+    env.set(name as Var, value)
+  }
 }
 
 export function getEnv(name: Var): string {
