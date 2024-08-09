@@ -6,6 +6,7 @@
     "build": "npm run clean && tsc",
     "dev": "tsc --watch",
     "test": "vitest",
+    "check": "tsc --noEmit",
     "clean": "rm -rf ./dist",
     "prepublishOnly": "publint",
     "lint": "prettier --check . && eslint .",
