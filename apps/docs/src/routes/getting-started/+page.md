@@ -23,7 +23,7 @@ Add environment variables to `.env`:
 ```sh
 # Stripe private key
 # Find it here: https://dashboard.stripe.com/test/apikeys
-SECRET_STRIPE_KEY=sk_...
+STRIPE_SECRET_KEY=sk_...
 
 # Domain to use for URLs:
 DOMAIN=http://localhost:5173

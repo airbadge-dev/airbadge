@@ -1,7 +1,38 @@
-import { DOMAIN } from '$env/static/private'
-import { stripe } from './stripe'
+import { getStripe } from './stripe.js'
+import { getEnv } from './env.js'
+import type { User, Pages, UserExtensions } from './types.ts'
+import type { Stripe } from 'stripe'
+import type { Adapter, AdapterUser } from '@auth/core/adapters'
+import type { Awaitable } from '@auth/core/types'
 
-export function createBillingService(adapter, urls) {
+type ExtendedAdapterUser = AdapterUser & UserExtensions
+
+interface ExtendedAdapter extends Adapter {
+  getUser(id: string): Awaitable<ExtendedAdapterUser | null>
+  updateUser(
+    user: Partial<ExtendedAdapterUser> & Pick<ExtendedAdapterUser, 'id'>
+  ): Awaitable<ExtendedAdapterUser>
+}
+
+export interface Billing {
+  createSubscription(user: User, price: Stripe.Price): Promise<Stripe.Subscription>
+  updateSubscription(user: User, price: Stripe.Price): Promise<Stripe.SubscriptionItem>
+  cancelSubscription(user: User): Promise<Stripe.Subscription>
+  syncSubscription(subscriptionId: string): Promise<void>
+
+  createCheckout(
+    user: User,
+    price: Stripe.Price,
+    quantity: number
+  ): Promise<Stripe.Checkout.Session>
+
+  syncCheckout(sessionId: string): Promise<void>
+  createPortalSession(user: User): Promise<Stripe.BillingPortal.Session>
+}
+
+export function createBillingService(adapter: ExtendedAdapter, pages: Pages): Billing {
+  const stripe = getStripe()
+
   return {
     async createSubscription(user, price) {
       const customer = await stripe.customers.create({
@@ -22,18 +53,20 @@ export function createBillingService(adapter, urls) {
 
       await adapter.updateUser({
         id: user.id,
-        customerId: subscription.customer,
+        customerId: extractId<Stripe.Customer | Stripe.DeletedCustomer>(subscription.customer),
         subscriptionId: subscription.id,
         subscriptionStatus: subscription.status.toUpperCase(),
         plan: price.lookup_key,
         priceId: price.id
       })
+
+      return subscription
     },
 
     async createCheckout(user, price, quantity = 1) {
       const metadata = {
-        userId: user.id,
-        productId: price.product,
+        userId: String(user.id),
+        productId: String(price.product),
         priceId: price.id,
         lookupKey: price.lookup_key
       }
@@ -48,7 +81,7 @@ export function createBillingService(adapter, urls) {
         success_url: absoluteURL(
           '/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'
         ),
-        cancel_url: absoluteURL(urls.checkout.cancel),
+        cancel_url: absoluteURL(pages.checkout.cancel),
         currency: 'usd',
         mode: recurring ? 'subscription' : 'payment',
         customer_email: user.email,
@@ -65,32 +98,43 @@ export function createBillingService(adapter, urls) {
     },
 
     async createPortalSession(user) {
+      if (!user.customerId) throw new Error('Missing customer id')
+
+      const domain = getEnv('DOMAIN')
+
       return stripe.billingPortal.sessions.create({
         customer: user.customerId,
-        return_url: absoluteURL(urls.portalReturn)
+        return_url: absoluteURL(pages.portalReturn)
       })
     },
 
     async syncCheckout(sessionId) {
       const checkout = await stripe.checkout.sessions.retrieve(sessionId)
-      const { metadata } = checkout
-      const { userId, productId, priceId, lookupKey } = metadata
+      const { userId, productId, priceId, lookupKey } = checkout.metadata as any
 
       if (!userId) throw new Error(`Missing user id metadata for checkout '${sessionId}'`)
 
-      const user = await adapter.getUser(userId)
-      const purchase = { productId, priceId, lookupKey, paymentIntent: checkout.payment_intent }
+      const user = (await adapter.getUser(userId)) as User | null
+
+      if (!user) throw new Error(`User id \`${userId}\` not found`)
+
+      const purchase = {
+        productId: productId as string,
+        priceId: priceId as string,
+        lookupKey: lookupKey as string,
+        paymentIntent: extractId<Stripe.PaymentIntent>(checkout.payment_intent)
+      }
 
       if (!hasPurchase(user, checkout.payment_intent)) {
         await adapter.updateUser({
           id: userId,
-          customerId: checkout.customer,
+          customerId: checkout.customer as string,
           purchases: [...user.purchases, purchase]
         })
       }
 
       if (checkout.mode == 'subscription') {
-        return this.syncSubscription(checkout.subscription)
+        return this.syncSubscription(checkout.subscription as string)
       }
     },
 
@@ -105,7 +149,7 @@ export function createBillingService(adapter, urls) {
 
       await adapter.updateUser({
         id: userId,
-        customerId: subscription.customer,
+        customerId: subscription.customer as string,
         subscriptionId: subscription.id,
         subscriptionStatus: subscription.status.toUpperCase(),
         plan: price.lookup_key,
@@ -114,11 +158,14 @@ export function createBillingService(adapter, urls) {
     },
 
     async cancelSubscription(user) {
+      if (!user.subscriptionId) throw new Error('Missing subscription id')
+
       return stripe.subscriptions.update(user.subscriptionId, { cancel_at_period_end: true })
     },
 
     async updateSubscription(user, price) {
       if (!price) throw new Error('Missing price')
+      if (!user.subscriptionId) throw new Error('Missing subscription id')
 
       const subscription = await stripe.subscriptions.retrieve(user.subscriptionId)
 
@@ -140,10 +187,24 @@ export function createBillingService(adapter, urls) {
   }
 }
 
-function hasPurchase(user, paymentIntent) {
-  return user.purchases.find((purchase) => purchase.paymentIntent == paymentIntent)
+function hasPurchase(user: User, paymentIntent: Stripe.PaymentIntent | string | null) {
+  const paymentIntentId = extractId<Stripe.PaymentIntent>(paymentIntent)
+
+  return user.purchases.find((purchase) => purchase.paymentIntent == paymentIntentId)
 }
 
-function absoluteURL(path) {
-  return new URL(path, DOMAIN).toString()
+function absoluteURL(path: string) {
+  const domain = getEnv('DOMAIN')
+
+  return new URL(path, domain).toString()
+}
+
+function extractId<T>(object: T | string | null): string {
+  if (!object) throw Error('Expected id, got null')
+
+  if (typeof object == 'string') return object as string
+
+  if (typeof object == 'object' && 'id' in object) return String(object.id)
+
+  throw Error(`Expected id, got ${object}`)
 }

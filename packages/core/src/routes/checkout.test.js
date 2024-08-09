@@ -27,11 +27,12 @@ describe('checkout', () => {
 
   test('when user already subscribed, raises error', async () => {
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const state = {
       user: {
-        subscriptionId: 'sub_1234'
+        subscriptionId: 'sub_1234',
+        subscriptionStatus: 'active'
       },
       catalog: {
         get() {
@@ -46,20 +47,20 @@ describe('checkout', () => {
 
   test('when user already subscribed, but buying a one time product, doesnt raises error', async () => {
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const price = { id: 'price_999', type: 'one_time', unit_amount: 1000 }
 
     const state = {
       billing: {
-        createCheckout: vi.fn(),
+        createCheckout: vi.fn()
       },
       user: {
         subscriptionId: 'sub_1234'
       },
       catalog: {
         get: async () => price
-      },
+      }
     }
 
     state.billing.createCheckout.mockReturnValueOnce({
@@ -84,7 +85,7 @@ describe('checkout', () => {
       }
     }
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const response = handler(event, state)
 
@@ -102,7 +103,7 @@ describe('checkout', () => {
       }
     }
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const response = handler(event, state)
 
@@ -117,12 +118,15 @@ describe('checkout', () => {
       }
     }
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_1234')
     }
 
     const response = handler(event, state)
 
-    await expect(response).toError(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+    await expect(response).toError(
+      406,
+      'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.'
+    )
   })
 
   describe('with product', () => {
@@ -150,7 +154,7 @@ describe('checkout', () => {
     }
 
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_1234')
     }
 
     test('when price is free and recurring, creates subscription and redirects', async () => {

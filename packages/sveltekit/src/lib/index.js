@@ -1,8 +1,7 @@
 import { SvelteKitAuth as BaseAuth } from '@auth/sveltekit'
-import { createCatalog } from '$lib/server/catalog'
-import { createBillingService } from '$lib/server/billing'
+import { STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, DOMAIN } from '$env/static/private'
+import { createCatalog, createBillingService, routes, setEnv } from '@airbadge/core'
 import { sequence } from '@sveltejs/kit/hooks'
-import { routes } from '$lib/server/routes'
 
 /**
  * @typedef {import('./types.d.ts').SvelteKitAuthConfig} SvelteKitAuthConfig
@@ -22,6 +21,12 @@ import { routes } from '$lib/server/routes'
  * @return {SvelteKitAuthReturn}
 */
 export function SvelteKitAuth(options = {}) {
+  setEnv({
+    STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET,
+    DOMAIN
+  })
+
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')
 

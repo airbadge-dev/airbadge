@@ -1,0 +1,33 @@
+{
+  "name": "@airbadge/core",
+  "version": "0.0.11",
+  "type": "module",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "check": "tsc --noEmit",
+    "clean": "rm -rf ./dist",
+    "prepublishOnly": "publint",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write ."
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@auth/core": "^0.32.0",
+    "stripe": "^14.14.0"
+  },
+  "devDependencies": {
+    "publint": "^0.1.9",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  }
+}

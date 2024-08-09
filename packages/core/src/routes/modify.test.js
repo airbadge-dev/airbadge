@@ -30,7 +30,10 @@ describe('update', () => {
 
     catalog.get.mockResolvedValue(null)
 
-    await expect(handler(event, state)).toError(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+    await expect(handler(event, state)).toError(
+      406,
+      'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.'
+    )
   })
 
   test('when price isnt recurring, raises error', async () => {
@@ -41,7 +44,10 @@ describe('update', () => {
 
     catalog.get.mockResolvedValue(price)
 
-    await expect(handler(event, state)).toError(406, 'Modifying a subscription requires a recurring price.')
+    await expect(handler(event, state)).toError(
+      406,
+      'Modifying a subscription requires a recurring price.'
+    )
   })
 
   test('with user and price, updates and returns JSON', async () => {
