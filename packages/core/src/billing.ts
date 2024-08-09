@@ -15,17 +15,19 @@ interface ExtendedAdapter extends Adapter {
 }
 
 export interface Billing {
-  createPortalSession(user: User): Promise<Stripe.BillingPortal.Session>
-  updateSubscription(user: User, price: Stripe.Price): Promise<Stripe.SubscriptionItem>
   createSubscription(user: User, price: Stripe.Price): Promise<Stripe.Subscription>
+  updateSubscription(user: User, price: Stripe.Price): Promise<Stripe.SubscriptionItem>
+  cancelSubscription(user: User): Promise<Stripe.Subscription>
+  syncSubscription(subscriptionId: string): Promise<void>
+
   createCheckout(
     user: User,
     price: Stripe.Price,
     quantity: number
   ): Promise<Stripe.Checkout.Session>
+
   syncCheckout(sessionId: string): Promise<void>
-  cancelSubscription(user: User): Promise<Stripe.Subscription>
-  syncSubscription(subscriptionId: string): Promise<void>
+  createPortalSession(user: User): Promise<Stripe.BillingPortal.Session>
 }
 
 export function createBillingService(adapter: ExtendedAdapter, urls: Pages): Billing {
