@@ -17,8 +17,8 @@ export async function setupStripe(envPath) {
     env = await readEnv(envPath)
   }
 
-  if (env.SECRET_STRIPE_KEY) {
-    fail(`SECRET_STRIPE_KEY is already configured in ${envPath}`)
+  if (env.STRIPE_SECRET_KEY) {
+    fail(`STRIPE_SECRET_KEY is already configured in ${envPath}`)
     return
   }
 
@@ -33,7 +33,7 @@ export async function setupStripe(envPath) {
 
   const webhookSecret = exec('stripe', ['listen', '--print-secret'])
 
-  await writeEnvVar(envPath, 'SECRET_STRIPE_KEY', data.default.test_mode_api_key)
+  await writeEnvVar(envPath, 'STRIPE_SECRET_KEY', data.default.test_mode_api_key)
   await writeEnvVar(envPath, 'STRIPE_WEBHOOK_SECRET', webhookSecret)
 
   if (!env.DOMAIN) {

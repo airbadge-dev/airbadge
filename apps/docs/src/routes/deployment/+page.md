@@ -43,7 +43,7 @@ Then you'll need the following variables:
 
 - `DOMAIN`: The base url of your app. For example: `https://example.tld`
 - `DATABASE_URL`: The URL to the database. For example: `postgresql://user:password@host:5432/dbname?schema=public`.
-- `SECRET_STRIPE_KEY`: Your secret Stripe key. Starts with `sk_prod_...`. Can be found in the Stripe Dashboard under [Developers -> API Keys](https://dashboard.stripe.com/apikeys)
+- `STRIPE_SECRET_KEY`: Your secret Stripe key. Starts with `sk_prod_...`. Can be found in the Stripe Dashboard under [Developers -> API Keys](https://dashboard.stripe.com/apikeys)
 - `STRIPE_WEBHOOK_SECRET`: 
 - `AUTH_SECRET`: Generate it with `openssl rand -base64 33`
 - `AUTH_*`: OAuth provider credentials. For example, GitHub would need `AUTH_GITHUB_ID` & `AUTH_GITHUB_SECRET`.

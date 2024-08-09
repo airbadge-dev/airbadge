@@ -45,7 +45,7 @@ describe('setupStripe', () => {
       await setupStripe('.env')
 
       expect(exec).toBeCalledWith('stripe', ['config', '--list'])
-      expect(writeEnvVar).toBeCalledWith('.env', 'SECRET_STRIPE_KEY', 'sk_test_1234')
+      expect(writeEnvVar).toBeCalledWith('.env', 'STRIPE_SECRET_KEY', 'sk_test_1234')
       expect(writeEnvVar).toBeCalledWith('.env', 'STRIPE_WEBHOOK_SECRET', 'whsec_1234')
       expect(writeEnvVar).toBeCalledWith('.env', 'DOMAIN', 'http://localhost:5173')
       expect(console.log).toBeCalledWith('Created .env')
@@ -62,7 +62,7 @@ describe('setupStripe', () => {
 
       expect(exec).toBeCalledWith('stripe', ['config', '--list'])
       expect(exec).toBeCalledWith('stripe', ['listen', '--print-secret'])
-      expect(writeEnvVar).toBeCalledWith('.env', 'SECRET_STRIPE_KEY', 'sk_test_1234')
+      expect(writeEnvVar).toBeCalledWith('.env', 'STRIPE_SECRET_KEY', 'sk_test_1234')
       expect(writeEnvVar).toBeCalledWith('.env', 'STRIPE_WEBHOOK_SECRET', 'whsec_1234')
       expect(writeEnvVar).toBeCalledWith('.env', 'DOMAIN', 'http://localhost:5173')
       expect(console.log).toBeCalledWith('Updated .env')
@@ -83,7 +83,7 @@ describe('setupStripe', () => {
       expect(exec).toBeCalledWith('stripe', ['config', '--list'])
       expect(exec).toBeCalledWith('stripe', ['login'])
       expect(exec).toBeCalledWith('stripe', ['listen', '--print-secret'])
-      expect(writeEnvVar).toBeCalledWith('.env', 'SECRET_STRIPE_KEY', 'sk_test_1234')
+      expect(writeEnvVar).toBeCalledWith('.env', 'STRIPE_SECRET_KEY', 'sk_test_1234')
       expect(writeEnvVar).toBeCalledWith('.env', 'STRIPE_WEBHOOK_SECRET', 'whsec_1234')
       expect(writeEnvVar).toBeCalledWith('.env', 'DOMAIN', 'http://localhost:5173')
       expect(console.log).toBeCalledWith('Updated .env')
