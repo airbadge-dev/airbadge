@@ -324,7 +324,7 @@ importers:
   packages/sveltekit:
     dependencies:
       '@airbadge/core':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../core
       '@auth/core':
         specifier: ^0.32.0

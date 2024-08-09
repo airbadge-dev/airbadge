@@ -10,7 +10,7 @@
   "description": "A SaaS module for Auth.js. It adds Stripe Subscriptions and Checkout.",
   "scripts": {
     "dev": "dotenv -e ../../.env vite dev",
-    "build": "vite build && npm run package",
+    "build": "dotenv -e ../../.env vite build && npm run package",
     "preview": "vite preview",
     "package": "svelte-kit sync && svelte-package && publint",
     "prepublishOnly": "npm run package",
@@ -69,7 +69,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "dependencies": {
-    "@airbadge/core": "workspace:^",
+    "@airbadge/core": "workspace:*",
     "@auth/core": "^0.32.0",
     "@auth/sveltekit": "^1.1.0",
     "@sveltejs/kit": "^2.0.6"
