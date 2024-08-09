@@ -30,7 +30,7 @@ export interface Billing {
   createPortalSession(user: User): Promise<Stripe.BillingPortal.Session>
 }
 
-export function createBillingService(adapter: ExtendedAdapter, urls: Pages): Billing {
+export function createBillingService(adapter: ExtendedAdapter, pages: Pages): Billing {
   const stripe = getStripe()
 
   return {
@@ -81,7 +81,7 @@ export function createBillingService(adapter: ExtendedAdapter, urls: Pages): Bil
         success_url: absoluteURL(
           '/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'
         ),
-        cancel_url: absoluteURL(urls.checkout.cancel),
+        cancel_url: absoluteURL(pages.checkout.cancel),
         currency: 'usd',
         mode: recurring ? 'subscription' : 'payment',
         customer_email: user.email,
@@ -104,7 +104,7 @@ export function createBillingService(adapter: ExtendedAdapter, urls: Pages): Bil
 
       return stripe.billingPortal.sessions.create({
         customer: user.customerId,
-        return_url: absoluteURL(urls.portalReturn)
+        return_url: absoluteURL(pages.portalReturn)
       })
     },
 
