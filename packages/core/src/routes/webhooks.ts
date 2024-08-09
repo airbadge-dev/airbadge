@@ -5,7 +5,7 @@ import type { Stripe } from 'stripe'
 
 const handler: Handler = async ({ request }, { billing }) => {
   const body = await request.text()
-  const signature = request.headers.get('stripe-signature')
+  const signature = request.headers.get('stripe-signature') || ''
 
   try {
     await handleWebhook(billing, body, signature)

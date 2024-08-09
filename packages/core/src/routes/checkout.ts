@@ -13,7 +13,7 @@ const handler: Handler = async ({ url }, { user, catalog, billing, options }) =>
 
   if (!price) return error(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
 
-  if (user.subscriptionId && price.type == 'recurring' && !expiredStates.includes(user.subscriptionStatus)) return redirect(303, '/?event=already-subscribed')
+  if (user.subscriptionId && user.subscriptionStatus && price.type == 'recurring' && !expiredStates.includes(user.subscriptionStatus)) return redirect(303, '/?event=already-subscribed')
 
   if (price.type == 'recurring' && price.unit_amount == 0) {
     await billing.createSubscription(user, price)

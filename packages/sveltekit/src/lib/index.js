@@ -1,6 +1,6 @@
 import { SvelteKitAuth as BaseAuth } from '@auth/sveltekit'
 import { STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, DOMAIN } from '$env/static/private'
-import { createCatalog, createBillingService, routes, init, setEnv } from '@airbadge/core'
+import { createCatalog, createBillingService, routes, setEnv } from '@airbadge/core'
 import { sequence } from '@sveltejs/kit/hooks'
 
 /**
@@ -26,8 +26,6 @@ export function SvelteKitAuth(options = {}) {
     STRIPE_WEBHOOK_SECRET,
     DOMAIN
   })
-
-  init()
 
   if (!options.providers || options.providers.length == 0)
     throw new Error('Must have at least one provider')

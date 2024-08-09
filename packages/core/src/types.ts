@@ -1,21 +1,27 @@
 import type { Stripe } from "stripe"
+import type { Catalog } from './catalog.ts'
+import type { Billing } from './billing.ts'
 
-interface User {
-  subscriptionId: Stripe.Subscription["id"]
-  subscriptionStatus: Stripe.Subscription["status"]
+interface Purchase {
+  productId: string
+  priceId: string
+  lookupKey: string
+  paymentIntent: string
 }
 
-interface BillingService {
-  createPortalSession(user: User): Promise<Stripe.BillingPortal.Session>
-  updateSubscription(user: User, price: Stripe.Price): Promise<void>
-  createSubscription(user: User, price: Stripe.Price): Promise<Stripe.Subscription>
-  createCheckout(user: User, price: Stripe.Price, quantity: number): Promise<Stripe.Checkout.Session>
-  syncCheckout(sessionId: string): Promise<void>
-  cancelSubscription(user: User): Promise<void>
+export interface UserExtensions {
+  customerId: string | null
+  plan: string | null
+  priceId: string | null
+  purchases: Purchase[]
+  subscriptionId: Stripe.Subscription["id"] | null
+  subscriptionStatus: string | null
 }
 
-interface CatalogService {
-  get(id: string): Stripe.Price
+export interface User extends UserExtensions {
+  id: string
+  name: string
+  email: string
 }
 
 interface Event {
@@ -23,10 +29,12 @@ interface Event {
   url: URL
 }
 
-interface Pages {
+export interface Pages {
   checkout: {
     success: string
+    cancel: string
   }
+  portalReturn: string
 }
 
 interface Options {
@@ -35,8 +43,8 @@ interface Options {
 
 interface State {
   user: User,
-  billing: BillingService,
-  catalog: CatalogService
+  billing: Billing,
+  catalog: Catalog
   options: Options
 }
 

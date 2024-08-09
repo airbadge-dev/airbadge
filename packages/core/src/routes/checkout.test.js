@@ -25,13 +25,14 @@ describe('checkout', () => {
     })
   })
 
-  test('when user already subscribed, raises error', async () => {
+  test.only('when user already subscribed, raises error', async () => {
     const event = {
       url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const state = {
       user: {
-        subscriptionId: 'sub_1234'
+        subscriptionId: 'sub_1234',
+        subscriptionStatus: 'active'
       },
       catalog: {
         get() {

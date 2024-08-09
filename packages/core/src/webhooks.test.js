@@ -1,16 +1,21 @@
-import { stripe, initStripe } from './stripe'
+import { getStripe } from './stripe'
 import { handleWebhook } from './webhooks'
 
-vi.mock('./stripe', () => {
-  return {
-    stripe: {
+vi.mock('stripe', () => {
+  const Stripe = vi.fn(() => {
+    return {
       webhooks: {
         constructEvent: vi.fn()
       }
     }
-  }
+  })
+
+  return { default: Stripe }
 })
 
+let stripe
+
+beforeAll(() => stripe = getStripe())
 afterEach(() => vi.resetAllMocks())
 
 describe('handleWebhook', () => {

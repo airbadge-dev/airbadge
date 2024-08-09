@@ -1,4 +1,4 @@
-import { stripe, initStripe } from './stripe'
+import { getStripe } from './stripe'
 import { createBillingService } from './billing'
 
 vi.mock('stripe', () => {
@@ -51,9 +51,10 @@ const urls = {
   portalReturn: '/portal-return'
 }
 
+let stripe
 let billing
 
-beforeAll(() => initStripe())
+beforeAll(() => stripe = getStripe())
 beforeEach(() => {
   billing = createBillingService(adapter, urls)
 })
