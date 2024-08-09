@@ -9,14 +9,20 @@ type ExtendedAdapterUser = AdapterUser & UserExtensions
 
 interface ExtendedAdapter extends Adapter {
   getUser(id: string): Awaitable<ExtendedAdapterUser | null>
-  updateUser(user: Partial<ExtendedAdapterUser> & Pick<ExtendedAdapterUser, "id">): Awaitable<ExtendedAdapterUser>
+  updateUser(
+    user: Partial<ExtendedAdapterUser> & Pick<ExtendedAdapterUser, 'id'>
+  ): Awaitable<ExtendedAdapterUser>
 }
 
 export interface Billing {
   createPortalSession(user: User): Promise<Stripe.BillingPortal.Session>
   updateSubscription(user: User, price: Stripe.Price): Promise<Stripe.SubscriptionItem>
   createSubscription(user: User, price: Stripe.Price): Promise<Stripe.Subscription>
-  createCheckout(user: User, price: Stripe.Price, quantity: number): Promise<Stripe.Checkout.Session>
+  createCheckout(
+    user: User,
+    price: Stripe.Price,
+    quantity: number
+  ): Promise<Stripe.Checkout.Session>
   syncCheckout(sessionId: string): Promise<void>
   cancelSubscription(user: User): Promise<Stripe.Subscription>
   syncSubscription(subscriptionId: string): Promise<void>
@@ -107,7 +113,7 @@ export function createBillingService(adapter: ExtendedAdapter, urls: Pages): Bil
 
       if (!userId) throw new Error(`Missing user id metadata for checkout '${sessionId}'`)
 
-      const user = await adapter.getUser(userId) as User | null
+      const user = (await adapter.getUser(userId)) as User | null
 
       if (!user) throw new Error(`User id \`${userId}\` not found`)
 
@@ -193,14 +199,11 @@ function absoluteURL(path: string) {
 }
 
 function getId<T>(object: T | string | null): string {
-  if (!object)
-    throw Error('Expected id, got null')
+  if (!object) throw Error('Expected id, got null')
 
-  if (typeof(object) == 'string')
-    return object as string
+  if (typeof object == 'string') return object as string
 
-  if (typeof(object) == 'object' && 'id' in object)
-    return String(object.id)
+  if (typeof object == 'object' && 'id' in object) return String(object.id)
 
   throw Error(`Expected id, got ${object}`)
 }

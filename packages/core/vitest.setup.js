@@ -31,8 +31,7 @@ expect.extend({
       if (body !== message) {
         return {
           pass: false,
-          message: () =>
-            `Expected an error with message "${message}", but got "${body}"`
+          message: () => `Expected an error with message "${message}", but got "${body}"`
         }
       }
     }

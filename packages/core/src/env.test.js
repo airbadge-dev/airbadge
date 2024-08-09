@@ -2,7 +2,7 @@ import { setEnv, getEnv, reset } from './env'
 
 describe('env', () => {
   test('when variable exists, it returns value', () => {
-    setEnv({FOO: 'some-value'})
+    setEnv({ FOO: 'some-value' })
 
     const value = getEnv('FOO')
 
@@ -16,7 +16,7 @@ describe('env', () => {
   })
 
   test('when variable is empty, it errors', () => {
-    setEnv({BAZ: ''})
+    setEnv({ BAZ: '' })
 
     expect(() => {
       getEnv('BAZ')
@@ -24,7 +24,7 @@ describe('env', () => {
   })
 
   test('can set multple', () => {
-    setEnv({A: '1', B: '2'})
+    setEnv({ A: '1', B: '2' })
 
     const a = getEnv('A')
     const b = getEnv('B')
@@ -34,7 +34,7 @@ describe('env', () => {
   })
 
   test('can reset', () => {
-    setEnv({BAZ: '1'})
+    setEnv({ BAZ: '1' })
 
     reset()
 

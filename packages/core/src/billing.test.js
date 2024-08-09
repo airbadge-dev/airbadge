@@ -54,7 +54,7 @@ const urls = {
 let stripe
 let billing
 
-beforeAll(() => stripe = getStripe())
+beforeAll(() => (stripe = getStripe()))
 beforeEach(() => {
   billing = createBillingService(adapter, urls)
 })
@@ -66,7 +66,7 @@ afterEach(() => {
 describe('createSubscription', () => {
   const price = {
     id: 'price_1234',
-    lookup_key: 'pro',
+    lookup_key: 'pro'
   }
 
   test('creates subscription', async () => {
@@ -86,14 +86,14 @@ describe('createSubscription', () => {
       name: 'John Smith',
       email: 'user@home.com',
       metadata: {
-        userId: 'user_1234',
+        userId: 'user_1234'
       }
     })
 
     expect(stripe.subscriptions.create).toHaveBeenCalledWith({
       customer: 'cus_1234',
       metadata: {
-        userId: 'user_1234',
+        userId: 'user_1234'
       },
       items: [
         {
@@ -139,7 +139,7 @@ describe('createCheckout', () => {
       metadata: {
         userId: 'user_1234',
         priceId: 'price_1234',
-        productId: 'prod_1234',
+        productId: 'prod_1234'
       },
       subscription_data: {
         metadata: {
@@ -174,7 +174,7 @@ describe('createCheckout', () => {
       metadata: {
         userId: 'user_1234',
         priceId: 'price_1234',
-        productId: 'prod_1234',
+        productId: 'prod_1234'
       },
       subscription_data: {
         metadata: {
@@ -215,7 +215,7 @@ describe('createCheckout', () => {
       metadata: {
         userId: 'user_1234',
         priceId: 'price_1234',
-        productId: 'prod_1234',
+        productId: 'prod_1234'
       },
       line_items: [
         {
@@ -310,7 +310,7 @@ describe('syncCheckout', () => {
         userId: 'user_1234',
         productId: 'prod_1234',
         priceId: 'price_1234',
-        lookupKey: 't-shirt',
+        lookupKey: 't-shirt'
       }
     })
   })
@@ -374,7 +374,12 @@ describe('syncCheckout', () => {
       id: 'user_1234',
       customerId: 'cus_1234',
       purchases: [
-        { productId: 'prod_1234', priceId: 'price_1234', lookupKey: 't-shirt', paymentIntent: 'pi_1234'} 
+        {
+          productId: 'prod_1234',
+          priceId: 'price_1234',
+          lookupKey: 't-shirt',
+          paymentIntent: 'pi_1234'
+        }
       ]
     })
 
@@ -393,7 +398,14 @@ describe('syncCheckout', () => {
       purchases: []
     })
     adapter.getUser.mockResolvedValueOnce({
-      purchases: [{ productId: 'prod_1234', priceId: 'price_1234', lookupKey: 't-shirt', paymentIntent: 'pi_1234'}]
+      purchases: [
+        {
+          productId: 'prod_1234',
+          priceId: 'price_1234',
+          lookupKey: 't-shirt',
+          paymentIntent: 'pi_1234'
+        }
+      ]
     })
 
     stripe.subscriptions.retrieve.mockResolvedValue({
@@ -425,7 +437,12 @@ describe('syncCheckout', () => {
       id: 'user_1234',
       customerId: 'cus_1234',
       purchases: [
-        { productId: 'prod_1234', priceId: 'price_1234', lookupKey: 't-shirt', paymentIntent: 'pi_1234'} 
+        {
+          productId: 'prod_1234',
+          priceId: 'price_1234',
+          lookupKey: 't-shirt',
+          paymentIntent: 'pi_1234'
+        }
       ]
     })
 
@@ -464,9 +481,7 @@ describe('cancelSubscription', () => {
 
 describe('updateSubscription', () => {
   test('when price missing, raises', async () => {
-    await expect(() =>
-      billing.updateSubscription({}, null)
-    ).rejects.toThrowError("Missing price")
+    await expect(() => billing.updateSubscription({}, null)).rejects.toThrowError('Missing price')
   })
 
   test('when price found, updates subscription item', async () => {

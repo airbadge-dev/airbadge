@@ -53,14 +53,14 @@ describe('checkout', () => {
 
     const state = {
       billing: {
-        createCheckout: vi.fn(),
+        createCheckout: vi.fn()
       },
       user: {
         subscriptionId: 'sub_1234'
       },
       catalog: {
         get: async () => price
-      },
+      }
     }
 
     state.billing.createCheckout.mockReturnValueOnce({
@@ -123,7 +123,10 @@ describe('checkout', () => {
 
     const response = handler(event, state)
 
-    await expect(response).toError(406, 'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.')
+    await expect(response).toError(
+      406,
+      'Price could not be found. Please specify a valid Stripe price/product/lookup key in the URL.'
+    )
   })
 
   describe('with product', () => {

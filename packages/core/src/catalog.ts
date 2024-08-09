@@ -17,7 +17,7 @@ export function createCatalog(): Catalog {
 
         if (!product.default_price) return null
 
-        if (typeof(product.default_price) == 'object') {
+        if (typeof product.default_price == 'object') {
           id = product.default_price.id
         } else {
           id = product.default_price
@@ -31,7 +31,7 @@ export function createCatalog(): Catalog {
       const { data } = await stripe.prices.list({
         limit: 1,
         active: true,
-        lookup_keys: [id],
+        lookup_keys: [id]
       })
 
       return data.length ? data[0] : null

@@ -94,18 +94,19 @@ describe('get', () => {
     expect(stripe.products.retrieve).toHaveBeenCalledWith('prod_1234')
   })
 
-
   test('when lookup_key found, returns price', async () => {
     stripe.prices.list.mockResolvedValue({
-      data: [
-        { id: 'price_1234' }
-      ]
+      data: [{ id: 'price_1234' }]
     })
 
     const result = await catalog.get('pro_monthly')
 
     expect(result).toMatchObject({ id: 'price_1234' })
-    expect(stripe.prices.list).toHaveBeenCalledWith({ limit: 1, active: true, lookup_keys: ['pro_monthly']})
+    expect(stripe.prices.list).toHaveBeenCalledWith({
+      limit: 1,
+      active: true,
+      lookup_keys: ['pro_monthly']
+    })
   })
 
   test('when not found, returns null', async () => {
@@ -116,7 +117,11 @@ describe('get', () => {
     const result = await catalog.get('unknown')
 
     expect(result).toBeNull()
-    expect(stripe.prices.list).toHaveBeenCalledWith({ limit: 1, active: true, lookup_keys: ['unknown']})
+    expect(stripe.prices.list).toHaveBeenCalledWith({
+      limit: 1,
+      active: true,
+      lookup_keys: ['unknown']
+    })
   })
 
   test('when id is empty, returns null', async () => {

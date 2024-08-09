@@ -15,7 +15,7 @@ vi.mock('stripe', () => {
 
 let stripe
 
-beforeAll(() => stripe = getStripe())
+beforeAll(() => (stripe = getStripe()))
 afterEach(() => vi.resetAllMocks())
 
 describe('handleWebhook', () => {

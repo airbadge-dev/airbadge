@@ -1,4 +1,4 @@
-import type { Stripe } from "stripe"
+import type { Stripe } from 'stripe'
 import type { Catalog } from './catalog.ts'
 import type { Billing } from './billing.ts'
 
@@ -14,7 +14,7 @@ export interface UserExtensions {
   plan: string | null
   priceId: string | null
   purchases: Purchase[]
-  subscriptionId: Stripe.Subscription["id"] | null
+  subscriptionId: Stripe.Subscription['id'] | null
   subscriptionStatus: string | null
 }
 
@@ -42,8 +42,8 @@ interface Options {
 }
 
 interface State {
-  user: User,
-  billing: Billing,
+  user: User
+  billing: Billing
   catalog: Catalog
   options: Options
 }
