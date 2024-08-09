@@ -27,7 +27,7 @@ describe('checkout', () => {
 
   test('when user already subscribed, raises error', async () => {
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const state = {
       user: {
@@ -46,7 +46,7 @@ describe('checkout', () => {
 
   test('when user already subscribed, but buying a one time product, doesnt raises error', async () => {
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const price = { id: 'price_999', type: 'one_time', unit_amount: 1000 }
 
@@ -84,7 +84,7 @@ describe('checkout', () => {
       }
     }
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const response = handler(event, state)
 
@@ -102,7 +102,7 @@ describe('checkout', () => {
       }
     }
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_123')
     }
     const response = handler(event, state)
 
@@ -117,7 +117,7 @@ describe('checkout', () => {
       }
     }
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_1234')
     }
 
     const response = handler(event, state)
@@ -150,7 +150,7 @@ describe('checkout', () => {
     }
 
     const event = {
-      url: new URL('http://localhost/billing/checkout')
+      url: new URL('http://localhost/billing/checkout?id=price_1234')
     }
 
     test('when price is free and recurring, creates subscription and redirects', async () => {

@@ -1,6 +1,7 @@
-import { json, error } from './utils'
+import { json, error } from './utils.js'
+import type { Handler } from '../types.ts'
 
-export default async function handler({ url }, { user, catalog, billing }) {
+const handler: Handler = async ({ url }, { user, catalog, billing }) => {
   if (!user) return error(401, 'Authentication required')
 
   const id = url.searchParams.get('id')
@@ -16,3 +17,5 @@ export default async function handler({ url }, { user, catalog, billing }) {
 
   return json({ updated: true })
 }
+
+export default handler

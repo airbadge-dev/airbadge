@@ -1,9 +1,17 @@
-import portal from './portal'
-import modify from './modify'
-import cancel from './cancel'
-import checkout from './checkout'
-import checkoutComplete from './checkoutComplete'
-import webhooks from './webhooks'
+import portal from './portal.js'
+import modify from './modify.js'
+import cancel from './cancel.js'
+import checkout from './checkout.js'
+import checkoutComplete from './checkoutComplete.js'
+import webhooks from './webhooks.js'
+import type { Handler } from '../types.js'
+
+interface RouteDef {
+  method: 'GET' | 'POST'
+  handler: Handler
+}
+
+type RoutesMap = Record<string, RouteDef>
 
 export const routes = {
   '/billing/checkout': {

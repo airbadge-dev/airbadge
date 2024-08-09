@@ -1,11 +1,13 @@
-import { error, redirect } from './utils'
+import { error, redirect } from './utils.js'
+import type { Handler } from '../types.ts'
 
 const expiredStates = [ 'INCOMPLETE_EXPIRED', 'CANCELED' ]
 
-export default async function handler({ url }, { user, catalog, billing, options }) {
-  if (!user) return redirect(303, `/auth/signin?callbackUrl=${url.pathname}${url.search}`)
-
+const handler: Handler = async ({ url }, { user, catalog, billing, options }) => {
   const id = url.searchParams.get('id')
+
+  if (!user || !id) return redirect(303, `/auth/signin?callbackUrl=${url.pathname}${url.search}`)
+
   const quantity = +(url.searchParams.get('quantity') || 1)
   const price = await catalog.get(id)
 
@@ -20,6 +22,8 @@ export default async function handler({ url }, { user, catalog, billing, options
   } else {
     const checkout = await billing.createCheckout(user, price, quantity)
 
-    return redirect(303, checkout.url)
+    return redirect(303, checkout.url || '/')
   }
 }
+
+export default handler
