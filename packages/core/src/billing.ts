@@ -53,7 +53,7 @@ export function createBillingService(adapter: ExtendedAdapter, pages: Pages): Bi
 
       await adapter.updateUser({
         id: user.id,
-        customerId: getId<Stripe.Customer | Stripe.DeletedCustomer>(subscription.customer),
+        customerId: extractId<Stripe.Customer | Stripe.DeletedCustomer>(subscription.customer),
         subscriptionId: subscription.id,
         subscriptionStatus: subscription.status.toUpperCase(),
         plan: price.lookup_key,
@@ -110,8 +110,7 @@ export function createBillingService(adapter: ExtendedAdapter, pages: Pages): Bi
 
     async syncCheckout(sessionId) {
       const checkout = await stripe.checkout.sessions.retrieve(sessionId)
-      const { metadata } = checkout
-      const { userId, productId, priceId, lookupKey } = metadata as any
+      const { userId, productId, priceId, lookupKey } = checkout.metadata as any
 
       if (!userId) throw new Error(`Missing user id metadata for checkout '${sessionId}'`)
 
@@ -123,7 +122,7 @@ export function createBillingService(adapter: ExtendedAdapter, pages: Pages): Bi
         productId: productId as string,
         priceId: priceId as string,
         lookupKey: lookupKey as string,
-        paymentIntent: getId<Stripe.PaymentIntent>(checkout.payment_intent)
+        paymentIntent: extractId<Stripe.PaymentIntent>(checkout.payment_intent)
       }
 
       if (!hasPurchase(user, checkout.payment_intent)) {
@@ -189,7 +188,7 @@ export function createBillingService(adapter: ExtendedAdapter, pages: Pages): Bi
 }
 
 function hasPurchase(user: User, paymentIntent: Stripe.PaymentIntent | string | null) {
-  const paymentIntentId = getId<Stripe.PaymentIntent>(paymentIntent)
+  const paymentIntentId = extractId<Stripe.PaymentIntent>(paymentIntent)
 
   return user.purchases.find((purchase) => purchase.paymentIntent == paymentIntentId)
 }
@@ -200,7 +199,7 @@ function absoluteURL(path: string) {
   return new URL(path, domain).toString()
 }
 
-function getId<T>(object: T | string | null): string {
+function extractId<T>(object: T | string | null): string {
   if (!object) throw Error('Expected id, got null')
 
   if (typeof object == 'string') return object as string
