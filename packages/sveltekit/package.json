@@ -69,7 +69,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "dependencies": {
-    "@airbadge/core": "../core",
+    "@airbadge/core": "workspace:^",
     "@auth/core": "^0.32.0",
     "@auth/sveltekit": "^1.1.0",
     "@sveltejs/kit": "^2.0.6"
