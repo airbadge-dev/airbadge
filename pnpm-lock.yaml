@@ -279,6 +279,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@auth/core':
+        specifier: ^0.32.0
+        version: 0.32.0
       stripe:
         specifier: ^14.14.0
         version: 14.14.0
