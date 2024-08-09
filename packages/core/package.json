@@ -1,6 +1,6 @@
 {
   "name": "@airbadge/core",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "type": "module",
   "scripts": {
     "build": "npm run clean && tsc",
