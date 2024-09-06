@@ -49,7 +49,6 @@ export function createBillingService(adapter, urls) {
           '/billing/checkout/complete?checkout_session_id={CHECKOUT_SESSION_ID}'
         ),
         cancel_url: absoluteURL(urls.checkout.cancel),
-        currency: 'usd',
         mode: recurring ? 'subscription' : 'payment',
         customer_email: user.email,
         client_reference_id: user.id,
